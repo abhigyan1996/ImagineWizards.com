@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<title>Business Quarks</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Garamond">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Serif Pro">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="QuarkStylesDesktop.css">
+<!-- <link rel="stylesheet" href="QuarksmallPh.css">
+<link rel="stylesheet" href="QuarksNormalPh.css"> -->
+<link rel="stylesheet" href="QuarksLargePh.css">
+<!-- <link rel="stylesheet" href="QuarksmallPhNxt.css"> -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="w3styles.css">
+<meta property="og:url" content="https://angshumankashyap.in/BusinessQuarks" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Micro Blogs on Business" />
+<meta property="og:description" content="Join Quarks And Refuel Your Curiosity" />
+<meta property="og:image" content="QuarkImages/quark6.jpg" />
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link rel="icon" href="QuarkOtherImages/QuarksLogoFinal.png" sizes="16x16">
+
+<!-- Facebook Share -->
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Facebook Share -->
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+
+<body>
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar" id="myNavbar" style="width:100vw; max-width:100vw; min-width:100vw;">
+      <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
+        onclick="toggleFunction()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+      </a>
+      <a href="QuarkX" class="w3-bar-item"> <img id="QuarksLogo" src="QuarkOtherImages/QuarksLogoFinal.png"> </a>
+      <a href="QuarkX" class="w3-bar-item" id="nameQuarks" class="w3-black"> QuarkX </a>
+      <!-- Light mode and dark Mode -->
+      <div class="w3-bar-item"> <img id="NightMode" src="QuarkOtherImages/NightMode.png"> </div>
+      <div class="w3-bar-item"> <img id="DayMode" src="QuarkOtherImages/DayMode.png"> </div>
+
+      <div style="margin-top:3vh">
+        <a href="/" class="navItems w3-bar-item w3-hide-small" id="navItem1Home"> Home</a>
+        <a href="QuarkX">
+          <div class="navItems w3-bar-item w3-hide-small" id="navItem2submit"> QuarkX</div>
+        </a>
+        <a href="/QuarkX/all" class="navItems w3-bar-item w3-hide-small" id="navItem3subjects"> Read</a>
+        <a href="QuarkX#SubscriptionQuarks" class="navItems w3-hide-medium w3-bar-item w3-hide-small homeSubscribe"
+          id="navItems3Quarks">Subscribe</a>
+        <a href="QuarkX#SubscriptionQuarksTablet" class="navItems w3-hide-large w3-bar-item w3-hide-small homeSubscribe"
+          id="navItems3Quarks">Subscribe</a>
+        <a href="/QuarkX/submitQuarks" class="navItems w3-bar-item w3-hide-small submitBtn"
+          id="navItems4Quarks">Submit</a>
+      </div>
+
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" style="width:100vw; max-width:100vw; min-width:100vw;"
+      class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+      <a href="/" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Home</a>
+      <a href="/QuarkX" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">QuarkX</a>
+      <a href="/QuarkX/all" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">All Quarks</a>
+      <a href="QuarkX#subscribeCardPh" class="w3-bar-item w3-right w3-button navPh"
+        onclick="toggleFunction()">Subscribe</a>
+      <a href="/QuarkX/submitQuarks" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Submit</a>
+    </div>
+  </div>
+
+
+  <!-- <div class="w3-container w3-hide-small" style="position: fixed; margin-top: 0vw;">
+  <div class="w3-dropdown-hover">
+    <div class="w3-button w3-round w3-black Filters" id="fltrQuarks">Filter Quarks</div>
+    <div class="w3-dropdown-content w3-bar-block w3-border w3-animate-zoom">
+      <div id="FilterScience" class="Filters w3-bar-item w3-button w3-round">Science</div>
+      <div id="FilterGK" class="Filters w3-bar-item w3-button w3-round">Gen Knowledge</div>
+      <div id="FilterShowAll" class="Filters w3-bar-item w3-button w3-round">Show All</div>
+    </div>
+  </div>
+</div>
+ -->
+  <div class="OutQuarks">
+    <div class="Quarks w3-row">
+
+      <div style="text-decoration: none" class="AllQuarks SubBusiness w3-container w3-half quarkHalf" id="quark70Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark70.jpg">
+          <div class="w3-center QuarkTitle" id="quark70Title">Why are gold prices rising even during lockdown?</div>
+          <div class="writings" id="quark70Text">Gold mining is profitable only if the cost of mining is less than its
+            profit. Thus, the two most gold buyers - India and China, do not mine but import gold. Due to lockdown, the
+            imports have been shut and the demand for gold has reduced. Economics says that when demand for a commodity
+            decreases, it's price decreases. But why are gold prices increasing? The US and Europe are heavily investing
+            in 'Exchange Traded Funds' which include gold too. This increased the demand and hence the price of gold.
+            The momentum can even increase if the demand bounces back in India and China.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="BusinessQuarks">
+              <div id="BusinessTag" class="w3-button BusinessTag w3-hover-white w3-blue w3-round"> BUSINESS </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhigyan </div>
+            <div class="DateOfQuark"> 20 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#electricEels" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> -->
+            <i id="listenQuark70" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubBusiness w3-container w3-half quarkHalf" id="quark62Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark62.jpg">
+          <div class="w3-center QuarkTitle" id="quark62Title">How did Dove double their sales to £4 Bn?</div>
+          <div class="writings" id="quark62Text">The mainstream advertising had always focussed on models and actresses
+            who look perfect. Dove designed their retail outlets with two doors - average and beautiful. Very few people
+            went in through the entry designated for beautiful women. This market research showed that only 4% of the
+            women considered themselves as beautiful at that time. Dove started ‘Real Beauty’ marketing campaign
+            featuring real women which conveyed that real-world women are more beautiful than they think they are. It
+            became very relatable and worked as a miracle booster for their self-confidence. Gradually, women started
+            walking in through the ‘beautiful’ door. </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="BusinessQuarks">
+              <div id="BusinessTag" class="w3-button BusinessTag w3-hover-white w3-blue w3-round"> BUSINESS </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 19 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#electricEels" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> -->
+            <i id="listenQuark62" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubBusiness w3-container w3-half quarkHalf" id="quark27Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark27.jpg">
+          <div class="w3-center QuarkTitle" id="quark27Title">What is Geo-Fencing?</div>
+          <div class="writings" id="quark27Text">Suppose, you pass by one of your favourite restaurants. You get a
+            personalised message that they have a special buffet at a special price for you. You get shocked. How do
+            they know that you are passing by? Well, this is done by using a location-based technology called
+            geo-fencing. A geo-fence is a virtual perimeter that can be drawn on a map around any physical location.
+            Wifi networks, GPS, network signals, or bluetooth are used to locate users entering a geo-fence. This
+            information is used for engaging with customers or for business intelligence. Insights can be generated by
+            geo-fencing a competitor’s location too.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="BusinessQuarks">
+              <div id="BusinessTag" class="w3-button BusinessTag w3-hover-white w3-blue w3-round"> BUSINESS </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 16 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#electricEels" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> -->
+            <i id="listenQuark27" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubBusiness w3-container w3-half quarkHalf" id="quark23Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark23.jpg">
+          <div class="w3-center QuarkTitle" id="quark23Title">How did Netflix grow so fast? </div>
+          <div class="writings" id="quark23Text" style="font-size: 1.095vw">Netflix began as an online movie rental
+            company in 1997 with a pay-per-rental policy. There was no late fee, but a customer could rent a new movie
+            only after returning the previous DVD. In 1999, Netflix offered unlimited DVD rentals for a monthly
+            subscription fee. Netflix introduced its video-streaming service in 2007. It identified the inefficiency in
+            the TV market - episodes were aired only on fixed time-slots with long wait times. Netflix innovated the
+            concept of flexible 'binge-watching' increasing viewership exponentially. People could watch what they want
+            whenever they want to. Curated content, personalised recommendations and original content kindled Netflix's
+            growth.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="BusinessQuarks">
+              <div id="BusinessTag" class="w3-button BusinessTag w3-hover-white w3-blue w3-round"> BUSINESS </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 12 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#electricEels" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> -->
+            <i id="listenQuark23" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubBusiness w3-container w3-half quarkHalf" id="quark18Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark18.jpg">
+          <div class="w3-center QuarkTitle" id="quark18Title">How Nestle recovered from the Maggi Ban? </div>
+          <div class="writings" id="quark18Text">Lockdown times! What’s more easier to cook than our very own
+            #MeriWaliMaggi? When Maggi was banned due to high levels of Monosodium Glutamate (MSG), it’s market share
+            fell to an all-time low of 10.9% in Nov 2015. However, Maggi soon regained its market share to 57% by Aug,
+            2016. Nestle harped on positive word-of-mouth publicity through "We Miss You Maggi" campaigns even as they
+            recalled 38,000 tonnes of stock from the shelves. Also, it worked on on-ground activations in smaller towns
+            rebuilding trust amongst their consumers. Nestle gradually diversified their risk by introducing new
+            categories in India.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="BusinessQuarks">
+              <div id="BusinessTag" class="w3-button BusinessTag w3-hover-white w3-blue w3-round"> BUSINESS </div>
+            </a>
+            <div class="AuthorName"> Quark by Jnyandeep </div>
+            <div class="DateOfQuark"> 7 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#electricEels" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> -->
+            <i id="listenQuark18" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubBusiness w3-container w3-half quarkHalf" id="quark17Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark17.jpeg">
+          <div class="w3-center QuarkTitle" id="quark17Title">How did Pulse Candy succeed with zero marketing?</div>
+          <div class="writings" id="quark17Text">Pulse candy generated a revenue of ₹100 Crores in the first 8 months.
+            And in 2 years, it touched ₹300 crores with just ‘Word of Mouth’ publicity beating giants like ‘Oreo’.
+            Priced at ₹1, Pulse candy was an instant hit because of its raw mango flavour and a unique powder filled
+            core of salt and spices. It mimicked the traditional way of eating mangoes in India. They leveraged the
+            brand name of successful mouth sweetener ‘Pass Pass’ on the wrapper to build the trust factor. Attractive
+            packaging and availability in every nook and corner made this candy a sensational success.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="BusinessQuarks">
+              <div id="BusinessTag" class="w3-button BusinessTag w3-hover-white w3-blue w3-round"> BUSINESS </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 6 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#electricEels" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> -->
+            <i id="listenQuark17" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubBusiness w3-container w3-half quarkHalf"
+        id="profitableCompany">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark6.jpg">
+          <div class="w3-center QuarkTitle" id="titleProfitCompany">What is the world's most profitable company?</div>
+          <div class="writings" id="ProfitCompanyTxt">Saudi Aramco – Yes, you heard it right. According to Fortune
+            magazine, the multinational petroleum and natural gas company headquartered in Saudi Arabia with an annual
+            Net Income of $110 billion is the most profitable in the world. It is followed by Apple, Industrial and
+            Commercial Bank of China, Samsung Electronics, and China Construction bank in the same order. While Apple
+            makes a profit of $1,888 per second, Saudi Aramco makes a profit of $3,519 per second.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="BusinessQuarks">
+              <div id="BusinessTag" class="w3-button BusinessTag w3-hover-white w3-blue w3-round"> BUSINESS </div>
+            </a>
+            <div class="AuthorName"> Quark by Harsh </div>
+            <div class="DateOfQuark"> 25 April, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#electricEels" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> -->
+            <i id="listenProfitCompany" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Change style of navbar on scroll
+    window.onscroll = function () { myFunction() };
+    function myFunction() {
+      var navbar = document.getElementById("myNavbar");
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-white";
+      } else {
+        navbar.className = navbar.className.replace(" w3-card w3-white", "");
+      }
+    }
+
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function toggleFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+  </script>
+
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenElecEel').click(function () {
+          var text1 = document.getElementById("titleElecEels").innerHTML;
+          var text2 = document.getElementById("ElectricEelsTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+  <!-- Voice read out end -->
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenJelFish').click(function () {
+          var text1 = document.getElementById("titleJellyFish").innerHTML;
+          var text2 = document.getElementById("JellyFishTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+  <!-- Voice read out end -->
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenLightning').click(function () {
+          var text1 = document.getElementById("TitleLightning").innerHTML;
+          var text2 = document.getElementById("LightningTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+  <!-- Voice read out end -->
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenSkyBlue').click(function () {
+          var text1 = document.getElementById("titleSkyBlue").innerHTML;
+          var text2 = document.getElementById("SkyBlueTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenHappyPeople').click(function () {
+          var text1 = document.getElementById("TitleHappyPeople").innerHTML;
+          var text2 = document.getElementById("HappyPeopleTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenProfitCompany').click(function () {
+          var text1 = document.getElementById("titleProfitCompany").innerHTML;
+          var text2 = document.getElementById("ProfitCompanyTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark17').click(function () {
+          var text1 = document.getElementById("quark17Title").innerHTML;
+          var text2 = document.getElementById("quark17Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark18').click(function () {
+          var text1 = document.getElementById("quark18Title").innerHTML;
+          var text2 = document.getElementById("quark18Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark23').click(function () {
+          var text1 = document.getElementById("quark23Title").innerHTML;
+          var text2 = document.getElementById("quark23Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark27').click(function () {
+          var text1 = document.getElementById("quark27Title").innerHTML;
+          var text2 = document.getElementById("quark27Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark62').click(function () {
+          var text1 = document.getElementById("quark62Title").innerHTML;
+          var text2 = document.getElementById("quark62Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark70').click(function () {
+          var text1 = document.getElementById("quark70Title").innerHTML;
+          var text2 = document.getElementById("quark70Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <!-- Voice read out end -->
+
+  <script>
+    $(document).ready(function () {
+      $('.AllQuarks').hide();
+      $('.SubBusiness').show();
+    });
+  </script>
+
+  <!-- Filter for Quarks-->
+  <!-- <script>
+ $(document).ready(function(){
+    var countScience = 0;
+    var countGk = 0;
+    var flagScience = true;
+    var flagGk = true;
+
+    $('#FilterScience').click(function(){
+      countScience++;
+      if(countScience == 1) {
+        flagScience = true;
+        $('#FilterScience').css("background", "#33DAFF");
+        if(countGk == 0) {
+          $('.SubGK').hide();
+          flagGk = false;
+        }
+        else {
+          $('.SubScience').show();
+        } 
+      }
+      else if(countScience % 2 == 0 && countScience>1) {
+          flagScience = false;
+          $('.SubScience').hide();
+          $('#FilterScience').css("background", "white");
+          if (flagScience == false && flagGk == false) {
+            flagScience = true;
+            flagGk = true;
+            countGk = 0; countScience = 0;
+            $('#FilterGK').css("background", "white");
+            $('#FilterScience').css("background", "white");
+            $('.SubGK').show();
+            $('.SubScience').show();
+        }
+      }
+      else if (countScience %2 != 0 && countScience>1){
+        flagScience = true;
+        $('.SubScience').show();
+        $('#FilterScience').css("background", "#33DAFF");
+      }
+  }),
+
+    $('#FilterGK').click(function(){
+      countGk++;
+      if(countGk == 1) {
+        flagGk = true;
+        $('#FilterGK').css("background", "#33DAFF");
+        if(countScience == 0) {
+          flagScience = false;
+          $('.SubScience').hide();
+        }
+        else {
+          $('.SubGK').show();
+        } 
+      }
+      else if(countGk % 2 == 0 && countGk>1) {
+          flagGk = false;
+          $('.SubGK').hide();
+          $('#FilterGK').css("background", "white");
+          if (flagScience == false && flagGk == false) {
+            countGk = 0; countScience = 0;
+            flagScience = true;
+            flagGk = true;
+            $('#FilterGK').css("background", "white");
+            $('#FilterScience').css("background", "white");
+            $('.SubGK').show();
+            $('.SubScience').show();
+          }
+        }
+      else if (countGk %2 != 0 && countGk>1){
+        flagGk = true;
+        $('.SubGK').show();
+        $('#FilterGK').css("background", "#33DAFF");
+      }
+  }),
+
+    $('#FilterShowAll').click(function(){
+        countGk = 0; countScience = 0; 
+        $('#FilterGK').css("background", "white");
+        $('#FilterScience').css("background", "white");
+        $('.SubGK').show();
+        $('.SubScience').show();
+    })
+  });
+</script>
+ -->
+
+
+  <script>
+    $(document).ready(function () {
+      $("#NightMode").click(function () {
+        $("#NightMode").fadeOut();
+        $("#DayMode").fadeIn();
+        $("body").css({ "background-color": "#bbb" });
+        $(".Quarks").css({ "background-color": "#bbb" });
+        $("#navBAR").css({ "background": "white" });
+        $(".QuarkCards").css({ "background": "black" });
+        $(".QuarkTitle").css({ "background": "black" });
+        $(".writings").css({ "background": "black" });
+        $(".writings").css({ "color": "white" });
+        $(".QuarkTitle").css({ "color": "white" });
+        $(".QuarkBottomStrip").css({ "background": "#0E0D0F" });
+      });
+
+      $("#DayMode").click(function () {
+        $("#DayMode").fadeOut();
+        $("#NightMode").fadeIn();
+        $("body").css({ "background-color": "white" });
+        $(".Quarks").css({ "background-color": "white" });
+        $("#navBAR").css({ "background": "white" });
+        $(".QuarkCards").css({ "background": "white" });
+        $(".QuarkTitle").css({ "background": "white" });
+        $(".writings").css({ "background": "white" });
+        $(".writings").css({ "color": "black" });
+        $(".QuarkTitle").css({ "color": "black" });
+        $(".QuarkBottomStrip").css({ "background": "black" });
+
+      });
+    });
+  </script>
+
+  <script>
+    AOS.init();
+  </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+
+/* 600px and up, IPAD, Desktop */
+@media all and (min-width: 600px) {
+
+#IgniteLogo{
+	margin-top: -4vw;
+	height:15vw;
+	width:15vw;
+	margin-bottom: -5vw;
+	margin-left: 3vw
+}
+
+#div1Image{
+	height: 40vw;
+	width: 100vw;
+	opacity: 0.08;
+	margin-top: -2.8vw;
+}
+
+
+#joinQuoteHome{
+	margin-top: 0vw;
+	margin-left: 3vw;
+	font-family: 'Quicksand';
+	font-size: 3.15vw;
+	font-weight: 900; 
+	width:35vw;
+	max-width: 35vw;
+	min-width: 35vw;
+}
+
+#joinQuarksLineHome{
+	margin-left: 3vw;
+	font-family: 'Source Serif Pro';
+	font-size: 1.25vw;
+	width: 35vw;
+	max-width: 35vw;
+	min-width: 35vw; 
+	margin-top: 0vw;
+}
+
+#quoteBg{
+	background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%); 
+	padding: 15px;
+	border-radius: 0px;
+	margin-left: 6vw;
+	margin-top: 6vw;
+}
+
+#Desktop{
+	margin-top: -10vw;
+	margin-left: -7.5vw;
+	width: 65vw;
+	height:50vw;
+	position: absolute;
+}
+
+#NamasteText{
+	margin-top: 3vw;
+	font-family: 'Allura';
+	margin-left: 25vw;
+	font-style: italic;
+	font-size: 3vw;
+	font-weight: 900;
+	position: absolute;
+	color:gold;
+}
+
+#namastePicIgnite{
+	position:absolute;
+	height:10vw;
+	width:8vw;
+	margin-left:15vw;
+	margin-top: 1vw;
+}
+
+#getCVimac{
+	position:absolute;
+	margin-left:14vw;
+	margin-top: 15vw;
+}
+
+#getSOPimac{
+	position:absolute;
+	margin-left:27vw;
+	margin-top: 15vw;
+}
+
+#blackCircle{
+	height:2vw;
+	width:30vw;
+	border-radius: 100px;
+	position: absolute;
+	opacity:0.75;
+	background: #bbb;
+	margin-top: 29.5vw;
+	margin-left: 10vw
+}
+
+#ClickTxtIgnite{
+	margin-top: 12vw;
+	font-family: 'Garamond';
+	margin-left: 22.5vw;
+	font-size: 1.75vw;
+	position: absolute;	
+	color:green;
+}
+
+#PayTxt{
+	padding: 3px;
+	background: pink;
+	position: absolute;
+	margin-left: 25vw;
+	margin-top: 7vw;
+	color:white;
+	font-size: 1.25vw;
+	text-align: center
+}
+
+}

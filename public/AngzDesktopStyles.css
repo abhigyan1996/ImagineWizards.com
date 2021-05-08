@@ -1,0 +1,353 @@
+
+@media all and (min-width: 600px) {
+
+#nameAngz{
+	font-family: 'Quicksand';
+	font-size: 4vw;
+	text-decoration: none;
+	margin-left: 8vw;
+	color:black;
+}
+
+#navItem1Angz{
+	font-family: 'Source Serif Pro';
+	font-size:1.3vw;
+	color:black;
+	margin-left: 77vw;
+	position:absolute;
+	color:red;
+	text-decoration: none;
+}
+
+#navItem1Angz:hover{
+	color:green;
+}
+
+#navItem2Angz{
+	font-family: 'Source Serif Pro';
+	font-size:1.3vw;
+	color:black;
+	margin-left: 82vw;
+	position:absolute;
+	color:black;
+	text-decoration: none;
+}
+
+#navItem2Angz:hover{
+	color:blue;
+}
+
+#navItem3Angz{
+	font-family: 'Source Serif Pro';
+	font-size:1.3vw;
+	color:black;
+	margin-left: 88vw;
+	position:absolute;
+	color:black;
+	text-decoration: none;
+}
+
+#navItem3Angz:hover{
+	color:blue;
+}
+
+.HomeBanner{
+	height:20vw;
+	width:100vw;
+}
+
+.mySlides {display:none}
+.w3-left, .w3-right, .w3-badge {cursor:pointer}
+.w3-badge {height:13px;width:13px;padding:0}
+
+
+/*BOOTSTRAP BANNERS TIME ADJUSTMENT*/
+.item {
+    display: none;
+    position: relative;
+    .transition(.0s ease-in-out left);
+    height:30vw;
+}
+
+#myCarousel{
+	width:50vw;
+	margin-left: 17.5vw
+}
+
+.carousel-control.left, .carousel-control.right {
+   background-image:none !important;
+  filter: invert(0.5);
+  width:5vw;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    margin: 10px;
+    text-indent: 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    background-color: #0000ff;
+    box-shadow: inset 1px 1px 2px 2px rgba(0,0,0,0.5);   
+}
+.carousel-indicators .active {
+    width: 48px;
+    height: 48px;
+    margin: 10px;
+    background-color: #ffff99;
+}
+
+#bookBtn{
+	margin-top: 5vw;
+	font-family: 'Source Serif Pro';
+	font-size: 1.75vw;
+	margin-left: 5vw;
+}
+
+#AngzDiv1Large{
+	height:30vw;
+	width:100vw;
+	background: white;
+	overflow: hidden;
+	margin-top: 7.5vw;
+}
+
+.thing .slick-dots {
+	position:absolute;
+	width: 100vw;
+	bottom: 0;
+	top: 100;
+	left: 0;
+}
+
+.thing .slick-dots li{
+	list-style: none;
+	background: #bbb;
+	width:1.5vw;
+	height:1.5vw;
+	border-radius: 50%;
+	display: inline-block;
+	font-size: 1vw;
+}
+
+.thing .slick-dots li.slick-active{
+	background: white;
+}
+
+.thing .slick-dots li button{
+	display: none;
+}
+
+#AngzDiv2{
+	height: 35vw;
+	width: 100vw;
+	overflow: hidden;
+	background: white;
+}
+
+#aboutMeHeading{
+	font-family: 'Quicksand';
+	font-size: 4vw;
+	text-align: center;
+	color:black;
+	font-weight: 900;
+}
+
+#AngzLiBadge{
+	margin-left: 15vw;
+	margin-top: 6vw;
+}
+
+#AngzCard{
+	width:25vw;
+	height:26vw;
+	margin-left: 13vw;
+	margin-top:2vw;
+	/*border-radius:10px;*/
+}
+
+#flipkart{
+	position:absolute;
+	width:25vw;
+	height: 8vw;
+/*	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;*/
+}
+
+#flipkartStrip{
+	position:absolute;
+	background: black;
+	opacity:0.3;
+	height: 8vw;
+	width:25vw;
+	/*border-top-left-radius: 10px;
+	border-top-right-radius: 10px;*/
+}
+
+#AngzCardPic{
+	position: absolute;
+	height: 10.5vw;
+	width: 10vw;
+	margin-left: 7.5vw;
+	margin-top: 1vw;
+	border-radius: 100%;
+	border: 5px solid #bbbbbb;
+}
+
+#AngzWritings{
+	position:absolute;
+	text-align: center;
+	font-family: 'Source Serif Pro';
+	font-size: 1.25vw;
+	margin-top: 12vw;
+	margin-left: 2.5vw
+}
+
+#AngzAboutAll{
+	margin-top: 2vw;
+}
+
+#AngzName{
+	font-weight: 900;
+	font-size: 1.75vw;
+}
+
+.aboutMeTxt{
+	font-family: 'Source Serif Pro';
+	font-size: 1.25vw;
+	margin-right: 3vw; 
+	margin-top: 3vw;
+}
+
+#ReadAboutMeBtn{
+	font-family: 'Source Serif Pro';
+	font-size:1.75vw;
+	text-align: center;
+	margin-top: 3vw;
+	margin-left: 0vw;
+}
+
+#QuakrXIntro{
+	font-family: 'Quicksand';
+	font-size: 4vw;
+	text-align: center;
+	color:black;
+	font-weight: 900;
+	margin-top: 3vh;
+}
+
+.QuarkXTxt{
+	margin-top: -5vh;
+}
+
+#AngzDiv3{
+	height: 40vw;
+}
+
+#joinQuarkAngz{
+	margin-top: 6vw;
+	margin-left: 10vw;
+	font-family: 'Quicksand';
+	font-size: 3.15vw;
+	font-weight: 900; 
+	width:35vw;
+	max-width: 35vw;
+	min-width: 35vw;
+}
+
+#joinQuarksLineAngz{
+	margin-left: 10vw;
+	font-family: 'Source Serif Pro';
+	font-size: 1.25vw;
+	width: 35vw;
+	max-width: 35vw;
+	min-width: 35vw; 
+	margin-top: 0vw;
+}
+
+#AngzDiv4{
+	height: 35vw;
+	width: 100vw;
+	overflow: hidden;
+	background: white;
+}
+
+#igniteBanner{
+	height:30vw;
+	width:50vw;
+
+}
+
+.IgniteSmartTxt{
+	font-family: 'Source Serif Pro';
+	font-size: 1.25vw;
+	margin-right: 3vw;
+	margin-left: 5vw; 
+	margin-top: 3vw;
+}
+
+#GetCvBtn{
+	font-family: 'Source Serif Pro';
+	font-size:1.75vw;
+	text-align: center;
+	margin-top: 3vw;
+	margin-left: 5vw;
+}
+
+#AngzDiv5{
+	min-height: 60vw;
+	max-height: 240vw;
+	width: 100vw;
+	overflow: hidden;
+	background: white;
+}
+
+#bookIntro{
+	height: 50vw;
+	width:40vw;
+}
+
+#buyBookBtn{
+	height: 5vw;
+	width:15vw;
+	margin-top: 5vw;
+	margin-left: 5vw;
+	cursor: pointer;
+}
+
+#AngzDiv6{
+	height:30vw;
+	width:100vw;
+	background: white;
+	overflow: hidden;
+}
+
+#IconsOuter{
+	margin-left: -3vw;
+	margin-top: 5vw;
+	text-align: center
+}
+
+.social_icons{
+	margin-left:5vw;
+	font-size: 3vw;
+	color: orange;
+}
+
+#AngzDiv7{
+	height:20vw;
+	width:100vw;
+	background: #bbb;
+	overflow: hidden;
+}
+
+#DevelopedByTxt{
+	margin-top: 5vw;
+	font-family: 'Source Serif Pro';
+	font-size:1.25vw;
+	text-align: center;
+}
+
+}

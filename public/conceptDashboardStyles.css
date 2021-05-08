@@ -1,0 +1,249 @@
+#allDivisions{
+	height: 100vh;
+	overflow: scroll;
+	-ms-overflow-style: none;  /* IE and Edge */
+ 	scrollbar-width: none;  /* Firefox */
+ 	margin-top: 0.2vw;
+ 	position: absolute;
+}
+
+#allDivisions::-webkit-scrollbar {
+  display: none;
+}
+
+#firstDiv {
+	max-width:100vw;
+	min-width: 100vw;
+	overflow: hidden;
+	height:20vw;
+}
+
+#practiceBtn, #viewSolBtn, #restartBtn{
+	font-family: cursive;
+	font-size: 2.8vw;
+	margin-left: 6.5vw;
+	margin-top: 3vw;
+	padding: 5vw;
+	width: 40vw;
+	background-size: 300% 300%;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+	background-image: linear-gradient(to right, #3F76FF 0%, #5FFF3F 50%, #3F76FF 100%);
+  	transition: 0.5s;
+}
+
+#practiceBtn:hover, #viewSolBtn:hover, #restartBtn:hover {
+	background-position: right center;
+  }
+
+
+  
+#PerformanceTxt {
+	font-family: 'Source Serif Pro';
+	font-size: 2vw;
+	margin-top: 2vw;
+	margin-left: 6.5vw;
+	font-family: cursive;
+	text-transform: uppercase;
+}
+
+#PerformanceDiv {
+	margin-top: -15vw;	
+	width: 100vw;
+	overflow: hidden;
+}
+
+#LeaderboardDiv {
+	margin-top: -20vw;	
+	width: 100vw;
+	overflow: hidden;
+	height:60vw;
+}
+
+#leaderboardMsg {
+	margin-top: 2vw;
+	text-align:center;
+	font-size: 1.75vw;
+	font-family: cursive;
+}
+
+#noteMsg {
+	margin-top: 2vw;
+	text-align:center;
+	font-size: 1vw;
+	font-family: cursive;
+}
+
+#Score {
+	margin-top: -13.25vw;
+	text-align:center;
+	font-size: 1.5vw;
+	font-family: cursive;
+	font-weight: 800;
+	width: 11.75vw;
+	margin-left: 43.5vw;
+	position: absolute;
+	padding: 0.75vw;
+	transform: rotate(-15deg);
+	border-radius: 0.5vw;
+	border: 1px solid #5FFF3F;
+}
+
+#naruto {
+	height: 15vw;
+	width: 20vw;
+	margin-left: 40vw;
+}
+
+
+#attemptedMaxScore{
+	margin-left: 44vw;
+	font-size: 1.5vw;
+	font-family: cursive;
+	font-weight: 800;
+	border-radius: 0.5vw;
+	border: 1px solid #5FFF3F;
+	width: 12vw;
+	border-radius: 2vw;
+	text-align: center;
+	background-color: #dddddd;
+	color: black;
+	padding: 0.5vw;
+}
+
+
+#scoreboardDiv {
+	position: relative;
+
+	animation: linear infinite;
+	animation-name: run;
+	animation-duration: 1.75s;
+    -webkit-animation: linear infinite;
+    -webkit-animation-name: run;
+    -webkit-animation-duration: 1.75s;
+}
+
+@keyframes run{
+	0% {
+		top: -0.25vw;
+	}
+	50% {
+	  top: 0.25vw;
+	}
+	100% {
+		top: -0.25vw;
+	}
+}
+@-webkit-keyframes run {
+	0% {
+		top: -0.25vw;
+	}
+	50% {
+	  top: 0.25vw;
+	}
+	100% {
+		top: -0.25vw;
+	}
+}
+
+
+#whiteStripBlank {
+	visibility: hidden;
+	font-size: 0.15vw;
+}
+
+#PieCharts {
+	margin-left: 0vw;
+	width: 100vw;
+	max-width: 100vw;
+	min-width: 100vw;
+	overflow: hidden;
+}
+
+#progressBar {
+	font-family: 'Source Serif Pro';
+	font-size: 2vw;
+	margin-top: 0vw;
+	margin-left: 50vw;
+	width: 45vw;
+	position: absolute;
+}
+
+#piechartQuestionsLarge {
+	width: 70vw;
+	height: 50vw;
+	margin-top: 0vw;
+	position: absolute;
+}
+
+#piechartQuestionsMedium {
+	width: 90vw;
+	height: 70vw;
+	margin-top: 0vw;
+	position: absolute;
+}
+
+#piechartQuestionsSmall {
+	width: 100vw;
+	height: 50vw;
+	margin-top: 0vw;
+	position: absolute;
+}
+
+#totalQCard, #CorrectQCard, #WrongQCard, #SkippedQCard, #UnattemptedQCard {
+	margin-left: 70vw;
+	width:20vw;
+	margin-top: 2vw;
+	text-align: center;
+	font-family: cursive;
+	border-radius: 1vw;
+}
+
+#totalCount, #correctCount, #wrongCount, #skipCount, #Unattemptedcount {
+	font-size: 2vw;
+}
+
+#totalTxt, #CorrectTxt, #WrongTxt, #SkippedTxt, #UnattemptedTxt {
+	font-size: 2vw;
+}
+
+#PerformanceCountLarge {
+	margin-bottom: 30vw;
+}
+
+#DisplayFeedback {
+	font-size: 2vw;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+	text-align: center;
+	font-family: cursive;
+}
+
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 40%;
+  }
+  
+  td, th {
+	border: 1px solid #dddddd;
+	text-align: center;
+	font-size: 1.5vw;
+	
+  }
+
+  tr:nth-child(even) {
+	background-color: #dddddd;
+  }
+
+  #LeaderboardTbl {
+	  margin-top: 2vw;
+	  margin-left: 30%;
+	  width: fit-content;
+  }
+
+  #topTenTxt {
+	  text-align: center;
+	  font-size: 2.5vw;
+	  margin-top: 4vw;
+	  font-family: 'Franklin Gothic Medium';
+  }

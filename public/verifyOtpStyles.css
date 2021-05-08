@@ -1,0 +1,79 @@
+
+
+#div1OTP{
+	position: absolute;
+	margin-top: 7vw;
+	width:60vw;
+	
+	height: 32vw;
+	margin-left: 20vw;
+	padding: 3vw;
+
+	background: #19131d;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+
+
+/*	background:-moz-linear-gradient(top, purple 0%, red 100%); 
+    background: -webkit-linear-gradient(top, purple 0%,purple 100%); 
+	background: linear-gradient(to bottom, #bbb 0%, purple 100%);*/
+	
+}
+
+#verifyOTPTxt {
+	font-family: cursive;
+	text-align: center;
+	font-size: 2vw;
+	color: #b114fa;
+}
+
+#ResendTxt {
+	font-size: 1.5vw;
+	color: white;
+	margin-top: 1.5vw;
+	font-family: 'Raleway';
+}
+
+#ResendTxt:hover {
+	cursor: pointer;
+}
+
+#submitBtn {
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+#digit-1, #digit-2, #digit-3, #digit-4, #digit-5, #digit-6 {
+	width: 5%;
+	height: 3vw;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 3vw;
+}
+
+#digit-1:focus, #digit-2:focus, #digit-3:focus, #digit-4:focus, #digit-5:focus, #digit-6:focus {
+    outline: none !important;
+    border:1px solid yellow;
+    box-shadow: 0 0 10px yellow;
+    font-size: 1.5vw
+}
+
+#TxtOtp {
+	margin-top: 2vw;
+	font-family: 'Raleway';
+	font-size: 1.5vw;
+	color:white
+}
+	
+
+#splitter {
+		padding: 0 5px;
+		color: white;
+		font-size: 2vw;
+	}
+
+.prompt {
+	margin-bottom: 20px;
+	font-size: 20px;
+	color: white;
+}

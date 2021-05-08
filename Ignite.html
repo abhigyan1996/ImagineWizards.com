@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<title>Ignite</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allura">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Garamond">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Serif Pro">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Helvetica">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="QuarkStylesDesktop.css">
+<link rel="stylesheet" href="IgniteDesktopStyle.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="QuarksLargePh.css">
+ <meta property="og:url"           content="https://abhigyan1996.github.io/Quarks/homePage.html" />
+ <meta property="og:type"          content="website" />
+ <meta property="og:title"         content="Join Quarks" />
+ <meta property="og:description"   content="Refuel Your Curiosity" />
+ <meta property="og:image"         content="images/homeAmoeba.jpg" />
+<link rel="stylesheet" href="w3styles.css">
+<link rel="stylesheet" href="AngzPhStyles.css">
+
+<script src="slickJS/slick.js" type="text/javascript"></script>
+<link rel="stylesheet" href= "slickCss/slick.css">
+<link rel="stylesheet" href= "slickCss/slick-theme.css">
+
+<link rel="stylesheet" href= "AngzDesktopStyles.css">
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"> </script>
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- <script>
+document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=horizontal&u=' + encodeURIComponent(document.location.href) + '"></scr' + 'ipt>');
+</script> -->
+<!-- FACEBOOK ETC SHARE BUTTONS -->
+<!-- <script>
+document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=vertical&u=' + encodeURIComponent(document.location.href) + '"></scr' + 'ipt>');
+</script> -->
+
+
+<body class="w3-white" style="width:100vw; max-width:100vw; min-width:100vw; overflow: hidden">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar" style="width:100vw; max-width:100vw; min-width:100vw;">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="QuarkX" class="w3-bar-item"> <img id="IgniteLogo" src="IgniteImages/IgniteLogo.png"> </a> 
+    
+    <div style="margin-top:3vh">
+    <a href="index" class="navItems w3-bar-item w3-hide-small" id="navItem3Home"> Home</a>
+    <a href="#"> <div class="navItems w3-bar-item w3-hide-small" id="navItems4Ignite"> Ignite</div></a>
+    <!-- <a href="AllQuarks" class="navItems w3-bar-item w3-hide-small" id="navItem3Home"> Read</a>
+    <a href="#SubscriptionQuarks" class="navItems w3-hide-medium w3-bar-item w3-hide-small homeSubscribe" id="navItems3Quarks">Subscribe</a>
+    <a href="#SubscriptionQuarksTablet" class="navItems w3-hide-large w3-bar-item w3-hide-small homeSubscribe" id="navItems3Quarks">Subscribe</a>
+    <a href="submitQuarks" class="navItems w3-bar-item w3-hide-small submitBtn" id="navItems4Quarks">Submit</a> -->
+  </div>
+
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" style="width:100vw; max-width:100vw; min-width:100vw;" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="index" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Home</a>
+    <a href="AllQuarks" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Ignite</a>
+    <!-- <a href="#subscribeCardPh" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Subscribe</a>
+    <a href="submitQuarks" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Submit</a> -->
+  </div>
+</div>
+
+
+<div class="w3-row" id="div1H" style="width:100vw; max-width:100vw; min-width:100vw; overflow: hidden;">
+  <img id="div1Image" style="position: absolute" src="IgniteImages/image1.png">
+  <div class="w3-half w3-container">
+     <div class="anim write1 w3-card" id="quoteBg">
+        <p class="scroll2Home" id="joinQuoteHome" style="color:black"> Grow your career <br> with our <span style="color:black">Professionals</span>!!!</p>
+        <p id="joinQuarksLineHome" style="color:black">
+        We ignite your career with a  <span style="color:black; font-weight: 900">Pay as You Like</span> concept. Our philosophy is simplicity with detail to bring out the best in you. Get a professional <span style="color:black; font-weight: 900">CV or SOP</span>  handcrafted for you with a catchy presentation. We are unique and we don't just provide templates. Content is the king! 
+        </p>
+     </div>
+     <div class="anim write2 w3-hide-small">
+       <a href="#subscribeCard"> <p id="subscribeQuarksHome" class="w3-hide-medium subscribeBtn w3-button w3-black w3-hover-yellow w3-round">Get Your SOP</p></a>
+       <a href="#subscribeCardTablet"> <p id="subscribeQuarksHome" class="w3-hide-large w3-hide-small subscribeBtn w3-button w3-black w3-hover-yellow w3-round">Get Your SOP</p></a>
+       <a href="AllQuarks"> <p id="exploreQuarksHome" class="w3-button w3-red w3-hover-yellow w3-round">Get Your CV</p></a>
+     </div>
+
+     <div class="w3-hide-medium w3-hide-large">
+       <a href="#subscribeCardPh"> <p id="subscribeQuarksHome" class="w3-hide-medium w3-hide-large subscribeBtn w3-red w3-black w3-hover-yellow w3-round">Get Your SOP</p></a>
+       <a href="AllQuarks"> <p id="exploreQuarksHome" class="w3-button w3-green w3-hover-yellow w3-round">Get Your CV</p></a>
+     </div>
+
+  </div>
+
+  <div class="w3-half w3-container" id="div1ImgH">
+    <!-- This picture is only for Laptop and Tablet for now -->
+    <div class="anim PhoneQuark">
+        <img id="Desktop" src="IgniteImages/DesktopPic.png">
+
+        <div id="blackCircle"> </div>
+        <div id="imacScreen1"> 
+           <img id="namastePicIgnite" src="QuarkOtherImages/namaste2.png">
+            <div id="PayTxt" class="w3-card">PAY AS YOU LIKE</div>
+           <div id="ClickTxtIgnite">CLICK!</div>
+           <div id="getCVimac" class="w3-button w3-red w3-hover-yellow w3-round"> GET YOUR CV </div>
+           <div id="getSOPimac" class="w3-button w3-black w3-hover-yellow w3-round"> GET YOUR SOP </div>
+          <div id="NamasteText">Namaste!</div>
+
+        </div>
+  <!-- <div id="WhiteStrip"></div> -->
+     <!--  <div id="PhoneScreen1">
+        <div id="clickTxt"> CLICK! </div>
+        <a href="AllQuarks"> <div id="PhoneBtn" class="w3-button w3-blue w3-round"> Read a Quark </div></a>
+        <img id="namastePic" src="QuarkOtherImages/namaste2.png">
+        <div id="namasteTxt">NAMASTE</div>
+        <img id="fingerPic" src="QuarkOtherImages/finger.png">
+      </div>
+      <div id="PhoneScreen2">
+        <img id="QuarkPic" src= "QuarkImages/quark9.jpg">
+        <div id="Quark1">HOW IS A STAR BORN?</div>
+        <div id="Quark1Ans">
+          Gravitational attraction causes a large amount of interstellar gas (mostly Hydrogen) to collapse in on itself. This causes the atoms to collide at great speeds generating enormous heat. This heat causes the Hydrogen atoms to... </div>
+      </div>
+      <div id="PhoneScreen3">
+        <img id="QuarkPic" src= "QuarkImages/quark7.jpg">
+        <div id="blackStrip"> </div>
+        <div id="Quark1" style="color:white" >HOW DID DRONACHARYA DIE?</div>
+        <div id="Quark1Ans" style="color:white">
+          In the battle of Kurukshetra, after the death of Bheeshma, Drona was the commander-in-chief of the Kauravas and is a quite fearless leader. His only weakness is his son Aswathama. So Krishna... </div>
+      </div> -->
+    </div>
+
+     <!-- <img src="QuarkOtherImages/homeAmoebaOne.jpg" class="w3-hide-small w3-animate-right" id="homeAmoeba1"> -->
+     <!-- <img src="QuarkOtherImages/homeAmoebaOne.jpg" class="w3-hide-large w3-hide-medium" id="homeAmoeba1"> -->
+  </div>
+
+</div>
+
+<div id="adjustDiv" style="background: white; height:2vw;"> </div>
+
+ <!-- Only for laptop and phones -->
+ <div class="anim write3 w3-hide-small w3-hide-medium" id="WhyQuarksHome">
+      What makes our Quarks <span style="color:purple">UNIQUE</span>?
+  </div>
+<!-- For tablets -->
+<div class="anim write4 w3-hide-large w3-hide-small" id="WhyQuarksMedHome">
+      What makes our Quarks <span style="color:purple">UNIQUE</span>?
+  </div>
+<!-- For phones -->
+ <div class="w3-hide-large w3-hide-medium" id="WhyQuarksHome">
+      What makes our Quarks <span style="color:purple">UNIQUE</span>?
+  </div> 
+ 
+ <!-- Below division is for phones only -->
+<div class="w3-hide-large w3-hide-medium" style="width:100vw; height:480vw; background:white;"> 
+  <div class="w3-container">
+    <div class="w3-card w3-hide-large w3-hide-medium HomeCards" style="margin-top:10vw">
+        <img class="whyQuarkImages" src="QuarkOtherImages/ingredients.jpg">
+          <p class="w3-center whyQuarkTitle">The Ingredients</p>
+            <p class="WhyQwriting"> We source the finest ingredients for your mind by bringing to you questions that would fascinate you. We curate the most interesting questions across different subject areas that would inspire the world of knowledge. Civilisation has always progressed by asking the right questions.</p>    
+    </div>
+  </div>
+
+  <div class="w3-container">
+    <div class="w3-card w3-hide-large w3-hide-medium HomeCards">
+        <img class="whyQuarkImages" src="QuarkOtherImages/recipe.jpeg">
+        <p class="w3-center whyQuarkTitle">The Recipe</p>
+          <p class="WhyQwriting">Our experts design the perfect recipe for you by making the answers precise, engaging and relevant. We understand that your time is precious and the ocean of knowledge is never-ending. So, we simplify the content of each quark in the most consumable format.</p>    
+   </div>
+  </div> 
+
+  <div class="w3-container">
+    <div class="w3-card w3-hide-large w3-hide-medium HomeCards">
+        <img class="whyQuarkImages" src="QuarkOtherImages/garnishing.jpg">
+        <p class="w3-center whyQuarkTitle">The Garnishing</p>
+          <p class="WhyQwriting">We add a layer of delight on each Quark with a sprinkle of our creativity. We bring back to you the nostalgia of your childhood curiosity and this indeed feels magical. And this is what makes each Quark ready for you - garnished to perfection.</p>    
+      </div> 
+    </div>
+</div>
+ 
+<div class="w3-hide-small" id="divOuterCards" > 
+ <div class="WhyQuarks w3-row">
+  
+  <div style="text-decoration: none;" class="w3-container w3-third quarkThird">
+      <div class="w3-card WhyQuarkCards">
+        <img class="whyQuarkImages" src="QuarkOtherImages/ingredients.jpg">
+        <p class="w3-center whyQuarkTitle">The Ingredients</p>
+        <div class="w3-white">
+          <p class="WhyQwriting"> We source the finest ingredients for your mind by bringing to you questions that would fascinate you. We curate the most interesting questions across different subject areas that would inspire the world of knowledge. Civilisation has always progressed by asking the right questions.</p>    
+        </div>
+     </div>
+  </div>
+
+  <div class="w3-container w3-third quarkThird">
+    <div class="w3-card WhyQuarkCards">
+      <img class="whyQuarkImages" src="QuarkOtherImages/recipe.jpeg">
+      <p class="w3-center whyQuarkTitle">The Recipe</p>
+      <div class="w3-white">
+        <p class="WhyQwriting">Our experts design the perfect recipe for you by making the answers precise, engaging and relevant. We understand that your time is precious and the ocean of knowledge is never-ending. So, we simplify the content of each quark in the most consumable format.</p>    
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container w3-third quarkThird">
+  <div class="w3-card WhyQuarkCards">
+      <img class="whyQuarkImages" src="QuarkOtherImages/garnishing.jpg">
+      <p class="w3-center whyQuarkTitle">The Garnishing</p>
+      <div class="w3-white">
+        <p class="WhyQwriting">We add a layer of delight on each Quark with a sprinkle of our creativity. We bring back to you the nostalgia of your childhood curiosity and this indeed feels magical. And this is what makes each Quark ready for you - garnished to perfection.</p>    
+      </div>
+    </div>  
+  </div>
+</div>
+ </div>
+ 
+<div id="QuarkSubsHome">
+      What Quarks are <span style="color:purple">TRENDING</span>?
+  </div>
+
+<div id="subjectScrollHor">
+    <div id="SubLeft">
+      <a href="ScienceQuarks"><div id="sub1" class="w3-container">
+        <img src="QuarkOtherImages/subjects/subScience.jpg" class="subImages" id="subSciencePic"> 
+        <div class="subName" id="subScienceTxt"> SCIENCE </div>
+      </div></a>
+
+       <div id="sub2" class="w3-container">
+        <img src="QuarkOtherImages/subjects/subStory.jpg" class="subImages" id="subStoryPic"> 
+        <div class="subName" id="subStoryTxt"> STORY </div>
+      </div>
+
+      <div id="sub3" class="w3-container">
+        <img src="QuarkOtherImages/subjects/subMaths.jpg" class="subImages" id="subMathsPic"> 
+        <div class="subName" id="subMathsTxt"> MATHS </div>
+      </div>
+
+      <div id="sub4" class="w3-container">
+        <img src="QuarkOtherImages/subjects/subFinance.jpg" class="subImages" id="subFinancePic"> 
+        <div class="subName" id="subFinanceTxt"> FINANCE </div>
+      </div>
+
+      <a href="MythologyQuarks"><div id="sub5" class="w3-container">
+        <img src="QuarkOtherImages/subjects/subEpics.jpg" class="subImages" id="subEpicsPic"> 
+        <div class="subName" id="subEpicsTxt"> MYTHOLOGY </div>
+      </div></a>
+
+      <div id="sub5" class="w3-container">
+        <img src="QuarkOtherImages/subjects/subPsychology.jpg" class="subImages" id="subPsychologyPic"> 
+        <div class="subName" id="subPsychologyTxt"> PSYCHOLOGY </div>
+      </div>
+</div> 
+</div>
+
+<div id="QuarkJourneyLine" style="text-align: center">
+     The <span style="color:purple">JOURNEY </span>of Quarks so far...
+  </div>
+
+<div id="statDiv" class="w3-row">
+  <div class="OutstatCards">
+      <div class="w3-container w3-quarter cardStat" id="cardStat">
+         <div class="w3-card StatisticsCards w3-center">
+           <div class="statsNum">9</div>
+           <div class="statsName"> Quarks </div>
+        </div>
+      </div>
+      <div class="w3-container w3-quarter cardStat" id="cardStat">
+         <div class="w3-card StatisticsCards w3-center">
+           <div class="statsNum">5</div>
+           <div class="statsName"> Authors </div>
+        </div>
+      </div>
+      <div class="w3-container w3-quarter cardStat" id="cardStat">
+         <div class="w3-card StatisticsCards w3-center">
+           <div class="statsNum">4</div>
+           <div class="statsName"> Topics </div>
+        </div>
+      </div>
+      <div class="w3-container w3-quarter cardStat" id="cardStat">
+         <div class="w3-card StatisticsCards w3-center">
+           <div class="statsNum">6</div>
+           <div class="statsName"> Subscribers </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div id="contributeHeading">
+     How can you <span style="color:purple">CONTRIBUTE</span>?
+</div>
+
+<div id="contributeDiv" class="w3-hide-small">
+  <div class="w3-row">
+      <div class="w3-container w3-half">
+         <a href="submitQuarks"> <img style="border-radius: 10px" id="contributePic" src="QuarkOtherImages/submitQuarksNew.png"></a>
+      </div>
+      <div class="w3-container w3-half">
+         <div id="contributeLine"> Join us and be a part of this revolution. <br><br>  We are creating a world where we would change the way knowledge is digitally consumed. Our philosophy is to make content quick to read but hard to forget.<br><br> Contribute a few moments of your day to share your knowledge with millions of people. Get published on our platform and get viewers from around the globe.</div>
+         <a href="submitQuarks"> <div id="contributeBtn" class="w3-button w3-round w3-purple w3-hover-yellow"> Submit a Quark</div></a>
+      </div>
+  </div>
+</div>
+
+<div id="contributeDiv" class="w3-hide-large w3-hide-medium">
+  <div class="w3-row">
+      <div class="w3-container w3-half">
+         <div id="contributeLine"> Join us and be a part of this revolution. <br><br>  We are creating a world where we would change the way knowledge is digitally consumed. Our philosophy is to make content quick to read but hard to forget.<br><br> Contribute a few moments of your day to share your knowledge with millions of people. Get published on our platform and get viewers from around the globe.</div>
+         <a href="submitQuarks"> <div id="contributeBtn" class="w3-button w3-round w3-purple w3-hover-yellow"> Submit a Quark</div></a>
+      </div>
+      <div class="w3-container w3-half">
+         <a href="submitQuarks"> <img style="border-radius: 10px" id="contributePic" src="QuarkOtherImages/submitQuarksNew.png"> </a>
+      </div>
+  </div>
+</div>
+
+<div class= "w3-hide-large w3-hide-medium" id = "TestimonialDiv">
+  <div class="thing" id = "wrapper">
+      <img style="text-decoration: none" class= "HomeSlider" src= "QuarkOtherImages/Testimonial1.png" alt ="Pic1">
+      <img style="text-decoration: none" class="HomeSlider" src= "QuarkOtherImages/Testimonial2.png" alt ="Pic2">
+  </div>
+  <div id= "TestimonialHeading"> What our daily <span style="color:purple">READERS</span> say about us? </div> 
+</div>
+
+<div class= "w3-hide-small" id= "TestimonialDivLarge">
+      <div class="container AngzDiv1Inner">
+        <div id="TestimonialHeading"> What our daily <span style="color:purple">READERS</span> say about us?</div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+
+            <div class="item active">
+              <img src="QuarkOtherImages/Testimonial1.png" alt="Los Angeles" style="width:100%; height: 30vw;">
+              <!-- <div class="carousel-caption">
+                <h3>QuarkX</h3>
+                <p>QuarkX is always so much fun!</p>
+              </div> -->
+            </div>
+
+            <div class="item">
+              <img src="QuarkOtherImages/Testimonial2.png" alt="Chicago" style="width:100%; height: 30vw;">
+              <!-- <div class="carousel-caption">
+                <h3>Ignite</h3>
+                <p>Introduing to you, Ignite!</p>
+              </div> -->
+            </div>       
+      </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+ </div>
+
+
+<!-- Subscription here -->
+<div class="w3-hide-medium w3-hide-small" id="SubscriptionQuarks" style="background: black; height:45vw; width:100vw; position: absolute">
+  <div id="subscribeCard" class="w3-card w3-white" style="width:90vw; margin-left: 4vw; border-radius: 10px; margin-top: 5vw;">
+    <iframe class="w3-center" style="height:35vw; width:80vw; margin-left: 5vw; margin-top: 2vw" src="https://docs.google.com/forms/d/e/1FAIpQLSdWmUbEm27l4FyLU9Q9fttPqjRHPxaS3342isGD-6vSW5GC6Q/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </div>
+</div>
+
+<div class="w3-hide-large w3-hide-small" id="SubscriptionQuarksTablet" style="background: black; height:90vw; width:100vw; position: absolute">
+  <div id="subscribeCardTablet" class="w3-card w3-white" style="width:90vw; margin-left: 4vw; border-radius: 10px; margin-top: 5vw;">
+    <iframe class="w3-center" style="height:80vw; width:80vw; margin-left: 5vw; margin-top: 2vw" src="https://docs.google.com/forms/d/e/1FAIpQLSdWmUbEm27l4FyLU9Q9fttPqjRHPxaS3342isGD-6vSW5GC6Q/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </div>
+</div>
+
+<div class="w3-hide-medium w3-hide-large" id="SubscriptionQuarksPh" style="background: black; height:86vh; width:100vw; position: absolute">
+  <div id="subscribeCardPh" class="w3-card w3-white" style="width:98vw; margin-left: 1vw; border-radius: 10px; margin-top: 5vw;">
+    <iframe class="w3-center" style="height:70vh; width:80vw; margin-left: 5vw; margin-top: 2vh" src="https://docs.google.com/forms/d/e/1FAIpQLSdWmUbEm27l4FyLU9Q9fttPqjRHPxaS3342isGD-6vSW5GC6Q/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </div>
+</div>
+
+
+<script>
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $(".homeSubscribe").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $(".submitBtn").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+
+<!-- Code for slick slider -->
+<script type = "text/javascript">
+    $(document).ready(function() {
+
+      $('.thing').slick({
+            dots:true,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            slidesToShow: 1,
+            breakpoint: 600,
+            touchThreshold: 15 
+        });
+    });
+</script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163447394-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163447394-1');
+</script>
+
+
+<!-- ANIMATION FOR READ A QUARK  -->
+<script> 
+$(document).ready(function(){
+  animateQuarks(0);
+  function animateQuarks(time) {
+    $("#PhoneScreen1").delay(1000).fadeIn();
+    $("#fingerPic").delay(3500).animate({top: '-5vw'});
+    $("#fingerPic").delay(4000).animate({top: '0vw'});  
+    $("#PhoneScreen1").delay(3500).fadeOut();
+    $("#PhoneScreen2").delay(5000).fadeIn();
+    $("#PhoneScreen2").delay(7500).fadeOut();
+
+
+    $("#PhoneScreen1").delay(8000).fadeIn(); 
+    $("#fingerPic").delay(9000).animate({top: '-5vw'});
+    $("#fingerPic").delay(4500).animate({top: '0vw'});  
+    $("#PhoneScreen1").delay(4500).fadeOut();
+    $("#PhoneScreen3").delay(18500).fadeIn();
+    $("#PhoneScreen3").delay(7500).fadeOut();
+
+
+    $("#PhoneScreen1").delay(8000).fadeIn(); 
+}
+ /*   $("#PhoneScreen2").delay(300).show();
+    $("#PhoneScreen1").show();
+    $("#PhoneScreen2").hide();
+    $("#fingerPic").show();  */  
+});
+</script> 
+
+<script>
+  AOS.init();
+</script>
+
+
+    <script  src="QuarksAnimateScroll.js"></script>
+
+</body>
+</html>

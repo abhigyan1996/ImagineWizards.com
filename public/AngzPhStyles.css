@@ -1,0 +1,311 @@
+
+@media all and (max-width: 599px) and (min-width: 100px) {
+/* Meidum sized phones and other devices (phones, 600px and down) */
+
+#nameAngz{
+	font-family: 'Quicksand';
+	font-size: 8vw;
+	text-decoration: none;
+	margin-left: 0vw;
+	color:black;
+	margin-top: 2vw;
+}
+
+.HomeSlider{
+	height:60vw;
+	margin-top: 15vw;
+	padding-right: 2vw;
+	width:100vw;
+	margin-left: 1.25vw;
+}
+
+.thing{
+	height: 72vw;
+	margin-top: 5vw;
+	width:100vw;
+	background: white
+}
+
+#bookBtn{
+	margin-top: 5vh;
+	margin-left: 38vw;
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+}
+
+#QuarkTxtBanner{
+	font-family: 'Quicksand';
+	font-size: 5vw;
+	margin-top: -50vw;
+	margin-left: 15vw;
+	color: white;
+	position: absolute;
+}
+
+#QuarkXLogoBanner{
+	position:absolute;
+	margin-left: 80vw;
+	height: 12.5vw;
+	width: 12.5vw;
+	margin-top:-55vw;
+}
+
+#QuarkXBtnBanner{
+	margin-left: 15vw;
+	margin-top: -40vw;
+	font-family: 'Quicksand';
+	font-size: 3.5vw;
+}
+
+#AngzDiv1{
+	height:80vw;
+	width:100vw;
+	background: white;
+	overflow: hidden;
+	margin-top: 5vw;
+}
+
+.thing .slick-dots {
+	position:absolute;
+	width: 100vw;
+	bottom: 0;
+	top: 100;
+	left: 0;
+}
+
+.thing .slick-dots li{
+	list-style: none;
+	background: #bbb;
+	width:1.5vw;
+	height:1.5vw;
+	border-radius: 50%;
+	display: inline-block;
+	font-size: 1vw;
+
+}
+
+.thing .slick-dots li.slick-active{
+	background: orange;
+}
+
+.thing .slick-dots li button{
+	display: none;
+}
+
+#AngzDiv2{
+	min-height: 200vw;
+	max-height: 240vw;
+	width: 100vw;
+	overflow: hidden;
+	background: white;
+}
+
+#aboutMeHeading{
+	font-family: 'Quicksand';
+	font-size: 6.75vw;
+	text-align: center;
+	color:black;
+	font-weight: 900;
+	margin-top: 2vw;
+}
+
+#AngzLiBadge{
+	margin-left: 7.5vw;
+	margin-top: 3vh;
+}
+
+
+#AngzCard{
+	width:60vw;
+	height:65vw;
+	margin-left: 20vw;
+	margin-top:3vw;
+	/*border-radius:10px;*/
+}
+
+#flipkart{
+	position:absolute;
+	width:60vw;
+	height: 20vw;
+/*	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;*/
+}
+
+#flipkartStrip{
+	position:absolute;
+	background: black;
+	opacity:0.3;
+	height: 20vw;
+	width:60vw;
+	/*border-top-left-radius: 10px;
+	border-top-right-radius: 10px;*/
+}
+
+#AngzCardPic{
+	position: absolute;
+	height: 22vw;
+	width: 20vw;
+	margin-left: 20vw;
+	margin-top: 5vw;
+	border-radius: 100%;
+	border: 5px solid #bbbbbb;
+}
+
+#AngzWritings{
+	position:absolute;
+	text-align: center;
+	font-family: 'Source Serif Pro';
+	font-size: 3.5vw;
+	margin-top: 30vw;
+	margin-left: 2vw
+}
+
+#AngzAboutAll{
+	margin-top: 2vw;
+}
+
+#AngzName{
+	font-weight: 900;
+	font-size: 5vw;
+	margin-left: 2.5vw
+}
+
+.aboutMeTxt{
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+	width: 90vw;
+	max-width:90vw;
+	margin-left: 7.5vw;
+	margin-right: 7.5vw; 
+	margin-top: 5vh;
+}
+
+#ReadAboutMeBtn{
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+	text-align: center;
+	margin-top: 3vh;
+	margin-left: 35vw;
+}
+
+#GetCvBtn{
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+	text-align: center;
+	margin-top: 3vh;
+	margin-left: 35vw;
+}
+
+#QuakrXIntro{
+	font-family: 'Quicksand';
+	font-size: 6.75vw;
+	text-align: center;
+	color:black;
+	font-weight: 900;
+	margin-top: 3vh;
+}
+
+.QuarkXTxt{
+	margin-top: -10vw;
+}
+
+#joinQuarkAngz{
+	margin-top: 20vw;
+	margin-left: 6vw;
+	font-family: 'Quicksand';
+	font-size: 6.75vw;
+	font-weight: 900; 
+	width: 80vw;
+	max-width: 80vw;
+	min-width: 80vw;
+}
+
+#joinQuarksLineAngz{
+	margin-left: 6vw;
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+	width: 80vw;
+	max-width: 80vw;
+	min-width: 80vw; 
+	margin-top: -2vw;
+}
+#AngzDiv4{
+	min-height: 140vw;
+	max-height: 200vw;
+	width: 100vw;
+	overflow: hidden;
+	background: white;
+}
+
+#igniteBanner{
+	height:60vw;
+	width:100vw;
+}
+
+.IgniteSmartTxt{
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+	width: 90vw;
+	max-width:90vw;
+	margin-left: 3vw;
+	margin-right: 7.5vw; 
+	margin-top: 0vh;
+}
+
+#AngzDiv5{
+	min-height: 160vw;
+	max-height: 240vw;
+	width: 100vw;
+	overflow: hidden;
+	background: white;
+}
+
+#bookIntro{
+	height: 100vw;
+	width:80vw;
+	margin-top: 3vh
+}
+
+#buyBookBtn{
+	position:absolute;
+	height: 10vw;
+	width:25vw;
+	margin-left: -10vw;
+	margin-top: 90vw;
+	cursor: pointer;
+}
+
+#AngzDiv6{
+	height:50vw;
+	width:100vw;
+	background: white;
+	overflow: hidden;
+}
+
+#IconsOuter{
+	margin-left: -3vw;
+	margin-top: 5vw;
+	text-align: center
+}
+
+.social_icons{
+	margin-left:5vw;
+	font-size: 5vw;
+	color: orange;
+}
+
+#AngzDiv7{
+	height:30vw;
+	width:100vw;
+	background: #bbb;
+	overflow: hidden;
+}
+
+#DevelopedByTxt{
+	margin-top: 5vw;
+	font-family: 'Source Serif Pro';
+	font-size:3vw;
+	text-align: center;
+}
+
+}

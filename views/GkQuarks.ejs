@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html>
+<title>GK Quarks</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Garamond">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Serif Pro">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="QuarkStylesDesktop.css">
+<!-- <link rel="stylesheet" href="QuarksmallPh.css">
+<link rel="stylesheet" href="QuarksNormalPh.css"> -->
+<link rel="stylesheet" href="QuarksLargePh.css">
+<!-- <link rel="stylesheet" href="QuarksmallPhNxt.css"> -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="w3styles.css">
+<meta property="og:url" content="https://angshumankashyap.in/GkQuarks" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Micro Blogs on GK" />
+<meta property="og:description" content="Join Quarks And Refuel Your Curiosity" />
+<meta property="og:image" content="QuarkImages/quark10.JPG" />
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link rel="icon" href="QuarkOtherImages/QuarksLogoFinal.png" sizes="16x16">
+
+<!-- Facebook Share -->
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Facebook Share -->
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+
+<body>
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar" id="myNavbar" style="width:100vw; max-width:100vw; min-width:100vw;">
+      <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
+        onclick="toggleFunction()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+      </a>
+      <a href="QuarkX" class="w3-bar-item"> <img id="QuarksLogo" src="QuarkOtherImages/QuarksLogoFinal.png"> </a>
+      <a href="QuarkX" class="w3-bar-item" id="nameQuarks" class="w3-black"> QuarkX </a>
+      <!-- Light mode and dark Mode -->
+      <div class="w3-bar-item"> <img id="NightMode" src="QuarkOtherImages/NightMode.png"> </div>
+      <div class="w3-bar-item"> <img id="DayMode" src="QuarkOtherImages/DayMode.png"> </div>
+
+      <div style="margin-top:3vh">
+        <a href="/" class="navItems w3-bar-item w3-hide-small" id="navItem1Home"> Home</a>
+        <a href="QuarkX">
+          <div class="navItems w3-bar-item w3-hide-small" id="navItem2submit"> QuarkX</div>
+        </a>
+        <a href="/QuarkX/all" class="navItems w3-bar-item w3-hide-small" id="navItem3subjects"> Read</a>
+        <a href="QuarkX#SubscriptionQuarks" class="navItems w3-hide-medium w3-bar-item w3-hide-small homeSubscribe"
+          id="navItems3Quarks">Subscribe</a>
+        <a href="QuarkX#SubscriptionQuarksTablet" class="navItems w3-hide-large w3-bar-item w3-hide-small homeSubscribe"
+          id="navItems3Quarks">Subscribe</a>
+        <a href="/QuarkX/submitQuarks" class="navItems w3-bar-item w3-hide-small submitBtn"
+          id="navItems4Quarks">Submit</a>
+      </div>
+
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" style="width:100vw; max-width:100vw; min-width:100vw;"
+      class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+      <a href="/" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Home</a>
+      <a href="/QuarkX" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">QuarkX</a>
+      <a href="/QuarkX/all" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">All Quarks</a>
+      <a href="QuarkX#subscribeCardPh" class="w3-bar-item w3-right w3-button navPh"
+        onclick="toggleFunction()">Subscribe</a>
+      <a href="/QuarkX/submitQuarks" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Submit</a>
+    </div>
+  </div>
+
+
+  <!-- <div class="w3-container w3-hide-small" style="position: fixed; margin-top: 0vw;">
+  <div class="w3-dropdown-hover">
+    <div class="w3-button w3-round w3-black Filters" id="fltrQuarks">Filter Quarks</div>
+    <div class="w3-dropdown-content w3-bar-block w3-border w3-animate-zoom">
+      <div id="FilterScience" class="Filters w3-bar-item w3-button w3-round">Science</div>
+      <div id="FilterGK" class="Filters w3-bar-item w3-button w3-round">Gen Knowledge</div>
+      <div id="FilterShowAll" class="Filters w3-bar-item w3-button w3-round">Show All</div>
+    </div>
+  </div>
+</div>
+ -->
+  <div class="OutQuarks">
+    <div class="Quarks w3-row">
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark85Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark85.jpg">
+          <div class="w3-center QuarkTitle" id="quark85Title">Did you know the original Indian Constitution was not
+            printed?</div>
+          <div id="quark85Text" class="writings">The Indian constitution was handwritten in both Hindi and English. It
+            was penned down by Prem Behari Narain Raizada using flowing italic style calligraphy. Each page was
+            decorated by artists from Shantiniketan. This constitution was adopted on 26th November 1949 but it was
+            fully commenced on 26th January 1950. In the original constitution, there were 395 Articles, 8 Schedules, 22
+            Parts and a Preamble. It took 2 years, 11 months and 18 days to be framed. Now, it has 465 articles, 12
+            Schedules and 25 Parts. Did you know it is the longest handwritten constitution in the world?</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Prachi</div>
+            <div class="DateOfQuark"> 10 July, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark85" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark83Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark83.jpg">
+          <div class="w3-center QuarkTitle" id="quark83Title">Why do witches ride on broomsticks?</div>
+          <div id="quark83Text" class="writings">The depiction of a witch riding a broomstick goes a long way back.
+            Thanks to those cartoons and movies that scared the pants off us. But what's the origin of the association
+            of broomsticks with witches? Well, the first G-rated answer to this is that back in those days brooms were a
+            symbol of female domesticity. Women generally were responsible for raising children, cooking and upkeep of
+            their homes. They always had their broomsticks as a constant companion. So, when people started claiming
+            others as witches, brooms were thought of as the distinguished tool of the trade. </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhik</div>
+            <div class="DateOfQuark"> 8 July, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark83" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark73Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark73.jpg">
+          <div class="w3-center QuarkTitle" id="quark73Title">Which village is known as twin village?</div>
+          <div id="quark73Text" class="writings">A village found in Kerela named Kodinhi continues to be a mystery to
+            researchers. This village has the largest number of twins in Asia and holds a Guiness World Record. The
+            national average of twins is not more than 9 in 1000 births. But in Kodinhi, the number is as high as 45 in
+            1000 births. This rate of birth is increasing every year. Besides twins, triplets and quadruplets are also
+            found. Researchers are trying to identify this unique reason by taking soil and water samples of Kodinhi.
+          </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Prandeep</div>
+            <div class="DateOfQuark"> 28 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark73" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark68Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark68.jpg">
+          <div class="w3-center QuarkTitle" id="quark68Title">How did friendship day originate?</div>
+          <div id="quark68Text" class="writings">Friendship day is celebrated in various countries of the world. On 20th
+            July 1958, Paraguay, first it was proposed as international friendship day by Dr Ramon Artemio Bracho.
+            Later, The World Friendship Crusade Foundation celebrated it on 30 July, which promotes humanity and
+            fellowship regardless of any caste and creed. But In India, Singapore, Malaysia and UAE it is celebrated on
+            the first Sunday of August every year. Traditionally, gifts, bands and cards are exchanged between
+            youngsters on this friendship day. The friendship bands are popular in India and some parts of South
+            America.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 25 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark68" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark65Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark65.jpg">
+          <div class="w3-center QuarkTitle" id="quark65Title">Which machine from 1936 is as powerful as a modern day
+            supercomputer?</div>
+          <div id="quark65Text" class="writings">In 1936, Alan Turing developed an abstract machine called the Turing
+            Machine. It has an infinite memory tape to only read and write data. In the Turing Thesis, he proposed that
+            his machine could do anything that can be done by any computer. In fact, any computation done by mechanical
+            means can be performed by a Turing Machine. Even for the most complex algorithms, there exists a
+            corresponding Turing machine algorithm. Till today, no one could prove or deny him. Since we never proved
+            him wrong, we started believing he is right. The global challenge is to create a problem that the machine
+            cannot solve.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhigyan </div>
+            <div class="DateOfQuark"> 22 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark65" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark64Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark64.jpg">
+          <div class="w3-center QuarkTitle" id="quark64Title">Which is the spiciest pepper in the world?</div>
+          <div id="quark64Text" class="writings">World's hottest pepper is continuously changing as new varieties are
+            either created or discovered. As of, Carolina reaper is the worlds hottest pepper. It is a crossbred between
+            a Ghost pepper and a Red Habanero which is insanely hot. Another, Naga Viper, is an extremely rare hybrid
+            pepper. Then comes the Moruga Scorpion, a formidable pepper, which was recently discovered in the lands of
+            Moruga. Until 2007, Ghost pepper was the hottest pepper mostly grown in North East India. Due to their
+            extremely hot pungency, these chillies are not advisable for peoples consumption.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 21 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark64" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark63Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark63.jpg">
+          <div class="w3-center QuarkTitle" id="quark63Title">What is the most expensive coffee in the world?</div>
+          <div id="quark63Text" class="writings">Kopi luwak is the most expensive coffee in the world produced mainly in
+            Indonesia, East Timor, the Philipines, Vietnam, Thailand and Ethiopia. The coffee cherries are partially
+            digested and defecated by an Asian palm civet cat. The coffee cherries are subjected to acidic, enzymatic
+            and fermentation treatment as they pass through a civet's intestine. The limited supply with its high demand
+            and unique method of production makes it much more valuable in the market. The annual Kopi luwak production
+            is less than 150 kg, and the retail price of 1 kg of this coffee is about $700.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 20 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark63" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark60Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark60.jpg">
+          <div class="w3-center QuarkTitle" id="quark60Title">Why does cuckoo bird lay eggs in crow's nest?</div>
+          <div id="quark60Text" class="writings">The cuckoo bird portrays a perfect example of egg mimicry. Egg mimicry
+            is a process where the host depends on other species to raise its young. Cuckoo bird uses the crow's nest.
+            In this way, they spare themselves the effort of building nests and raising their young ones. Once the young
+            ones get hatched, they remove the host egg one by one within their hatching days. Cuckoo chicks are then
+            desperately fed by their unwitting foster parents assuming it to be their own young ones. This behaviour has
+            been witnessed in fish and insects also.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 17 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark60" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark58Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark58.jpg">
+          <div class="w3-center QuarkTitle" id="quark58Title">Alohomora! What are Harry Potter's unknown facts?</div>
+          <div id="quark58Text" class="writings">Harry Potter series is one of the best-selling book series of all time
+            selling more than 500 million copies despite being banned due to religious conflicts in America. Characters
+            in this book drew inspiration from events in the author's everyday life. Harry Potter shares JK Rowling's
+            birthday. She liked to invent unusual names for the characters. The names of the Houses of Hogwarts were
+            created on the back of an aeroplane's sick bag. After her mother died, she suffered from depression. That's
+            how she portrayed Harry Potter's dementors character as creepy creatures that feed on human emotion.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 15 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark58" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark57Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark57.jpg">
+          <div class="w3-center QuarkTitle" id="quark57Title">Where did the Donald Duck Character came from?</div>
+          <div id="quark57Text" class="writings">Donald Duck is the most loved and famous cartoon character of all
+            times. Walt Disney was inspired by a voice actor who recites songs in his angry and agitated duck voice.
+            This duck voice created the Donald Duck character that was more negative than Mickey Mouse. More
+            interestingly Donald Duck has a middle name- Donald “Fauntleroy” Duck. He is the only Disney character who
+            has an official middle name. Donald wears a sailor’s hat and a shirt with a red bow because ducks are
+            similar to sailors as they both stay and work in water.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 14 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark57" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark55Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark55.jpg">
+          <div class="w3-center QuarkTitle" id="quark55Title">What is the most stolen food in the world?</div>
+          <div id="quark55Text" class="writings">Cheese is the most stolen food in the world, and it has a higher
+            propensity of being stolen than chocolates or alcohol. Interestingly, over 4% of all the total cheese made
+            globally gets shoplifted. Well, cheese is valuable, always in high demand, and available in small and mobile
+            formats that are easy to conceal. It is a lucrative business opportunity as there exists a large black
+            market for stolen cheese, where stolen cheese is sold to restaurants. Most retailers have recently started
+            using security tags on cheese to prevent it from getting stolen.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 12 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark54" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark54Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark54.jpg">
+          <div class="w3-center QuarkTitle" id="quark54Title">What is Wasabi?</div>
+          <div id="quark54Text" class="writings">Wasabi is a plant species belonging to the same family as horseradish
+            and mustard. It mostly grows along the stream beds in mountain river valleys of Japan. Its limited
+            cultivation and unavailability outside Japan make it expensive. Wasabi is grated, dried and made into a
+            paste. It is available in toothpaste-like tubes and used extensively in sushi preparation. "Wasabi-mame" is
+            a crunchy snack made from legumes that are roasted, dried and coated with wasabi powder. It has a sharp and
+            spicy taste. Due to its intense aroma, wasabi vapour is used to create a smoke alarm for deaf people.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 11 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark54" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark47Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark47.jpg">
+          <div class="w3-center QuarkTitle" id="quark47Title">Who was Maria Sibylla Merian?</div>
+          <div id="quark47Text" class="writings">Maria Sibylla was born in Germany in 1647. She combined art and science
+            to become one of the great Scientific Illustrator and Entomologist of all times. Maria was particularly
+            interested in caterpillars and butterflies. At that time, most people thought insects were disgusting and
+            not worth of study. But Maria, at a young age, started collecting insects to learn how they behaved. She
+            painted the different life stages of insects. The "Metamorphosis of the Insects of Suriname" was published
+            in 1705 and became a hit all over Europe. Maria’s detailed illustrations amaze people to this day.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 5 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark47" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark39Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark39.jpg">
+          <div class="w3-center QuarkTitle" id="quark39Title">How do Dolphins sleep?</div>
+          <div id="quark39Text" class="writings">Dolphins are mammals. Unlike us, their breathing is a voluntary
+            process, which means that dolphins only breathe when their blowholes are out of the water, and it's safe to
+            do so. If they enter deep sleep, they might not be able to know when to breathe. So, they have developed a
+            couple of ways to handle sleeping. When a dolphin sleeps, only half of its brain goes to sleep at any one
+            time; the other half of the brain stays awake and takes care of its breathing. Interestingly, dolphins sleep
+            with one eye open. </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Rohith </div>
+            <div class="DateOfQuark"> 28 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark39" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark29Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark29.jpeg">
+          <div class="w3-center QuarkTitle" id="quark29Title">What is the longest religiously burning lamp in the world?
+          </div>
+          <div id="quark29Text" class="writings">In 1528 (1450 Saka), Guru Madhavdeva lit an earthen lamp in a
+            Vaishnavite monastery in Jorhat, Assam - 'Dhekiakhowa Bor Namghar'. Since then, the flame has kept burning
+            continuously without interruption. People religiously refuel the lamp to continue its saga. The lamp also
+            set a national record for burning for the longest duration - around 500 years and can enter the Guinness
+            Book of World Records as well. Interestingly, Guru Madhavdeva once took shelter for the night in the hut of
+            an old woman who served him with a fern 'Dhekia'. Pleased by the taste, he built a monastery there and gave
+            her the responsibility of the historic lamp.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhigyan </div>
+            <div class="DateOfQuark"> 18 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark29" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark10Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark10.jpeg">
+          <div class="w3-center QuarkTitle" id="quark10Title">Why Melbourne has Four Seasons in a Day?</div>
+          <div id="quark10Text" class="writings">In Melbourne, turbulent weather changes that occur within an hour can
+            drive you nuts! This is because of its unique geographical position. Australia is separated from Antarctica
+            only by ocean and hence cold air flows in unhindered into Melbourne. The hot desert wind from Central
+            Australia strikes the mountain ranges on the West and East Australia. This concentrates the hot wind to blow
+            either towards or away from Melbourne. When hot air blows towards Melbourne, we get heatwaves of over 40°C.
+            The intersection of hot desert winds and cold Antarctica air creates ‘Four Seasons in a Day’ in Melbourne.
+          </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Bhanu </div>
+            <div class="DateOfQuark"> 29 April, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark9" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="quark8Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark8.jpg">
+          <div class="w3-center QuarkTitle" id="TitleHappyPeople">Why do we say cheers while drinking?</div>
+          <div id="HappyPeopleTxt" class="writings">Do you know why we say cheers with 'clunk' sound of the glasses? Do
+            you know the reason behind that? We do this when we are celebrating some occasion or having a good time. So
+            when we drink, we can 'see' the drink, 'smell' the drink, 'touch' the drink, 'taste' the drink. The only
+            sense organ that doesn't come in the picture is the ear and hence the clunk sound so that we can 'hear' the
+            sound and the happy occasion is now a culmination of all the five senses.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Rohith </div>
+            <div class="DateOfQuark"> 27 April, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenHappyPeople" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubGK w3-container w3-half quarkHalf" id="happyPeopleCard">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark3.jpg">
+          <div class="w3-center QuarkTitle" id="TitleHappyPeople">Which is the happiest country in the world?</div>
+          <div id="HappyPeopleTxt" class="writings">According to the World Happiness Report released by the United
+            Nations on March 20, 2020, Finland has been ranked as the happiest country in the world for the third
+            consecutive year followed by Denmark and Switzerland. Ranked at 144, India occupied the bottom ten spots of
+            the report. The World Happiness Report is a survey which grades countries using the Gallup World poll and
+            other factors such as levels of GDP, life expectancy, generosity, social support, freedom and corruption
+            income.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="GkQuarks">
+              <div id="GenKnowledgeTag" class="w3-button GenKnowledgeTag w3-hover-white w3-blue w3-round"> GEN KNOWLEDGE
+              </div>
+            </a>
+            <div class="AuthorName"> Quark by Harsh </div>
+            <div class="DateOfQuark"> 22 April, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenHappyPeople" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Change style of navbar on scroll
+    window.onscroll = function () { myFunction() };
+    function myFunction() {
+      var navbar = document.getElementById("myNavbar");
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-white";
+      } else {
+        navbar.className = navbar.className.replace(" w3-card w3-white", "");
+      }
+    }
+
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function toggleFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+  </script>
+
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenElecEel').click(function () {
+          var text1 = document.getElementById("titleElecEels").innerHTML;
+          var text2 = document.getElementById("ElectricEelsTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+  <!-- Voice read out end -->
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenJelFish').click(function () {
+          var text1 = document.getElementById("titleJellyFish").innerHTML;
+          var text2 = document.getElementById("JellyFishTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+  <!-- Voice read out end -->
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenLightning').click(function () {
+          var text1 = document.getElementById("TitleLightning").innerHTML;
+          var text2 = document.getElementById("LightningTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+  <!-- Voice read out end -->
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenSkyBlue').click(function () {
+          var text1 = document.getElementById("titleSkyBlue").innerHTML;
+          var text2 = document.getElementById("SkyBlueTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenHappyPeople').click(function () {
+          var text1 = document.getElementById("TitleHappyPeople").innerHTML;
+          var text2 = document.getElementById("HappyPeopleTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenProfitCompany').click(function () {
+          var text1 = document.getElementById("titleProfitCompany").innerHTML;
+          var text2 = document.getElementById("ProfitCompanyTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark29').click(function () {
+          var text1 = document.getElementById("quark29Title").innerHTML;
+          var text2 = document.getElementById("quark29Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark39').click(function () {
+          var text1 = document.getElementById("quark39Title").innerHTML;
+          var text2 = document.getElementById("quark39Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark47').click(function () {
+          var text1 = document.getElementById("quark47Title").innerHTML;
+          var text2 = document.getElementById("quark47Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark54').click(function () {
+          var text1 = document.getElementById("quark54Title").innerHTML;
+          var text2 = document.getElementById("quark54Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark55').click(function () {
+          var text1 = document.getElementById("quark55Title").innerHTML;
+          var text2 = document.getElementById("quark55Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark57').click(function () {
+          var text1 = document.getElementById("quark57Title").innerHTML;
+          var text2 = document.getElementById("quark57Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark58').click(function () {
+          var text1 = document.getElementById("quark58Title").innerHTML;
+          var text2 = document.getElementById("quark58Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark62').click(function () {
+          var text1 = document.getElementById("quark62Title").innerHTML;
+          var text2 = document.getElementById("quark62Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark60').click(function () {
+          var text1 = document.getElementById("quark60Title").innerHTML;
+          var text2 = document.getElementById("quark60Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark64').click(function () {
+          var text1 = document.getElementById("quark64Title").innerHTML;
+          var text2 = document.getElementById("quark64Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark65').click(function () {
+          var text1 = document.getElementById("quark65Title").innerHTML;
+          var text2 = document.getElementById("quark65Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark68').click(function () {
+          var text1 = document.getElementById("quark68Title").innerHTML;
+          var text2 = document.getElementById("quark68Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark73').click(function () {
+          var text1 = document.getElementById("quark73Title").innerHTML;
+          var text2 = document.getElementById("quark73Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark83').click(function () {
+          var text1 = document.getElementById("quark83Title").innerHTML;
+          var text2 = document.getElementById("quark83Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark85').click(function () {
+          var text1 = document.getElementById("quark85Title").innerHTML;
+          var text2 = document.getElementById("quark85Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <!-- Voice read out end -->
+
+  <script>
+    $(document).ready(function () {
+      $('.AllQuarks').hide();
+      $('.SubGK').show();
+    });
+  </script>
+
+  <!-- Filter for Quarks-->
+  <!-- <script>
+ $(document).ready(function(){
+    var countScience = 0;
+    var countGk = 0;
+    var flagScience = true;
+    var flagGk = true;
+
+    $('#FilterScience').click(function(){
+      countScience++;
+      if(countScience == 1) {
+        flagScience = true;
+        $('#FilterScience').css("background", "#33DAFF");
+        if(countGk == 0) {
+          $('.SubGK').hide();
+          flagGk = false;
+        }
+        else {
+          $('.SubScience').show();
+        } 
+      }
+      else if(countScience % 2 == 0 && countScience>1) {
+          flagScience = false;
+          $('.SubScience').hide();
+          $('#FilterScience').css("background", "white");
+          if (flagScience == false && flagGk == false) {
+            flagScience = true;
+            flagGk = true;
+            countGk = 0; countScience = 0;
+            $('#FilterGK').css("background", "white");
+            $('#FilterScience').css("background", "white");
+            $('.SubGK').show();
+            $('.SubScience').show();
+        }
+      }
+      else if (countScience %2 != 0 && countScience>1){
+        flagScience = true;
+        $('.SubScience').show();
+        $('#FilterScience').css("background", "#33DAFF");
+      }
+  }),
+
+    $('#FilterGK').click(function(){
+      countGk++;
+      if(countGk == 1) {
+        flagGk = true;
+        $('#FilterGK').css("background", "#33DAFF");
+        if(countScience == 0) {
+          flagScience = false;
+          $('.SubScience').hide();
+        }
+        else {
+          $('.SubGK').show();
+        } 
+      }
+      else if(countGk % 2 == 0 && countGk>1) {
+          flagGk = false;
+          $('.SubGK').hide();
+          $('#FilterGK').css("background", "white");
+          if (flagScience == false && flagGk == false) {
+            countGk = 0; countScience = 0;
+            flagScience = true;
+            flagGk = true;
+            $('#FilterGK').css("background", "white");
+            $('#FilterScience').css("background", "white");
+            $('.SubGK').show();
+            $('.SubScience').show();
+          }
+        }
+      else if (countGk %2 != 0 && countGk>1){
+        flagGk = true;
+        $('.SubGK').show();
+        $('#FilterGK').css("background", "#33DAFF");
+      }
+  }),
+
+    $('#FilterShowAll').click(function(){
+        countGk = 0; countScience = 0; 
+        $('#FilterGK').css("background", "white");
+        $('#FilterScience').css("background", "white");
+        $('.SubGK').show();
+        $('.SubScience').show();
+    })
+  });
+</script>
+ -->
+
+
+  <script>
+    $(document).ready(function () {
+      $("#NightMode").click(function () {
+        $("#NightMode").fadeOut();
+        $("#DayMode").fadeIn();
+        $("body").css({ "background-color": "#bbb" });
+        $(".Quarks").css({ "background-color": "#bbb" });
+        $("#navBAR").css({ "background": "white" });
+        $(".QuarkCards").css({ "background": "black" });
+        $(".QuarkTitle").css({ "background": "black" });
+        $(".writings").css({ "background": "black" });
+        $(".writings").css({ "color": "white" });
+        $(".QuarkTitle").css({ "color": "white" });
+        $(".QuarkBottomStrip").css({ "background": "#0E0D0F" });
+      });
+
+      $("#DayMode").click(function () {
+        $("#DayMode").fadeOut();
+        $("#NightMode").fadeIn();
+        $("body").css({ "background-color": "white" });
+        $(".Quarks").css({ "background-color": "white" });
+        $("#navBAR").css({ "background": "white" });
+        $(".QuarkCards").css({ "background": "white" });
+        $(".QuarkTitle").css({ "background": "white" });
+        $(".writings").css({ "background": "white" });
+        $(".writings").css({ "color": "black" });
+        $(".QuarkTitle").css({ "color": "black" });
+        $(".QuarkBottomStrip").css({ "background": "black" });
+
+      });
+    });
+  </script>
+
+  <script>
+    AOS.init();
+  </script>
+
+
+
+</body>
+
+</html>

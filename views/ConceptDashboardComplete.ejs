@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<title>QuarkX</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Serif Pro">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/QuarkStylesDesktop.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="/QuarksLargePh.css">
+<link rel="stylesheet" href="/conceptDashboardStyles.css">
+
+ <meta property="og:url"           content="angshumankashyap.in/QuarkX" />
+ <meta property="og:type"          content="website" />
+ <meta property="og:title"         content="Join Quarks" />
+ <meta property="og:description"   content="Refuel Your Curiosity" />
+ <meta property="og:image"         content="images/homeAmoeba.jpg" />
+<link rel="stylesheet" href="/w3styles.css">
+<link rel="stylesheet" href="/AngzPhStyles.css">
+
+<link rel="icon" href="/QuarkOtherImages/QuarksLogoFinal-1.png">
+
+<script src="/slickJS/slick.js" type="text/javascript"></script>
+<link rel="stylesheet" href= "/slickCss/slick.css">
+<link rel="stylesheet" href= "/slickCss/slick-theme.css">
+
+<link rel="stylesheet" href= "/AngzDesktopStyles.css">
+
+<!-- NAV BAR  -->
+<link rel="stylesheet" href="/nav.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"> </script>
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!--     ===================================================================
+                              Hemburgar Menu
+    ===================================================================
+ -->
+
+    <script>
+      function openSlideMenu(){
+        document.getElementById('side-menu').style.width = '300px';
+        document.getElementById('main').style.marginLeft = '300px';
+        document.getElementById('wholebody').style = '1';
+      }
+  
+      function closeSlideMenu(){
+        document.getElementById('side-menu').style.width = '0';
+        document.getElementsByClassName('w3-row').style.opacity = '1';
+      }
+    </script>
+
+<body class="w3-white" style="width:100vw;">
+
+<section  id="top-navbar">  
+    <div id="side-menu" class="side-nav">
+      <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+      <a href="MyCourses">My Courses</a>
+      <a href="../QuarkXAcademy">QuarkX Academy</a>
+      <a href="../QuarkX">QuarkX Home</a>
+    </div>
+ </section>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white" id="myNavbar" style="box-shadow: 3px 3px 3px #A8A8A8 ; width:100vw; max-width:100vw; min-width:100vw;">
+    <a id="iconNav" class="w3-bar-item w3-button w3-hover-black w3-left" href="javascript:void(0);" onclick="openSlideMenu()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
+    
+    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> Quark</span><span id="XName">X</span> </div>
+    <div style="margin-top:3vh">
+ 
+    
+  </div>
+  <!-- Navbar on small screens -->
+</div>
+
+
+
+<section id="allDivisions">
+
+  <div id= "whiteStripBlank">
+    <p>This is your performance analysis </p>
+  </div>
+  
+  <div id="DisplayFeedback"> </div>
+
+  <form class="w3-hide">
+    <input name="TotalQuestions" id="TotalQuestions" value=<%=TotalQuestions%> type="text">
+    <input name="CorrectQuestions" id="CorrectQuestions" value=<%=CorrectQuestions%> type="text">
+    <input name="CorrectQuestions" id="SkippedQuestions" value=<%=SkippedQuestions%> type="text">
+    <input name="WrongQuestions" id="WrongQuestions" value=<%=WrongQuestions%> type="text">
+  </form>
+
+<form action="/QuarkXAcademy/ResetConcept" method="POST">  
+  <input class="w3-hide" name="Concept" id="Concept" type="text">
+  <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
+  <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
+  <input class="w3-hide" name="Chapter" id="Chapter" type="text">
+  <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
+  <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
+  <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
+  <!-- newly added-->
+   <button type="submit" class="btn w3-pink w3-hover-blue w3-button" id="practiceBtn"> Restart Practice </button> 
+   <div class="w3-button w3-pink w3-hover-blue" id="viewSolBtn">Review Solved Questions</div>
+</form>
+
+<form class="w3-hide" action="" method ="POST">
+  <!-- On Restart Practice, show a dialog to reset Concept, then upon confirm reset, remove entry from 
+    leaderboard and performance table-->>
+  <input class="w3-hide" name="Concept" id="Concept" value=<%=Concept%> type="text">
+  <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
+  <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
+  <input class="w3-hide" name="Chapter" id="Chapter" value=<%=Chapter%> type="text">
+  <input id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
+  <input id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
+</form>
+
+  <form class="w3-hide">
+    <input name="userRank" id="userRank" value=<%=userRank%> type="text">
+  </form>
+
+
+  <form id="reviewSolForm" action="/QuarkXAcademy/ReviewAnswers" method="POST">
+    <input class="w3-hide" name="Concept" id="ConceptRv" type="text">
+    <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
+    <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
+    <input class="w3-hide" name="Chapter" id="ChapterRv" type="text">
+    <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
+    <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
+    <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
+    <input class="w3-hide" id="quesNum" type="text" name = "quesNum" value=0>
+
+    <button type="submit" class="w3-hide w3-blue btn btn-default">Submit</button>
+    <!-- newly added-->
+  </form>
+
+
+  <div class="w3-hide" id="conceptName"><%=Concept%></div>
+  <div class="w3-hide" id="chapterName"><%=Chapter%></div>
+
+  <div class="w3-white" id="firstDiv">
+    <!-- <div class="w3-button w3-pink w3-hover-blue" id="practiceBtn"> Start Practice </div> -->
+  </div>
+
+
+  <section id="PerformanceDiv">
+    <div id="PerformanceTxt">Performance Analysis</div>
+
+    <div id = "PieCharts">  
+
+          <div class="w3-hide-small w3-hide-medium" id="piechartQuestionsLarge"></div>
+          <div class="w3-hide-small w3-hide-large" id="piechartQuestionsMedium"></div>
+          <div class="w3-hide-large w3-hide-medium" id="piechartQuestionsSmall"></div>
+
+          <!-- <div id="piechartLevel"></div> -->
+    </div>
+
+    <!-- Div only for LAPTOPS -->
+    <div id="PerformanceCountLarge" class="w3-hide-medium w3-hide-small">
+        <div id="totalQCard" class="w3-card w3-container w3-black">
+            <p id="totalTxt">Total Questions </p>
+            <p id="totalCount"><%=TotalQuestions%></p>
+        </div>
+        <div id="CorrectQCard" class="w3-card w3-container w3-green">
+           <p id="CorrectTxt">Correct </p>
+           <p id="correctCount"><%=CorrectQuestions%></p>
+        </div>
+        <div id="WrongQCard" class="w3-card w3-container w3-red">
+            <p id="WrongTxt">Wrong </p>
+            <p id="wrongCount"><%=WrongQuestions%></p>
+        </div>
+        <div id="SkippedQCard" class="w3-card w3-container w3-blue">
+            <p id="SkippedTxt">Skipped </p>
+            <p id="skipCount"><%=SkippedQuestions%></p>
+        </div>
+        <div id="UnattemptedQCard" class="w3-card w3-container w3-orange">
+            <p id="UnattemptedTxt">Unattempted </p>
+            <p id="Unattemptedcount"></p>
+      </div>
+    </div>
+  </section>
+
+  <div id = "LeaderboardDiv">
+    <div id="scoreboardDiv">
+      <img id="naruto" src= "https://abhigyan1996.github.io/QA/QA/1/naruto1.png">
+      <div id="Score"></div>
+    </div>
+    <div id="attemptedMaxScore"></div>
+
+    <div id="leaderboardMsg">You are not in top 100 yet!</div>
+          
+      <div id="topTenTxt">QuarkX Leaderboard (TOP 10):</div>
+        <table id="LeaderboardTbl" class="w3-pink">
+          <tr>
+            <th style="text-align: center; padding: 1vw;">RANK</th>
+            <th style="text-align: center; padding: 1vw;">EMAIL</th>
+            <th style="text-align: center; padding: 1vw;">FINAL SCORE</th>
+          </tr>
+
+          <% var i=0; %>
+          <% for(Leaderboard of LeaderboardList){%>
+            <tbody>
+            <tr>  
+              <td><%= i+1 %></td> 
+              <td id="LeaderboardEmail"><%=Leaderboard.EMAIL%></td>  
+              <td id="LeaderboardScore"><%=Leaderboard.ACCURACY%></td>        
+            </tr>
+          </tbody>
+            <% i++; %>
+            <%}%>
+      </table>
+   
+  <div id="noteMsg">Your leaderboard entry is updated only when you finish a concept.</div>
+
+
+  </div>
+
+
+
+</section>  <!--All divisions inside here-->
+
+
+
+<!-- To draw the pic Chart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+
+  var TotalQuestions = document.getElementById("TotalQuestions").value;
+  var CorrectQuestions = document.getElementById("CorrectQuestions").value;
+  var WrongQuestions = document.getElementById("WrongQuestions").value;
+  var SkippedQuestions = document.getElementById("SkippedQuestions").value;
+
+  var feedback = document.getElementById("DisplayFeedback").value;
+
+  var temp = parseInt(CorrectQuestions) + parseInt(WrongQuestions) + parseInt(SkippedQuestions)
+  console.log("temp", temp);
+  var UnattemptedQuestions = parseInt(TotalQuestions) - parseInt(temp);
+  console.log("UnattemptedQuestions", UnattemptedQuestions);
+
+  document.getElementById("Unattemptedcount").innerHTML = UnattemptedQuestions;
+  console.log("total", TotalQuestions);
+  console.log("Correct", CorrectQuestions);
+  console.log("Wrong", WrongQuestions);
+  console.log("Skipped", SkippedQuestions);
+  console.log("Unattempted", UnattemptedQuestions);
+
+  var score = parseInt(CorrectQuestions) * 4 - parseInt(WrongQuestions) * 1;
+  document.getElementById('Score').innerHTML = "SCORE: " + score;
+
+  var attemptedMaxScore = (parseInt(TotalQuestions) - parseInt(UnattemptedQuestions)) * 4;
+  document.getElementById('attemptedMaxScore').innerHTML = "OUT OF: " + attemptedMaxScore;
+
+
+  var correctPercentage = (CorrectQuestions/TotalQuestions) * 100;
+  var wrongPercentage = (WrongQuestions/TotalQuestions) * 100;
+  var skipPercentage = (SkippedQuestions/TotalQuestions) * 100;
+  var UnattemptedPercentage = (UnattemptedQuestions/TotalQuestions) * 100;
+
+  console.log("correctPercentage", correctPercentage, "wrongPercentage" , wrongPercentage);
+
+  if(parseInt(TotalQuestions) == UnattemptedQuestions) {
+    ///That is if concept is not yet started
+    document.getElementById("DisplayFeedback").innerHTML = ("Best wishes for this journey!");
+  }
+
+  else if (UnattemptedQuestions == 0) {
+   //That is if concept is completed
+    if (correctPercentage >=90) {
+      document.getElementById("DisplayFeedback").innerHTML = ("You are excellent in this Concept. Keep it up!");
+    }
+    else if (correctPercentage >=80 && correctPercentage<90){
+      document.getElementById("DisplayFeedback").innerHTML = ("You are good in this Concept. But you can be better!");
+    }
+    else {
+      document.getElementById("DisplayFeedback").innerHTML = ("You have to improve in this Concept. Way to go!")
+    }
+  }
+  else {
+    //That is if concept is started but not completed
+    if (correctPercentage >=90) {
+      document.getElementById("DisplayFeedback").innerHTML = ("You are going excellent so far!");
+    }
+    else if (correctPercentage >=80 && correctPercentage <90) {
+      document.getElementById("DisplayFeedback").innerHTML = ("Great! Finish it off with a good score.");
+    }
+    else if (correctPercentage >=60 && correctPercentage <80) {
+      document.getElementById("DisplayFeedback").innerHTML = ("You are improving. Keep going! Way to go!");
+    }
+    else if (correctPercentage >=20  && correctPercentage <60){
+      document.getElementById("DisplayFeedback").innerHTML = ("Hey! Questions are just starting to be correct! Way to go!")
+    }
+    else {
+      document.getElementById("DisplayFeedback").innerHTML = ("Come on! You can score more!");
+    }
+  }
+
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Questions'],
+  ['Skipped in whole Concept', skipPercentage],
+  ['Wrong in whole Concept', wrongPercentage],
+  ['Unattempted in whole Concept', UnattemptedPercentage],
+  ['Correct in whole Concept', correctPercentage]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'All Questions', slices: {0: {color: '#1596CD'}, 1:{color: '#CD3615'}, 2:{color: 'orange'}, 3: {color: 'green'}}};;
+ 
+  // Display the chart inside the <div> element with id="piechart"
+  var chartLarge = new google.visualization.PieChart(document.getElementById('piechartQuestionsLarge'));
+  
+  var chartMedium = new google.visualization.PieChart(document.getElementById('piechartQuestionsMedium'));
+
+  var chartSmall = new google.visualization.PieChart(document.getElementById('piechartQuestionsSmall'));
+
+
+ // var chart2 = new google.visualization.PieChart(document.getElementById('piechartLevel'));
+
+  
+  chartLarge.draw(data, options);
+  chartMedium.draw(data, options);
+  chartSmall.draw(data, options);
+
+
+  //chart2.draw(data,options);
+}
+
+var userRank = document.getElementById('userRank').value;
+
+  if(userRank!=0) {
+    if(userRank <=10) {
+      document.getElementById('leaderboardMsg').innerHTML = "Congrats! You are in top 10!" + " Your rank is " + "'" + userRank + "'" + ".";
+      document.getElementById("LeaderboardTbl").rows[userRank].style.color = "yellow";
+    }
+    else if (userRank>10 &&  userRank<=20) {
+      document.getElementById('leaderboardMsg').innerHTML = "Congrats! You are in top 20!" + " Your rank is " + "'" + userRank + "'" + ".";
+    } 
+    else if (userRank>20 &&  userRank<=30) {
+      document.getElementById('leaderboardMsg').innerHTML = "Congrats! You are in top 30!" + " Your rank is " + "'" + userRank + "'" + ".";
+    }
+    else if (userRank>30 &&  userRank<=40) {
+      document.getElementById('leaderboardMsg').innerHTML = "Congrats! You are in top 40!" + " Your rank is " + "'" + userRank + "'" + ".";
+    } 
+    else if (userRank>40 &&  userRank<=50) {
+      document.getElementById('leaderboardMsg').innerHTML = "Congrats! You are in top 50!" + " Your rank is " + "'" + userRank + "'" + ".";
+    }
+
+    else
+      document.getElementById('leaderboardMsg').innerHTML = "Congrats! You are in top 100!" + " Your rank is " + "'" + userRank + "'" + ".";
+  }
+
+  console.log("userRank",userRank);
+
+</script>
+  <!-- <div id="Chapters">Averages</div> -->
+
+  <script>
+    var conceptName = document.getElementById('conceptName').innerHTML;
+    var chapterName = document.getElementById('chapterName').innerHTML;
+  
+    document.getElementById('Concept').value = conceptName;
+    document.getElementById('Chapter').value = chapterName;
+
+    document.getElementById('ConceptRv').value = conceptName;
+    document.getElementById('ChapterRv').value = chapterName;
+  
+  </script>
+
+<script>
+  $(document).ready(function(){
+    $("#viewSolBtn").click(function(){
+      $("#reviewSolForm").submit();
+    });
+  });
+</script>
+
+</body>
+</html>

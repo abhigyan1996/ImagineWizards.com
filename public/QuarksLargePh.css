@@ -1,0 +1,790 @@
+
+@media all and (max-width: 599px) and (min-width: 100px) {
+/* Meidum sized phones and other devices (phones, 600px and down) */
+
+#QuarksLogo{
+	margin-left: 4vw;
+	height: 12.5vw;
+	width: 12.5vw;
+	margin-top:1.25vh;
+}
+
+#nameQuarks{
+	font-family: 'Quicksand';
+	font-size: 10vw;
+	text-decoration: none;
+	margin-left: 20vw;
+	color:black;
+	position:absolute;
+}
+	
+#NightMode{
+	margin-left: 45vw;
+	height: 10vw;
+	width: 8vw;
+	margin-top:2vh;
+	cursor: pointer;
+	position: absolute;
+}
+
+#DayMode{
+	margin-left: 43vw;
+	height: 10vw;
+	width: 10vw;
+	margin-top:-0.5vh;
+	cursor: pointer;
+	display: none;
+}
+
+.OutQuarks{
+	margin-top: 30vw;
+}
+
+.Quarks{
+	position: absolute;
+	background: white;
+	width:100vw;
+	margin-left: 0vw;
+}
+
+.quarkHalf {
+  height: 185vw;
+  max-height: 185vw;
+  min-height: 185vw;
+}
+
+.QuarkCards{
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  width: 95vw;
+  max-width: 95vw;
+  min-width: 95vw;
+  background: white;
+  margin-left: -1.5vw;
+  height: 160vw;
+  max-height: 160vw;
+  min-height:160vw;
+  border-radius: 10px
+}
+
+.QuarkCards:hover{
+ 	-webkit-transform: scale(1);
+ 	 -ms-transform: scale(1);
+ 	 transform: scale(1);
+}
+
+.quarkImages{
+	height:60vw;
+	max-height:60vw;
+	min-height:60vw;
+  	width:95vw;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	max-width: 95vw;
+	min-width: 95vw;
+}
+
+.QuarkTitle{
+	font-weight: 900;
+	font-family: 'Source Serif Pro';
+	font-size: 4.25vw;
+	color: black;
+	background: white;
+	height:11vw;
+	max-height:11vw;
+	min-height: 11vw;
+	margin-top: 1vw;
+}
+
+.writings{
+	font-family: 'Source Serif Pro';
+	font-size:4vw;
+	height: 84vw;
+	max-height:84vw;
+	min-height:84vw;
+	width:95vw;
+	min-width:95vw;
+	max-width:95vw;
+	background:white;
+	padding-left:1.5vw;
+	padding-right:1.5vw;
+	padding-top:1vw;
+}
+
+.QuarkBottomStrip{
+	background: #000000;
+	height: 12vw;
+	max-height:12vw;
+	min-height:12vw;
+	width:95vw;
+	max-width:95vw;
+	min-width:95vw;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-top:0vw;
+}
+
+#ScienceTag{
+	font-family: 'Source Serif Pro';
+	position:absolute;
+	margin-left: 71.5vw;
+	margin-top:-10.5vw;
+	font-size:3.5vw;
+	padding: 1vw;
+}
+
+#GenKnowledgeTag{
+	font-family: 'Source Serif Pro';
+	position:absolute;
+	margin-left: 56.25vw;
+	margin-top:-10.5vw;
+	font-size:3.5vw;
+	padding: 1vw;
+}
+
+#BusinessTag{
+	font-family: 'Source Serif Pro';
+	position:absolute;
+	margin-left: 69.8vw;
+	margin-top:-10.5vw;
+	font-size:3.5vw;
+	padding: 1vw;
+}
+
+#MythologyTag{
+	font-family: 'Source Serif Pro';
+	position:absolute;
+	margin-left: 64.25vw;
+	margin-top:-10.5vw;
+	font-size:3.5vw;
+	padding: 1vw;
+}
+
+#HistoryTag{
+	font-family: 'Source Serif Pro';
+	position:absolute;
+	margin-left: 71.5vw;
+	margin-top:-10.5vw;
+	font-size:3.5vw;
+	padding: 1vw;
+}
+
+#MathsTag{
+	font-family: 'Source Serif Pro';
+	position:absolute;
+	margin-left: 73.5vw;
+	margin-top:-10.5vw;
+	font-size:3.5vw;
+	padding: 1vw;
+}
+
+.AuthorName{
+	font-family: 'Source Serif Pro';
+	font-size:2.75vw;
+	position:absolute;
+	color:white;
+	margin-left: 1.25vw;
+	margin-top:-10vw;
+}
+
+.DateOfQuark{
+	position:absolute;
+	color:white;
+	margin-top: -6vw;
+	margin-left: 1.25vw;
+	font-size:2.75vw;
+	font-family: 'Source Serif Pro';
+}
+/*
+#LikeQuarkFb{
+	position: absolute;
+	margin-left: 37vw;
+	margin-top: -10vw;
+}
+*/
+.listenBtn{
+	position: absolute;
+	margin-left: 38vw;
+	font-size:5vw;
+	margin-top: -8.5vw;
+	color:white;
+}
+
+#subscribeBtnPh{
+	position: absolute;
+	margin-left: 48vw;
+	font-size:5vw;
+	margin-top: -8.5vw;
+	color:white;
+}
+
+/*home page styles */
+
+
+/*STYLES FOR HOME PAGE OF QUARKS AND SUBMIT!*/
+#div1H{
+	background:white;
+	height:240vw;
+}
+
+#Phone{
+	position:absolute;
+	height: 110vw;
+	width:70vw;
+	margin-left: 10vw;
+	margin-top: 10vw
+}
+
+#WhiteStrip{
+	position:absolute;
+	height: 85vw;
+	width:60vw;
+	margin-left: 15vw;
+	margin-top: 20vw;
+	background: white;	
+}
+
+#PhoneBtn{
+	position: absolute;
+	margin-top: 80vw;
+	margin-left: 28.5vw;
+	font-size: 4vw;
+}
+
+#namastePic{
+	position:absolute;
+	height:30vw;
+	width:25vw;
+	margin-left: 33vw;
+	margin-top: 20vw;
+}
+
+#namasteTxt{
+	position:absolute;
+	height:5vw;
+	width:5.5vw;
+	margin-left: 30vw;
+	margin-top: 55vw;
+	font-weight: 900;
+	font-family: 'Helvectica';
+	font-size: 6vw;
+	color: orange;
+}
+
+#fingerPic{
+	position:absolute;
+	height:20vw;
+	width: 14vw;
+	margin-left: 38vw;
+	margin-top: 90vw;
+}
+
+#QuarkPic{
+	position:absolute;
+	height: 85vw;
+	width:60vw;
+	margin-left: 15vw;
+	margin-top: 20vw;	
+}
+
+#clickTxt{
+	position: absolute;
+	margin-top: 70vw;
+	margin-left: 38vw;
+	font-size: 4vw;
+	font-family: 'Quicksand';
+}
+
+#Quark1{
+	position:absolute;
+	width:55vw;
+	margin-left: 17.5vw;
+	margin-top: 25vw;
+	font-weight: 900;
+	font-family: 'Quicksand';
+	font-size: 5vw;
+	color: white;
+	text-align: center
+}
+
+#Quark1Ans{
+	position:absolute;
+	width:55vw;
+	margin-left: 17.5vw;
+	margin-top: 75vw;
+	font-weight: 900;
+	font-family: 'Quicksand';
+	font-size: 3vw;
+	color: white;
+}
+
+#PhoneScreen1{
+	display:none;
+}
+
+#PhoneScreen2{
+	display:none;
+}
+
+#PhoneScreen3{
+	display: none;
+}
+
+#blackStrip{
+	position:absolute;
+	height: 85vw;
+	width:60vw;
+	margin-left: 15vw;
+	margin-top: 20vw;
+	background: black;
+	opacity: 0.4	
+}
+
+	
+#joinQuoteHome{
+	margin-top: 35vw;
+	margin-left: 6vw;
+	font-family: 'Quicksand';
+	font-size: 6.75vw;
+	font-weight: 900; 
+	width: 80vw;
+	max-width: 80vw;
+	min-width: 80vw;
+}
+
+#joinQuarksLineHome{
+	margin-left: 6vw;
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+	width: 80vw;
+	max-width: 80vw;
+	min-width: 80vw; 
+	margin-top: 0vw;
+}
+
+#homeAmoeba1{
+	height: 50vw;
+	width: 80vw;
+	margin-top: 10vw;
+	margin-left: 4vw;
+}
+
+#homeAmoeba2{
+	position: absolute;
+	margin-left: 10vw;
+	margin-top: 15vh;
+	height: 470px;
+	width: 35vw;
+}
+
+#exploreQuarksHome{
+	margin-left: 2vw;
+	font-family: 'Source Serif Pro';
+	font-size: 4vw;
+	margin-top:3.5vw;
+}
+
+#subscribeQuarksHome{
+	margin-left: 6vw;
+	font-family: 'Source Serif Pro';
+	font-size: 4vw;
+	margin-top:3.5vw;
+}
+
+.navItems{
+	text-decoration: none;
+}
+
+#navItem1{
+	color:red;
+	margin-left: 40vw
+}
+
+
+#navItem1Quarks{
+	font-family: 'Source Serif Pro';
+	font-size:1.3vw;
+	color:black;
+	margin-left: 70vw;
+	position:absolute;
+}
+
+#navItem2Quarks{
+	font-family: 'Source Serif Pro';
+	font-size:1.3vw;
+	margin-left: 75vw;
+	position:absolute;
+	color:red;	
+}
+
+#navItems3Quarks{
+	font-family: 'Source Serif Pro';
+	font-size:1.3vw;
+	color:black;
+	margin-left: 81vw;
+	position:absolute;
+}
+
+#navItems3Quarks:hover{
+	color:blue;
+}
+
+#navItems4Quarks{
+	font-family: 'Source Serif Pro';
+	font-size:1.3vw;
+	color:black;
+	margin-left: 88vw;
+	position:absolute;	
+}
+
+
+#navItems4Quarks:hover{
+	color:blue;
+}
+
+#div1ImgH{
+	background: white
+	}
+
+#WhyQuarksHome{
+	margin-top: 8vw;
+	text-align: center;
+	font-family: 'Quicksand';
+	font-size: 5vw;
+	width: 91.5vw;
+	min-width: 91.5vw;
+	max-width: 91.5vw;
+	font-weight: 900; 
+}
+
+.HomeCards{
+	margin-bottom:10vw;
+	margin-left: -1.5vw;
+	height:145vw;
+	border-radius:10px;
+	width:95vw;
+	min-width:95vw;
+	max-width:95vw;
+}
+	
+#divOuterCards{
+	background: white;
+}
+
+.quarkThird{
+  height: 165vw;
+  max-height: 165vw;
+  min-height: 125vw;	
+  background: white;
+}
+
+.WhyQuarkCards{
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  width: 95vw;
+  max-width: 95vw;
+  min-width: 95vw;
+  background: white;
+  margin-left: -1.75vw;
+  height: 150vw;
+  max-height: 150vw;
+}
+
+.WhyQuarkCards:hover{
+ -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+
+.WhyQuarks{
+	position: absolute;
+	width:100vw;
+	margin-left: 0vw;
+}
+
+.whyQuarkImages{
+	height:60vw;
+	max-height:60vw;
+	min-height:60vw;
+  	width:95vw;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	max-width: 95vw;
+	min-width: 95vw;
+}
+
+.whyQuarkTitle{
+	font-weight: 900;
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+	color: black;
+	height:10vw;
+	max-height:10vw;
+	min-height: 10vw;
+	margin-top: 1vw;
+}
+	
+.WhyQwriting{
+	font-family: 'Source Serif Pro';
+	font-size:4.5vw;
+	height: 72.5vw;
+	max-height:72.5vw;
+	min-height:72.5vw;
+	width:95vw;
+	min-width:95vw;
+	max-width:95vw;
+	padding-left:1.5vw;
+	padding-right:1.5vw;
+	padding-top:0vw;
+	margin-top: -3vw;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+#QuarkSubsHome{
+	margin-left: 15vw;
+	font-family: 'Quicksand';
+	font-size: 5vw;
+	font-weight: 900; 
+}
+
+#subjectScrollHor{
+	overflow-x: scroll;
+	height:70vw;
+	width: 100vw;
+	background: white;
+	margin-top: 10vh;
+}
+
+#SubLeft{
+	margin-left: 0.5vw;
+}
+	
+#QuarkJourneyLine{
+	margin-top: 2vh;
+	margin-left: 9.5vw;
+	font-family: 'Quicksand';
+	font-size: 5vw;
+	width: 91.5vw;
+	min-width: 91.5vw;
+	max-width: 91.5vw;
+	font-weight: 900; 	
+}
+
+.subImages{
+	position: relative;
+	height:60vw;
+	width:40vw; 
+}
+
+#subSciencePic{
+	margin-left: -1.25vw;
+}
+/*Adding 17.25 margin-left per image*/
+#subStoryPic{
+	margin-left: 41.5vw;
+	margin-top: -43.80vw; 
+	height:93.5vw;
+}
+
+#subMathsPic{
+	margin-left: 84.25vw;
+	margin-top: -43.80vw; 
+	height:60.75vw;
+}
+
+#subFinancePic{
+	margin-left: 127vw;
+	margin-top: -43.80vw; 
+	height:60.75vw;
+}
+
+#subEpicsPic{
+	margin-left: 169.75vw;
+	margin-top: -43.80vw; 
+	height:60.75vw;
+}
+
+#subPsychologyPic{
+	margin-left: 212.5vw;
+	margin-top: -43.80vw; 
+	height:60.75vw;
+}
+
+.subName{
+	position:relative;
+	font-family: 'Source Serif Pro';
+	font-size: 7vw;
+	color:white;
+}
+
+#subScienceTxt{
+	margin-top: -60vw;
+	margin-left: 5vw;
+}
+
+#subStoryTxt{
+	margin-top: -27vw;
+	margin-left: 47vw;
+}
+
+#subMathsTxt{
+	margin-top: -40vw;
+	margin-left: 85vw;
+	font-size: 5vw
+}
+
+#subFinanceTxt{
+	margin-top: -50vw;
+	margin-left: 132vw;
+}
+
+#subEpicsTxt{
+	margin-top: -55vw;
+	margin-left: 175vw;
+	font-size: 5vw;
+}
+
+#subPsychologyTxt{
+	margin-top: -60vw;
+	margin-left: 217vw;
+	font-size: 7vw;
+}
+
+.statsNum{
+	color: purple;
+	font-family: 'Source Serif Pro';
+	font-size: 7vw;
+}
+
+.statsName{
+	color: black;
+	font-family: 'Source Serif Pro';
+	font-size: 3.5vw;
+}
+
+.OutstatCards{
+	margin-top: 18vw;
+	margin-left: 4vw;
+}
+
+.StatisticsCards{
+	height:20vw;
+	width: 20vw; 
+	background: white;
+	border-radius: 10px;
+}
+
+#statDiv{
+	height: 65vw;
+	width: 100vw;
+	background: white;
+}
+
+#cardStat{
+	width:40vw;
+	margin-bottom: 4vw;
+	margin-left: 7.5vw
+}
+
+#contributeHeading{
+	margin-top: 5vh;
+	margin-left: 20vw;
+	font-family: 'Quicksand';
+	font-size: 5vw;
+	font-weight: 900; 
+	width: 80vw;
+}
+
+#contributeDiv{
+	height:160vw;
+	background: white;
+}
+
+#contributePic{
+	margin-top: 5vh;
+	height:60vw;
+	width:95vw;
+	margin-left: -1vw;
+}
+
+#contributeLine{
+	margin-top: 4vh;
+	margin-left: 5vw;
+	margin-right:2vw;
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+}
+
+#contributeBtn{
+	margin-top: 4vh;
+	margin-left: 25vw;
+	font-family: 'Source Serif Pro';
+	font-size: 4.5vw;
+}
+
+
+#SubmitHeading{
+	margin-top: 18vh;
+	margin-left: 0vw;
+	font-family: 'Quicksand';
+	font-size: 5vw;
+	font-weight: 900; 
+	color: purple;
+}
+
+#SubmitQuarksdiv{
+	background: yellow;
+	height:120vh;
+	width:100vw;
+	position: absolute;
+	margin-top: 3vw
+}
+
+#SubmitQuarksOuter{
+	height:110vh;
+	width:90vw;
+	margin-left: 4vw;
+	border-radius: 10px;
+	margin-top: 5vw;
+}
+
+#SubmitQuarks{
+	height:100vh;
+	width:80vw;
+	margin-left: 5vw;
+	margin-top: 2vw
+}
+
+#TestimonialDiv{
+	height:80vw;
+	width:100vw;
+	background: white;
+	overflow: hidden;
+	background: white;
+}
+
+
+#TestimonialHeading{
+	position: absolute;
+	text-align: center;
+	font-family: 'Quicksand';
+	font-size: 5vw;
+	font-weight: 900; 
+	margin-top: -68.5vw;
+	margin-left: 2.75vw;
+}
+
+#quark23Text{
+	font-size: 3.9vw;
+	margin-top: -1vw;
+	margin-bottom: 1vw;
+}
+
+}

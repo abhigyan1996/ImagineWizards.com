@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<title>QuarkX</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Serif Pro">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/QuarkStylesDesktop.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="/QuarksLargePh.css">
+<link rel="stylesheet" href="/SolveQuestionsStyles.css">
+
+ <meta property="og:url"           content="angshumankashyap.in/QuarkX" />
+ <meta property="og:type"          content="website" />
+ <meta property="og:title"         content="Join Quarks" />
+ <meta property="og:description"   content="Refuel Your Curiosity" />
+ <meta property="og:image"         content="images/homeAmoeba.jpg" />
+<link rel="stylesheet" href="/w3styles.css">
+<link rel="stylesheet" href="/AngzPhStyles.css">
+
+<link rel="icon" href="/QuarkOtherImages/QuarksLogoFinal-1.png">
+
+<script src="slickJS/slick.js" type="text/javascript"></script>
+<link rel="stylesheet" href= "/slickCss/slick.css">
+<link rel="stylesheet" href= "/slickCss/slick-theme.css">
+
+<link rel="stylesheet" href= "/AngzDesktopStyles.css">
+
+<!-- NAV BAR  -->
+<link rel="stylesheet" href="/nav.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"> </script>
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+
+<link rel="stylesheet" href="/https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!--     ===================================================================
+                              Hemburgar Menu
+    ===================================================================
+ -->
+
+    <script>
+      function openSlideMenu(){
+        document.getElementById('side-menu').style.width = '300px';
+        document.getElementById('main').style.marginLeft = '300px';
+        document.getElementById('wholebody').style = '1';
+      }
+  
+      function closeSlideMenu(){
+        document.getElementById('side-menu').style.width = '0';
+        document.getElementsByClassName('w3-row').style.opacity = '1';
+      }
+    </script>
+
+<audio id="correctMp3">
+  <source src="https://abhigyan1996.github.io/QA/QA/1/kids.mp3" type="audio/mpeg">
+</audio>
+<audio id="wrongMp3">
+  <source src="https://abhigyan1996.github.io/QA/QA/1/wrong.mp3" type="audio/mpeg">
+</audio>
+
+<body id="body" style="width:100vw">
+
+  <section  id="top-navbar">  
+      <div id="side-menu" class="side-nav">
+        <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+        <a href="MyCourses">My Courses</a>
+        <a href="../QuarkXAcademy">QuarkX Academy</a>
+        <a href="../QuarkX">QuarkX Home</a>
+      </div>
+   </section>
+  
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar w3-white" id="myNavbar" style="box-shadow: 3px 3px 3px #A8A8A8 ; width:100vw; max-width:100vw; min-width:100vw;">
+      <a id="iconNav" class="w3-bar-item w3-button w3-hover-black w3-left" href="javascript:void(0);" onclick="openSlideMenu()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+      </a>
+      <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
+      
+      <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> Quark</span><span id="XName">X</span> </div>
+     
+      <!-- STOP PRACTICE -->
+      <form id="conceptsForm" action="/QuarkXAcademy/ConceptPerformance" method="POST">
+        <input class="w3-hide" type="text" id="ConceptStop" placeholder="concept" name="Concept">
+        <input class="w3-hide" type="text" id="ChapterStop" placeholder="Chapter" name="Chapter">
+        <input class="w3-hide" type="text" id="Class" placeholder="Class" name="Class" value=<%=Class%>>
+        <input class="w3-hide" type="text" id="Course" placeholder="Course" name="Course" value=<%=Course%>>
+        <input class="w3-hide" type="text" id="ChapNum" name="ChapNum" value=<%=ChapNum%>>
+        <input class="w3-hide" type="text" name="ConceptNum" value=<%=ConceptNum%>>
+    
+        <button type="submit" id="endPracticeBtn" class="w3-button">STOP</button>
+      </form>
+
+
+      <div id="themesBtn" class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Themes <i id="dropdownIcon" class="fa fa-caret-down" style="font-size:1vw"></i></button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <div id="darkMode" class="w3-bar-item w3-button">Night Mode</div>
+          <div id="lightMode" class="w3-bar-item w3-button">Light Mode</div>
+        </div>
+      </div>
+       
+     
+      <div style="margin-top:3vh">
+   
+      
+    </div>
+    <!-- Navbar on small screens -->
+  </div>
+  
+  <div class="w3-hide" id="conceptName"><%=Concept%></div>
+  <div class="w3-hide" id="chapterName"><%=Chapter%></div>
+
+  <form id="submitForm" action="/QuarkXAcademy/SubmitAnswer" method="POST">
+    <input class="w3-hide" name="quesID" id="quesID" value=<%=QuestionId%> type="text">
+    <input class="w3-hide" name="inputAns" id="inputAns" type="text">
+    <input class="w3-hide" name="Concept" id="Concept" type="text">
+    <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
+    <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
+    <input class="w3-hide" name="Chapter" id="Chapter" type="text">
+    <input class="w3-hide" name="CorrectOpt" id="CorrectOptionDB" value=<%=CorrectOption%> type="text">  
+    <input class="w3-hide" name="CorrectFlag" id="CorrectFlag" type="text">   
+    <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
+    <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
+    <input class="w3-hide" id="themeId1" type="text" name="Theme" value=<%=Theme%>>
+  <!-- newly added-->      
+    <button type="submit" class="btn w3-pink w3-hover-blue w3-button" id="submitAnsBtn"> Skip Question </button>        
+</form>
+
+<form action="/QuarkXAcademy/NextQuestion" method="POST">
+  <input class="w3-hide" name="Concept" id="ConceptAk" type="text">
+  <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
+  <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
+  <input class="w3-hide" name="Chapter" id="ChapterAk" type="text">     
+  <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
+  <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>  
+  <input class="w3-hide" id="themeId2" type="text" name="Theme" value=<%=Theme%>>
+  <!-- newly added-->
+  <button type="submit" class="btn w3-pink w3-hover-blue w3-button" id="NextQuesBtn"> 
+    
+  </button>
+</form>
+
+
+  <div onscroll="myFunction()" class="twoSec" id="twoSec">
+    <img class="w3-animate-zoom" id="feedbackImgCorrect" src="https://abhigyan1996.github.io/QA/QA/1/dance.gif">
+    <img class="w3-animate-zoom" id="feedbackImgCorrect2" src="https://abhigyan1996.github.io/QA/QA/1/guitarist.gif">
+    <img class="w3-animate-zoom" id="feedbackImgCorrect3" src="https://abhigyan1996.github.io/QA/QA/1/dance2.gif">
+    <img class="w3-animate-zoom" id="feedbackImgCorrect4" src="https://abhigyan1996.github.io/QA/QA/1/dance3.gif">
+    <img class="w3-animate-zoom" id="feedbackImgWrong" src="https://abhigyan1996.github.io/QA/QA/1/sad.gif">
+    <!-- <img class="w3-animate-zoom" id="feedbackImgWrong2" src="https://abhigyan1996.github.io/QA/QA/1/sad2.gif"> -->
+  
+    <div class="w3-card" id="AnsFeedback">
+   </div>
+
+    <section id="div1">
+      <div id="quesNum">Question:</div>
+        
+      <div style="visibility: hidden;" class="w3-card" id="quesImgContainer">
+        <img id="questionImage" src= <%=QuestionImg%>>
+      </div>
+      
+      <div style="visibility: hidden;" id="questionWithImg"><%=Question%> </div>
+  
+      <div style="visibility: hidden;" id="questionNoImg"><%=Question%></div>
+
+
+    <form>
+      <input class="w3-hide" name="ShowAnswer" id="ShowAnswer" type="text" value=<%=ShowAnswer%>> 
+      <input class="w3-hide" name="submittedInput" id="submittedInput" type="text" value=<%=submittedInput%>>
+    </form>
+
+    
+  
+    </section>
+  
+  
+    <section id="optionsSec">
+      <div id="OptionsTxt">Options: </div>
+      <div id="Options">    
+          <div style="background-color: white; color:black" id="optionsA"> A. <%=OptionA%> 
+            <div id="showAnsA">
+              <img style="visibility: hidden;" id="ExpImgA" src=<%=ExplainationImg%>>
+              <div style="visibility: hidden;" id="ExpA"><%=Explanation%></div>
+            </div> 
+          </div>
+          
+          <div style="background-color: white; color:black" id="optionsB"> B. <%=OptionB%>
+            <div id="showAnsB">
+              <img style="visibility: hidden;" id="ExpImgB" src=<%=ExplainationImg%>>
+              <div style="visibility: hidden;" id="ExpB"><%=Explanation%></div>
+            </div>
+          </div>
+          
+          <div style="background-color: white; color:black" id="optionsC"> C. <%=OptionC%>
+            <div id="showAnsC">
+              <img style="visibility: hidden;" id="ExpImgC" src=<%=ExplainationImg%>>
+              <div style="visibility: hidden;" id="ExpC"><%=Explanation%></div>
+            </div>
+          </div>
+          
+          <div style="background-color: white; color:black" id="optionsD"> D. <%=OptionD%>
+            <div id="showAnsD">
+              <img style="visibility: hidden;" id="ExpImgD" src=<%=ExplainationImg%>>
+              <div style="visibility: hidden;" id="ExpD"><%=Explanation%></div>
+            </div>
+          </div>
+
+      </div>
+
+      
+      <form class="w3-hide">
+        <input id="quesFlag" type="text" value=<%=Ques_Img_flag%>>
+        <input id="AnsFlag" type="text" value=<%=Ans_img_flag%>>
+        <input id="userName" type="text" value=<%=userName%>>
+        <!-- Note: Only first name is coming due to space. For full name, put in div and fetch that to form input -->
+      </form>      
+    </section>
+  
+  
+  </div>
+
+  <script>
+    function myFunction() {
+      var elmnt = document.getElementById("twoSec");
+      var y = elmnt.scrollTop;
+      if(y>30) {
+        $("#feedbackImgCorrect").animate({top: '4.6vw'});
+        $("#feedbackImgCorrect2").animate({top: '4.6vw'});
+        $("#feedbackImgCorrect3").animate({top: '4.6vw'});
+        $("#feedbackImgCorrect4").animate({top: '4.6vw'});
+        // $("#feedbackImgWrong").animate({top: '4.6vw'});
+        // $("#feedbackImgWrong2").animate({top: '4.6vw'});
+      }
+    }
+    </script>
+
+  <script>
+  $(document).ready(function(){
+    var quesImgFlag = document.getElementById('quesFlag').value;  //true is 1, 0 is false
+    console.log("dfdufgdjfvdjfvjdfjfv",quesImgFlag);
+
+    if(quesImgFlag == 0){
+      $("#quesImgContainer").hide();
+      $("#questionWithImg").hide();
+      //added latest
+      $("#quesImgContainer").css("visibility", "hidden");
+      $("#questionWithImg").css("visibility", "hidden");
+      $("#questionNoImg").css("visibility", "visible");      
+    }
+    else {
+      $("#quesImgContainer").show();
+      $("#questionNoImg").hide();
+      //added latest
+      $("#quesImgContainer").css("visibility", "visible");
+      $("#questionNoImg").css("visibility", "hidden");
+      $("#questionWithImg").css("visibility", "visible");
+    }
+  });
+
+  </script>
+  
+  
+  <script>
+
+    var themeFlag = document.getElementById('themeId1').value;
+    console.log("Theme", themeFlag);
+  
+    if (themeFlag=="0"){  //dark mode
+      $("#body").css({"background-image": "url(https://abhigyan1996.github.io/QA/QA/1/stars.gif)", "background-repeat" : "repeat-x repeat-y"});
+      $("#quesNum").css("color", "orange");
+      $("#questionWithImg").css("color", "yellow");
+      $("#quesImgContainer").css("border", "0.1px solid #bbb");
+      $("#questionNoImg").css("color", "yellow");
+      $("#OptionsTxt").css("color", "aqua");
+    }
+    else if (themeFlag=="1") {  //light mode
+      $("#body").css("background", "white");
+      $("#quesNum").css("color", "orange");
+      $("#questionWithImg").css("color", "black");
+      $("#questionNoImg").css("color", "black");
+      $("#OptionsTxt").css("color", "indigo");
+      $("#quesImgContainer").css("border", "none");
+    }
+  
+    $(document).ready(function(){
+        $("#darkMode").click(function(){
+          $("#body").css({"background-image": "url(https://abhigyan1996.github.io/QA/QA/1/stars.gif)", "background-repeat" : "repeat-x repeat-y"});
+          $("#quesNum").css("color", "orange");
+          $("#questionWithImg").css("color", "yellow");
+          $("#quesImgContainer").css("border", "0.1px solid #bbb");
+          $("#questionNoImg").css("color", "yellow");
+          $("#OptionsTxt").css("color", "aqua");
+          document.getElementById('themeId1').value = "0";
+          document.getElementById('themeId2').value = "0";
+
+        })
+  
+        $("#lightMode").click(function(){
+         // $("#body").css("background-color", "white");
+          $("#body").css("background", "white");
+          $("#quesNum").css("color", "orange");
+          $("#questionWithImg").css("color", "black");
+          $("#questionNoImg").css("color", "black");
+          $("#OptionsTxt").css("color", "indigo");
+          $("#quesImgContainer").css("border", "none");
+          document.getElementById('themeId1').value = "1";
+          document.getElementById('themeId2').value = "1";
+        })
+    })
+    </script>
+  
+  
+  <script>
+    //Options
+  $(document).ready(function(){
+
+      var ShowAnswer = document.getElementById("ShowAnswer").value;
+      SkipOrSubmit(inputOpt);
+
+      $("#ExpA").hide();
+      $("#ExpB").hide();
+      $("#ExpC").hide();
+      $("#ExpD").hide();
+
+      $("#ExpImgA").hide();
+      $("#ExpImgB").hide();
+      $("#ExpImgC").hide();
+      $("#ExpImgD").hide();
+      
+      if(ShowAnswer == 0){ //user has not solved a question yet 
+        document.getElementById("submitAnsBtn").innerHTML = "Skip Question";
+        $("#submitAnsBtn").show();
+        $("#NextQuesBtn").hide();
+
+          var inputOpt = "";
+          var tappedA = 0;
+          var tappedB = 0; 
+          var tappedC = 0; 
+          var tappedD = 0; 
+
+          var correctSol = document.getElementById("CorrectOptionDB").value;
+          document.getElementById("inputAns").value = inputOpt;
+          document.getElementById("CorrectFlag").value = "2";
+
+        $("#optionsA").click(function() {
+          tappedA++;
+          tappedB = 0; 
+          tappedC = 0; 
+          tappedD = 0;
+  
+          if(tappedA % 2 == 1) {
+           $("#optionsA").css("background-color", "#FFF300");
+           $("#optionsB").css("background-color", "white");
+           $("#optionsC").css("background-color", "white");
+           $("#optionsD").css("background-color", "white");
+           inputOpt = "A";
+           document.getElementById("inputAns").value = inputOpt;
+
+          if(correctSol == inputOpt) {
+                    document.getElementById("CorrectFlag").value = "1";
+                }
+          else  {
+                    document.getElementById("CorrectFlag").value = "0";
+                }
+         }
+          
+          else if (tappedA % 2 == 0) {
+           $("#optionsA").css("background-color", "white");
+            inputOpt = "";
+           document.getElementById("inputAns").value = inputOpt;
+           document.getElementById("CorrectFlag").value = "2";
+          }     
+          SkipOrSubmit(inputOpt);  
+      });
+  
+      $("#optionsB").click(function() {
+          tappedA = 0;
+          tappedB++; 
+          tappedC = 0; 
+          tappedD = 0;
+  
+          if(tappedB % 2 == 1) {
+           $("#optionsA").css("background-color", "white");
+           $("#optionsB").css("background-color", "#FFF300");
+           $("#optionsC").css("background-color", "white");
+           $("#optionsD").css("background-color", "white");
+           inputOpt = "B";
+           document.getElementById("inputAns").value = inputOpt;
+           if(correctSol == inputOpt) {
+                 document.getElementById("CorrectFlag").value = "1";
+              }
+           else{
+                 document.getElementById("CorrectFlag").value = "0";
+            }
+         }
+          
+          else if (tappedB % 2 == 0) {
+           $("#optionsB").css("background-color", "white");
+            inputOpt = "";
+            document.getElementById("inputAns").value = inputOpt;
+            document.getElementById("CorrectFlag").value = "2";
+          }
+          SkipOrSubmit(inputOpt);
+      });
+  
+      $("#optionsC").click(function() {
+          tappedA = 0;
+          tappedB = 0; 
+          tappedC++; 
+          tappedD = 0;
+  
+          if(tappedC % 2 == 1) {
+           $("#optionsA").css("background-color", "white");
+           $("#optionsB").css("background-color", "white");
+           $("#optionsC").css("background-color", "#FFF300");
+           $("#optionsD").css("background-color", "white");
+           inputOpt = "C";
+          document.getElementById("inputAns").value = inputOpt;
+          if(correctSol == inputOpt) {
+                 document.getElementById("CorrectFlag").value = "1";
+              }
+           else{
+                 document.getElementById("CorrectFlag").value = "0";
+            }
+         }
+          
+          else if (tappedC % 2 == 0) {
+           $("#optionsC").css("background-color", "white");
+           inputOpt = "";
+           document.getElementById("inputAns").value = inputOpt;
+           document.getElementById("CorrectFlag").value = "2";
+          }
+          SkipOrSubmit(inputOpt);
+      });
+  
+      $("#optionsD").click(function() {
+          tappedA = 0;
+          tappedB = 0; 
+          tappedC = 0; 
+          tappedD++;
+  
+          if(tappedD % 2 == 1) {
+           $("#optionsA").css("background-color", "white");
+           $("#optionsB").css("background-color", "white");
+           $("#optionsC").css("background-color", "white");
+           $("#optionsD").css("background-color", "#FFF300");
+           inputOpt = "D";
+           document.getElementById("inputAns").value = inputOpt;
+           if(correctSol == inputOpt) {
+                 document.getElementById("CorrectFlag").value = "1";
+              }
+           else{
+                 document.getElementById("CorrectFlag").value = "0";
+            }
+         }
+          
+          else if (tappedD % 2 == 0) {
+           $("#optionsD").css("background-color", "white");
+           inputOpt = ""; 
+           document.getElementById("inputAns").value = inputOpt;
+           document.getElementById("CorrectFlag").value = "2";
+          }
+          SkipOrSubmit(inputOpt);
+      });
+    }
+
+    else {      //if ShowAnswer is 1
+
+            var userName = document.getElementById('userName').value;
+            var correctSol = document.getElementById("CorrectOptionDB").value;
+            var submittedInp = document.getElementById("submittedInput").value;
+
+            if (correctSol == submittedInp) {
+              playCorrectMp3(); // add later
+            }
+
+            else if (correctSol != submittedInp) {
+              playWrongMp3();
+            }
+
+            $("#submitAnsBtn").hide();
+            document.getElementById("NextQuesBtn").innerHTML = "GO TO NEXT";
+            $("#NextQuesBtn").css("margin-left", "74vw");
+            $("#NextQuesBtn").show();
+
+            console.log("submittedInp", submittedInp);
+            var ExpImgFlag = document.getElementById("AnsFlag").value;
+
+            if(submittedInp == "A")
+              $("#optionsA").css("background-color", "#FFF300");
+            else if (submittedInp == "B")
+              $("#optionsB").css("background-color", "#FFF300");
+            else if (submittedInp == "C")
+              $("#optionsC").css("background-color", "#FFF300");
+            else if (submittedInp == "D")
+              $("#optionsD").css("background-color", "#FFF300");
+
+              // Newly Added
+              if(correctSol == submittedInp) {
+                $("#AnsFeedback").css("visibility", "visible");
+                $("#NextQuesBtn").css("margin-top", "34vw");
+                $("#quesImgContainer").css("margin-top", "-1vw");
+
+                if(correctSol=="A") {
+                  document.getElementById('AnsFeedback').innerHTML = "+4 for you! Good hit " + userName + ". 😻";
+                  $("#feedbackImgCorrect").css("visibility", "visible");
+                }
+                else if(correctSol=="B") {
+                  $("#feedbackImgCorrect2").css("visibility", "visible");
+                  document.getElementById('AnsFeedback').innerHTML = "Yay +4! 😍 That's excellent " + userName + ".";
+                }
+                else if(correctSol=="C") {
+                $("#feedbackImgCorrect3").css("visibility", "visible");
+                  document.getElementById('AnsFeedback').innerHTML = "+4 ❤️ You cracked this nut " + userName + ".";
+                }
+                else if(correctSol=="D") {
+                  $("#feedbackImgCorrect4").css("visibility", "visible");
+                  document.getElementById('AnsFeedback').innerHTML = "Yippe! You got +4. Nice " + userName + "! 😻";
+                }
+              }
+
+              else if(correctSol != submittedInp) {
+                $("#AnsFeedback").css("background-color", "#FF4D4D");
+                $("#AnsFeedback").css("color", "white");
+                $("#AnsFeedback").css("visibility", "visible");
+                $("#NextQuesBtn").css("margin-top", "34vw");
+                $("#quesImgContainer").css("margin-top", "-1vw");
+
+                if(correctSol=="A") {
+                  document.getElementById('AnsFeedback').innerHTML = "Oops you got -1 "  + userName + ". 😔";
+                  $("#feedbackImgWrong").css("visibility", "visible");
+                }
+                else if(correctSol=="B") {
+                  document.getElementById('AnsFeedback').innerHTML = "-1 for you! Hey " + userName + ", try more. 💪";
+                  $("#feedbackImgWrong").css("visibility", "visible");
+                }
+                else if(correctSol=="C") {
+                  document.getElementById('AnsFeedback').innerHTML = "-1 for you! You can do it " + userName + ".  ❤";
+                  $("#feedbackImgWrong").css("visibility", "visible");
+                }
+                else if(correctSol=="D") {
+                  document.getElementById('AnsFeedback').innerHTML = "Oops its -1! Crack the next one " + userName + ". 🥺";
+                  $("#feedbackImgWrong").css("visibility", "visible");
+                }
+              } 
+
+
+            if(correctSol == "A") {
+                $("#optionsA").css("background-color", "#55F112");
+                $("#ExpA").show();
+                //added latest
+                $("#ExpA").css("visibility", "visible");
+                if(ExpImgFlag == 0){
+                  $("#ExpImgA").hide();
+                  $("#ExpImgA").css("visibility", "hidden");
+                }
+                else {
+                  $("#ExpImgA").show();
+                  $("#ExpImgA").css("visibility", "visible");
+                }
+              }
+              else if (correctSol == "B") {
+                 $("#optionsB").css("background-color", "#55F112");
+                 $("#ExpB").show();
+                 $("#ExpB").css("visibility", "visible");
+
+                 if(ExpImgFlag == 0){
+                  $("#ExpImgB").hide();
+                  $("#ExpImgB").css("visibility", "hidden");
+
+                }
+                else {
+                  $("#ExpImgB").show();
+                  $("#ExpImgB").css("visibility", "visible");
+                }
+              }
+              else if (correctSol == "C") {
+                 $("#optionsC").css("background-color", "#55F112");
+                 $("#ExpC").show();
+                 $("#ExpC").css("visibility", "visible");
+
+                 if(ExpImgFlag == 0){
+                  $("#ExpImgC").hide();
+                  $("#ExpImgC").css("visibility", "hidden");
+                }
+                else {
+                  $("#ExpImgC").show();
+                  $("#ExpImgC").css("visibility", "visible");
+                }
+              }
+              else if (correctSol == "D") {
+                 $("#optionsD").css("background-color", "#55F112");
+                 $("#ExpD").show();
+                 $("#ExpD").css("visibility", "visible");
+
+                 if(ExpImgFlag == 0){
+                  $("#ExpImgD").hide();
+                  $("#ExpImgD").css("visibility", "hidden");
+
+                }
+                else {
+                  $("#ExpImgD").show();
+                  $("#ExpImgD").css("visibility", "visible");
+                }
+              }       
+            };
+    });
+  
+        
+        function SkipOrSubmit(input) {
+          if(input != "") {
+            document.getElementById("submitAnsBtn").innerHTML = "Submit Answer";
+          }
+          else {
+            document.getElementById("submitAnsBtn").innerHTML = "Skip Question";
+          }
+        };         
+  </script>
+  
+  <script>
+    var conceptName = document.getElementById('conceptName').innerHTML;
+    var chapterName = document.getElementById('chapterName').innerHTML;
+  
+    document.getElementById('Concept').value = conceptName;
+    document.getElementById('Chapter').value = chapterName;
+
+    document.getElementById('ConceptAk').value = conceptName;
+    document.getElementById('ChapterAk').value = chapterName;
+
+    
+    document.getElementById('ConceptStop').value = conceptName;
+    document.getElementById('ChapterStop').value = chapterName;
+  </script>
+
+  <script>
+    var correct = document.getElementById("correctMp3"); 
+    function playCorrectMp3() { 
+      correct.play(); 
+    } 
+
+    var wrong = document.getElementById("wrongMp3"); 
+    function playWrongMp3() { 
+      wrong.play(); 
+    } 
+
+    </script>
+
+  </body>
+  </html>

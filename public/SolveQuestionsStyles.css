@@ -1,0 +1,252 @@
+#questionImage {
+	height:27vw;
+	width:36vw;
+	border-radius: 0.5vw;
+}
+
+#quesImgContainer {
+	height:27vw;
+	width:36vw;
+	overflow: hidden;
+	margin-left: 61.5vw;
+	margin-top: 0vw;
+	border-radius: 0.5vw;
+}
+
+#quesNum{
+	font-family: 'Sans Serif Pro';
+	font-size: 1.5vw;
+	margin-left: 2vw;
+	margin-top: 2vw;
+	font-weight: 900;
+	color: orange
+}
+
+#questionWithImg {
+	font-family: 'Sans Serif Pro';
+	font-size: 1.5vw;
+	margin-left: 2vw;
+	margin-top: -26vw;
+	width:55vw;
+}
+
+#questionNoImg {
+	font-family: 'Sans Serif Pro';
+	font-size: 1.5vw;
+	margin-left: 2vw;
+	margin-top: 1vw;
+	width: 55vw;
+}
+
+#OptionsTxt{
+	font-weight: 900;
+	font-family: 'Sans Serif Pro';
+	font-size: 1.5vw;
+	margin-left: 2vw;
+	margin-top: 4vw;
+	color:indigo ;
+}
+
+#Options{
+	margin-left: 2vw;
+	width:55vw;
+}
+
+#twoSec {
+	height: 100vh;
+	overflow: scroll;
+}
+
+#optionsSec {
+	padding-bottom: 10vw;
+}
+
+#optionsA {
+	box-shadow: 2px 2px 2px 2px #bbb;
+	font-family: 'Sans Serif Pro';
+	font-size: 1.5vw;
+	padding: 0.8vw;
+	border-radius: 8px;
+	margin-top:1vw;
+}
+
+#optionsA:hover {
+	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
+	cursor: pointer;
+}
+
+#optionsB:hover {
+	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
+	cursor: pointer;
+}
+
+#optionsC:hover {
+	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
+	cursor: pointer;
+}
+
+#optionsD:hover {
+	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
+	cursor: pointer;
+}
+
+
+
+
+#optionsB {
+	box-shadow: 2px 2px 2px 2px #bbb;
+	font-family: 'Sans Serif Pro';
+	font-size: 1.5vw;
+	padding: 1vw;
+	border-radius: 8px;
+	margin-top:1.5vw;
+}
+
+#optionsC {
+	box-shadow: 2px 2px 2px 2px #bbb;
+	font-family: 'Sans Serif Pro';
+	font-size: 1.5vw;
+	padding: 1vw;
+	border-radius: 8px;
+	margin-top:1.5vw;
+
+}
+
+#optionsD {
+	box-shadow: 2px 2px 2px 2px #bbb;
+	font-family: 'Sans Serif Pro';
+	font-size: 1.5vw;
+	padding: 1vw;
+	border-radius: 8px;
+	margin-top:1.5vw;
+}
+
+#NextQuesBtn, #submitAnsBtn {
+	font-family: cursive;
+	margin-left: 72vw;
+	font-size: 1.75vw;
+	border-radius: 8px;
+	margin-top:33vw; 
+	padding-left: 1vw;
+	padding-right: 1vw;
+	padding-bottom: 0.5vw;
+	padding-top: 0.5vw;
+	position: fixed;
+	background-size: 300% 300%;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+	background-image: linear-gradient(to right, hsla(313, 88%, 54%, 0.452) 0%, #3F76FF 50%, hsla(313, 88%, 54%, 0.452) 100%);
+  	transition: 0.5s;
+	color: white;
+	text-transform: uppercase;
+}
+
+#submitAnsBtn:hover, #NextQuesBtn:hover{
+	background-position: right center;
+}
+
+#submitForm {
+	position: fixed
+}
+
+#ExpImgA, #ExpImgB, #ExpImgC, #ExpImgD  {
+	margin-top: 1vw;
+	height: 15vw;
+	width: 20vw;
+	border-radius: 0.5vw;
+}
+
+#ExpA, #ExpB, #ExpC, #ExpD {
+	margin-top: 1vw;
+}
+
+#BgSnow {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+
+}
+
+#themesBtn {
+	margin-left: 55vw;
+	margin-top: 2vw;
+	font-family: 'Quicksand';
+	position: absolute;
+	font-size: 1.15vw;
+	padding-left: 1vw;
+	padding-right: 1vw;
+}
+
+#quesNum, #questionWithImg, #questionNoImg, #OptionsTxt, #ExpA, #ExpB, #ExpC #ExpD, #optionsA, #optionsB, #optionsC, #optionsD {
+	font-family: cursive;
+}
+
+#AnsFeedback {
+	background-color: aqua;
+	margin: auto;
+	width: 50%;
+	font-family: cursive;
+	font-size: 1.5vw;
+	padding: 0.25vw;
+	visibility: hidden;
+	text-align: center
+}
+
+#feedbackImgCorrect, #feedbackImgCorrect2, #feedbackImgCorrect3, #feedbackImgCorrect4, #feedbackImgWrong{
+	height: 8vw;
+	width: 8vw;
+	position: absolute;
+	margin-left: 63vw;
+	visibility: hidden;
+	margin-top: -4.75vw;
+
+	animation: linear infinite;
+	animation-name: run;
+	animation-duration: 3s;
+    -webkit-animation: linear infinite;
+    -webkit-animation-name: run;
+    -webkit-animation-duration: 3s;
+}
+@keyframes run {
+	0% {
+	  left: 0;
+	}
+	50% {
+	  left: 5%;
+	}
+	100% {
+	  left: 0;    
+	}
+}
+@-webkit-keyframes run {
+	0% {
+	  left: 0;
+	}
+	50% {
+	  left: 5%;
+	}
+	100% {
+	  left: 0;    
+	}
+}
+
+#feedbackImgWrong{
+	margin-top: -6.5vw;
+}
+
+#endPracticeBtn {
+	position: absolute;
+	font-size: 1.25vw;
+	font-family: cursive;
+	margin-left: 17vw;
+	margin-top: 2vw;
+	border-radius: 1vw;
+	background-size: 300% 300%;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+	background-image: linear-gradient(to right, rgb(252, 93, 119) 0%, yellow 50%, rgb(252, 93, 119) 100%);
+  	transition: 0.5s;
+	color: white;
+}
+
+#endPracticeBtn:hover{
+	background-position: right center;
+}

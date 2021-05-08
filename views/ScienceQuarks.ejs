@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html>
+<title>Science Quarks</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Garamond">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Serif Pro">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="QuarkStylesDesktop.css">
+<!-- <link rel="stylesheet" href="QuarksmallPh.css">
+<link rel="stylesheet" href="QuarksNormalPh.css"> -->
+<link rel="stylesheet" href="QuarksLargePh.css">
+<!-- <link rel="stylesheet" href="QuarksmallPhNxt.css"> -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="w3styles.css">
+
+<link rel="icon" href="QuarkOtherImages/QuarksLogoFinal.png" sizes="16x16">
+
+<meta property="og:url" content="https://angshumankashyap.in/ScienceQuarks" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Micro Blogs on Science" />
+<meta property="og:description" content="Join Quarks And Refuel Your Curiosity" />
+<meta property="og:image" content="QuarkImages/quark9.jpg" />
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<!-- Facebook Share -->
+<script>
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Facebook Share -->
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+
+<body>
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar" id="myNavbar" style="width:100vw; max-width:100vw; min-width:100vw;">
+      <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
+        onclick="toggleFunction()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+      </a>
+      <a href="QuarkX" class="w3-bar-item"> <img id="QuarksLogo" src="QuarkOtherImages/QuarksLogoFinal.png"> </a>
+      <a href="QuarkX" class="w3-bar-item" id="nameQuarks" class="w3-black"> QuarkX </a>
+      <!-- Light mode and dark Mode -->
+      <div class="w3-bar-item"> <img id="NightMode" src="QuarkOtherImages/NightMode.png"> </div>
+      <div class="w3-bar-item"> <img id="DayMode" src="QuarkOtherImages/DayMode.png"> </div>
+
+      <div style="margin-top:3vh">
+        <a href="/" class="navItems w3-bar-item w3-hide-small" id="navItem1Home"> Home</a>
+        <a href="QuarkX">
+          <div class="navItems w3-bar-item w3-hide-small" id="navItem2submit"> QuarkX</div>
+        </a>
+        <a href="/QuarkX/all" class="navItems w3-bar-item w3-hide-small" id="navItem3subjects"> Read</a>
+        <a href="QuarkX#SubscriptionQuarks" class="navItems w3-hide-medium w3-bar-item w3-hide-small homeSubscribe"
+          id="navItems3Quarks">Subscribe</a>
+        <a href="QuarkX#SubscriptionQuarksTablet" class="navItems w3-hide-large w3-bar-item w3-hide-small homeSubscribe"
+          id="navItems3Quarks">Subscribe</a>
+        <a href="/QuarkX/submitQuarks" class="navItems w3-bar-item w3-hide-small submitBtn"
+          id="navItems4Quarks">Submit</a>
+      </div>
+
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" style="width:100vw; max-width:100vw; min-width:100vw;"
+      class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+      <a href="/" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Home</a>
+      <a href="/QuarkX" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">QuarkX</a>
+      <a href="/QuarkX/all" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">All Quarks</a>
+      <a href="QuarkX#subscribeCardPh" class="w3-bar-item w3-right w3-button navPh"
+        onclick="toggleFunction()">Subscribe</a>
+      <a href="/QuarkX/submitQuarks" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Submit</a>
+    </div>
+  </div>
+
+
+  <!-- <div class="w3-container w3-hide-small" style="position: fixed; margin-top: 0vw;">
+  <div class="w3-dropdown-hover">
+    <div class="w3-button w3-round w3-black Filters" id="fltrQuarks">Filter Quarks</div>
+    <div class="w3-dropdown-content w3-bar-block w3-border w3-animate-zoom">
+      <div id="FilterScience" class="Filters w3-bar-item w3-button w3-round">Science</div>
+      <div id="FilterGK" class="Filters w3-bar-item w3-button w3-round">Gen Knowledge</div>
+      <div id="FilterShowAll" class="Filters w3-bar-item w3-button w3-round">Show All</div>
+    </div>
+  </div>
+</div>
+ -->
+
+  <div class="OutQuarks">
+    <div class="Quarks w3-row">
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark84Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark84.jpg">
+          <div class="w3-center QuarkTitle" id="quark84Title">How does a computer play chess?</div>
+          <div id="quark84Text" class="writings">Chess is a complicated game. The computer program views it as a tree
+            structure of all possible moves corresponding to every possible move of the opponent. But, this entire tree
+            would consist of 10^120 board positions. Just as a comparison, the age of the universe from the Big Bang is
+            only 10^26 nanoseconds. Hence, even powerful computers create only 10 to 20 moves into the future. An
+            evaluation function might assign points to each chess piece depending on its value. The program then tries
+            to maximise the total points on the board compared to the opponent to win the game. </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 9 July, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark84" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark81Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark81.jpg">
+          <div class="w3-center QuarkTitle" id="quark81Title">How do pitcher plants trap their prey?</div>
+          <div id="quark81Text" class="writings">Pitcher plants have prey trapping mechanism and are known as
+            carnivorous plants. The leaves get modified into a pitfall trap which helps in grabbing insects and other
+            small organisms. The rim of the pitcher is slippery and possess nectar which attracts the insects. The plant
+            has waxy scales with circular folds inward to ensure that the insect cannot climb out. Gradually the insect
+            body gets dissolved in the pitcher. These plants naturally grow in soil which lack minerals or if the soil
+            is too acidic. </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 6 July, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark81" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark79Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark79.jpg">
+          <div class="w3-center QuarkTitle" id="quark79Title">Why do popcorns pop?</div>
+          <div id="quark79Text" class="writings">The popcorn seed or kernel consists of a semi-permeable shell (called
+            pericarp), sufficient water content and starch. These three components work together to make popcorns pop
+            when heated. When we heat the popcorn kernels, the water inside it converts into steam and starts to expand,
+            and the starch inside it turns into a gel-like substance. The steam, being enclosed within the shell, cannot
+            go out. When the shell can no longer withstand the pressure, the kernel explodes - POP - releasing the steam
+            and the gel. When this gel comes in contact with air, it rapidly solidifies forming fluffy popcorn.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 4 July, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark79" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark76Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark76.jpg">
+          <div class="w3-center QuarkTitle" id="quark76Title">How many rovers have been sent to Mars?</div>
+          <div id="quark76Text" class="writings">Rovers are one of the several different types of spacecraft sent to
+            Mars. A rover can drive around different areas, studying different chemicals, rocks, and soil, which may
+            also give us evidence for extraterrestrial life. Until now, NASA has sent four rovers - Sojourner, Spirit,
+            Opportunity, and Curiosity. These rovers come equipped with toolkits which are used to study precisely
+            different things. Rovers derive their power from the solar panels attached to them. The new Perseverance
+            Rover launched on 30 July 2020, is expected to reach the Jezero crater on Mars on 18 February 2021.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhik </div>
+            <div class="DateOfQuark"> 1 July, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark76" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark75Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark75.jpg">
+          <div class="w3-center QuarkTitle" id="quark75Title">Why do lizards lose their tail?</div>
+          <div id="quark75Text" class="writings">They lose their tail to defend themselves from predators. When a lizard
+            detaches its tail, the tail whips around and wiggles on the ground.Sometimes the tail keeps moving for
+            half-an-hour as the nerves are active and are still communicating with each other. This behaviour helps to
+            distract the predator. When the new tail grows back, it is a bit different from the earlier one. The new
+            tail is made of cartilage, so it takes time to regrow. Some squirrels also lose their tail, but their tails
+            don't grow back again.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 30 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark75" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark72Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark72.jpg">
+          <div class="w3-center QuarkTitle" id="quark72Title">What causes the Northern Lights?</div>
+          <div id="quark72Text" class="writings">The Northern Lights are most visible in the night from the belt which
+            connects Central Alaska, Canada, the southern tip of Greenland, Iceland and the Northern parts of
+            Scandinavia. The sun produces solar winds consisting of a large amount of erupted gas that is hurled out
+            into space. The particles of the solar wind get deflected by the earth's magnetosphere towards the poles.
+            These high-speed beams of particles collide with the Nitrogen and Oxygen atoms in the earth's atmosphere and
+            excite them to the state that they start emitting colourful dazzling lights. This phenomenon is called the
+            aurora borealis.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 27 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark72" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark69Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark69.jpg">
+          <div class="w3-center QuarkTitle" id="quark69Title">What is a Rapid Antigen Test(RAT)?</div>
+          <div id="quark69Text" class="writings">Rapid Antigen Test detects the presence of viral nucleoproteins
+            (antigens) expressed by COVID-19 virus in the nasal swab sample within 20 mins. The swab is processed with
+            reagents to disrupt the particles of the virus and expose the antigens. If the target antigen is present in
+            sufficient concentration, it will bind to the antibodies fixed in the test strip and produce coloured lines
+            confirming the presence of COVID-19. However, this test can detect less than 60% of all positive cases.
+            Therefore, if the rapid antigen test result is not positive, it has to be followed by the slower RT-PCR
+            test.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 26 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark69" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark67Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark67.jpg">
+          <div class="w3-center QuarkTitle" id="quark67Title">What are the different sleep stages and how does the cycle
+            work?</div>
+          <div id="quark67Text" class="writings">The three sleep stages are - Rapid Eye Movement (REM) Sleep, Deep Sleep
+            and Light Sleep. Light and deep sleep are about 20% while REM is 50% of the night. You stay awake for the
+            remaining 10%. Every sleep cycle ends with REM, the stage where you dream and the body paralyses itself as a
+            defence mechanism. However, sleep talking and walking are not dreams but part of your deep sleep. This stage
+            is mostly in the first half of the night. It induces immunity and growth hormones and is the most important
+            part of the cycle. Never wake up a person from deep sleep.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhigyan </div>
+            <div class="DateOfQuark"> 24 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark67" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark66Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark66.jpg">
+          <div class="w3-center QuarkTitle" id="quark66Title">How Maglev trains work?</div>
+          <div id="quark66Text" class="writings">Shanghai Maglev, the fastest train, reaches a whopping operational
+            speed of 430 km/hour. The word maglev comes from 'magnet' and 'levitation'. The train doesn't run on wheels
+            on tracks but floats over a magnetized coil running along the track, called a guideway. The maglev track
+            allows the train to float with repelling magnets. A constantly alternating polarity of the magnetized coils
+            creates a unique magnetic field in front of the train to pull the vehicle forward, and another magnetic
+            field behind the train adds more forward thrust. The aerodynamic design and lack of friction help Maglev
+            trains reach such high speeds. </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 23 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark66" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark61Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark61.jpg">
+          <div class="w3-center QuarkTitle" id="quark61Title">What is the most indestructible animal on earth?</div>
+          <div id="quark61Text" class="writings">It is the aquatic eight-legged 'Tardigrade' which is microscopic and
+            can survive an apocalypse or mass extinctions. Hence, they belong to the category of animals called
+            extremophiles. They exhibit a survival strategy called cryptobiosis, where they can become dormant until
+            conditions improve. They can live without food and water for up to 30 years, tolerate extreme temperatures
+            and even survive in the vacuum of space. They contain a unique protein known as Dsup (damage suppressor)
+            that protects their DNA from harmful radiations. They have survived for 600 million years, preceding
+            dinosaurs by about 400 million years.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 18 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark61" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark59Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark59.jpg">
+          <div class="w3-center QuarkTitle" id="quark59Title">Who was the first living creature to visit space?</div>
+          <div id="quark59Text" class="writings">On November 3rd 1957, the Soviets launched the first-ever living
+            creature to space. It was Laika - the space dog. Picked from the streets of Moscow, Laika was a small and
+            calm dog. The mission was a guaranteed suicide mission as there was no technology to de-orbit her back to
+            Earth. The Russians sent her on the Sputnik-2 spacecraft. The main aim was to see how long a living creature
+            could survive on Earth’s orbit. Unfortunately, the cooling system inside the spacecraft failed; and the
+            temperature increased, which Laika couldn’t withstand. Laika paved the way for other cosmonauts with her
+            life.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhik </div>
+            <div class="DateOfQuark"> 16 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark59" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark56Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark56.jpg">
+          <div class="w3-center QuarkTitle" id="quark56Title">What is the twin paradox?</div>
+          <div id="quark56Text" class="writings">The twin paradox is an interesting thought experiment involving two
+            identical twins, one of whom moves through space in a high-speed spaceship (86.6% of the speed of light)
+            returns and finds her twin who stayed on earth has aged more. For the twin travelling in the spaceship, her
+            biological processes like heartbeats and her rate of ageing will also slow down. The very perception of time
+            will change. The faster you move through space, the slower you move through time compared to an unmoving
+            observer. This phenomenon of slowing down of time is known as 'time dilation'.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 13 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark56" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark52Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark52.jpg">
+          <div class="w3-center QuarkTitle" id="quark52Title">What's worse – interrupted or shortened sleep?</div>
+          <div id="quark52Text" class="writings">We know that loss of sleep makes people ill-tempered and depressed. A
+            recent study showed that less sleep is better than longer periods of interrupted sleep for our positive
+            mood. The experiment concluded that interrupted sleep lacked slow-wave sleep, which is associated with the
+            reduction in positive mood. In interrupted sleep, any interruptions can break into our sleep cycle
+            unpredictably at random times, thereby disturbing the regular sleep pattern. However, if we wake up at the
+            end of each sleep cycle, the impact on our mood won't be that adverse.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 10 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark52" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark51Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark51.jpg">
+          <div class="w3-center QuarkTitle" id="quark51Title">Can you travel faster than light?</div>
+          <div id="quark51Text" class="writings">According to Einstein’s general theory of relativity, when an object
+            moves faster, its mass increases and length decreases. As an object approaches the speed of light, its mass
+            would become infinite and length nearly zero - an impossibility. So, an infinite amount of energy would be
+            required to speed up the object to the speed of light. Light is composed of massless photons, which possess
+            natural energy as they travel in waves. This makes it possible for light to reach a speed of 299,792,458 m/s
+            in vacuum. Paradoxically, the Universe expands at speeds greater than the speed of light. </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 9 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark51" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark46Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark46.jpg">
+          <div class="w3-center QuarkTitle" id="quark46Title">Why do baby spiders eat their mother?</div>
+          <div id="quark46Text" class="writings">Mother spiders make the ultimate sacrifice for their young ones. Not
+            just mothers, but other female spiders also go to extreme lengths to save the colony's young ones. After the
+            eggs hatch, the mother and the other female spiders begin producing a nourishing fluid, which consumes
+            almost all their resources. In the end, the female spiders start to liquefy. The off-springs will finally
+            crawl onto the depleted mother and start eating her. This process is known as 'matriphagy' and is an
+            effective means of survival for these species. It is a rare behaviour found in some spiders, insects and
+            some nematodes.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 4 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark46" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark45Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark45.jpg">
+          <div class="w3-center QuarkTitle" id="quark45Title">Why plants don’t get sunburn?</div>
+          <div id="quark45Text" class="writings">Plants require sunlight to make their food, but they also need
+            protection from its harmful rays. If plants are exposed to harsh ultraviolet radiations daily, then it may
+            cause damage to the plant DNA. Plants can make their chemical sunscreen, which protects plants from harmful
+            solar radiation (sunburn) and allows them to carry on photosynthesis. These natural sunscreens protect the
+            plants much in the same way that sunscreen lotions protect the human skin from the dangerous effects of
+            ultraviolet light exposures.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 3 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark45" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark44Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark44.jpg">
+          <div class="w3-center QuarkTitle" id="quark44Title">How does Wireless Charging work?</div>
+          <div id="quark44Text" class="writings">Wireless charging works by transferring energy from the charger to a
+            receiver on the back of the device via electromagnetic induction, which discovered by Michael Farraday in
+            1831. Charging pads work on the principle that a time-varying magnetic field induces a current in a coil.
+            There are three types of wireless charging: tightly-coupled inductive, loosely-coupled resonant and
+            uncoupled charging. Charging pads that are in usage today use the first two methods. The third method
+            promises the possibility of contact-less wireless charging in the future. It can work just like a wifi
+            network and charge all our devices.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 2 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark44" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark43Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark43.jpg">
+          <div class="w3-center QuarkTitle" id="quark43Title">Why do Helium balloons rise upwards?</div>
+          <div id="quark43Text" class="writings">Helium is an inert gas and is used to inflate blimps and balloons. For
+            a Helium-filled balloon to rise in the atmosphere, it must be lighter than the weight of the volume of air
+            displaced by it. This phenomenon is called buoyancy. Gravity pulls the heavier air displaced by the balloon
+            towards the Earth, and hence the Helium balloon goes up. In the absence of gravity, there would be no
+            specific direction for the balloon to move. As the balloon ascends, the pressure of the surrounding air
+            decreases and the Helium inside expands. Finally, the Helium balloon bursts.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 1 June, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark43" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark41Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark41.jpg">
+          <div class="w3-center QuarkTitle" id="quark41Title">How do viruses jump from animals to humans?</div>
+          <div id="quark41Text" class="writings">Every virus evolves to target a particular species. So, after the
+            initial evolution, the virus tends to jump from the host to a target species. When the virus passes to the
+            new host (a process called zoonosis), it often causes more severe diseases. Because viruses and their
+            initial hosts have evolved together, the initial host has had time to build up resistance. However, the new
+            host species might not have evolved the ability to tackle the virus. Thus, if humans come in contact with
+            animals bearing the virus, humans may develop deadly diseases, while those animals are themselves less
+            affected.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 30 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark41" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark36Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark36.jpg">
+          <div class="w3-center QuarkTitle" id="quark36Title">Can you fool a lie detector?</div>
+          <div id="quark36Text" class="writings">Lying makes the heart race, drives up the blood pressure, and makes
+            people sweat. The polygraph uses these physiological changes to detect lies. The machine needs to baseline
+            the vitals, and hence it needs to be calibrated with some “control” questions. The polygraph compares these
+            reactions to those of the relevant questions. A simple way to beat the lie-detector is to induce stress
+            while answering the control questions and keeping calm while answering the relevant ones. Biting the tongue,
+            imagining a fall from a building, or trying to solve a difficult math problem can distort the baseline
+            vitals.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 25 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark36" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark35Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark35.jpg">
+          <div class="w3-center QuarkTitle" id="quark35Title">What is herd immunity?</div>
+          <div id="quark35Text" class="writings">A virus such as COVID-19 can spread like wildfire when no one is immune
+            to the virus. When a fraction of the population becomes immune through natural exposure to the virus or
+            vaccination, the spread slows down. Herd immunity is a state where immune individuals will protect
+            non-immune individuals from the virus by slowing it down. Herd immunity depends on the reproductive rate of
+            the virus (R0), which is the average number of people that an infected person could spread the virus. Herd
+            immunity happens when (R0 - 1)/R0 fraction of the population becomes immune to the virus.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 24 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark35" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark34Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark34.jpg">
+          <div class="w3-center QuarkTitle" id="quark34Title">Which is the creature with shortest lifespan?</div>
+          <div id="quark34Text" class="writings">Mayflies are aquatic insects with the shortest lifespan of about 24
+            hours. Actually, they consume algae in the larval stage for 1-2 years to emerge as winged adults. After they
+            shed their larval shells, they have only 24 hours to take to the air, find a mate, breed and die. Adult
+            mayflies don’t have functional mouth and don’t eat. They emerge in summer months in large numbers and are
+            hence known as ‘mayflies’. Mayflies can only survive in clean water environments. The presence or absence of
+            Mayfly larvae is an important indicator of water pollution.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 23 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark34" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark33Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark33.jpg">
+          <div class="w3-center QuarkTitle" id="quark33Title">What is the smallest thing in the Universe?</div>
+          <div id="quark33Text" class="writings">Quarks are one of the most fundamental units of matter. They are the
+            smallest thing in the universe. They are bound together by strong force carried by hypothetical particles
+            called gluons and form ‘hadrons’ such as pions, neutrons and protons. Quarks sometimes pair with
+            anti-quarks, which are identical to quarks but with some opposite nature. The evidence for their existence
+            came from a series of inelastic electron-neutron scattering experiments carried out at the Stanford Linear
+            Accelerator Centre. Until now, six types of quarks have been discovered: up, down, strange, charm, top, and
+            bottom.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhik </div>
+            <div class="DateOfQuark"> 22 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark33" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark32Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark32.jpg">
+          <div class="w3-center QuarkTitle" id="quark32Title">Why were pigeons used for sending messages?</div>
+          <div id="quark32Text" class="writings">Pigeons were used for sending messages because they could fly over 1600
+            miles at 60 miles per hour. A particular breed of pigeons called "homing pigeons" is especially suited for
+            carrying messages. Pigeon post was widely used by the military, newspapers, and stockbrokers. Pigeons were
+            transported by land over long distances in cages and attached with messages. Because of their natural homing
+            abilities, they could fly back to their homes with the piece of parchment. Scientists believe that pigeons
+            follow the Earth's magnetic field for guidance. Recent research shows that pigeons might be able to use
+            low-frequency infra-sounds to find their way home.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 21 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark32" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark28Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark31.jpg">
+          <div class="w3-center QuarkTitle" id="quark31Title">Do you think tortoises and turtles are the same?</div>
+          <div id="quark31Text" class="writings">Tortoises are entirely land creatures. They are a type of turtle that
+            lives on land but are not equipped for living in water. Unlike turtles, who are omnivores, tortoises are
+            vegetarians. The latter have shells that are large dome-shaped and are heavier than turtles, whose shells
+            are mostly flat and streamlined. Tortoises have limbs with short bent legs that are designed for tucking
+            around on land. But turtles have webbed feet with long claws. So, all tortoises are turtles but not all
+            turtles are tortoises.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 20 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark31" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark28Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark28.jpg">
+          <div class="w3-center QuarkTitle" id="quark28Title">What is the largest living structure on the Earth?</div>
+          <div id="quark28Text" class="writings">The Great Barrier Reef in Australia is the world’s largest coral reef
+            comprising of over 3000 individual reef systems. It is known for its breath-taking beauty and is called one
+            of the seven natural wonders in the world. Spanning over 2300 km, it is larger than the Great Wall of China
+            and is the only living structure that is visible from space. It is one of the richest and most complex
+            natural ecosystems and is inscribed as a UNESCO World Heritage. Rising water temperatures, water pollution,
+            severe cyclones, and starfish outbreaks have weakened the reef’s resilience and threatened its very
+            existence.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 17 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark28" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark26Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark26.jpg">
+          <div class="w3-center QuarkTitle" id="quark26Title">Why is sponge considered as an animal?</div>
+          <div id="quark25Text" class="writings">Sea sponges are one of the simplest organisms and belong to the phylum
+            <span style="font-style: italic;">Porifera</span> meaning 'pore-bearer'. They are multicellular organisms
+            without any nervous system, brain or heart. They have bodies full of pores and channels, allowing water to
+            circulate through them. Though they can't move, they are considered aquatic animals and not plants. This is
+            because they lack cell walls and cannot produce food through photosynthesis. They capture tiny microbes and
+            planktons from the surroundings. They are one of the most primitive organisms on earth with fossils dating
+            more than 635 Million years ago.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 15 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark26" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark25Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark25.jpeg">
+          <div class="w3-center QuarkTitle" id="quark25Title">How did vaccination start?</div>
+          <div id="quark25Text" class="writings"> During the smallpox outbreak in the 18th century, people used to huff
+            powders made of smallpox scabs or insert pus into their skin. They hoped that they would only get a milder
+            version of smallpox and become immune. However, these methods were not full-proof. People still suffered
+            from full-blown smallpox. Edward Jenner, a scientist, realised that milkmaids hardly ever got smallpox. He
+            discovered that milkmaids were routinely exposed to a similar yet milder kind of disease called cowpox. So,
+            Jenner inoculated a boy with cowpox; and, to his surprise, the boy became immune to smallpox too. Thus,
+            vaccination came into existence.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhik </div>
+            <div class="DateOfQuark"> 14 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark25" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark24Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark24.jpg">
+          <div class="w3-center QuarkTitle" id="quark24Title">Why do honeybees die after stinging?</div>
+          <div id="quark24Text" class="writings"> Honeybees sting when they sense a threat to the hive as a defensive
+            mechanism. However, it stings only when it feels a physical threat while foraging. When it stings, it dies.
+            It cannot pull its barbed stingers back as it gets stuck in the victim's skin. Thus, it leaves a part of its
+            digestive tract, nerves and muscles along with the stinger. This massive abdominal rupture kills the bee.
+            The worker bees that die by stinging don't reproduce. They defend their reproducing relatives inside the
+            hive. So, this sacrifice does make sense from an evolutionary perspective. </div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 13 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark24" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark21Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark21.jpg">
+          <div class="w3-center QuarkTitle" id="quark21Title">Why do aircrafts leave trails behind them?</div>
+          <div id="quark21Text" class="writings"> Ever wondered about the trails left behind by jets? These trails are
+            basically called condensation trails called contrails. When jet fuel is burned, one of the products of
+            combustion is water in vapour form. The temperature at 37,000 feet above the ground is below -40°C. So when
+            water vapour exits the high temperature exhausts, it comes in contact with the very cold atmosphere and
+            undergo rapid condensation. These water droplets soon turn into ice and thus we see contrails left behind.
+            We see them some distance apart from the engine because condensation takes a slight amount of time.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Siddharth </div>
+            <div class="DateOfQuark"> 10 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark21" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark20Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark20.jpg">
+          <div class="w3-center QuarkTitle" id="quark20Title">What is Imprinting?</div>
+          <div id="quark20Text" class="writings"> Some new born birds or animals follow the first object they see. This
+            is called 'imprinting' and it explains why some birds and animals behave exactly the way they do. They learn
+            to recognise and mimic the actions of the first thing they see which is mostly their mother. The young ones
+            have an instinct of following moving objects and learns from experience what object to follow. This is how
+            young ones stay safe close to their mother and follow her everywhere. Did you know that birds can also
+            imprint humans? So first impression is sometimes the last impression.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 9 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark20" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark15Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark15.jpg">
+          <div class="w3-center QuarkTitle" id="quark15Title">Why do ‘Onions’ make us cry? </div>
+          <div id="quark15Text" class="writings">Onions belong to the Allium Family and produce tasty bulbs in the first
+            year of its life-cycle to store energy. To stop predators from eating the bulb, it has a defence mechanism
+            for its survival. Onions release a volatile chemical called propanethial S-oxide, which is also known as
+            lachrymatory factor (LF). When onions are chopped, the cells within them are broken and release this
+            eye-stinging volatile chemical. It quickly evaporates and reaches the eyes producing a small amount of acid.
+            Reflexive tears well up as our defence mechanism to remove this pesky irritant from the eyes.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 4 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark15" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark14Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark14.jpg">
+          <div class="w3-center QuarkTitle" id="quark14Title">What is the farthest man-made object from us? </div>
+          <div id="quark14Text" class="writings">Voyager 1 - a space probe launched by NASA is the farthest artificial
+            object from the Earth. Till now it has travelled a total distance of 17.9 Billion kilometres since its
+            launch from Florida on 5th Sep 1977. Light takes around 16 hours to travel from the probe to us. The probe
+            is still moving with a velocity of 17,087 m/s (38,200 mph or 61,400 km/h). Most of its scientific equipment
+            have already been shut down due to lack of power. In a few years, it will no longer be able to power its
+            remaining equipment.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhik </div>
+            <div class="DateOfQuark"> 3 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark14" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark13Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark13.jpg">
+          <div class="w3-center QuarkTitle" id="quark13Title">Why do Stars Twinkle?</div>
+          <div id="quark13Text" class="writings">Although stars have a constant brightness, we see them twinkle. This is
+            because of the earth’s atmosphere. Light from the distant stars acts as a point source and passes through
+            various layers of the atmosphere differing in temperatures and densities. Each of the boundaries between
+            these layers refracts the light bending it in a slightly different direction every moment. This makes stars
+            twinkle. Interestingly, planets don’t twinkle that much as they are much closer. The light bouncing off from
+            planets are in the form of a disc and not a single point like the distant stars. This averages out the
+            twinkling effect.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 2 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark13" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark12Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark12.jpeg">
+          <div class="w3-center QuarkTitle" id="quark12Title">Can blind people dream?</div>
+          <div id="quark12Text" class="writings"> Yes. Blind people can have dreams too. The subconscious mind starts
+            functioning in our sleep and they are not an exception. However, the amount of visual dreams depend on what
+            age they lost their sight. But people who are born blind mostly dream the same way as us with the other
+            senses - touch, smell, hearing and taste. They do not have visual dreams. Not just humans, but do you know
+            animals have dreams too? They dream about their day to day life, like grazing, hunting and surviving.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhigyan </div>
+            <div class="DateOfQuark"> 1 May, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark12" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="quark9Card">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark9.jpg">
+          <div class="w3-center QuarkTitle" id="quark9Title">How is a star born?</div>
+          <div id="quark9Text" class="writings"> Gravitational attraction causes a large amount of interstellar gas
+            (mostly Hydrogen) to collapse in on itself. This causes the atoms to collide at great speeds generating
+            enormous heat. This heat causes the Hydrogen atoms to merge while colliding, forming Helium atoms. The
+            fusion of Hydrogen into Helium releases massive heat and light which makes the stars shine. This additional
+            heat creates enough pressure of the gas to balance the gravitational force that prevents the star from
+            collapsing. The whole process takes more than 10 Mn Years. Thus, a star is born.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 28 April, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenQuark9" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="electricEels">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark5.jpg">
+          <div class="w3-center QuarkTitle" id="titleElecEels">How electric eels produce electricity?</div>
+          <div class="writings" id="ElectricEelsTxt">The bodies of electric eels have electric organs that are made up
+            of electrolytes. These organs are lined up and stacked allowing them the ability to store power, much like
+            small batteries inside a torch. Hence, each cell adds to a potential difference and a current of ions can
+            flow through them. Electric eels, with their electric ability can communicate, navigate and stun their
+            preys. They can discharge upto 860 volts and one ampere of current.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Abhigyan </div>
+            <div class="DateOfQuark"> 24 April, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#electricEels" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> -->
+            <i id="listenElecEel" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="Jellyfish">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark4.jpg">
+          <div class="w3-center QuarkTitle" id="titleJellyFish">Is JellyFish really a Fish?</div>
+          <div id="JellyFishTxt" class="writings"> Jellyfish aren’t really fish but gelatinous zooplankton; composed of
+            95% water. The remaining 5% is structural proteins, muscles and nerve cells. They are made of a jelly-like
+            material 'Mesoglea'. They got no brain, heart, bones or blood. They came 500 million years back, primitive
+            to even dinosaurs. Some are even bioluminescent, producing their own light. Heard of Box jellyfish? The most
+            venomous marine animals in the world! A type of jellyfish, Turritopsis Dohrnii is the only animal in the
+            world that can reverse its lifecycle and hence called immortal.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Satabdi </div>
+            <div class="DateOfQuark"> 23 April, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#Jellyfish" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenJelFish" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="LightningCard">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark2.jpg">
+          <div class="w3-center QuarkTitle" id="TitleLightning">What causes Lightning?</div>
+          <div id="LightningTxt" class="writings">Colliding particles of water vapour and ice inside clouds create
+            electrical charges. Heavier negative charged particles sink to the bottom of the cloud and positively
+            charged particles accumulate at the top. When these electrical fields become large enough, a giant spark of
+            electric discharge is created. This causes lightning. Most lightning occurs between clouds but a few occur
+            between clouds and the earth. A flash of lightning contains up to 1 billion volts of electricity and can
+            heat the surrounding air to temperatures 5 times hotter than the sun’s surface.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 21 April, 2020</div>
+            <!-- <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#LightningCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenLightning" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-decoration: none" class="AllQuarks SubScience w3-container w3-half quarkHalf" id="SkyBlueCard">
+        <div class="w3-card QuarkCards">
+          <img class="quarkImages" src="QuarkImages/quark1.jpg">
+          <div class="w3-center QuarkTitle" id="titleSkyBlue">Why does the sky appear blue?</div>
+          <div id="SkyBlueTxt" class="writings">Sunlight is made of different colours of light which have different
+            wavelengths. The atmosphere of the earth is composed of very small molecules of Nitrogen, Oxygen, Water
+            Vapour, Carbon Dioxide, Argon and traces of other gases. These molecules scatter the shorter and
+            higher-energy wavelengths of light more efficiently than other wavelengths. Though violet light is scattered
+            more than blue light, our eyes respond more strongly to blue light and hence the sky appears blue.</div>
+          <div id="stripDiv">
+            <div class="QuarkBottomStrip"> </div>
+            <a href="ScienceQuarks">
+              <div id="ScienceTag" class="w3-button ScienceTag w3-hover-white w3-blue w3-round"> SCIENCE </div>
+            </a>
+            <div class="AuthorName"> Quark by Angshuman </div>
+            <div class="DateOfQuark"> 20 April, 2020</div>
+            <!-- 
+          <div id="LikeQuarkFb" class="fb-like" data-href="https://abhigyan1996.github.io/Quarks/index.html#SkyBlueCard" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>  -->
+            <i id="listenSkyBlue" class="listenBtn fas fa-headphones"></i>
+            <a href="QuarkX#SubscriptionQuarks"><i id="subscribeBtnLptp" class="w3-hide-small w3-hide-medium fa fa-bell"
+                style="color:white"></i></a>
+            <a href="QuarkX#SubscriptionQuarksTablet"><i id="subscribeBtnMed"
+                class="w3-hide-small w3-hide-large fa fa-bell" style="color:white"></i></a>
+            <a href="QuarkX#subscribeCardPh"><i id="subscribeBtnPh" class="w3-hide-medium w3-hide-large fa fa-bell"
+                style="color:white"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Change style of navbar on scroll
+    window.onscroll = function () { myFunction() };
+    function myFunction() {
+      var navbar = document.getElementById("myNavbar");
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-white";
+      } else {
+        navbar.className = navbar.className.replace(" w3-card w3-white", "");
+      }
+    }
+
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function toggleFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+  </script>
+
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenElecEel').click(function () {
+          var text1 = document.getElementById("titleElecEels").innerHTML;
+          var text2 = document.getElementById("ElectricEelsTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+  <!-- Voice read out end -->
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenJelFish').click(function () {
+          var text1 = document.getElementById("titleJellyFish").innerHTML;
+          var text2 = document.getElementById("JellyFishTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+  <!-- Voice read out end -->
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenLightning').click(function () {
+          var text1 = document.getElementById("TitleLightning").innerHTML;
+          var text2 = document.getElementById("LightningTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+  <!-- Voice read out end -->
+
+  <!-- Voice read out -->
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenSkyBlue').click(function () {
+          var text1 = document.getElementById("titleSkyBlue").innerHTML;
+          var text2 = document.getElementById("SkyBlueTxt").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark9').click(function () {
+          var text1 = document.getElementById("quark9Title").innerHTML;
+          var text2 = document.getElementById("quark9Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark13').click(function () {
+          var text1 = document.getElementById("quark13Title").innerHTML;
+          var text2 = document.getElementById("quark13Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark14').click(function () {
+          var text1 = document.getElementById("quark14Title").innerHTML;
+          var text2 = document.getElementById("quark14Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark15').click(function () {
+          var text1 = document.getElementById("quark15Title").innerHTML;
+          var text2 = document.getElementById("quark15Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark20').click(function () {
+          var text1 = document.getElementById("quark20Title").innerHTML;
+          var text2 = document.getElementById("quark20Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark21').click(function () {
+          var text1 = document.getElementById("quark21Title").innerHTML;
+          var text2 = document.getElementById("quark21Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark24').click(function () {
+          var text1 = document.getElementById("quark24Title").innerHTML;
+          var text2 = document.getElementById("quark24Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark25').click(function () {
+          var text1 = document.getElementById("quark25Title").innerHTML;
+          var text2 = document.getElementById("quark25Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark26').click(function () {
+          var text1 = document.getElementById("quark26Title").innerHTML;
+          var text2 = document.getElementById("quark26Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark28').click(function () {
+          var text1 = document.getElementById("quark28Title").innerHTML;
+          var text2 = document.getElementById("quark28Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark31').click(function () {
+          var text1 = document.getElementById("quark31Title").innerHTML;
+          var text2 = document.getElementById("quark31Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark32').click(function () {
+          var text1 = document.getElementById("quark32Title").innerHTML;
+          var text2 = document.getElementById("quark32Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark33').click(function () {
+          var text1 = document.getElementById("quark33Title").innerHTML;
+          var text2 = document.getElementById("quark33Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark34').click(function () {
+          var text1 = document.getElementById("quark34Title").innerHTML;
+          var text2 = document.getElementById("quark34Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark35').click(function () {
+          var text1 = document.getElementById("quark35Title").innerHTML;
+          var text2 = document.getElementById("quark35Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark36').click(function () {
+          var text1 = document.getElementById("quark36Title").innerHTML;
+          var text2 = document.getElementById("quark36Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark41').click(function () {
+          var text1 = document.getElementById("quark41Title").innerHTML;
+          var text2 = document.getElementById("quark41Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark43').click(function () {
+          var text1 = document.getElementById("quark43Title").innerHTML;
+          var text2 = document.getElementById("quark43Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark44').click(function () {
+          var text1 = document.getElementById("quark44Title").innerHTML;
+          var text2 = document.getElementById("quark44Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark45').click(function () {
+          var text1 = document.getElementById("quark45Title").innerHTML;
+          var text2 = document.getElementById("quark45Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark46').click(function () {
+          var text1 = document.getElementById("quark46Title").innerHTML;
+          var text2 = document.getElementById("quark46Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark51').click(function () {
+          var text1 = document.getElementById("quark51Title").innerHTML;
+          var text2 = document.getElementById("quark51Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark52').click(function () {
+          var text1 = document.getElementById("quark52Title").innerHTML;
+          var text2 = document.getElementById("quark52Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark56').click(function () {
+          var text1 = document.getElementById("quark56Title").innerHTML;
+          var text2 = document.getElementById("quark56Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark59').click(function () {
+          var text1 = document.getElementById("quark59Title").innerHTML;
+          var text2 = document.getElementById("quark59Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark61').click(function () {
+          var text1 = document.getElementById("quark61Title").innerHTML;
+          var text2 = document.getElementById("quark61Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark66').click(function () {
+          var text1 = document.getElementById("quark66Title").innerHTML;
+          var text2 = document.getElementById("quark66Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark67').click(function () {
+          var text1 = document.getElementById("quark67Title").innerHTML;
+          var text2 = document.getElementById("quark67Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark69').click(function () {
+          var text1 = document.getElementById("quark69Title").innerHTML;
+          var text2 = document.getElementById("quark69Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark72').click(function () {
+          var text1 = document.getElementById("quark72Title").innerHTML;
+          var text2 = document.getElementById("quark72Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark75').click(function () {
+          var text1 = document.getElementById("quark75Title").innerHTML;
+          var text2 = document.getElementById("quark75Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark76').click(function () {
+          var text1 = document.getElementById("quark76Title").innerHTML;
+          var text2 = document.getElementById("quark76Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark79').click(function () {
+          var text1 = document.getElementById("quark79Title").innerHTML;
+          var text2 = document.getElementById("quark79Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark81').click(function () {
+          var text1 = document.getElementById("quark81Title").innerHTML;
+          var text2 = document.getElementById("quark81Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      if ('speechSynthesis' in window) {
+        $('#listenQuark84').click(function () {
+          var text1 = document.getElementById("quark84Title").innerHTML;
+          var text2 = document.getElementById("quark84Text").innerHTML;
+          var text = text1 + "..." + text2;
+          var msg = new SpeechSynthesisUtterance();
+          msg.rate = 0.875;
+          msg.pitch = 1;
+          msg.text = text1;
+          speechSynthesis.speak(msg);
+        })
+      }
+    });
+  </script>
+
+  <!-- Voice read out end -->
+
+  <script>
+    $(document).ready(function () {
+      $('.AllQuarks').hide();
+      $('.SubScience').show();
+    });
+  </script>
+
+  <!-- Filter for Quarks-->
+  <!-- <script>
+ $(document).ready(function(){
+    var countScience = 0;
+    var countGk = 0;
+    var flagScience = true;
+    var flagGk = true;
+
+    $('#FilterScience').click(function(){
+      countScience++;
+      if(countScience == 1) {
+        flagScience = true;
+        $('#FilterScience').css("background", "#33DAFF");
+        if(countGk == 0) {
+          $('.SubGK').hide();
+          flagGk = false;
+        }
+        else {
+          $('.SubScience').show();
+        } 
+      }
+      else if(countScience % 2 == 0 && countScience>1) {
+          flagScience = false;
+          $('.SubScience').hide();
+          $('#FilterScience').css("background", "white");
+          if (flagScience == false && flagGk == false) {
+            flagScience = true;
+            flagGk = true;
+            countGk = 0; countScience = 0;
+            $('#FilterGK').css("background", "white");
+            $('#FilterScience').css("background", "white");
+            $('.SubGK').show();
+            $('.SubScience').show();
+        }
+      }
+      else if (countScience %2 != 0 && countScience>1){
+        flagScience = true;
+        $('.SubScience').show();
+        $('#FilterScience').css("background", "#33DAFF");
+      }
+  }),
+
+    $('#FilterGK').click(function(){
+      countGk++;
+      if(countGk == 1) {
+        flagGk = true;
+        $('#FilterGK').css("background", "#33DAFF");
+        if(countScience == 0) {
+          flagScience = false;
+          $('.SubScience').hide();
+        }
+        else {
+          $('.SubGK').show();
+        } 
+      }
+      else if(countGk % 2 == 0 && countGk>1) {
+          flagGk = false;
+          $('.SubGK').hide();
+          $('#FilterGK').css("background", "white");
+          if (flagScience == false && flagGk == false) {
+            countGk = 0; countScience = 0;
+            flagScience = true;
+            flagGk = true;
+            $('#FilterGK').css("background", "white");
+            $('#FilterScience').css("background", "white");
+            $('.SubGK').show();
+            $('.SubScience').show();
+          }
+        }
+      else if (countGk %2 != 0 && countGk>1){
+        flagGk = true;
+        $('.SubGK').show();
+        $('#FilterGK').css("background", "#33DAFF");
+      }
+  }),
+
+    $('#FilterShowAll').click(function(){
+        countGk = 0; countScience = 0; 
+        $('#FilterGK').css("background", "white");
+        $('#FilterScience').css("background", "white");
+        $('.SubGK').show();
+        $('.SubScience').show();
+    })
+  });
+</script>
+ -->
+
+
+  <script>
+    $(document).ready(function () {
+      $("#NightMode").click(function () {
+        $("#NightMode").fadeOut();
+        $("#DayMode").fadeIn();
+        $("body").css({ "background-color": "#bbb" });
+        $(".Quarks").css({ "background-color": "#bbb" });
+        $("#navBAR").css({ "background": "white" });
+        $(".QuarkCards").css({ "background": "black" });
+        $(".QuarkTitle").css({ "background": "black" });
+        $(".writings").css({ "background": "black" });
+        $(".writings").css({ "color": "white" });
+        $(".QuarkTitle").css({ "color": "white" });
+        $(".QuarkBottomStrip").css({ "background": "#0E0D0F" });
+      });
+
+      $("#DayMode").click(function () {
+        $("#DayMode").fadeOut();
+        $("#NightMode").fadeIn();
+        $("body").css({ "background-color": "white" });
+        $(".Quarks").css({ "background-color": "white" });
+        $("#navBAR").css({ "background": "white" });
+        $(".QuarkCards").css({ "background": "white" });
+        $(".QuarkTitle").css({ "background": "white" });
+        $(".writings").css({ "background": "white" });
+        $(".writings").css({ "color": "black" });
+        $(".QuarkTitle").css({ "color": "black" });
+        $(".QuarkBottomStrip").css({ "background": "black" });
+
+      });
+    });
+  </script>
+
+  <script>
+    AOS.init();
+  </script>
+
+
+
+</body>
+
+</html>

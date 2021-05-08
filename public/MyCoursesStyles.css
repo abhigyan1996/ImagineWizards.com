@@ -1,0 +1,74 @@
+#allDivisions {
+	height: 100vh;
+	overflow: scroll;
+	-ms-overflow-style: none;  /* IE and Edge */
+ 	scrollbar-width: none;  /* Firefox */
+}
+
+#allDivisions::-webkit-scrollbar {
+  display: none;
+}
+
+#courseImage{
+	height:27vw;
+	width:36vw;
+	border-radius: 1vw;
+}
+
+#courseBlocks {
+	position: relative;
+}
+
+#whiteStrip{
+	background: white;
+	visibility: hidden;
+	font-size: 0.26vw;
+}
+
+#CousesList {
+	list-style-type: none;
+	margin-left: 5vw;
+	margin-top: 3vw;
+}
+
+#CousesList li{
+	display: inline-block;
+	margin-left: 4vw;
+	margin-bottom: 4vw;
+	height:27vw;
+	width:36vw;
+	border-radius: 1vw;
+}
+
+#CousesList li:hover{
+	cursor: pointer;
+	transform: scale(1.03);
+	transition: transform .5s ease;
+}
+
+#myCoursesTxt {
+	font-family: cursive;
+	text-transform: uppercase;
+	color:white;
+	margin-top: 1vw;
+	font-size: 5vw;
+}
+
+.glow {
+	font-size: 80px;
+	color: #fff;
+	text-align: center;
+	-webkit-animation: glow 1s ease-in-out infinite alternate;
+	-moz-animation: glow 1s ease-in-out infinite alternate;
+	animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+	from {
+	  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+	}
+	
+	to {
+	  text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+	}
+  }
