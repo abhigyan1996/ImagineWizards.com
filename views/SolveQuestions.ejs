@@ -88,7 +88,7 @@
       </a>
       <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
       
-      <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> Quark</span><span id="XName">X</span> </div>
+      <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> QuarkX</div>
      
       <!-- STOP PRACTICE -->
       <form id="conceptsForm" action="/QuarkXAcademy/ConceptPerformance" method="POST">
@@ -111,13 +111,11 @@
         </div>
       </div>
        
-     
-      <div style="margin-top:3vh">
    
+    </div>
       
     </div>
     <!-- Navbar on small screens -->
-  </div>
   
   <div class="w3-hide" id="conceptName"><%=Concept%></div>
   <div class="w3-hide" id="chapterName"><%=Chapter%></div>
@@ -147,7 +145,8 @@
   <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>  
   <input class="w3-hide" id="themeId2" type="text" name="Theme" value=<%=Theme%>>
   <!-- newly added-->
-  <button type="submit" class="btn w3-pink w3-hover-blue w3-button" id="NextQuesBtn"> 
+  <button type="submit" class="w3-button  w3-pink w3-hover-blue w3-hide-small" id="NextQuesBtn">
+  <button type="submit" class="w3-button w3-pink w3-hover-blue w3-hide-large w3-hide-medium" id="NextQuesBtnPh"> 
     
   </button>
 </form>
@@ -171,7 +170,7 @@
         <img id="questionImage" src= <%=QuestionImg%>>
       </div>
       
-      <div style="visibility: hidden;" id="questionWithImg"><%=Question%> </div>
+      <div style="visibility: hidden;" id="questionWithImg"><%=Question%></div>
   
       <div style="visibility: hidden;" id="questionNoImg"><%=Question%></div>
 
@@ -229,6 +228,7 @@
     </section>
   
   
+  </div>
   </div>
 
   <script>
@@ -343,6 +343,7 @@
         document.getElementById("submitAnsBtn").innerHTML = "Skip Question";
         $("#submitAnsBtn").show();
         $("#NextQuesBtn").hide();
+        $("#NextQuesBtnPh").hide();
 
           var inputOpt = "";
           var tappedA = 0;
@@ -492,6 +493,8 @@
 
             $("#submitAnsBtn").hide();
             document.getElementById("NextQuesBtn").innerHTML = "GO TO NEXT";
+            document.getElementById("NextQuesBtnPh").innerHTML = "GO TO NEXT";
+
             $("#NextQuesBtn").css("margin-left", "74vw");
             $("#NextQuesBtn").show();
 

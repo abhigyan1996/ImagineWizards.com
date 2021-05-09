@@ -28,6 +28,7 @@
 	margin-left: 2vw;
 	margin-top: -26vw;
 	width:55vw;
+	height: fit-content;
 }
 
 #questionNoImg {
@@ -36,6 +37,7 @@
 	margin-left: 2vw;
 	margin-top: 1vw;
 	width: 55vw;
+	height: fit-content;
 }
 
 #OptionsTxt{
@@ -53,12 +55,12 @@
 }
 
 #twoSec {
-	height: 100vh;
-	overflow: scroll;
+	height: fit-content;
+	margin-top: 7.5vw;
 }
 
 #optionsSec {
-	padding-bottom: 10vw;
+	height: fit-content;
 }
 
 #optionsA {
@@ -69,28 +71,6 @@
 	border-radius: 8px;
 	margin-top:1vw;
 }
-
-#optionsA:hover {
-	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
-	cursor: pointer;
-}
-
-#optionsB:hover {
-	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
-	cursor: pointer;
-}
-
-#optionsC:hover {
-	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
-	cursor: pointer;
-}
-
-#optionsD:hover {
-	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
-	cursor: pointer;
-}
-
-
 
 
 #optionsB {
@@ -119,6 +99,26 @@
 	padding: 1vw;
 	border-radius: 8px;
 	margin-top:1.5vw;
+}
+
+#optionsA:hover {
+	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
+	cursor: pointer;
+}
+
+#optionsB:hover {
+	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
+	cursor: pointer;
+}
+
+#optionsC:hover {
+	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
+	cursor: pointer;
+}
+
+#optionsD:hover {
+	box-shadow: 0.5px 0.5px 2.5px 2.5px purple;
+	cursor: pointer;
 }
 
 #NextQuesBtn, #submitAnsBtn {
@@ -249,4 +249,144 @@
 
 #endPracticeBtn:hover{
 	background-position: right center;
+}
+
+@media only screen and (max-width:600px){
+
+	#QuarksLogo{
+		margin-left: -4vw;
+		height: 12.5vw;
+		width: 12.5vw;
+		margin-top:1.25vh;
+	}
+	
+	#nameQuarks{
+		font-family: 'Quicksand';
+		font-size: 10vw;
+		text-decoration: none;
+		margin-left: -4vw;
+		color:black;
+		position:absolute;
+	}
+
+	#questionImage {
+		height:72vw;
+		width:96vw;
+		border-radius: 0.5vw;
+	}
+	
+	#quesImgContainer {
+		height:72vw;
+		width:96vw;
+		overflow: hidden;
+		margin-left: 2vw;
+		border-radius: 0.5vw;
+		margin-left: 2vw;
+	}
+
+	#quesNum {
+		margin-left: 2vw;
+		margin-top: 5vw;
+		font-weight: 900;
+		margin-bottom: 5vw;
+		color: orange
+	}
+			
+	#questionWithImg {
+		margin-left: 4vw;
+		margin-top: 10vw;
+		width:96vw;
+		height: fit-content;
+	}
+
+	#questionNoImg {
+		margin-left: 4vw;
+		width: 96vw;
+		height: fit-content;
+	}
+
+	#OptionsTxt{
+		font-weight: 900;
+		margin-left: 4vw;
+		margin-top: 4vw;
+		color:indigo ;
+	}
+
+	#Options{
+		margin-left: 4vw;
+		width:92vw;
+	}
+
+	#optionsA {
+		box-shadow: 2px 2px 2px 2px #bbb;
+		padding: 3vw;
+		border-radius: 8px;
+		margin-top:5vw;
+	}
+	
+	
+	#optionsB {
+		box-shadow: 2px 2px 2px 2px #bbb;
+		padding: 3vw;
+		border-radius: 8px;
+		margin-top:5vw;
+	}
+	
+	#optionsC {
+		box-shadow: 2px 2px 2px 2px #bbb;
+		padding: 3vw;
+		border-radius: 8px;
+		margin-top:5vw;
+	
+	}
+	
+	#optionsD {
+		box-shadow: 2px 2px 2px 2px #bbb;
+		padding: 3vw;
+		border-radius: 8px;
+		margin-top: 5vw;
+	}
+
+	#quesNum, #questionWithImg, #questionNoImg, #OptionsTxt, #ExpA, #ExpB, #ExpC #ExpD, #optionsA, #optionsB, #optionsC, #optionsD {
+		font-family: 'Alegreya', serif;
+		font-size: 6.5vw;
+	}
+	
+	#NextQuesBtn, #submitAnsBtn, #NextQuesBtnPh {
+		font-family: 'Alegreya', serif;
+		margin-left: 0vw;
+		font-size: 5vw;
+		border-radius: 8px;
+		margin-top:82.65vh; 
+		width: 100vw;
+		padding-bottom: 1.75vw;
+		padding-top: 1.75vw;
+		position: fixed;
+		background-size: 300% 300%;
+		box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+		background-image: linear-gradient(to right, hsla(313, 88%, 54%, 0.452) 0%, #3F76FF 50%, hsla(313, 88%, 54%, 0.452) 100%);
+		transition: 0.5s;
+		color: white;
+		text-transform: uppercase;
+	}
+
+	#AnsFeedback {
+		background-color: aqua;
+		width: 100%;
+		font-family: cursive;
+		font-size: 5vw;
+		margin-top: 20vw;
+		padding: 5vw;
+		visibility: hidden;
+		text-align: center;
+	}
+
+	#feedbackImgCorrect, #feedbackImgCorrect2, #feedbackImgCorrect3, #feedbackImgCorrect4, #feedbackImgWrong{
+		height: 26vw;
+		width: 26vw;
+		position: absolute;
+		margin-left: 63vw;
+		visibility: hidden;
+		margin-top: 12vw;
+	}
 }
