@@ -241,13 +241,13 @@ table {
 		margin-top: 28vw;
 		margin-bottom: 4vw;
 		text-align: center;
-		font-family: cursive;
+		font-family: 'Alegreya', serif;
 		margin-left: 10vw;
 		margin-right: 10vw;
 	}
   
 	#practiceBtn, #practiceBtnPh, #viewSolBtn, #restartBtn{
-		font-family: cursive;
+		font-family: 'Alegreya', serif;
 		font-size: 5.5vw;
 		margin-left: 9.5vw;
 		margin-top: 5vw;
@@ -261,11 +261,10 @@ table {
 	}
 	
 	#PerformanceTxt {
-		font-family: 'Source Serif Pro';
-		font-size: 5vw;
+		font-family: 'Alegreya', serif;
+		font-size: 7vw;
 		margin-top: 10vw;
 		margin-left: 10vw;
-		font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 		text-transform: uppercase;
 	}
 
@@ -296,9 +295,11 @@ table {
 		margin-top: -42.5vw;
 		text-align:center;
 		font-size: 5vw;
-		font-family: cursive;
+		font-family: 'Alegreya', serif;
+		font-family: 'Concert One', cursive;
+		font-family: 'Lora', serif;
 		font-weight: 800;
-		width: 38.5vw;
+		width: 38.2vw;
 		margin-left: 28.75vw;
 		position: absolute;
 		padding: 2.35vw;
@@ -318,7 +319,9 @@ table {
 	#attemptedMaxScore{
 		margin-left: 29vw;
 		font-size: 5vw;
-		font-family: cursive;
+		font-family: 'Alegreya', serif;
+		font-family: 'Concert One', cursive;
+		font-family: 'Lora', serif;
 		font-weight: 800;
 		border: 1px solid #5FFF3F;
 		width: 42vw;
@@ -334,7 +337,7 @@ table {
 		margin-top: 13vw;
 		text-align:center;
 		font-size: 5vw;
-		font-family: cursive;
+		font-family: 'Alegreya', serif;
 		margin-left: 10vw;
 		margin-right: 10vw;
 	}
@@ -356,19 +359,20 @@ table {
 	
 	  #LeaderboardTbl {
 		  margin-top: 7.5vw;
-		  margin-left: 2%;
-		  width: 96%;
+		  margin-left: 1%;
+		  width: 98%;
 		}
 	
 		#topTenTxt {
 			margin-top: 10vw;
-			font-size: 6vw;
-			font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+			font-size: 7vw;
+			font-family: 'Alegreya', serif;
 		}
 		
 		#noteMsg {
 			margin-top: 5vw;
-			font-size: 3vw;
+			font-size: 3.5vw;
+			font-family: 'Alegreya', serif;
 		}
 
 		#PerformanceCountSmall {
@@ -384,13 +388,12 @@ table {
 			margin-top: 3vw;
    		}
 		
-		   #totalQCard, #CorrectQCard, #WrongQCard, #SkippedQCard, #UnattemptedQCard {
+		#totalQCard, #CorrectQCard, #WrongQCard, #SkippedQCard, #UnattemptedQCard {
 			margin-left: 5vw;
 			width:40vw;
 			margin-top: 2vw;
 			text-align: center;
-			font-family: cursive;
-			border-radius: 1vw;
+			font-family: 'Alegreya', serif;
 			height: 28vw;
 		}
 		
@@ -401,6 +404,7 @@ table {
 		#totalTxt, #CorrectTxt, #WrongTxt, #SkippedTxt, #UnattemptedTxt {
 			font-size: 5vw;
 			margin-top: 2vw;
+			font-family: 'Alegreya', serif;
 		}
 		
 		
