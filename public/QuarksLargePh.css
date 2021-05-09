@@ -3,7 +3,7 @@
 /* Meidum sized phones and other devices (phones, 600px and down) */
 
 #QuarksLogo{
-	margin-left: -3vw;
+	margin-left: 4vw;
 	height: 12.5vw;
 	width: 12.5vw;
 	margin-top:1.25vh;
@@ -13,7 +13,7 @@
 	font-family: 'Quicksand';
 	font-size: 10vw;
 	text-decoration: none;
-	margin-left: -5vw;
+	margin-left: 20vw;
 	color:black;
 	position:absolute;
 }
