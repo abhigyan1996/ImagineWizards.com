@@ -43,7 +43,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
+<!-- NEWLY ADDED Google FONT -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Alegreya&family=Concert+One&family=Lora:ital,wght@1,400;1,600;1,700&display=swap" rel="stylesheet">
 <!--     ===================================================================
                               Hemburgar Menu
     ===================================================================
@@ -63,8 +65,7 @@
     </script>
 
 
-<body class="w3-black" style="width:100vw;">
-
+<body class="w3-black" style="width:100vw; overflow-x: hidden;">
 
 <section  id="top-navbar">  
     <div id="side-menu" class="side-nav">
@@ -82,12 +83,12 @@
     </a>
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     
-    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> Quark</span><span id="XName">X</span> </div>
+    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</div>
  
   <!-- Navbar on small screens -->
 </div>
+</div>
 
-<section id="allDivisions">
 
   <form class="w3-hide" id="allCoursesForm" action="/QuarkXAcademy/ShowChapters" method="POST">
     <input type="text"id="ClassId" name="ClassId" placeholder="class">
@@ -113,14 +114,7 @@
           <%}%>
         </ul>
 
-        <!-- Required else file is not scrolling -->
-        <div id="whiteStrip">
-          <h1>QuarkX Classes are very exciting and the amount of questions here are uncountable</h1>
-          <h1>the fees is also very less</h1>
-          <h1>Get access to unlimited questions, test series and summary of chapters</h1>
-          <h1>This is going to be amazing with a premium subscription</h1>
-      </div>
-</section>
+</body>
 
 <script>
 
@@ -178,5 +172,4 @@
 </script>
 
 
-</body>
 </html>

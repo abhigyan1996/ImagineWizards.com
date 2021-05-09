@@ -237,7 +237,7 @@ table {
   @media only screen and (max-width:600px){
 
 	#DisplayFeedback {
-		font-size: 5vw;
+		font-size: 6.25vw;
 		margin-top: 28vw;
 		margin-bottom: 4vw;
 		text-align: center;
@@ -248,7 +248,7 @@ table {
   
 	#practiceBtn, #practiceBtnPh, #viewSolBtn, #restartBtn{
 		font-family: 'Alegreya', serif;
-		font-size: 5.5vw;
+		font-size: 6.5vw;
 		margin-left: 9.5vw;
 		margin-top: 5vw;
 		padding: 8vw;
@@ -336,7 +336,7 @@ table {
 	#leaderboardMsg {
 		margin-top: 13vw;
 		text-align:center;
-		font-size: 5vw;
+		font-size: 6.25vw;
 		font-family: 'Alegreya', serif;
 		margin-left: 10vw;
 		margin-right: 10vw;
@@ -371,8 +371,11 @@ table {
 		
 		#noteMsg {
 			margin-top: 5vw;
-			font-size: 3.5vw;
+			margin-left: 10vw;
+			margin-right: 10vw;
+			font-size: 5vw;
 			font-family: 'Alegreya', serif;
+			text-align: center;
 		}
 
 		#PerformanceCountSmall {
@@ -398,11 +401,12 @@ table {
 		}
 		
 		#totalCount, #correctCount, #wrongCount, #skipCount, #UnattemptedcountPh {
-			font-size: 5vw;
+			font-size: 8vw;
+			margin-top: -1vw;
 		}
 		
 		#totalTxt, #CorrectTxt, #WrongTxt, #SkippedTxt, #UnattemptedTxt {
-			font-size: 5vw;
+			font-size: 6.25vw;
 			margin-top: 2vw;
 			font-family: 'Alegreya', serif;
 		}
