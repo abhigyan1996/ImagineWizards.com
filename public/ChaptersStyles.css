@@ -159,7 +159,7 @@
 @media only screen and (max-width:600px){
 
 	#firstStrip {
-		height:40vw;
+		height:60vw;
 		width: 100vw;
 		background: black
 		/*background:-moz-linear-gradient(top, white 0%, red 100%); 
@@ -171,7 +171,7 @@
 	#SubjectName {
 		font-family: 'Quicksand';
 		/*font-family: 'Source Serif Pro';*/
-		font-size: 5.5vw;
+		font-size: 9.5vw;
 		text-transform: uppercase;
 		color:white;
 		padding: 15vw;	
@@ -180,29 +180,30 @@
 	#conceptBlocks li{
 		display: inline-block; 
 		padding: 2vw;
-		width: 25vw;
-		height: 25vw;
+		width: 37vw;
+		margin-left: 5vw;
+		height: 37vw;
 		margin-top: 5vw;
 		margin-bottom: 2vw;
 		white-space: normal;
-		border-radius: 8px;
+		border-radius: 8px;		
 	}
 	
 	#conceptImage {
-		margin-left: 3vw;
+		margin-left: 10vw;
 		margin-top: 1vw;
-		height: 10vw;
-		width: 10vw;
+		height: 14vw;
+		width: 14vw;
 	}
 
 	#conceptName {
-		font-size: 2.75vw;
-		width: 23vw;
-		height:9vw;
+		font-size: 5vw;
+		width: 35vw;
+		height:15vw;
 		overflow: hidden;
 		text-align: center;
 		margin-left: -1vw;
-		margin-top: 1vw;
+		margin-top: 2vw;
 		font-family: 'Quicksand';
 	}
 
@@ -213,23 +214,18 @@
 	  
 	  #myBar {
 		width: 1%;
-		height: 3.5vw;
-		margin-top: 1vw;
+		height: 5vw;
+		margin-top: 0.25vw;
 		background-color: orange;
 	  }
 	  
 	  #accuracyText {
-		  margin-left: 3.25vw;
-		  font-size: 2vw;
+		  margin-left: 5vw;
+		  font-size: 3.5vw;
 		  font-family: 'Quicksand';
 		  font-style: italic;
 	  }
 	  
-	  #conceptImage {
-		margin-left: 6vw;
-		margin-top: 1vw;
-		height: 9vw;
-		width: 9vw;
-	}
+	 
 
 }
