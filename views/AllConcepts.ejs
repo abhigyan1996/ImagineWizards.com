@@ -86,14 +86,12 @@
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     
     <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> Quark</span><span id="XName">X</span> </div>
-    <div style="margin-top:3vh">
  
     
   </div>
   <!-- Navbar on small screens -->
 </div>
 
-<section id="allDivisions">
 
   <form class="w3-hide" id="conceptsForm" action="/QuarkXAcademy/ConceptPerformance" method="POST">
     <input type="text" id="Concept" placeholder="concept" name="Concept">
@@ -106,11 +104,8 @@
     <button type="submit"  class="w3-blue btn btn-default">Submit</button>
   </form>
 
-    <div class="w3-card" id="whiteStrip">Welcome to class</div>
+    <div class="w3-center glow" id="SubjectName"></div>
 
-    <div id="firstStrip">
-      <div class="w3-center glow" id="SubjectName"></div>
-    </div>
 
       <div id="TopmostChapName" class="w3-hide"><%=ChapterId%></div> 
 
@@ -147,19 +142,14 @@
         <%}%>
     </ul>
 
-    <div id="whiteStrip">
-      <h1>QuarkX Classes are very exciting and the amount of questions here are uncountable</h1>
-      <h1>the fees is also very less</h1>
-      <h1>Get access to unlimited questions, test series and summary of chapters</h1>
-      <h1>This is going to be amazing with a premium subscription</h1>
-  </div>
+
 
 
   <form class="w3-hide">
     <input type="text" id="totalConcepts" value=<%=TotalConcepts%>>
   </form>
 
-</section>
+  </body>
 
 
 

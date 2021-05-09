@@ -1,21 +1,14 @@
 #SubjectName {
 	font-family: cursive;
+	margin-top: 6vw;
 	/*font-family: 'Source Serif Pro';*/
 	font-size: 5vw;
 	text-transform: uppercase;
 	color:white;
-	padding: 5vw;	
-}	
+	padding: 7vw;
+	background-color: black;
 
-#firstStrip {
-	height:17vw;
-	width: 100vw;
-	background: black
-	/*background:-moz-linear-gradient(top, white 0%, red 100%); 
-    background: -webkit-linear-gradient(top, white 0%,red 100%); 
-	background: linear-gradient(to bottom, #bbb 0%, #bbb 100%);
- */
-}
+}	
 
 #Chapters {
 	font-family: 'Source Serif Pro';
@@ -86,17 +79,6 @@
 	font-size: 0.26vw;
 }
 
-#allDivisions {
-	height: 100vh;
-	overflow: scroll;
-	-ms-overflow-style: none;  /* IE and Edge */
- 	scrollbar-width: none;  /* Firefox */
-}
-
-#allDivisions::-webkit-scrollbar {
-  display: none;
-}
-
 #myProgress {
   width: 100%;
   background-color: #ddd;
@@ -158,10 +140,15 @@
 
 @media only screen and (max-width:600px){
 
+	#XinName{
+		font-size: 4vw;
+	}
+
 	#firstStrip {
 		height:60vw;
 		width: 100vw;
-		background: black
+		background: black;
+
 		/*background:-moz-linear-gradient(top, white 0%, red 100%); 
 		background: -webkit-linear-gradient(top, white 0%,red 100%); 
 		background: linear-gradient(to bottom, #bbb 0%, #bbb 100%);
@@ -174,7 +161,10 @@
 		font-size: 9.5vw;
 		text-transform: uppercase;
 		color:white;
-		padding: 15vw;	
+		padding: 25vw;	
+		margin-top: 20vw;
+		background-color: black;
+
 	}	
 
 	#conceptBlocks li{
@@ -226,6 +216,11 @@
 		  font-style: italic;
 	  }
 	  
-	 
+	#chapterConceptCard {
+		margin-bottom: 0vw;
+		white-space: nowrap;
+		margin-top: 10vw;
+		margin-left: -8vw;
+	}
 
 }
