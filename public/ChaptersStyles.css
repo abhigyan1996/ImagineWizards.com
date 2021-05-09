@@ -179,7 +179,6 @@
 		max-width:100vw;
 		margin-left: 0vw;
 		font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-
 	}	
 
 	#conceptBlocks li{
@@ -191,7 +190,7 @@
 		margin-top: 7.5vw;
 		margin-bottom: 2vw;
 		white-space: normal;
-		border-radius: 8px;		
+		border-radius: 8px;
 	}
 	
 	#conceptImage {

@@ -179,6 +179,32 @@
             <p id="Unattemptedcount"></p>
       </div>
     </div>
+
+
+ <!-- Div only for Phones -->
+      <ul id="PerformanceCountSmall" class="w3-hide-medium w3-hide-large">
+        <li id="totalQCard" class="w3-card w3-container w3-black">
+            <p id="totalTxt">Total Questions </p>
+            <p id="totalCount"><%=TotalQuestions%></p>
+        </li>
+        <li id="CorrectQCard" class="w3-card w3-container w3-green">
+          <p id="CorrectTxt">Correct </p>
+          <p id="correctCount"><%=CorrectQuestions%></p>
+        </li>
+        <li id="WrongQCard" class="w3-card w3-container w3-red">
+            <p id="WrongTxt">Wrong </p>
+            <p id="wrongCount"><%=WrongQuestions%></p>
+        </li>
+        <li id="SkippedQCard" class="w3-card w3-container w3-blue">
+            <p id="SkippedTxt">Skipped </p>
+            <p id="skipCount"><%=SkippedQuestions%></p>
+        </li>
+        <li id="UnattemptedQCard" class="w3-card w3-container w3-orange">
+            <p id="UnattemptedTxt">Unattempted</p>
+            <p id="UnattemptedcountPh"></p>
+      </li>
+    </ul>
+
   </section>
 
   <div id = "LeaderboardDiv">
@@ -238,6 +264,7 @@
   console.log("UnattemptedQuestions", UnattemptedQuestions);
 
   document.getElementById("Unattemptedcount").innerHTML = UnattemptedQuestions;
+  document.getElementById("UnattemptedcountPh").innerHTML = UnattemptedQuestions;
   console.log("total", TotalQuestions);
   console.log("Correct", CorrectQuestions);
   console.log("Wrong", WrongQuestions);

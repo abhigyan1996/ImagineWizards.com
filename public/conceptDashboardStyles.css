@@ -18,7 +18,7 @@
   	transition: 0.5s;
 }
 
-#practiceBtn:hover, #viewSolBtn:hover, #restartBtn:hover {
+#practiceBtn:hover, #viewSolBtn:hover, #restartBtn:hover, #practiceBtnPh:hover {
 	background-position: right center;
   }
   
@@ -170,8 +170,8 @@
 
 #piechartQuestionsSmall {
 	width: 125vw;
-	height: 85vw;
-	margin-top: 5vw;
+	height: 95vw;
+	margin-top: 0vw;
 	margin-left: -12vw;
 }
 
@@ -265,14 +265,13 @@ table {
 		font-size: 5vw;
 		margin-top: 10vw;
 		margin-left: 10vw;
-		font-family: cursive;
+		font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 		text-transform: uppercase;
 	}
 
 	#LeaderboardDiv {
-		margin-top: 0vw;	
+		margin-top: 10vw;	
 		width: 100vw;
-		overflow: hidden;
 		height:fit-content;
 		margin-bottom: 10vw;
 	}
@@ -294,24 +293,25 @@ table {
 	}
 
 	#Score {
-		margin-top: -45vw;
+		margin-top: -42.5vw;
 		text-align:center;
 		font-size: 5vw;
 		font-family: cursive;
 		font-weight: 800;
-		width: 39.85vw;
-		margin-left: 27.65vw;
+		width: 38.5vw;
+		margin-left: 28.75vw;
 		position: absolute;
-		padding: 2.5vw;
+		padding: 2.35vw;
 		transform: rotate(-15deg);
 		border-radius: 1vw;
 		border: 0.5px solid #5FFF3F;
 	}
 
 	#naruto {
-		height: 51vw;
-		width: 68vw;
-		margin-left: 16vw;
+		height: 48vw;
+		width: 64vw;
+		margin-left: 18vw;
+		margin-top: 5vw;
 	}
 	
 	
@@ -327,6 +327,7 @@ table {
 		background-color: #dddddd;
 		color: black;
 		padding: 2vw;
+		margin-top: -0.57vw;
 	}
 
 	#leaderboardMsg {
@@ -346,7 +347,7 @@ table {
 	  td, th {
 		border: 1px solid #dddddd;
 		text-align: center;
-		font-size: 3vw;		
+		font-size: 3vw;	
 	  }
 	
 	  tr:nth-child(even) {
@@ -362,10 +363,45 @@ table {
 		#topTenTxt {
 			margin-top: 10vw;
 			font-size: 6vw;
+			font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 		}
 		
 		#noteMsg {
 			margin-top: 5vw;
 			font-size: 3vw;
 		}
+
+		#PerformanceCountSmall {
+			display: flex;
+			flex-wrap: wrap;
+			margin-left: -7vw;
+			margin-top: 0vw;
+	   }
+
+
+	   #PerformanceCountSmall li {
+			display: inline-block;
+			margin-top: 3vw;
+   		}
+		
+		   #totalQCard, #CorrectQCard, #WrongQCard, #SkippedQCard, #UnattemptedQCard {
+			margin-left: 5vw;
+			width:40vw;
+			margin-top: 2vw;
+			text-align: center;
+			font-family: cursive;
+			border-radius: 1vw;
+			height: 28vw;
+		}
+		
+		#totalCount, #correctCount, #wrongCount, #skipCount, #UnattemptedcountPh {
+			font-size: 5vw;
+		}
+		
+		#totalTxt, #CorrectTxt, #WrongTxt, #SkippedTxt, #UnattemptedTxt {
+			font-size: 5vw;
+			margin-top: 2vw;
+		}
+		
+		
 }
