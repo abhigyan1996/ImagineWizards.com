@@ -1,16 +1,3 @@
-#allDivisions{
-	height: 100vh;
-	overflow: scroll;
-	-ms-overflow-style: none;  /* IE and Edge */
- 	scrollbar-width: none;  /* Firefox */
- 	margin-top: 0.2vw;
- 	position: absolute;
-}
-
-#allDivisions::-webkit-scrollbar {
-  display: none;
-}
-
 #firstDiv {
 	max-width:100vw;
 	min-width: 100vw;
@@ -34,8 +21,6 @@
 #practiceBtn:hover, #viewSolBtn:hover, #restartBtn:hover {
 	background-position: right center;
   }
-
-
   
 #PerformanceTxt {
 	font-family: 'Source Serif Pro';
@@ -56,7 +41,8 @@
 	margin-top: -20vw;	
 	width: 100vw;
 	overflow: hidden;
-	height:60vw;
+	height:fit-content;
+	margin-bottom: 10vw;	
 }
 
 #leaderboardMsg {
@@ -183,10 +169,10 @@
 }
 
 #piechartQuestionsSmall {
-	width: 100vw;
-	height: 50vw;
-	margin-top: 0vw;
-	position: absolute;
+	width: 125vw;
+	height: 85vw;
+	margin-top: 5vw;
+	margin-left: -12vw;
 }
 
 #totalQCard, #CorrectQCard, #WrongQCard, #SkippedQCard, #UnattemptedQCard {
@@ -212,7 +198,7 @@
 
 #DisplayFeedback {
 	font-size: 2vw;
-	margin-top: 2vw;
+	margin-top: 10vw;
 	margin-bottom: 2vw;
 	text-align: center;
 	font-family: cursive;
@@ -221,7 +207,6 @@
 table {
 	font-family: arial, sans-serif;
 	border-collapse: collapse;
-	width: 40%;
   }
   
   td, th {
@@ -237,8 +222,8 @@ table {
 
   #LeaderboardTbl {
 	  margin-top: 2vw;
-	  margin-left: 30%;
-	  width: fit-content;
+	  margin-left: 25%;
+	  width: 50%;
   }
 
   #topTenTxt {
@@ -247,3 +232,140 @@ table {
 	  margin-top: 4vw;
 	  font-family: 'Franklin Gothic Medium';
   }
+
+
+  @media only screen and (max-width:600px){
+
+	#DisplayFeedback {
+		font-size: 5vw;
+		margin-top: 28vw;
+		margin-bottom: 4vw;
+		text-align: center;
+		font-family: cursive;
+		margin-left: 10vw;
+		margin-right: 10vw;
+	}
+  
+	#practiceBtn, #practiceBtnPh, #viewSolBtn, #restartBtn{
+		font-family: cursive;
+		font-size: 5.5vw;
+		margin-left: 9.5vw;
+		margin-top: 5vw;
+		padding: 8vw;
+		width: 80vw;
+		background-size: 300% 300%;
+		box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+		background-image: linear-gradient(to right, #3F76FF 0%, #5FFF3F 50%, #3F76FF 100%);
+		transition: 0.5s;
+		border-radius: 5px;
+	}
+	
+	#PerformanceTxt {
+		font-family: 'Source Serif Pro';
+		font-size: 5vw;
+		margin-top: 10vw;
+		margin-left: 10vw;
+		font-family: cursive;
+		text-transform: uppercase;
+	}
+
+	#LeaderboardDiv {
+		margin-top: 0vw;	
+		width: 100vw;
+		overflow: hidden;
+		height:fit-content;
+		margin-bottom: 10vw;
+	}
+
+	#QuarksLogo{
+		margin-left: -4vw;
+		height: 12.5vw;
+		width: 12.5vw;
+		margin-top:1.25vh;
+	}
+	
+	#nameQuarks{
+		font-family: 'Quicksand';
+		font-size: 10vw;
+		text-decoration: none;
+		margin-left: -4vw;
+		color:black;
+		position:absolute;
+	}
+
+	#Score {
+		margin-top: -45vw;
+		text-align:center;
+		font-size: 5vw;
+		font-family: cursive;
+		font-weight: 800;
+		width: 39.85vw;
+		margin-left: 27.65vw;
+		position: absolute;
+		padding: 2.5vw;
+		transform: rotate(-15deg);
+		border-radius: 1vw;
+		border: 0.5px solid #5FFF3F;
+	}
+
+	#naruto {
+		height: 51vw;
+		width: 68vw;
+		margin-left: 16vw;
+	}
+	
+	
+	#attemptedMaxScore{
+		margin-left: 29vw;
+		font-size: 5vw;
+		font-family: cursive;
+		font-weight: 800;
+		border: 1px solid #5FFF3F;
+		width: 42vw;
+		border-radius: 6vw;
+		text-align: center;
+		background-color: #dddddd;
+		color: black;
+		padding: 2vw;
+	}
+
+	#leaderboardMsg {
+		margin-top: 13vw;
+		text-align:center;
+		font-size: 5vw;
+		font-family: cursive;
+		margin-left: 10vw;
+		margin-right: 10vw;
+	}
+	
+	table {
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+	  }
+	  
+	  td, th {
+		border: 1px solid #dddddd;
+		text-align: center;
+		font-size: 3vw;		
+	  }
+	
+	  tr:nth-child(even) {
+		background-color: #dddddd;
+	  }
+	
+	  #LeaderboardTbl {
+		  margin-top: 7.5vw;
+		  margin-left: 2%;
+		  width: 96%;
+		}
+	
+		#topTenTxt {
+			margin-top: 10vw;
+			font-size: 6vw;
+		}
+		
+		#noteMsg {
+			margin-top: 5vw;
+			font-size: 3vw;
+		}
+}

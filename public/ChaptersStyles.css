@@ -186,14 +186,12 @@
 		display: inline-block; 
 		padding: 2vw;
 		width: 37vw;
-		margin-left: 5vw;
+		margin-left: 6vw;
 		height: 42vw;
 		margin-top: 7.5vw;
 		margin-bottom: 2vw;
 		white-space: normal;
 		border-radius: 8px;		
-		background-color: cornsilk;
-
 	}
 	
 	#conceptImage {

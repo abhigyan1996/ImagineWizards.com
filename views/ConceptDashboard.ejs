@@ -62,7 +62,7 @@
       }
     </script>
 
-<body class="w3-white" style="width:100vw;">
+<body class="w3-white" style="width:100vw; min-width:100vw; max-width:100vw; overflow-x: hidden;">
 
 <section  id="top-navbar">  
     <div id="side-menu" class="side-nav">
@@ -81,17 +81,12 @@
     </a>
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     
-    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> Quark</span><span id="XName">X</span> </div>
-    <div style="margin-top:3vh">
- 
-    
+    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</div>
   </div>
   <!-- Navbar on small screens -->
 </div>
 
 
-
-<section id="allDivisions">
 
   <div id= "whiteStripBlank">
     <p>This is your performance analysis </p>
@@ -115,7 +110,9 @@
   <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
   <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
   <!-- newly added-->
-   <button type="submit" class="btn w3-pink w3-hover-blue w3-button" id="practiceBtn"> Start Practice </button> 
+   <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-small" id="practiceBtn"> Start Practice </button> 
+   <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-medium w3-hide-large" id="practiceBtnPh"> Start Practice </button> 
+  
    <div class="w3-button w3-pink w3-hover-blue" style="visibility: hidden;" id="viewSolBtn">Review Solved Questions</div>
 </form>
 
@@ -218,7 +215,7 @@
 
   </div>
 
-</section>  <!--All divisions inside here-->
+</body>  <!--All divisions inside here-->
 
 
 
@@ -226,7 +223,6 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
-    $("#viewSolBtn").hide();      
 
 
   var TotalQuestions = document.getElementById("TotalQuestions").value;
@@ -335,7 +331,7 @@ function drawChart() {
   
   chartLarge.draw(data, options);
   chartMedium.draw(data, options);
-  chartSmall.draw(data, options);
+  chartSmall.draw(data);
 
 
   //chart2.draw(data,options);
@@ -390,5 +386,4 @@ var userRank = document.getElementById('userRank').value;
   });
 </script>
 
-</body>
 </html>
