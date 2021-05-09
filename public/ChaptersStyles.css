@@ -34,7 +34,6 @@
 	margin-left: -0.5vw;
 	margin-top: 1vw;
 	font-family: cursive;
-
 }
 
 #conceptImage {
@@ -155,4 +154,82 @@
   to {
     text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
   }
+}
+
+@media only screen and (max-width:600px){
+
+	#firstStrip {
+		height:40vw;
+		width: 100vw;
+		background: black
+		/*background:-moz-linear-gradient(top, white 0%, red 100%); 
+		background: -webkit-linear-gradient(top, white 0%,red 100%); 
+		background: linear-gradient(to bottom, #bbb 0%, #bbb 100%);
+	 */
+	}
+
+	#SubjectName {
+		font-family: 'Quicksand';
+		/*font-family: 'Source Serif Pro';*/
+		font-size: 5.5vw;
+		text-transform: uppercase;
+		color:white;
+		padding: 15vw;	
+	}	
+
+	#conceptBlocks li{
+		display: inline-block; 
+		padding: 2vw;
+		width: 25vw;
+		height: 25vw;
+		margin-top: 5vw;
+		margin-bottom: 2vw;
+		white-space: normal;
+		border-radius: 8px;
+	}
+	
+	#conceptImage {
+		margin-left: 3vw;
+		margin-top: 1vw;
+		height: 10vw;
+		width: 10vw;
+	}
+
+	#conceptName {
+		font-size: 2.75vw;
+		width: 23vw;
+		height:9vw;
+		overflow: hidden;
+		text-align: center;
+		margin-left: -1vw;
+		margin-top: 1vw;
+		font-family: 'Quicksand';
+	}
+
+	#myProgress {
+		width: 100%;
+		background-color: #ddd;
+	  }
+	  
+	  #myBar {
+		width: 1%;
+		height: 3.5vw;
+		margin-top: 1vw;
+		background-color: orange;
+	  }
+	  
+	  #accuracyText {
+		  margin-left: 3.25vw;
+		  font-size: 2vw;
+		  font-family: 'Quicksand';
+		  font-style: italic;
+	  }
+	  
+	  #conceptImage {
+		margin-left: 6vw;
+		margin-top: 1vw;
+		height: 9vw;
+		width: 9vw;
+	}
+
 }
