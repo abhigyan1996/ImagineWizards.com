@@ -43,7 +43,9 @@
 <link rel="stylesheet" href="/https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
+<!-- NEWLY ADDED Google FONT -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Alegreya&family=Concert+One&family=Lora:ital,wght@1,400;1,600;1,700&display=swap" rel="stylesheet">
 <!--     ===================================================================
                               Hemburgar Menu
     ===================================================================
@@ -133,8 +135,10 @@
     <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
     <input class="w3-hide" id="themeId1" type="text" name="Theme" value=<%=Theme%>>
   <!-- newly added-->      
-    <button type="submit" class="btn w3-pink w3-hover-blue w3-button" id="submitAnsBtn"> Skip Question </button>        
-</form>
+    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-small" id="submitAnsBtn"> Skip Question </button>        
+    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-bottom w3-hide-large w3-hide-medium " id="submitAnsBtnPh"> Skip Question </button>        
+
+  </form>
 
 <form action="/QuarkXAcademy/NextQuestion" method="POST">
   <input class="w3-hide" name="Concept" id="ConceptAk" type="text">
@@ -165,14 +169,14 @@
 
     <section id="div1">
       <div id="quesNum">Question:</div>
-
+<!-- 
       <div id="themesBtnPh" class="w3-dropdown-hover w3-hide-large w3-hide-medium">
-        <button class="w3-button w3-black">Themes <i id="dropdownIcon" class="fa fa-caret-down" style="font-size:1vw"></i></button>
+        <button class="btn w3-black">Themes <i id="dropdownIcon" class="fa fa-caret-down" style="font: size 3vw"></i></button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <div id="darkMode" class="w3-bar-item w3-button">Night Mode</div>
           <div id="lightMode" class="w3-bar-item w3-button">Light Mode</div>
         </div>
-      </div>
+      </div> -->
         
       <div style="visibility: hidden;" class="w3-card" id="quesImgContainer">
         <img id="questionImage" src= <%=QuestionImg%>>
@@ -349,7 +353,11 @@
       
       if(ShowAnswer == 0){ //user has not solved a question yet 
         document.getElementById("submitAnsBtn").innerHTML = "Skip Question";
+        document.getElementById("submitAnsBtnPh").innerHTML = "Skip Question";
+
         $("#submitAnsBtn").show();
+        $("#submitAnsBtnPh").show();
+        
         $("#NextQuesBtn").hide();
         $("#NextQuesBtnPh").hide();
         $("#AnsFeedback").hide();
@@ -501,6 +509,8 @@
             }
 
             $("#submitAnsBtn").hide();
+            $("#submitAnsBtnPh").hide();
+
             document.getElementById("NextQuesBtn").innerHTML = "GO TO NEXT";
             document.getElementById("NextQuesBtnPh").innerHTML = "GO TO NEXT";
 
@@ -636,9 +646,12 @@
         function SkipOrSubmit(input) {
           if(input != "") {
             document.getElementById("submitAnsBtn").innerHTML = "Submit Answer";
+            document.getElementById("submitAnsBtnPh").innerHTML = "Submit Answer";
+
           }
           else {
             document.getElementById("submitAnsBtn").innerHTML = "Skip Question";
+            document.getElementById("submitAnsBtnPh").innerHTML = "Skip Question";
           }
         };         
   </script>

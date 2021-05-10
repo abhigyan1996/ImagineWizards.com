@@ -342,15 +342,14 @@
 
 	#quesNum, #questionWithImg, #questionNoImg, #OptionsTxt, #ExpA, #ExpB, #ExpC #ExpD, #optionsA, #optionsB, #optionsC, #optionsD {
 		font-family: 'Alegreya', serif;
-		font-size: 5.5vw;
+		font-size: 5vw;
 	}
 	
-	#NextQuesBtn, #submitAnsBtn, #NextQuesBtnPh {
+	#NextQuesBtn, #submitAnsBtn, #submitAnsBtnPh, #NextQuesBtnPh {
 		font-family: 'Alegreya', serif;
 		margin-left: 0vw;
 		font-size: 5vw;
 		border-radius: 8px;
-		/* margin-top:81.65vh;  */
 		width: 100vw;
 		padding-bottom: 2.5vw;
 		padding-top: 2.5vw;
@@ -366,8 +365,10 @@
 	#AnsFeedback {
 		background-color: aqua;
 		width: 100%;
-		font-family: cursive;
-		font-size: 5vw;
+		font-family: 'Alegreya', serif;
+		font-family: 'Concert One', cursive;
+		font-family: 'Lora', serif;
+		font-size: 4.5vw;
 		margin-top: 20vw;
 		margin-bottom: -15vw;
 		padding: 5vw;
@@ -375,7 +376,7 @@
 		text-align: center;
 	}
 
-	#feedbackImgCorrect, #feedbackImgCorrect2, #feedbackImgCorrect3, #feedbackImgCorrect4, #feedbackImgWrong{
+	#feedbackImgCorrect, #feedbackImgCorrect2, #feedbackImgCorrect3, #feedbackImgCorrect4{
 		height: 26vw;
 		width: 26vw;
 		position: absolute;
@@ -384,14 +385,35 @@
 		margin-top: 12vw;
 	}
 
+	#feedbackImgWrong {
+		height: 26vw;
+		width: 26vw;
+		position: absolute;
+		visibility: hidden;
+		margin-top: 12vw;
+		margin-left: 50vw;
+	}
+
 	#themesBtnPh {
-		margin-left: 60vw;
-		margin-top: 2vw;
+		margin-left: 80vw;
+		margin-top: -12vw;
 		font-family: 'Quicksand';
 		position: absolute;
-		font-size: 5vw;
-		padding-left: 1vw;
-		padding-right: 1vw;
+		font-size: 3vw;
+	}
+
+	#endPracticeBtn {
+		position: absolute;
+		font-size: 4vw;
+		font-family: 'Alegreya', serif;
+		margin-left: 45vw;
+		margin-top: 4.5vw;
+		border-radius: 1vw;
+		background-size: 300% 300%;
+		box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+		background-image: linear-gradient(to right, rgb(252, 93, 119) 0%, yellow 50%, rgb(252, 93, 119) 100%);
+		transition: 0.5s;
+		color: white;
 	}
 	
 }
