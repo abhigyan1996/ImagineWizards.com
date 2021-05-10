@@ -159,13 +159,6 @@
 	margin-top: 1vw;
 }
 
-#BgSnow {
-	width: 100vw;
-	height: 100vh;
-	position: absolute;
-
-}
-
 #themesBtn {
 	margin-left: 55vw;
 	margin-top: 2vw;
@@ -286,7 +279,7 @@
 
 	#quesNum {
 		margin-left: 2vw;
-		margin-top: 5vw;
+		margin-top: 22vw;
 		font-weight: 900;
 		margin-bottom: 5vw;
 		color: orange
@@ -349,7 +342,7 @@
 
 	#quesNum, #questionWithImg, #questionNoImg, #OptionsTxt, #ExpA, #ExpB, #ExpC #ExpD, #optionsA, #optionsB, #optionsC, #optionsD {
 		font-family: 'Alegreya', serif;
-		font-size: 6.5vw;
+		font-size: 5.5vw;
 	}
 	
 	#NextQuesBtn, #submitAnsBtn, #NextQuesBtnPh {
@@ -357,10 +350,10 @@
 		margin-left: 0vw;
 		font-size: 5vw;
 		border-radius: 8px;
-		margin-top:82.65vh; 
+		/* margin-top:81.65vh;  */
 		width: 100vw;
-		padding-bottom: 1.75vw;
-		padding-top: 1.75vw;
+		padding-bottom: 2.5vw;
+		padding-top: 2.5vw;
 		position: fixed;
 		background-size: 300% 300%;
 		box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -376,6 +369,7 @@
 		font-family: cursive;
 		font-size: 5vw;
 		margin-top: 20vw;
+		margin-bottom: -15vw;
 		padding: 5vw;
 		visibility: hidden;
 		text-align: center;
@@ -385,8 +379,19 @@
 		height: 26vw;
 		width: 26vw;
 		position: absolute;
-		margin-left: 63vw;
+		margin-left: 55vw;
 		visibility: hidden;
 		margin-top: 12vw;
 	}
+
+	#themesBtnPh {
+		margin-left: 60vw;
+		margin-top: 2vw;
+		font-family: 'Quicksand';
+		position: absolute;
+		font-size: 5vw;
+		padding-left: 1vw;
+		padding-right: 1vw;
+	}
+	
 }

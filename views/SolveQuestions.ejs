@@ -103,7 +103,7 @@
       </form>
 
 
-      <div id="themesBtn" class="w3-dropdown-hover">
+      <div id="themesBtn" class="w3-dropdown-hover w3-hide-small">
         <button class="w3-button w3-black">Themes <i id="dropdownIcon" class="fa fa-caret-down" style="font-size:1vw"></i></button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <div id="darkMode" class="w3-bar-item w3-button">Night Mode</div>
@@ -146,7 +146,7 @@
   <input class="w3-hide" id="themeId2" type="text" name="Theme" value=<%=Theme%>>
   <!-- newly added-->
   <button type="submit" class="w3-button  w3-pink w3-hover-blue w3-hide-small" id="NextQuesBtn">
-  <button type="submit" class="w3-button w3-pink w3-hover-blue w3-hide-large w3-hide-medium" id="NextQuesBtnPh"> 
+  <button type="submit" class="w3-button w3-pink w3-hover-blue w3-hide-large w3-hide-medium w3-bottom" id="NextQuesBtnPh"> 
     
   </button>
 </form>
@@ -165,6 +165,14 @@
 
     <section id="div1">
       <div id="quesNum">Question:</div>
+
+      <div id="themesBtnPh" class="w3-dropdown-hover w3-hide-large w3-hide-medium">
+        <button class="w3-button w3-black">Themes <i id="dropdownIcon" class="fa fa-caret-down" style="font-size:1vw"></i></button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <div id="darkMode" class="w3-bar-item w3-button">Night Mode</div>
+          <div id="lightMode" class="w3-bar-item w3-button">Light Mode</div>
+        </div>
+      </div>
         
       <div style="visibility: hidden;" class="w3-card" id="quesImgContainer">
         <img id="questionImage" src= <%=QuestionImg%>>
@@ -344,6 +352,7 @@
         $("#submitAnsBtn").show();
         $("#NextQuesBtn").hide();
         $("#NextQuesBtnPh").hide();
+        $("#AnsFeedback").hide();
 
           var inputOpt = "";
           var tappedA = 0;
@@ -512,6 +521,7 @@
 
               // Newly Added
               if(correctSol == submittedInp) {
+                $("#AnsFeedback").show();
                 $("#AnsFeedback").css("visibility", "visible");
                 $("#NextQuesBtn").css("margin-top", "34vw");
                 $("#quesImgContainer").css("margin-top", "-1vw");
@@ -538,6 +548,7 @@
                 $("#AnsFeedback").css("background-color", "#FF4D4D");
                 $("#AnsFeedback").css("color", "white");
                 $("#AnsFeedback").css("visibility", "visible");
+                $("#AnsFeedback").show();
                 $("#NextQuesBtn").css("margin-top", "34vw");
                 $("#quesImgContainer").css("margin-top", "-1vw");
 
