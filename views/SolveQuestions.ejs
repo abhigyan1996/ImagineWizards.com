@@ -168,7 +168,9 @@
    </div>
 
     <section id="div1">
-      <div id="quesNum">Question:</div>
+      <div id="quesNum" class="w3-hide-small">Question:</div>
+      <div id="quesNum" class="w3-hide-medium w3-hide-large">Question:</div>
+
 <!-- 
       <div id="themesBtnPh" class="w3-dropdown-hover w3-hide-large w3-hide-medium">
         <button class="btn w3-black">Themes <i id="dropdownIcon" class="fa fa-caret-down" style="font: size 3vw"></i></button>
@@ -243,11 +245,11 @@
   </div>
   </div>
 
-  <script>
+  <!-- <script>
     function myFunction() {
       var elmnt = document.getElementById("twoSec");
       var y = elmnt.scrollTop;
-      if(y>30) {
+      if(y>0) {
         $("#feedbackImgCorrect").animate({top: '4.6vw'});
         $("#feedbackImgCorrect2").animate({top: '4.6vw'});
         $("#feedbackImgCorrect3").animate({top: '4.6vw'});
@@ -256,7 +258,7 @@
         // $("#feedbackImgWrong2").animate({top: '4.6vw'});
       }
     }
-    </script>
+    </script> -->
 
   <script>
   $(document).ready(function(){
@@ -495,6 +497,7 @@
     }
 
     else {      //if ShowAnswer is 1
+            $("#quesNum").css("margin-top", "2vw");
 
             var userName = document.getElementById('userName').value;
             var correctSol = document.getElementById("CorrectOptionDB").value;
@@ -515,25 +518,26 @@
             document.getElementById("NextQuesBtnPh").innerHTML = "GO TO NEXT";
 
             $("#NextQuesBtn").css("margin-left", "74vw");
+            $("#NextQuesBtn").css("margin-top", "36vw");
+
             $("#NextQuesBtn").show();
 
             console.log("submittedInp", submittedInp);
             var ExpImgFlag = document.getElementById("AnsFlag").value;
 
             if(submittedInp == "A")
-              $("#optionsA").css("background-color", "#FFF300");
+              $("#optionsA").css("background-color", "#FF6868");
             else if (submittedInp == "B")
-              $("#optionsB").css("background-color", "#FFF300");
+              $("#optionsB").css("background-color", "#FF6868");
             else if (submittedInp == "C")
-              $("#optionsC").css("background-color", "#FFF300");
+              $("#optionsC").css("background-color", "#FF6868");
             else if (submittedInp == "D")
-              $("#optionsD").css("background-color", "#FFF300");
+              $("#optionsD").css("background-color", "#FF6868");
 
               // Newly Added
               if(correctSol == submittedInp) {
                 $("#AnsFeedback").show();
                 $("#AnsFeedback").css("visibility", "visible");
-                $("#NextQuesBtn").css("margin-top", "34vw");
                 $("#quesImgContainer").css("margin-top", "-1vw");
 
                 if(correctSol=="A") {
@@ -559,7 +563,6 @@
                 $("#AnsFeedback").css("color", "white");
                 $("#AnsFeedback").css("visibility", "visible");
                 $("#AnsFeedback").show();
-                $("#NextQuesBtn").css("margin-top", "34vw");
                 $("#quesImgContainer").css("margin-top", "-1vw");
 
                 if(correctSol=="A") {

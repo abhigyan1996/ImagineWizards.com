@@ -43,7 +43,9 @@
 <link rel="stylesheet" href="/https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
+<!-- NEWLY ADDED Google FONT -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Alegreya&family=Concert+One&family=Lora:ital,wght@1,400;1,600;1,700&display=swap" rel="stylesheet">
 <!--     ===================================================================
                               Hemburgar Menu
     ===================================================================
@@ -69,7 +71,7 @@
   <source src="https://abhigyan1996.github.io/QA/QA/1/wrong.mp3" type="audio/mpeg">
 </audio>
 
-<body id="body" style="width:100vw">
+<body id="body" style="width:100vw; overflow-x: hidden;">
 
   <section  id="top-navbar">  
       <div id="side-menu" class="side-nav">
@@ -88,7 +90,7 @@
       </a>
       <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
       
-      <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> Quark</span><span id="XName">X</span> </div>
+      <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</div>
      
       <!-- STOP PRACTICE -->
       <form id="conceptsForm" action="/QuarkXAcademy/ConceptPerformance" method="POST">
@@ -103,17 +105,13 @@
       </form>
 
 
-      <div id="themesBtn" class="w3-dropdown-hover">
+      <div id="themesBtn" class="w3-dropdown-hover w3-hide-small">
         <button class="w3-button w3-black">Themes <i id="dropdownIcon" class="fa fa-caret-down" style="font-size:1vw"></i></button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <div id="darkMode" class="w3-bar-item w3-button">Dark Mode</div>
           <div id="lightMode" class="w3-bar-item w3-button">Light Mode</div>
         </div>
-      </div>
-       
-     
-      <div style="margin-top:3vh">
-   
+      </div>   
       
     </div>
     <!-- Navbar on small screens -->
@@ -132,7 +130,9 @@
   <input class="w3-hide" id="themeId1" type="text" name="Theme" value=<%=Theme%>>
   <input class="w3-hide" id="quesNum" type="text" name = "quesNum" value=<%=quesNum%>>
   <!-- newly added-->
-  <button type="submit" class="btn w3-pink w3-hover-black w3-button" id="NextQuesBtn">Review Next</button>
+  <button type="submit" class="btn w3-pink w3-hover-black w3-button w3-hide-small" id="NextQuesBtnRv">Review Next</button>
+  <button type="submit" class="btn w3-pink w3-hover-black w3-button w3-hide-large w3-hide-medium w3-bottom" id="NextQuesBtn">Review Next</button>
+
 </form>
 
 
@@ -148,7 +148,9 @@
    </div>
 
     <section id="div1">
-      <div id="quesNum">Question:</div>
+      <div id="quesNumRv" class="w3-hide-small">Question:</div>
+      <div id="quesNumRv" class="w3-hide-medium w3-hide-large">Question:</div>
+
         
       <div style="visibility: hidden;" class="w3-card" id="quesImgContainer">
         <img id="questionImage" src= <%=QuestionImg%>>
@@ -211,9 +213,10 @@
       </form>      
     </section>
   
-  
   </div>
+</body>
 
+<!-- 
   <script>
     function myFunction() {
       var elmnt = document.getElementById("twoSec");
@@ -227,7 +230,7 @@
         // $("#feedbackImgWrong2").animate({top: '4.6vw'});
       }
     }
-    </script>
+    </script> -->
 
   <script>
   $(document).ready(function(){
@@ -261,7 +264,7 @@
   
     if (themeFlag=="0"){  //dark mode
       $("#body").css({"background-image": "url(https://abhigyan1996.github.io/QA/QA/1/stars.gif)", "background-repeat" : "repeat-x repeat-y"});
-      $("#quesNum").css("color", "orange");
+      $("#quesNumRv").css("color", "orange");
       $("#questionWithImg").css("color", "yellow");
       $("#quesImgContainer").css("border", "0.1px solid #bbb");
       $("#questionNoImg").css("color", "yellow");
@@ -269,7 +272,7 @@
     }
     else if (themeFlag=="1") {  //light mode
       $("#body").css("background", "white");
-      $("#quesNum").css("color", "orange");
+      $("#quesNumRv").css("color", "orange");
       $("#questionWithImg").css("color", "black");
       $("#questionNoImg").css("color", "black");
       $("#OptionsTxt").css("color", "indigo");
@@ -279,7 +282,7 @@
     $(document).ready(function(){
         $("#darkMode").click(function(){
           $("#body").css({"background-image": "url(https://abhigyan1996.github.io/QA/QA/1/stars.gif)", "background-repeat" : "repeat-x repeat-y"});
-          $("#quesNum").css("color", "orange");
+          $("#quesNumRv").css("color", "orange");
           $("#questionWithImg").css("color", "yellow");
           $("#quesImgContainer").css("border", "0.1px solid #bbb");
           $("#questionNoImg").css("color", "yellow");
@@ -292,7 +295,7 @@
         $("#lightMode").click(function(){
          // $("#body").css("background-color", "white");
           $("#body").css("background", "white");
-          $("#quesNum").css("color", "orange");
+          $("#quesNumRv").css("color", "orange");
           $("#questionWithImg").css("color", "black");
           $("#questionNoImg").css("color", "black");
           $("#OptionsTxt").css("color", "indigo");
@@ -318,7 +321,6 @@
       $("#ExpImgC").hide();
       $("#ExpImgD").hide();
       
-  
             var userName = document.getElementById('userName').value;
             var correctSol = document.getElementById("CorrectOptionDB").value;
             var submittedInp = document.getElementById("submittedInput").value;
@@ -327,13 +329,16 @@
             var ExpImgFlag = document.getElementById("AnsFlag").value;
 
             if(submittedInp == "A")
-              $("#optionsA").css("background-color", "#FFF300");
+              $("#optionsA").css("background-color", "#FF6868");
             else if (submittedInp == "B")
-              $("#optionsB").css("background-color", "#FFF300");
+              $("#optionsB").css("background-color", "#FF6868");
             else if (submittedInp == "C")
-              $("#optionsC").css("background-color", "#FFF300");
+              $("#optionsC").css("background-color", "#FF6868");
             else if (submittedInp == "D")
-              $("#optionsD").css("background-color", "#FFF300");
+              $("#optionsD").css("background-color", "#FF6868");
+              // #FFF300
+            //These bg colors are rewritten next
+
             else if (submittedInp == "SKIPPED") {
               document.getElementById('AnsFeedback').innerHTML = "You skipped this question " + userName + ". 😔";
               $("#AnsFeedback").css("visibility", "visible");
@@ -342,22 +347,25 @@
               // Newly Added
               if(correctSol == submittedInp) {
                 $("#AnsFeedback").css("visibility", "visible");
-                $("#NextQuesBtn").css("margin-top", "34vw");
                 $("#quesImgContainer").css("margin-top", "-1vw");
 
                 if(correctSol=="A") {
+                  $("#optionsA").css("background-color", "#55F112");
                   document.getElementById('AnsFeedback').innerHTML = "You got this right " + userName + ". 😻";
                   $("#feedbackImgCorrect").css("visibility", "visible");
                 }
                 else if(correctSol=="B") {
+                  $("#optionsB").css("background-color", "#55F112");
                   $("#feedbackImgCorrect2").css("visibility", "visible");
                   document.getElementById('AnsFeedback').innerHTML = "This was a good hit " + userName + ". ❤";
                 }
                 else if(correctSol=="C") {
-                $("#feedbackImgCorrect3").css("visibility", "visible");
+                  $("#optionsC").css("background-color", "#55F112");
+                  $("#feedbackImgCorrect3").css("visibility", "visible");
                   document.getElementById('AnsFeedback').innerHTML = "Sharp as Arjuna! ❤️ Perfect hit " + userName + ".";
                 }
                 else if(correctSol=="D") {
+                  $("#optionsD").css("background-color", "#55F112");
                   $("#feedbackImgCorrect4").css("visibility", "visible");
                   document.getElementById('AnsFeedback').innerHTML = "You cracked this nut " + userName + "! 😻";
                 }
@@ -367,36 +375,51 @@
                 $("#AnsFeedback").css("background-color", "#FF4D4D");
                 $("#AnsFeedback").css("color", "white");
                 $("#AnsFeedback").css("visibility", "visible");
-                $("#NextQuesBtn").css("margin-top", "34vw");
                 $("#quesImgContainer").css("margin-top", "-1vw");
 
                 if (submittedInp != "SKIPPED") {
                     if(correctSol=="A") {
+                      $("#optionsA").css("background-color", "#55F112");
                       document.getElementById('AnsFeedback').innerHTML = "Oops! You got this wrong "  + userName + ". 😔";
                       $("#feedbackImgWrong").css("visibility", "visible");
                     }
                     else if(correctSol=="B") {
+                      $("#optionsB").css("background-color", "#55F112");
                       document.getElementById('AnsFeedback').innerHTML = "Incorrect attempt " + userName + ". 🥺";
                       $("#feedbackImgWrong").css("visibility", "visible");
                     }
                     else if(correctSol=="C") {
+                      $("#optionsC").css("background-color", "#55F112");
                       document.getElementById('AnsFeedback').innerHTML = "This was a wrong hit " + userName + ".  😔";
                       $("#feedbackImgWrong").css("visibility", "visible");
                     }
                     else if(correctSol=="D") {
+                      $("#optionsD").css("background-color", "#55F112");
                       document.getElementById('AnsFeedback').innerHTML = "Oops! This was incorrect " + userName + ". 🥺";
                       $("#feedbackImgWrong").css("visibility", "visible");
                     }
                   } 
-              }
 
               else if (submittedInp == "SKIPPED") {
                 document.getElementById('AnsFeedback').innerHTML = "You skipped this " + userName + ". 🥺";
                 $("#feedbackImgWrong").css("visibility", "visible");
+                if(correctSol=="A") {
+                  $("#optionsA").css("background-color", "aqua");
+                }
+                else if(correctSol=="B") {
+                  $("#optionsB").css("background-color", "aqua");
+                }
+                else if(correctSol=="C") {
+                  $("#optionsC").css("background-color", "aqua");
+                }
+                else if(correctSol=="D") {
+                  $("#optionsD").css("background-color", "aqua");
+                }
               }
+            }
 
             if(correctSol == "A") {
-                $("#optionsA").css("background-color", "#55F112");
+               // $("#optionsA").css("background-color", "#55F112");
                 $("#ExpA").show();
                 //added latest
                 $("#ExpA").css("visibility", "visible");
@@ -410,7 +433,7 @@
                 }
               }
               else if (correctSol == "B") {
-                 $("#optionsB").css("background-color", "#55F112");
+                 //$("#optionsB").css("background-color", "#55F112");
                  $("#ExpB").show();
                  $("#ExpB").css("visibility", "visible");
 
@@ -425,7 +448,7 @@
                 }
               }
               else if (correctSol == "C") {
-                 $("#optionsC").css("background-color", "#55F112");
+                // $("#optionsC").css("background-color", "#55F112");
                  $("#ExpC").show();
                  $("#ExpC").css("visibility", "visible");
 
@@ -439,7 +462,7 @@
                 }
               }
               else if (correctSol == "D") {
-                 $("#optionsD").css("background-color", "#55F112");
+                // $("#optionsD").css("background-color", "#55F112");
                  $("#ExpD").show();
                  $("#ExpD").css("visibility", "visible");
 
@@ -481,5 +504,4 @@
 
     </script>
 
-  </body>
   </html>

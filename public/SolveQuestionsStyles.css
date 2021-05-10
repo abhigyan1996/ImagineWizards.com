@@ -13,11 +13,20 @@
 	border-radius: 0.5vw;
 }
 
-#quesNum{
+#quesNumRv{
 	font-family: 'Sans Serif Pro';
 	font-size: 1.5vw;
 	margin-left: 2vw;
 	margin-top: 2vw;
+	font-weight: 900;
+	color: orange
+}
+
+#quesNum{
+	font-family: 'Sans Serif Pro';
+	font-size: 1.5vw;
+	margin-left: 2vw;
+	margin-top: 10vw;
 	font-weight: 900;
 	color: orange
 }
@@ -56,11 +65,12 @@
 
 #twoSec {
 	height: fit-content;
-	margin-top: 7.5vw;
+	margin-top: 7.35vw;
 }
 
 #optionsSec {
 	height: fit-content;
+	margin-bottom: 3vw;
 }
 
 #optionsA {
@@ -121,7 +131,7 @@
 	cursor: pointer;
 }
 
-#NextQuesBtn, #submitAnsBtn {
+#NextQuesBtn, #submitAnsBtn, #NextQuesBtnRv {
 	font-family: cursive;
 	margin-left: 72vw;
 	font-size: 1.75vw;
@@ -138,6 +148,11 @@
   	transition: 0.5s;
 	color: white;
 	text-transform: uppercase;
+}
+
+#NextQuesBtnRv {
+	margin-top: 42vw;
+	margin-left: 74vw;
 }
 
 #submitAnsBtn:hover, #NextQuesBtn:hover{
@@ -169,7 +184,7 @@
 	padding-right: 1vw;
 }
 
-#quesNum, #questionWithImg, #questionNoImg, #OptionsTxt, #ExpA, #ExpB, #ExpC #ExpD, #optionsA, #optionsB, #optionsC, #optionsD {
+#quesNum, #quesNumRv, #questionWithImg, #questionNoImg, #OptionsTxt, #ExpA, #ExpB, #ExpC #ExpD, #optionsA, #optionsB, #optionsC, #optionsD {
 	font-family: cursive;
 }
 
@@ -187,11 +202,11 @@
 #feedbackImgCorrect, #feedbackImgCorrect2, #feedbackImgCorrect3, #feedbackImgCorrect4, #feedbackImgWrong{
 	height: 8vw;
 	width: 8vw;
-	position: absolute;
+	position: fixed;
 	margin-left: 63vw;
 	visibility: hidden;
-	margin-top: -4.75vw;
-
+	margin-top: -7.45vw;
+	z-index: 1;
 	animation: linear infinite;
 	animation-name: run;
 	animation-duration: 3s;
@@ -277,7 +292,7 @@
 		margin-left: 2vw;
 	}
 
-	#quesNum {
+	#quesNum, #quesNumRv {
 		margin-left: 2vw;
 		margin-top: 22vw;
 		font-weight: 900;
@@ -340,7 +355,7 @@
 		margin-top: 5vw;
 	}
 
-	#quesNum, #questionWithImg, #questionNoImg, #OptionsTxt, #ExpA, #ExpB, #ExpC #ExpD, #optionsA, #optionsB, #optionsC, #optionsD {
+	#quesNum, #quesNumRv, #questionWithImg, #questionNoImg, #OptionsTxt, #ExpA, #ExpB, #ExpC #ExpD, #optionsA, #optionsB, #optionsC, #optionsD {
 		font-family: 'Alegreya', serif;
 		font-size: 5vw;
 	}
@@ -382,7 +397,7 @@
 		position: absolute;
 		margin-left: 55vw;
 		visibility: hidden;
-		margin-top: 12vw;
+		margin-top: 11vw;
 	}
 
 	#feedbackImgWrong {
@@ -390,7 +405,7 @@
 		width: 26vw;
 		position: absolute;
 		visibility: hidden;
-		margin-top: 12vw;
+		margin-top: 12.5vw;
 		margin-left: 50vw;
 	}
 
@@ -414,6 +429,11 @@
 		background-image: linear-gradient(to right, rgb(252, 93, 119) 0%, yellow 50%, rgb(252, 93, 119) 100%);
 		transition: 0.5s;
 		color: white;
+	}
+
+	#optionsSec {
+		height: fit-content;
+		margin-bottom: 3vw;
 	}
 	
 }
