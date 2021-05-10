@@ -352,6 +352,10 @@ table {
 		text-align: center;
 		font-size: 5vw;	
 	  }
+
+	  th{
+		  color: yellow
+	  }
 	
 	  tr:nth-child(even) {
 		background-color: #dddddd;
