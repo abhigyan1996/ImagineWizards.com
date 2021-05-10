@@ -86,6 +86,7 @@
 		color:white;
 		margin-top: 40vw;
 		font-size: 8vw;
+		margin-bottom: 20vw;
 	}
 
 	#courseImage{
@@ -97,7 +98,8 @@
 	
 	#CousesList li{
 		display: inline-block;
-		margin-left: 2vw;
+		left: 4vw;
+		right: 4vw;
 		margin-bottom: 4vw;
 		height:69vw;
 		width:92vw;
@@ -105,7 +107,10 @@
 }
 	#CousesList {
 		list-style-type: none;
-		margin-left: -8vw;
+		margin-left: 0vw;
 		margin-top: 20vw;
+		width: 100vw;
+		margin: 0;
+		padding: 0;
 	}
    }

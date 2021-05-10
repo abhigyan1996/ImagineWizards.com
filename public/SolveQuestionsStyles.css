@@ -399,6 +399,7 @@
 		margin-left: 55vw;
 		visibility: hidden;
 		margin-top: 12vw;
+		z-index: 0;
 	}
 
 	#feedbackImgWrong {
@@ -408,6 +409,7 @@
 		visibility: hidden;
 		margin-top: 13vw;
 		margin-left: 50vw;
+		z-index: 0;
 	}
 
 	#themesBtnPh {
