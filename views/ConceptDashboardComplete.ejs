@@ -226,10 +226,10 @@
     <div id="leaderboardMsg">You are not in top 100 yet!</div>
           
       <div id="topTenTxt">QuarkX Leaderboard (TOP 10):</div>
-        <table id="LeaderboardTbl" class="w3-pink">
+        <table id="LeaderboardTbl" class="w3-black">
           <tr>
             <th style="text-align: center; padding: 1vw;">RANK</th>
-            <th style="text-align: center; padding: 1vw;">EMAIL</th>
+            <th style="text-align: center; padding: 1vw;">NAME</th>
             <th style="text-align: center; padding: 1vw;">FINAL SCORE</th>
           </tr>
 
@@ -238,7 +238,7 @@
             <tbody>
             <tr>  
               <td><%= i+1 %></td> 
-              <td id="LeaderboardEmail"><%=Leaderboard.EMAIL%></td>  
+              <td id="LeaderboardEmail"><%=Leaderboard.LeaderBoardToProfileJoin.USERNAME.substr(0,Leaderboard.LeaderBoardToProfileJoin.USERNAME.indexOf(" "))%></td>  
               <td id="LeaderboardScore"><%=Leaderboard.ACCURACY%></td>        
             </tr>
           </tbody>
@@ -371,7 +371,7 @@ var userRank = document.getElementById('userRank').value;
   if(userRank!=0) {
     if(userRank <=10) {
       document.getElementById('leaderboardMsg').innerHTML = "Congrats! You are in top 10!" + " Your rank is " + "'" + userRank + "'" + ".";
-      document.getElementById("LeaderboardTbl").rows[userRank].style.color = "yellow";
+      document.getElementById("LeaderboardTbl").rows[userRank].style.color = "orange";
     }
     else if (userRank>10 &&  userRank<=20) {
       document.getElementById('leaderboardMsg').innerHTML = "Congrats! You are in top 20!" + " Your rank is " + "'" + userRank + "'" + ".";
