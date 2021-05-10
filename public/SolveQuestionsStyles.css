@@ -435,5 +435,12 @@
 		height: fit-content;
 		margin-bottom: 3vw;
 	}
+
+	#ExpImgA, #ExpImgB, #ExpImgC, #ExpImgD  {
+		margin-top: 1vw;
+		height: 60vw;
+		width: 80vw;
+		border-radius: 1vw;
+	}
 	
 }
