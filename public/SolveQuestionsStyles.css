@@ -398,7 +398,7 @@
 		position: absolute;
 		margin-left: 55vw;
 		visibility: hidden;
-		margin-top: 11.5vw;
+		margin-top: 12vw;
 	}
 
 	#feedbackImgWrong {
@@ -406,7 +406,7 @@
 		width: 26vw;
 		position: absolute;
 		visibility: hidden;
-		margin-top: 12.5vw;
+		margin-top: 13vw;
 		margin-left: 50vw;
 	}
 
@@ -443,5 +443,26 @@
 		width: 80vw;
 		border-radius: 1vw;
 	}
+
+	#optionsA:hover {
+		box-shadow: 2px 2px 2px 2px #bbb;
+		cursor: pointer;
+	}
+	
+	#optionsB:hover {
+		box-shadow: 2px 2px 2px 2px #bbb;
+		cursor: pointer;
+	}
+	
+	#optionsC:hover {
+		box-shadow: 2px 2px 2px 2px #bbb;
+		cursor: pointer;
+	}
+	
+	#optionsD:hover {
+		box-shadow: 2px 2px 2px 2px #bbb;
+		cursor: pointer;
+	}
+	
 	
 }
