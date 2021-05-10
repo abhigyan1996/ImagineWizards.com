@@ -383,10 +383,11 @@
 		font-family: 'Alegreya', serif;
 		font-family: 'Concert One', cursive;
 		font-family: 'Lora', serif;
-		font-size: 4.5vw;
+		font-size: 4vw;
 		margin-top: 20vw;
 		margin-bottom: -15vw;
-		padding: 5vw;
+		padding-top: 5vw;
+		padding-bottom: 5vw;
 		visibility: hidden;
 		text-align: center;
 	}
@@ -421,7 +422,7 @@
 		position: absolute;
 		font-size: 4vw;
 		font-family: 'Alegreya', serif;
-		margin-left: 45vw;
+		right:2vw;
 		margin-top: 4.5vw;
 		border-radius: 1vw;
 		background-size: 300% 300%;
