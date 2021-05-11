@@ -104,6 +104,7 @@
 		text-transform: uppercase;
 		background-color: #f68331;
 		color: white;
+		border: none;
 	}
 
 	#orderHeadings {
