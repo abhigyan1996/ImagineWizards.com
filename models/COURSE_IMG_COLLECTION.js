@@ -15,6 +15,15 @@ var COURSE_IMG_COLLECTION = new Schema({
     COURSE_IMG: {
         type: String,
         required:true
+    },
+    BUY_COURSE_IMG: {
+        type: String,
+        required:true
+    },
+    PRICE: {
+        type: Number,
+        required: true,
+        default:0
     }
 
 });

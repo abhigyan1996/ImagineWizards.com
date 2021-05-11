@@ -123,22 +123,12 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     
     <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> Quark</span><span id="XName">X</span> </div>
-    <div style="margin-top:3vh">
- 
-    <a href="WriteQuarks" style="margin-left: 80vw; font-family: 'Quicksand'" class="navItems w3-bar-item w3-hide-small" id="navItem3Home">Write</a>
     
-    <div style="margin-left: 85vw;" id="navItems4Quarks" class="w3-dropdown-hover navItems w3-bar-item w3-hide-small">
-      <div style="font-family: 'Quicksand'">Collaboration<i id="dropdownIcon" class="fa fa-caret-down" style="font-size:1vw"></i></div>
-      <div style="margin-left: -2vw;" class="dropdownCareer w3-dropdown-content w3-bar-block w3-border">
-        <a  href="#" style="font-size: 1.2vw; font-family: 'Quicksand'" class="dropdownBtn w3-bar-item w3-button">Brand Collaboration</a>
-        <a href="CampusAmbassador" style="font-size: 1.2vw; font-family: 'Quicksand'" class="dropdownBtn w3-bar-item w3-button">Campus Ambassador</a>
-      </div>
-    </div>    
+       
   </div>
 
   </div>
   <!-- Navbar on small screens -->
-</div>
 
 
 
@@ -334,7 +324,7 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
     </div>
 
 
-    <div style="margin-top:3vw">
+    <div style="margin-top:3vw;padding-bottom: 20vw;">
       <h1 style="text-align: center;">SUBMIT ALL COURSE IMAGES HERE</h1>
     
       <form action="/QuarkXAcademy/PostCoursesImages" method="POST">
@@ -358,6 +348,16 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
           <label for="text">Course Image</label>
           <input type="text" class="form-control" id="CourseImg" name="CourseImg" placeholder="Course Image URL" required="true">
         </div> 
+
+        <div class="form-group">
+          <label for="text">Buy Course Image</label>
+          <input type="text" class="form-control" id="BuyCourseImg" name="BuyCourseImg" placeholder="Buy Course Image URL" required="true">
+        </div> 
+
+        <div class="form-group">
+          <label for="name">Price</label>
+          <input type="text" class="form-control" id="Price" name="Price" placeholder="Price" required="true">
+        </div>
     
         <button type="submit" class="w3-blue btn btn-default">Submit</button>
       </form>

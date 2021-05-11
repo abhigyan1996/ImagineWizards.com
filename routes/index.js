@@ -52,6 +52,10 @@ routes.get('/PaymentGithub', IsLoggedIn, function(req, res) {
     return res.render('PaymentGithub');
 })
 
+routes.get('/TempPay', IsLoggedIn, function(req, res) {
+    return res.render('TempPay');
+})
+
 routes.get('/PaymentSuccess', IsLoggedIn, function(req, res) {
     return res.render('PaymentSuccess');
 })

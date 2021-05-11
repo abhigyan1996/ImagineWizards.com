@@ -172,10 +172,10 @@ router.post("/PostQuestions", IsLoggedIn, async function(req, res, next){
 router.post("/PostCoursesImages", IsLoggedIn, async function(req, res, next){
     try{
 
-        if(!req.body.Class || !req.body.Course || !req.body.CourseImg)
+        if(!req.body.Class || !req.body.Course || !req.body.CourseImg || !req.body.BuyCourseImg || !req.body.Price)
             
         {
-            res.send("Invalid Request Parameters");
+            res.render("error");
             //logger
             return;
         }
@@ -188,7 +188,9 @@ router.post("/PostCoursesImages", IsLoggedIn, async function(req, res, next){
         let PostCourseImgsObj = new COURSE_IMG_COLLECTION({
             CLASS_ID: req.body.Class,
             COURSE_ID: req.body.Course,
-            COURSE_IMG : req.body.CourseImg
+            COURSE_IMG : req.body.CourseImg,
+            BUY_COURSE_IMG : req.body.BuyCourseImg,
+            PRICE: req.body.Price
         });
 
         try
@@ -1264,13 +1266,27 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
 })
 
 
-router.post('/BuyNow', IsLoggedIn, async function(req, res) {
+router.post('/OrderDetails', IsLoggedIn, async function(req, res) {
     try{
-        if(!(req.body.Class && req.body.Course && req.body.Price && req.body.TrialFlag)) {
+        if(!(req.body.Class && req.body.Course && req.body.Price && req.body.orderId)) {
             res.render('error');
             return;
         }
-        
+
+             //Fetch User Name
+       let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+       let userName = userStr.USERNAME;
+
+        let selectedCourse =await COURSE_IMG_COLLECTION.findOne({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});
+        let DbPrice = selectedCourse.PRICE;
+
+        if ((DbPrice * 100) != req.body.Price) {
+            res.render('error');
+            return;
+        }
+
+        res.render('OrderDetails', {Class:req.body.Class, Course:req.body.Course, Price:req.body.Price, FullPrice:4999, orderId:req.body.orderId, CourseImg: selectedCourse.BUY_COURSE_IMG, Email: req.user.EMAIL, username: userName});
+        return;
 
     }
     catch(err) {

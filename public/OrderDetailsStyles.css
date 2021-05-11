@@ -1,0 +1,174 @@
+#orderDetailsDiv {
+	height: fit-content;
+	margin-top: 7.75vw;
+	width: 90vw;
+	margin-left:5vw;
+	border-radius: 1vw;
+	padding-bottom: 3vw;
+	padding-top: 2.5vw;
+	background-color: white;
+}
+
+#orderHeadings {
+	float: right;
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	margin-top: 2vw;
+	padding-bottom: 3vw;
+	margin-right: 7.5vw;	
+}
+
+#headTitle {
+	font-size: 2.25vw;
+	margin-top: 0vw;
+}
+
+#headSubtitle {
+	font-size: 1.75vw;
+	color:#393839"
+}
+
+#savedTxt{
+	font-size: 1.75vw;
+	/* color: rgb(21, 182, 21); */
+	color: #4FCF00;
+	margin-top: 2vw;
+}
+
+#TxtPrice {
+	margin-top: 2vw;
+	font-size: 2.5vw;
+	display: inline-block;
+}
+
+#TxtFullPrice{
+	font-size: 1.85vw;
+	color:dimgray;
+	margin-left: 2vw;
+}
+
+#discountTxt {
+	/* color: rgb(21, 182, 21); */
+	color: #4FCF00;
+	font-size: 1.85vw;
+	margin-left: 2vw;
+}
+
+#validityTxt{
+	font-size: 1.75vw;
+	margin-top: 1.25vw;
+}
+
+#courseImg {
+	height:32vw;
+	width: 24vw;
+	margin-top: 1vw;
+	margin-left: 15vw;
+	border-radius: 0.5vw;
+	border: 1px solid #bbb;
+}
+
+#rzp-button1 {
+	font-family: serif;
+	font-size: 1.75vw;
+	border-radius: 8px;
+	text-transform: uppercase;
+	background-color: #f68331;
+	color:white;
+	margin-top: 2vw;
+}
+
+
+   @media only screen and (max-width:600px){
+	#QuarksLogo{
+		margin-left: -4vw;
+		height: 12.5vw;
+		width: 12.5vw;
+		margin-top:1.25vh;
+	}
+	
+	#nameQuarks{
+		font-family: 'Quicksand';
+		font-size: 10vw;
+		text-decoration: none;
+		margin-left: -4vw;
+		color:black;
+		position:absolute;
+	}
+
+	#rzp-button1{
+		width: 100vw;
+		font-size: 6vw;
+		font-family:Arial, Helvetica, sans-serif;
+		height: 12vw;
+	}
+
+	#orderHeadings {
+		float: left;
+		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		margin-top: 12vw;
+		padding-bottom: 3vw;
+		margin-left: 3vw;
+	}
+	
+	#courseImg {
+		height:96vw;
+		width: 72vw;
+		margin-top: 1vw;
+		margin-left: 15vw;
+		border-radius: 0.5vw;
+		border: 1px solid #bbb;
+	}
+	
+	#orderDetailsDiv {
+		width: 100vw;
+		margin-left:0vw;
+		border-radius: 0vw;
+		padding-bottom: 3vw;
+		padding-top: 2.5vw;
+		height: 100vh;
+		margin-top: 20vw;
+	}
+
+	#headTitle {
+		font-size: 6vw;
+		margin-top: 0vw;
+	}
+	
+	#headSubtitle {
+		font-size: 4.5vw;
+		color:#393839"
+	}
+	
+	#savedTxt{
+		font-size: 4.5vw;
+		/* color: rgb(21, 182, 21); */
+		color: #4FCF00;
+		margin-top: 2vw;
+	}
+	
+	#TxtPrice {
+		margin-top: 2vw;
+		font-size: 6vw;
+		display: inline-block;
+	}
+	
+	#TxtFullPrice{
+		font-size: 6vw;
+		color:dimgray;
+		margin-left: 2vw;
+	}
+	
+	#discountTxt {
+		/* color: rgb(21, 182, 21); */
+		color: #4FCF00;
+		font-size: 6vw;
+		margin-left: 2vw;
+	}
+	
+	#validityTxt{
+		font-size: 5vw;
+		margin-top: 1.25vw;
+	}
+	
+	
+   }

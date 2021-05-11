@@ -11,3 +11,20 @@
 	background: white
 	
 }
+
+@media only screen and (max-width:600px){
+	#divQuestionSubmit{
+		position: absolute;
+		margin-top: 20vw;
+		width:80vw;
+		margin-bottom: 10vw;
+		
+		height: fit-content;
+		margin-left: 10vw;
+		padding-top: 5vw;
+	
+		background: white
+		
+	}
+
+}
