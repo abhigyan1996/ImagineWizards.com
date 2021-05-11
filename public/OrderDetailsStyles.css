@@ -103,6 +103,7 @@
 		border-radius: 8px;
 		text-transform: uppercase;
 		background-color: #f68331;
+		color: white;
 	}
 
 	#orderHeadings {
@@ -137,7 +138,7 @@
 		margin-top: 0vw;
 	}
 	
-	#headSubtitle {
+	#headSubtitlePh {
 		font-size: 4.5vw;
 		color:#393839"
 	}
