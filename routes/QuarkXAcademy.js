@@ -425,6 +425,8 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
             //logger
          }
 
+         
+
          //Fetch User Name
          let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
          let username = userStr.USERNAME;
@@ -473,10 +475,27 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
 
          try{
              await studentPerformanceObj.save();
-             console.log('Your Answer is recorded in DB');
+              //if(req.body.restartReamining==5)
+            //{
+                if(req.body.CorrectFlag!="SKIPPED") {
+                
+                    let quesDetails=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID: req.body.quesID});
+
+                    let AttemptStr = quesDetails.SCORE.split(" ")[1];
+                    let correctStR= quesDetails.SCORE.split(" ")[0];
+                
+                    AttemptStr=parseInt(AttemptStr)+1;
+
+                    if(req.body.CorrectFlag==1) {
+                        correctStR=parseInt(correctStR)+1;  
+                    }
+
+                    let ScoreStr = correctStR.toString()+" "+AttemptStr.toString();
+                    let QuestionLevel = await All_QUESTIONS_COLLECTION.updateOne({QUESTION_ID: req.body.quesID},{$set:{SCORE:ScoreStr}});
+            }             
          }
          catch(err) {
-             console.log(err);
+             res.render('error');
          }
 
         try {

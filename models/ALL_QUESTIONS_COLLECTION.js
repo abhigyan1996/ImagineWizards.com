@@ -63,8 +63,7 @@ var ALL_QUESTIONS_COLLECTION = new Schema({
         type: String,
     },
     SCORE:{
-        type: Number,
-        default:1
+        type: String,
     },
     QUESTION_IMG_FLAG:{
         type: Number,
