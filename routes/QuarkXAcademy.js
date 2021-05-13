@@ -477,22 +477,19 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
              await studentPerformanceObj.save();
               //if(req.body.restartReamining==5)
             //{
-                if(req.body.CorrectFlag!="SKIPPED") {
                 
-                    let quesDetails=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID: req.body.quesID});
-
-                    let AttemptStr = quesDetails.SCORE.split(" ")[1];
-                    let correctStR= quesDetails.SCORE.split(" ")[0];
+                let quesDetails=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID: req.body.quesID});
+                let AttemptStr = quesDetails.SCORE.split(" ")[1];
+                let correctStR= quesDetails.SCORE.split(" ")[0];
                 
-                    AttemptStr=parseInt(AttemptStr)+1;
+                AttemptStr=parseInt(AttemptStr)+1;
 
-                    if(req.body.CorrectFlag==1) {
-                        correctStR=parseInt(correctStR)+1;  
-                    }
+                if(req.body.CorrectFlag==1) {
+                    correctStR=parseInt(correctStR)+1;  
+                }
 
-                    let ScoreStr = correctStR.toString()+" "+AttemptStr.toString();
-                    let QuestionLevel = await All_QUESTIONS_COLLECTION.updateOne({QUESTION_ID: req.body.quesID},{$set:{SCORE:ScoreStr}});
-            }             
+                let ScoreStr = correctStR.toString()+" "+AttemptStr.toString();
+                let QuestionLevel = await All_QUESTIONS_COLLECTION.updateOne({QUESTION_ID: req.body.quesID},{$set:{SCORE:ScoreStr}});
          }
          catch(err) {
              res.render('error');
