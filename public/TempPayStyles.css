@@ -319,6 +319,7 @@
 	background-image: linear-gradient(to right, hsla(313, 88%, 54%, 0.452) 0%, #3F76FF 50%, hsla(313, 88%, 54%, 0.452) 100%);
 	transition: 0.5s;
 	border-radius: 5px;
+	margin-bottom: 5vw;
 }
 
 #logOutTxt {

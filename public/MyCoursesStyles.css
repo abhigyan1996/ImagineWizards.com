@@ -193,4 +193,20 @@
 	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif	
 }
 
+	#myCoursesTxt {
+		font-family: 'Times New Roman', Times, serif;
+		text-transform: uppercase;
+		color:white;
+		margin-top: 2vw;
+		font-size: 5vw;
+	}
+
+		
+	#logOutTxt {
+		color: white;
+		font-size: 5vw;
+		font-family: 'Times New Roman', Times, serif;
+		text-decoration: none;
+		margin-top: 0vw;
+	}
 }
