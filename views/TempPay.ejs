@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/QuarkStylesDesktop.css">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="/QuarksLargePh.css">
-<link rel="stylesheet" href="/ChaptersStyles.css">
+<link rel="stylesheet" href="/TempPayStyles.css">
 
  <meta property="og:url"           content="angshumankashyap.in/QuarkX" />
  <meta property="og:type"          content="website" />
@@ -65,8 +65,7 @@
     </script>
 
 
-<body class="w3-white" style="width:100vw; min-width: 100vw; max-width: 100vw; overflow-x: hidden;">
-
+<body style="width:100vw; min-width: 100vw; max-width: 100vw; overflow-x: hidden; background-color: black;">
 
 <section  id="top-navbar">  
     <div id="side-menu" class="side-nav">
@@ -91,7 +90,7 @@
 </div>
 
 
-<form id="selectCourseForm" action="QuarkXAcademy/OrderDetails" style="margin-top: 20vw;" method="POST">
+<form class="w3-hide" id="selectCourseForm" action="../QuarkXAcademy/OrderDetails" style="margin-top: 20vw;" method="POST">
     <input id="Class" type="text" name = "Class" placeholder="Class">
     <input id="Course" type="text" name = "Course" placeholder="Course">
     <input type="text" id="Price" name = "Price" placeholder="Amount">
@@ -99,126 +98,64 @@
     <button type="submit" id="submitCourse">Submit</button>
 </form> 
 
-<ul id="conceptBlocks">
-    <li id ="ConceptLists">
-        <div id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></div>
-        <div id="ClassSel">C3<span class="w3-hide">,</span></div>
-        <div id="CourseSel">Maths<span class="w3-hide">,</span></div>
-        <div id="AmountSel">12452<span class="w3-hide">,</span></div>
-    </li>
+<iframe id="courseVideo" src="https://www.youtube.com/embed/UlLVt72uQ0A?rel=0" title="QuarkX Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-    <li id ="ConceptLists">
-        <div id="userImg"><img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></div>
-        <div id="ClassSel">C3<span class="w3-hide">,</span></div>
-        <div id="CourseSel">Maths<span class="w3-hide">,</span></div>
-        <div id="AmountSel">249900<span class="w3-hide">,</span></div>
-    </li>
+<div id="perksDiv" class="w3-center">
+    <ul id="perksList">
+        <li id ="perks">
+            <div id="HeadingTxt">1200+ Questions</div>
+            <div id="contentTxt">Develop your child's problem solving skills with high quality questions.</div>
+        </li>
+        <li id ="perks">
+            <div id="HeadingTxt">Leaderboard</div>
+            <div id="contentTxt">Find your child's rank in every small concept of every chapter.</div>
+        </li>
+        <li id ="perks">
+            <div id="HeadingTxt">Performance Analysis</div>
+            <div id="contentTxt">Keep a track of your child's strength and weakness in every small concept.</div>
+        </li>
+        <li id ="perks">
+            <div id="HeadingTxt">Themes & Animations</div>
+            <div id="contentTxt">Simple and interesting interface to keep your child engaged for the year.</div>
+        </li>
+        <li id ="perks">
+            <div id="HeadingTxt">Best Pricing</div>
+            <div id="contentTxt">With take a little and give a lot concept, we value your money and your child's education.</div>
+        </li>
+        <li id ="perks">
+            <div id="HeadingTxt">7 Day Free Trial</div>
+            <div id="contentTxt">Take a 7 day free trial and unlock the first 3 chapters of any course.</div>
+        </li>
+    </ul>
+</div>
 
-    <li id ="ConceptLists">
-        <div id="userImg"><img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></div>
-        <div id="ClassSel">C3<span class="w3-hide">,</span></div>
-        <div id="CourseSel">Maths<span class="w3-hide">,</span></div>
-        <div id="AmountSel">4562<span class="w3-hide">,</span></div>
+<ul id="CousesList">
+    <div id="pickCourseTxt">PICK YOUR COURSE</div>
+    <% var i=0; %>
+    <% for(Course of Courses){%>
+    <li id ="allCourses">
+        <img id="courseImage" src=<%=Course.BUY_COURSE_IMG%>></div>
+        <div class="w3-hide" id="ClassSel"><%=Course.CLASS_ID%><span class="w3-hide">,</span></div>
+        <div class="w3-hide" id="CourseSel"><%=Course.COURSE_ID%><span class="w3-hide">,</span></div>
+        <div class="w3-hide" id="AmountSel"><%=Course.PRICE%><span class="w3-hide">,</span></div>
+        <div class="btn w3-hide-small" id="getBtn">🗲 GET NOW</div> 
+        <div class="w3-button w3-hide-large w3-hide-medium" id="getBtn">🗲 GET NOW</div> 
     </li>
+   <% i++; %>
+    <%}%>
 </ul>
 
+<div id="whiteStrip"></div>
 
-    <input type="text" id="order-amt" name = "Amount" placeholder="Amount">
-
-    <button id="order-button1">Get Order id from server</button> <br/>
-    
-
-<!-- 
-<label>Amount    :</label><input type=text id=order-amt /><br/> 
-<button id="order-button1">Get Order id from server</button> <br/> -->
-
-
-<br/>
-<br/>
-<br/>
-<br/>
-<hr/>
-<label>Order id   :</label><input type=text id=rzp-text /><br/>
-<button id="rzp-button1">CHeckout</button>
-<div id=paymentDetails></div>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-document.getElementById('rzp-button1').onclick = function(e){
-    var options = {
-    "key": "rzp_test_xmzuzCUfeOjL0Y",  //Enter your razorpay key
-    "currency": "INR",
-    "name": "Quarkx Tutorial",
-    "description": "Quarkx Transaction",
-    "image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
-    "order_id": document.getElementById('rzp-text').value,
-    "handler": function (response){
-    
-        document.getElementById('order-pay-id').value=response.razorpay_payment_id;
-        document.getElementById('order-id').value=response.razorpay_order_id;
-        document.getElementById('order-sig').value=response.razorpay_signature;
-
-        //FORM INPUT
-        //class
-        //cous
-
-        //autosubmit verify form
-    },
-    "theme": {
-        "color": "#227254"
-    }
-};
-    var rzp1 = new Razorpay(options);
-    rzp1.open();
-    e.preventDefault();
-}
-</script>
-<br/>
-<br/>
-<br/>
-<br/>
-<hr/>
-<label>Order id    :</label><input type="text" id="order-id" />
-<br/>
-<label>payment id  :</label><input type="text" id="order-pay-id" />
-<br/>
-<label>Signature   :</label><input type="text" id="order-sig" />
-
-<br/>
- <label>Verify Signature</label><button id="verify-button1">Verify</button>
-
-<script>
-document.getElementById('verify-button1').onclick = function(e){
-var url = '/api/payment/verify';
-    var params = {
-  razorpay_order_id:  document.getElementById('order-id').value,  
-  razorpay_payment_id:  document.getElementById('order-pay-id').value,
-  razorpay_signature:  document.getElementById('order-sig').value
-};
-var xmlHttp = new XMLHttpRequest();
-xmlHttp.onreadystatechange = function (res) {
-    if (xmlHttp.readyState === 4) {
-//alert(xmlHttp.responseText);
-console.log(xmlHttp.responseText);
-location.replace("https://quarkxacademy.herokuapp.com/QuarkXAcademy/MyCourses");
-    }
-}
-xmlHttp.open("POST", url, true); // false for synchronous request
-xmlHttp.withCredentials = true;
-
-xmlHttp.setRequestHeader("Content-type", "application/json");
-xmlHttp.send(JSON.stringify(params));
-}
-</script>
-
+    <input class="w3-hide" type="text" id="order-amt" name = "Amount" placeholder="Amount">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
-
     const ul = document.querySelectorAll('ul');
-    var ClassSel = $("#conceptBlocks li #ClassSel").text();
-    var CourseSel = $("#conceptBlocks li #CourseSel").text();
-    var AmountSel = $("#conceptBlocks li #AmountSel").text();
+    var ClassSel = $("#CousesList li #ClassSel").text();
+    var CourseSel = $("#CousesList li #CourseSel").text();
+    var AmountSel = $("#CousesList li #AmountSel").text();
 
     var resCls = ClassSel.split(",");
     console.log(resCls);
@@ -229,13 +166,12 @@ xmlHttp.send(JSON.stringify(params));
     var resAmt = AmountSel.split(",");
     console.log(resAmt);
 
-    $("#conceptBlocks li").click(function() {
+    $("#CousesList li").click(function() {
         var index = $(this).index();
-     
-        document.getElementById("Class").value = resCls[index];
-        document.getElementById("Course").value = resCourse[index];
-        document.getElementById("Price").value = resAmt[index];
-        document.getElementById("order-amt").value = resAmt[index];
+        document.getElementById("Class").value = resCls[index-1];
+        document.getElementById("Course").value = resCourse[index-1];
+        document.getElementById("Price").value = resAmt[index-1] * 100;
+        document.getElementById("order-amt").value = resAmt[index-1] * 100;
 
         var url = '/api/payment/order';
         var params = {
@@ -248,7 +184,6 @@ xmlHttp.send(JSON.stringify(params));
         xmlHttp.onreadystatechange = function (res) {
             if (xmlHttp.readyState === 4) {
                 res=JSON.parse(xmlHttp.responseText);
-                document.getElementById('rzp-text').value=res.sub.id;
                 document.getElementById("orderId").value = res.sub.id;
                 $("#selectCourseForm").submit();
             }

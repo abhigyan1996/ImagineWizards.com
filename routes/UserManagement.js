@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 var USER_PROFILE_COLLECTION= require("../models/USER_PROFILE_COLLECTION");
+const COURSE_IMG_COLLECTION = require ("../models/COURSE_IMG_COLLECTION");
+
 router.use(express.json());
 const mongoose = require("mongoose");
 const moment=require('moment');
@@ -254,7 +256,10 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
 
   router.post("/Login",passport.authenticate('local'), async function (req, res) {
      // res.status(200).json({Errcode:0,ResMsg: 'You are successfully logged in!'});
-      res.render('QuarkXAcademy');
+     
+     let allCourses =await COURSE_IMG_COLLECTION.find({});
+     
+     res.render('TempPay', {Courses: allCourses});
     });
         
   router.get('/Logout',async function(req,res){

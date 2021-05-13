@@ -59,12 +59,10 @@
 }
 
 #courseImg {
-	height:32vw;
-	width: 24vw;
-	margin-top: 1vw;
-	margin-left: 15vw;
-	border-radius: 0.5vw;
-	border: 1px solid #bbb;
+	height:40vw;
+	width: 30vw;
+	margin-top: 0vw;
+	margin-left: 5vw;
 }
 
 #rzp-button1 {
@@ -116,12 +114,10 @@
 	}
 	
 	#courseImg {
-		height:96vw;
-		width: 72vw;
-		margin-top: 1vw;
-		margin-left: 15vw;
-		border-radius: 0.5vw;
-		border: 1px solid #bbb;
+		height:108vw;
+		width: 81vw;
+		margin-top: -4vw;
+		margin-left: 5vw;
 	}
 	
 	#orderDetailsDiv {
@@ -131,12 +127,12 @@
 		padding-bottom: 3vw;
 		padding-top: 2.5vw;
 		height: 100vh;
-		margin-top: 20vw;
+		margin-top: 18vw;
 	}
 
 	#headTitle {
 		font-size: 6vw;
-		margin-top: 0vw;
+		margin-top: -12vw;
 	}
 	
 	#headSubtitlePh {

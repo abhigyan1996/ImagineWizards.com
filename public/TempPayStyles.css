@@ -1,0 +1,255 @@
+#div1 {
+	height: fit-content;
+	width: 100vw;
+	margin-top: 7.5vw;
+}
+
+#courseVideo {
+	margin-top: 7vw;
+	height: 35vw;
+	width: 100vw;
+}
+
+#courseImage{
+	height:32vw;
+	width: 24vw;
+	border-radius: 1vw;
+	margin-top: 0vw;
+}
+
+#courseBlocks {
+	position: relative;
+}
+
+#pickCourseTxt {
+	text-align: center;
+	font-size: 3vw;
+	text-transform: uppercase;
+	color:black;
+	padding-top: 2vw;
+	margin-top: 19vw;
+	max-width:100vw;
+	margin-left: 0vw;
+	margin-bottom: 2vw;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+#CousesList {
+	list-style-type: none;
+	margin-top: 10vw;
+	padding: 0;
+	background-color: white;
+}
+
+#CousesList li{
+	display: inline-block;
+	margin-left: 4vw;
+	margin-bottom: 4vw;
+	height:fit-content;
+	width: fit-content;
+}
+
+#allCourses {
+	padding-left: 0vw;
+	background-color: white;
+}
+
+#getBtn {
+	margin-top: 27vw;
+	margin-left: -14vw;
+	position: absolute;
+	border-radius: 0.5vw;
+	font-family:Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-size: 1.5vw;
+	background-color: #f68331;
+	color: white;
+}
+
+#perksDiv {
+	height: fit-content;
+	width: 100vw;
+	/* background-image: url(https://abhigyan1996.github.io/QA/QA/1/stars.gif); */
+	background-color: black;
+	margin-bottom: -18vw;
+}
+
+#HeadingTxt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.75vw;
+	background-color: purple;
+	color:white;
+	border-top-left-radius: 1vw;
+	border-top-right-radius: 1vw;
+	text-transform: uppercase;
+}
+
+#contentTxt{
+	font-size: 1.5vw;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: white;
+	border-bottom-left-radius: 1vw;
+	border-bottom-right-radius: 1vw;
+	padding-left: 0.5vw;
+	padding-right: 0.5vw;
+}
+
+#perksList {
+	list-style-type: none;
+	margin-top: 0vw;
+	padding: 0;
+	padding-top: 3vw;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#perksList li{
+	display: inline-block; 
+	white-space: normal;
+	width: 40vw;
+	height: fit-content;
+	margin: auto;
+	margin-bottom: 3vw;
+	border-radius: 1vw;
+}
+
+#whiteStrip {
+	background-color: white;
+	margin-top: -1vw;
+	color:white;
+	height: 5vw;
+}
+
+   @media only screen and (max-width:600px){
+	#QuarksLogo{
+		margin-left: -4vw;
+		height: 12.5vw;
+		width: 12.5vw;
+		margin-top:1.25vh;
+	}
+	
+	#nameQuarks{
+		font-family: 'Quicksand';
+		font-size: 10vw;
+		text-decoration: none;
+		margin-left: -4vw;
+		color:black;
+		position:absolute;
+	}
+	
+	#courseVideo {
+		margin-top: 20vw;
+		height: 70vw;
+		width: 100vw;
+	}	
+
+	#courseImage{
+		height:104vw;
+		width: 79vw;
+		border-radius: 1vw;
+		margin-left: 10.5vw;
+		margin-right: 10.5vw;
+	}
+		
+	#CousesList li{
+		display: inline-block;
+		left: 10.5vw;
+		right: 10.5vw;
+		margin-bottom: 4vw;
+		height:104vw;
+		width: 79vw;
+		border-radius: 1vw;
+		padding: 0;
+		margin: 0;
+	}
+
+	#CousesList {
+		list-style-type: none;
+		margin-left: 0vw;
+		margin-top: 20vw;
+		width: 100vw;
+		margin: 0;
+		padding: 0;
+	}
+
+	#perksDiv {
+		height: fit-content;
+		width: 100vw;
+		/* background-image: url(https://abhigyan1996.github.io/QA/QA/1/stars.gif); */
+		background-color: black;
+		margin-bottom: -10vw;
+	}
+
+#perksList {
+	list-style-type: none;
+	margin-top: 0vw;
+	padding: 0;
+	padding-top: 3vw;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#perksList li{
+	display: inline-block; 
+	white-space: normal;
+	width: 90vw;
+	height: fit-content;
+	margin: auto;
+	margin-bottom: 5vw;
+	border-radius: 1vw;
+}
+
+#HeadingTxt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 5.25vw;
+	background-color: purple;
+	color:white;
+	border-top-left-radius: 1vw;
+	border-top-right-radius: 1vw;
+	text-transform: uppercase;
+}
+
+#contentTxt{
+	font-size: 5vw;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: white;
+	border-bottom-left-radius: 1vw;
+	border-bottom-right-radius: 1vw;
+	padding-left: 0.5vw;
+	padding-right: 0.5vw;
+}
+
+#pickCourseTxt {
+	text-align: center;
+	font-size: 5.25vw;
+	text-transform: uppercase;
+	color:black;
+	padding-top: 2vw;
+	margin-top: 19vw;
+	max-width:100vw;
+	margin-left: 0vw;
+	margin-bottom: 2vw;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+#getBtn {
+	margin-top: -10vw;
+	margin-left: 35vw;
+	position: absolute;
+	border-radius: 1vw;
+	font-family:Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-size: 4.5vw;
+	background-color: #f68331;
+	color: white;
+}
+
+#whiteStrip {
+	background-color: white;
+	margin-top: 0vw;
+	color:white;
+	height: 15vw;
+}
+
+
+}
