@@ -99,12 +99,17 @@
     <input id="fullPrice" value=<%=FullPrice%> type="text">
 </form>
 
+<form id="trialForm" class="w3-hide" action="../QuarkXAcademy/TrialPurchase" method="POST">
+    <input name="Class" value=<%=Class%> type="text">
+    <input name="Course" value=<%=Course%> type="text">
+</form>
+
 <div id="orderDetailsDiv" class="w3-card">
     <img id="courseImg"src=<%=CourseImg%>>
         <div id="orderHeadings">
             <!-- <div id="headTxt">USER NAME :</div>
             <div id="headTxt">EMAIL ID :</div> -->
-            <div id="headTitle">Class <span id="valueTxtClass"></span> <%=Course%> Course by QuarkX</div>
+            <div id="headTitle"><span id="payDesc">Class <span id="valueTxtClass"></span> <%=Course%> Course </span> by QuarkX</div>
             <div id="headSubtitle" class="w3-hide-small">* Instant Access post payment confirmation *</div>
             <div id="headSubtitlePh" class="w3-hide-medium w3-hide-large">Instant Access post payment confirmation</div>
             <b><div id="TxtPrice"></div></b>
@@ -114,7 +119,11 @@
             <div id="validityTxt">Course Validity: 1 Year</div>
 
             <!-- <div id="headTxt">ORDER ID :</div> -->
-             <button class="w3-button w3-hide-small" id="rzp-button1">🗲 BUY NOW</button> 
+             <button class="w3-hide-small" id="rzp-button1">🗲 BUY NOW</button> 
+
+            <div><button id="trialBtn">START A FREE TRIAL</button></div>
+
+
         </div>
         
 </div>
@@ -139,9 +148,9 @@
     var options = {
     "key": "rzp_test_xmzuzCUfeOjL0Y",  //Enter your razorpay key
     "currency": "INR",
-    "name": "Quarkx Tutorial",
-    "description": "Quarkx Transaction",
-    "image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
+    "name": "QuarkX Academy",
+    "description": document.getElementById('payDesc').innerHTML,
+    "image": "/QuarkOtherImages/QuarksLogoFinal-1.png",
     "order_id": document.getElementById('rzp-text').value,
     "handler": function (response){
     
@@ -186,9 +195,9 @@ document.getElementById('rzp-button1Ph').onclick = function(e){
     var options = {
     "key": "rzp_test_xmzuzCUfeOjL0Y",  //Enter your razorpay key
     "currency": "INR",
-    "name": "Quarkx Tutorial",
-    "description": "Quarkx Transaction",
-    "image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
+    "name": "QuarkX Academy",
+    "description": document.getElementById('payDesc').innerHTML,
+    "image": "/QuarkOtherImages/QuarksLogoFinal-1.png",
     "order_id": document.getElementById('rzp-text').value,
     "handler": function (response){
     
@@ -244,27 +253,9 @@ document.getElementById('rzp-button1Ph').onclick = function(e){
 </div>
 
 <script>
-document.getElementById('verify-button1').onclick = function(e){
-var url = '/api/payment/verify';
-    var params = {
-  razorpay_order_id:  document.getElementById('order-id').value,  
-  razorpay_payment_id:  document.getElementById('order-pay-id').value,
-  razorpay_signature:  document.getElementById('order-sig').value
-};
-var xmlHttp = new XMLHttpRequest();
-xmlHttp.onreadystatechange = function (res) {
-    if (xmlHttp.readyState === 4) {
-//alert(xmlHttp.responseText);
-console.log(xmlHttp.responseText);
-location.replace("https://quarkxacademy.herokuapp.com/QuarkXAcademy/MyCourses");
-    }
-}
-xmlHttp.open("POST", url, true); // false for synchronous request
-xmlHttp.withCredentials = true;
-
-xmlHttp.setRequestHeader("Content-type", "application/json");
-xmlHttp.send(JSON.stringify(params));
-}
+    $("#trialBtn").click(function() {
+        $("#trialForm").submit();
+    });
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

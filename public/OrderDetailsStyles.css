@@ -73,6 +73,20 @@
 	background-color: #f68331;
 	color:white;
 	margin-top: 2vw;
+	border: none;
+	padding:0.75vw;
+}
+
+#trialBtn {
+	font-family: serif;
+	font-size: 1.75vw;
+	border-radius: 8px;
+	text-transform: uppercase;
+	background-color:black;
+	color:white;
+	margin-top: 3vw;
+	border: none;
+	padding:0.75vw;
 }
 
 
@@ -169,6 +183,19 @@
 	#validityTxt{
 		font-size: 5vw;
 		margin-top: 1.25vw;
+	}
+
+	
+	#trialBtn {
+		font-family: serif;
+		font-size: 4.5vw;
+		border-radius: 8px;
+		text-transform: uppercase;
+		background-color:black;
+		color:white;
+		margin-top: 3vw;
+		border: none;
+		padding:2vw;
 	}
 	
 	
