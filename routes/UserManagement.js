@@ -300,6 +300,7 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
           return;
         }
       }
+      
       catch(err){
         res.render('error');
       }
