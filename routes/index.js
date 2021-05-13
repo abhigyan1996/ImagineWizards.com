@@ -3,12 +3,15 @@ var routes = express.Router();
 var Quarks = require('../models/Quarks');
 var Advertisement = require('../models/Advertisement');
 var {IsLoggedIn}=require("../Authentication");
+const COURSE_IMG_COLLECTION = require ("../models/COURSE_IMG_COLLECTION");
 
 const All_QUESTIONS_COLLECTION = require("../models/ALL_QUESTIONS_COLLECTION");
 
 //Load initial form to take input
-routes.get('/', function (req, res) {
-    return res.render('signup');
+routes.get('/', async function (req, res) {
+    let allCourses =await COURSE_IMG_COLLECTION.find({});   
+    return res.render('TempPay', {Courses: allCourses});  
+
 })
 
 routes.get('/QuarkX', function(req, res) {
@@ -64,18 +67,13 @@ routes.get('/MyCourses', IsLoggedIn, function(req, res) {
     return res.render('MyCourses');
 })
 
-routes.get('/SolveQuestions', IsLoggedIn, function(req, res, next) {
-    // All_QUESTIONS_COLLECTION.find()
-    // .then(result => {
-    //     res.status(200).json({
-    //         questionsData:result
-    //     });
-    // })
-    // .catch (err=>{
-    //     console.log(err);
-    // })
-    res.render('SolveQuestions');
+routes.get('/signup', IsLoggedIn, function(req, res) {
+    return res.render('signup');
 })
+
+// routes.get('/SolveQuestions', IsLoggedIn, function(req, res, next) {
+//     res.render('SolveQuestions');
+// })
 
 
 module.exports = routes;

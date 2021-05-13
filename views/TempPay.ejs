@@ -70,10 +70,7 @@
 <section  id="top-navbar">  
     <div id="side-menu" class="side-nav">
       <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-      <a href="#" id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></a>
-      <a href="MyCourses">My Courses</a>
-      <a href="../QuarkXAcademy">QuarkX Academy</a>
-      <a href="../QuarkX">QuarkX Home</a>
+      <a href="../signup"><div id="logOutTxt">SIGN IN / REGISTER</div></a>
     </div>
  </section>
 
@@ -100,6 +97,8 @@
 
 <iframe id="courseVideo" src="https://www.youtube.com/embed/UlLVt72uQ0A?rel=0" title="QuarkX Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+<!-- <a href="../QuarkXAcademy/MyCourses"><button class="w3-pink" id="myCoursesBtn" style="visibility: hidden; display:none">My Courses</button></a> -->
+
 <div id="perksDiv" class="w3-center">
     <ul id="perksList">
         <li id ="perks">
@@ -120,7 +119,7 @@
         </li>
         <li id ="perks">
             <div id="HeadingTxt">Best Pricing</div>
-            <div id="contentTxt">With take a little and give a lot concept, we value your money and your child's education.</div>
+            <div id="contentTxt">With 'take a little and give a lot' concept, we value your money and your child's education.</div>
         </li>
         <li id ="perks">
             <div id="HeadingTxt">7 Day Free Trial</div>
@@ -151,7 +150,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-
     const ul = document.querySelectorAll('ul');
     var ClassSel = $("#CousesList li #ClassSel").text();
     var CourseSel = $("#CousesList li #CourseSel").text();
@@ -194,10 +192,7 @@
         xmlHttp.send(JSON.stringify(params));
 
     });
-
-
 </script>
-
 
 </body>
 </html>

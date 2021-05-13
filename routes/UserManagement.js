@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 var USER_PROFILE_COLLECTION= require("../models/USER_PROFILE_COLLECTION");
 const COURSE_IMG_COLLECTION = require ("../models/COURSE_IMG_COLLECTION");
+var USER_PREMIUM_COLLECTION= require("../models/USER_PREMIUM_COLLECTION");
 
 router.use(express.json());
 const mongoose = require("mongoose");
@@ -256,10 +257,53 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
 
   router.post("/Login",passport.authenticate('local'), async function (req, res) {
      // res.status(200).json({Errcode:0,ResMsg: 'You are successfully logged in!'});
+        
+     try{
+
+
+         //Fetch User Name
+        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+        let username = userStr.USERNAME;
+
+        username = username.substr(0, username.indexOf(' '));
+
+        let isCourseFlag = 0;
+
+        let MyCoursesArr = await USER_PREMIUM_COLLECTION.find({EMAIL:req.user.EMAIL});
+
+        let availableCourses=[];
+        let availableClasses = [];
+
+        let currentDateTime = moment(Date.now());
+        var timediffinsec;
+        var y = 0;
      
-     let allCourses =await COURSE_IMG_COLLECTION.find({});
-     
-     res.render('TempPay', {Courses: allCourses});
+        for(let i=0;i<MyCoursesArr.length;i++)
+        {
+            timediffinsec = parseInt(moment.duration(currentDateTime.diff(MyCoursesArr[i] && MyCoursesArr[i].EXPIRY_DATE_TIME)).asSeconds(),10);
+            if(timediffinsec < 0) {
+                availableCourses[y++] = MyCoursesArr[i].COURSE_ID;
+                availableClasses[y++] = MyCoursesArr[i].CLASS_ID;
+            }
+        }
+
+        if(availableCourses.length > 0 || availableClasses.length > 0) {
+          isCourseFlag = 1;
+          let allCourses =await COURSE_IMG_COLLECTION.find({CLASS_ID: { $in: availableClasses }, COURSE_ID: { $in: availableCourses }}).select().populate('LeaderBoardToProfileJoin');
+          res.render('PaidHomePage', {Courses: allCourses, username: username});
+          return;
+        }
+
+        if(isCourseFlag == 0) { 
+          let allCourses =await COURSE_IMG_COLLECTION.find({}).select().populate('LeaderBoardToProfileJoin');
+          res.render('TempPay', {Courses: allCourses});
+          return;
+        }
+      }
+      catch(err){
+        res.render('error');
+      }
+
     });
         
   router.get('/Logout',async function(req,res){
@@ -267,14 +311,17 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
     {
     await req.session.destroy();
    // res.status(200).json({Errcode:0,ResMsg:"you have successfully Logged out"});
-   res.render('signupErr', {ErrCode: 2, ResMsg: "You have successfully Logged Out"});  
+   //res.render('signupErr', {ErrCode: 2, ResMsg: "You have successfully Logged Out"});  
    //logger.info(`${req.baseUrl+req.url} api response-${req.user && req.user.username} have successfully logged out`);
-
+      let allCourses =await COURSE_IMG_COLLECTION.find({});   
+      res.render('TempPay', {Courses: allCourses});
+      return;
     }
     catch(err)
     {
-        res.json({Errcode:2,ResMsg:err.message});
+        //res.json({Errcode:2,ResMsg:err.message});
        // logger.info(`${req.baseUrl+req.url} api error-${err.message}`);
+        res.render('error');
     }
    });
 

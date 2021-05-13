@@ -7,7 +7,6 @@
 	color:white;
 	padding: 7vw;
 	background-color: black;
-
 }	
 
 #Chapters {
@@ -119,7 +118,7 @@
   animation: glow 1s ease-in-out infinite alternate;
 }
 
-#userName {
+#username {
 	margin-bottom: 1vw;
 	font-family: cursive;
 	text-decoration: none;
@@ -128,6 +127,19 @@
 #userImage {
 	height: 7vw;
 	width: 7vw;
+}
+
+#myCoursesTxt {
+	font-family: 'Times New Roman', Times, serif;
+	text-transform: uppercase;
+	color:white;
+	margin-top: 2vw;
+	font-size: 2vw;
+}
+
+#logOutTxt {
+	font-family: 'Times New Roman', Times, serif;
+	text-decoration: none;
 }
 
 @keyframes glow {
@@ -260,4 +272,34 @@
 		border-radius: 8px;
 	}
 
+		
+	#logOutTxt {
+		color: white;
+		font-size: 5vw;
+		font-family: 'Times New Roman', Times, serif;
+		text-decoration: none;
+	}
+
+	#username {
+		margin-bottom: 1vw;
+		font-family: cursive;
+		text-decoration: none;
+		font-size: 5vw;
+		color:white;
+		margin-left:9vw;
+	}
+
+	#userImage {
+		height: 24vw;
+		width: 24vw;
+	}
+
+	#myCoursesTxt {
+		font-family: 'Times New Roman', Times, serif;
+		text-transform: uppercase;
+		color:white;
+		margin-top: 10vw;
+		font-size: 5vw;
+	}
+	
 }

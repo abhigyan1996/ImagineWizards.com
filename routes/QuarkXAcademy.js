@@ -56,6 +56,12 @@ router.post("/TrialPurchase",IsLoggedIn, async function (req, res, next) {
 
 router.get("/MyCourses", IsLoggedIn, async function(req, res, next) {
     try{
+        
+        //Fetch User Name
+        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+        let username = userStr.USERNAME;
+        username = username.substr(0, username.indexOf(' '));
+        
         let MyCoursesArr = await USER_PREMIUM_COLLECTION.find({EMAIL:req.user.EMAIL});
 
         if(MyCoursesArr.length == 0) {
@@ -68,13 +74,14 @@ router.get("/MyCourses", IsLoggedIn, async function(req, res, next) {
 
         let currentDateTime = moment(Date.now());
         var timediffinsec;
-     
+        let y = 0;
+
         for(let i=0;i<MyCoursesArr.length;i++)
         {
             timediffinsec = parseInt(moment.duration(currentDateTime.diff(MyCoursesArr[i] && MyCoursesArr[i].EXPIRY_DATE_TIME)).asSeconds(),10);
             if(timediffinsec < 0) {
-                availableCourses[i] = MyCoursesArr[i].COURSE_ID;
-                availableClasses[i] = MyCoursesArr[i].CLASS_ID;
+                availableCourses[y++] = MyCoursesArr[i].COURSE_ID;
+                availableClasses[y++] = MyCoursesArr[i].CLASS_ID;
             }
         }
 
@@ -87,12 +94,10 @@ router.get("/MyCourses", IsLoggedIn, async function(req, res, next) {
 
        // res.send("You have subscribed courses available");
         
-       res.render('MyCourses',{allCourses:allCourses});
+       res.render('MyCourses',{allCourses:allCourses, username:username});
        return;
     }
-
        // 
-
     catch(err)
     {
       res.send("Error occured");
@@ -317,7 +322,8 @@ router.post('/SolveQuestions', IsLoggedIn, async function(req, res, next) {
 
      //Fetch User Name
      let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-     let userName = userStr.USERNAME;
+     let username = userStr.USERNAME;
+     username = username.substr(0, username.indexOf(' '));
 
     let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL});
     let AttemptedQuestionArray=[];
@@ -329,7 +335,7 @@ router.post('/SolveQuestions', IsLoggedIn, async function(req, res, next) {
     let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID: { $nin: AttemptedQuestionArray },CONCEPT_ID:req.body.Concept, CHAPTER_ID:req.body.Chapter, COURSE_ID:req.body.Course, CLASS_ID:req.body.Class});
     if(NewQuestion)
     {
-        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, userName: userName});
+        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
         return;
     }
     else
@@ -388,7 +394,7 @@ router.post('/SolveQuestions', IsLoggedIn, async function(req, res, next) {
                 
                   res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                    SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                   Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum
+                   Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
                  });
                 return;
         }
@@ -421,7 +427,8 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
 
          //Fetch User Name
          let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-         let userName = userStr.USERNAME;
+         let username = userStr.USERNAME;
+         username = username.substr(0, username.indexOf(' '));
 
          console.log(req.body.inputAns);
 
@@ -485,7 +492,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                     let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:{ $nin: AttemptedQuestionArray }, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
                     if(NewQuestion)
                     {
-                        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, userName: userName});
+                        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
                         return;
                     }
                     else
@@ -539,7 +546,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                      
                        res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                         SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
                       });
                      return;
                     }
@@ -563,7 +570,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                     let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:req.body.quesID, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
                     if(NewQuestion)
                     {
-                        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, userName: userName});
+                        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
                         return;
                     }
                     else
@@ -617,7 +624,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                      
                        res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                         SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
                       });
                      return;
                     }
@@ -656,7 +663,9 @@ router.post('/NextQuestion', IsLoggedIn, async function(req, res, next) {
          
          //Fetch User Name
        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-       let userName = userStr.USERNAME;
+       let username = userStr.USERNAME;
+       username = username.substr(0, username.indexOf(' '));
+
 
         try {
             let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL});
@@ -669,7 +678,7 @@ router.post('/NextQuestion', IsLoggedIn, async function(req, res, next) {
             let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:{ $nin: AttemptedQuestionArray }, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
             if(NewQuestion)
             {
-                res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, userName: userName});
+                res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
                 return;
             }
             else
@@ -723,7 +732,7 @@ router.post('/NextQuestion', IsLoggedIn, async function(req, res, next) {
                      
                        res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                         SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
                       });
                      return;
                     }
@@ -758,7 +767,9 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
 
         //Fetch User Name
         let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-        let userName = userStr.USERNAME;
+        let username = userStr.USERNAME;
+        username = username.substr(0, username.indexOf(' '));
+
 
         let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1});;
         let AttemptedQuestionArray=[];
@@ -776,7 +787,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
         let NewQuestion =await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:quesId, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
         if (NewQuestion) {
             quesNum++;
-            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, userName: userName, quesNum: quesNum});
+            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, quesNum: quesNum});
             return;
         }
 
@@ -831,7 +842,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
                     res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                         SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
                         Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                        ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum
+                        ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
                     });  
                     return;
                 }
@@ -839,7 +850,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
             res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                 SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
                 Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum
+                ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
             });
 
         }
@@ -864,7 +875,8 @@ router.post('/ShowChapters', IsLoggedIn, async function(req,res,next) {
     
        //Fetch User Name
        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-       let userName = userStr.USERNAME;
+       let username = userStr.USERNAME;
+       username = username.substr(0, username.indexOf(' '));
 
         let ChapArr = await CHAPTER_IMG_COLLECTION.find({CLASS_ID:req.body.ClassId,COURSE_ID:req.body.CourseId}).sort({CHAPTER_NUM: 1});  
         let Chapter = null;
@@ -937,10 +949,10 @@ router.post('/ShowChapters', IsLoggedIn, async function(req,res,next) {
         let trialFlag = premiumData.TRIAL_FLAG;
 
         if(trialFlag == 1) {
-            res.render('AllChaptersTrial',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, userName: userName});
+            res.render('AllChaptersTrial',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username});
          }
         else {
-            res.render('ChaptersConcepts',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, userName: userName});
+            res.render('ChaptersConcepts',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username});
         }
         return;
     }
@@ -964,7 +976,8 @@ router.post('/ShowConcepts', IsLoggedIn, async function(req,res,next) {
        
        //Fetch User Name
        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-       let userName = userStr.USERNAME;
+       let username = userStr.USERNAME;
+       username = username.substr(0, username.indexOf(' '));
 
        //NEWLY ADDED. Don't Show Concepts if Course is not subscribed.
 
@@ -1042,7 +1055,7 @@ router.post('/ShowConcepts', IsLoggedIn, async function(req,res,next) {
          }
         console.log("SolvedPercent", SolvedPercent);
         
-        res.render('AllConcepts',{Concepts:ConceptsArr,CourseId:req.body.CourseId, ChapterId:req.body.ChapterId, ClassId:req.body.ClassId, SolvedPercent: SolvedPercent, TotalConcepts: ConceptsArr.length, userName: userName, ChapNum: req.body.ChapNum});
+        res.render('AllConcepts',{Concepts:ConceptsArr,CourseId:req.body.CourseId, ChapterId:req.body.ChapterId, ClassId:req.body.ClassId, SolvedPercent: SolvedPercent, TotalConcepts: ConceptsArr.length, username: username, ChapNum: req.body.ChapNum});
         //  res.json({ResMsg:ConceptsArr});
         return;
     }
@@ -1058,6 +1071,11 @@ router.post('/ShowConcepts', IsLoggedIn, async function(req,res,next) {
 router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
 
     try{
+         //Fetch User Name
+         let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+         let username = userStr.USERNAME;
+         username = username.substr(0, username.indexOf(' '));
+
         if(!(req.body.Class && req.body.Course && req.body.Chapter && req.body.Concept && req.body.ChapNum && req.body.ConceptNum)) {
             res.json({ResMsg:"Invalid request parameters"});
             return;
@@ -1133,7 +1151,7 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
                 res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                     SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
                     Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                    ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum
+                    ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
                 });  
                 return;
             }
@@ -1141,7 +1159,7 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
         res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
             SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
             Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-            ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum
+            ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
           });
     }
 
@@ -1171,10 +1189,10 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
         
 
         //Fetch User Name
-       let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-       let userName = userStr.USERNAME;
-
-      
+        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+        let username = userStr.USERNAME;
+        username = username.substr(0, username.indexOf(' '));
+        
     let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL});
     let AttemptedQuestionArray=[];
     for(let i=0;i<AttemptedQuestionList.length;i++)
@@ -1185,7 +1203,7 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
     let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID: { $nin: AttemptedQuestionArray },CONCEPT_ID:req.body.Concept, CHAPTER_ID:req.body.Chapter, COURSE_ID:req.body.Course, CLASS_ID:req.body.Class});
     if(NewQuestion)
     {
-        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, userName: userName});
+        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
         return;
     }
     else
@@ -1244,7 +1262,7 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
                 
                   res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                    SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                   Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum
+                   Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
                  });
                 return;
         }
@@ -1275,7 +1293,8 @@ router.post('/OrderDetails', IsLoggedIn, async function(req, res) {
 
              //Fetch User Name
        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-       let userName = userStr.USERNAME;
+       let username = userStr.USERNAME;
+       username = username.substr(0, username.indexOf(' '));
 
         let selectedCourse =await COURSE_IMG_COLLECTION.findOne({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});
         let DbPrice = selectedCourse.PRICE;
@@ -1285,7 +1304,7 @@ router.post('/OrderDetails', IsLoggedIn, async function(req, res) {
             return;
         }
 
-        res.render('OrderDetails', {Class:req.body.Class, Course:req.body.Course, Price:req.body.Price, FullPrice:4999, orderId:req.body.orderId, CourseImg: selectedCourse.BUY_COURSE_IMG, Email: req.user.EMAIL, username: userName});
+        res.render('OrderDetails', {Class:req.body.Class, Course:req.body.Course, Price:req.body.Price, FullPrice:4999, orderId:req.body.orderId, CourseImg: selectedCourse.BUY_COURSE_IMG, Email: req.user.EMAIL, username: username});
         return;
 
     }

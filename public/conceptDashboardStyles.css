@@ -233,6 +233,34 @@ table {
 	  font-family: 'Franklin Gothic Medium';
   }
 
+  #logOutTxt {
+	color: white;
+	font-size: 1.5vw;
+	font-family: 'Times New Roman', Times, serif;
+	text-decoration: none;
+}
+
+#username {
+	margin-bottom: 1vw;
+	font-family: cursive;
+	text-decoration: none;
+	font-size: 1.5vw;
+	color:white;
+	margin-left:2vw;
+}
+
+#userImage {
+	height: 7vw;
+	width: 7vw;
+}
+
+#myCoursesTxt {
+	font-family: 'Times New Roman', Times, serif;
+	text-transform: uppercase;
+	color:white;
+	margin-top: vw;
+	font-size: 2vw;
+}	
 
   @media only screen and (max-width:600px){
 
@@ -414,6 +442,26 @@ table {
 			margin-top: 2vw;
 			font-family: 'Alegreya', serif;
 		}
+		#logOutTxt {
+			color: white;
+			font-size: 5vw;
+			font-family: 'Times New Roman', Times, serif;
+			text-decoration: none;
+		}
 		
+		#username {
+			margin-bottom: 1vw;
+			font-family: cursive;
+			text-decoration: none;
+			font-size: 5vw;
+			color:white;
+			margin-left:9vw;
+		}
+		
+		#userImage {
+			height: 24vw;
+			width: 24vw;
+		}
+			
 		
 }

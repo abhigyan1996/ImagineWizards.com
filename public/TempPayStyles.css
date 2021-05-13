@@ -120,6 +120,62 @@
 	height: 5vw;
 }
 
+#userName {
+	margin-bottom: 1vw;
+	font-family: cursive;
+	text-decoration: none;
+}
+
+#userImage {
+	height: 7vw;
+	width: 7vw;
+}
+
+
+#myCoursesBtn{
+	font-size: 2.5vw;
+	margin-left: 43vw;
+	border: none;
+	padding: 0.75vw;
+	border-radius: 0.5vw;
+	margin-top: 2vw;
+}
+
+
+#myCoursesBtn{
+	font-family: cursive;
+	font-size: 3.25vw;
+	margin-left: 30vw;
+	margin-top: 3vw;
+	padding: 5vw;
+	width: 40vw;
+	background-size: 300% 300%;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+	/* background-image: linear-gradient(to right, #3F76FF 0%, #5FFF3F 50%, #3F76FF 100%); */
+	background-image: linear-gradient(to right, hsla(313, 88%, 54%, 0.452) 0%, #3F76FF 50%, hsla(313, 88%, 54%, 0.452) 100%);
+	transition: 0.5s;
+}
+
+#myCoursesBtn:hover {
+	background-position: right center;
+  }
+
+#logOutTxt {
+	color: white;
+	font-size: 1.5vw;
+	font-family: 'Times New Roman', Times, serif;
+	text-decoration: none;
+}
+
+#username {
+	margin-bottom: 1vw;
+	font-family: cursive;
+	text-decoration: none;
+	font-size: 1.5vw;
+	color:white;
+	margin-left:2vw;
+}
+
    @media only screen and (max-width:600px){
 	#QuarksLogo{
 		margin-left: -4vw;
@@ -147,7 +203,7 @@
 		height:104vw;
 		width: 79vw;
 		border-radius: 1vw;
-		margin-left: 10.5vw;
+		margin-left: 0vw;
 		margin-right: 10.5vw;
 	}
 		
@@ -221,7 +277,7 @@
 
 #pickCourseTxt {
 	text-align: center;
-	font-size: 5.25vw;
+	font-size: 7vw;
 	text-transform: uppercase;
 	color:black;
 	padding-top: 2vw;
@@ -251,5 +307,39 @@
 	height: 15vw;
 }
 
+#myCoursesBtn{
+	font-family: 'Alegreya', serif;
+	font-size: 6.5vw;
+	margin-left: 10vw;
+	margin-top: 5vw;
+	padding: 8vw;
+	width: 80vw;
+	background-size: 300% 300%;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+	background-image: linear-gradient(to right, hsla(313, 88%, 54%, 0.452) 0%, #3F76FF 50%, hsla(313, 88%, 54%, 0.452) 100%);
+	transition: 0.5s;
+	border-radius: 5px;
+}
+
+#logOutTxt {
+	color: white;
+	font-size: 5vw;
+	font-family: 'Times New Roman', Times, serif;
+	text-decoration: none;
+}
+
+#username {
+	margin-bottom: 1vw;
+	font-family: cursive;
+	text-decoration: none;
+	font-size: 5vw;
+	color:white;
+	margin-left:9vw;
+}
+
+#userImage {
+	height: 24vw;
+	width: 24vw;
+}
 
 }
