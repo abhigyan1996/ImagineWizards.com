@@ -289,13 +289,13 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
 
         if(availableCourses.length > 0 || availableClasses.length > 0) {
           isCourseFlag = 1;
-          let allCourses =await COURSE_IMG_COLLECTION.find({CLASS_ID: { $in: availableClasses }, COURSE_ID: { $in: availableCourses }}).select().populate('LeaderBoardToProfileJoin');
+          let allCourses =await COURSE_IMG_COLLECTION.find({CLASS_ID: { $in: availableClasses }, COURSE_ID: { $in: availableCourses }});
           res.render('PaidHomePage', {Courses: allCourses, username: username});
           return;
         }
 
         if(isCourseFlag == 0) { 
-          let allCourses =await COURSE_IMG_COLLECTION.find({}).select().populate('LeaderBoardToProfileJoin');
+          let allCourses =await COURSE_IMG_COLLECTION.find({});
           res.render('TempPay', {Courses: allCourses});
           return;
         }
