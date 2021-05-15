@@ -30,17 +30,17 @@ routes.get('/PostQuestions',IsLoggedIn, function(req, res) {
     return res.render('PostQuestions');
 })
 
-routes.get('/ConceptDashboard',IsLoggedIn, function(req, res) {
-    return res.render('ConceptDashboard');
-})
+// routes.get('/ConceptDashboard',IsLoggedIn, function(req, res) {
+//     return res.render('ConceptDashboard');
+// })
 
-routes.get('/ConceptDashboardComplete',IsLoggedIn, function(req, res) {
-    return res.render('ConceptDashboardComplete');
-})
+// routes.get('/ConceptDashboardComplete',IsLoggedIn, function(req, res) {
+//     return res.render('ConceptDashboardComplete');
+// })
 
-routes.get('/ChaptersConcepts',IsLoggedIn, function(req, res) {
-    return res.render('ChaptersConcepts');
-})
+// routes.get('/ChaptersConcepts',IsLoggedIn, function(req, res) {
+//     return res.render('ChaptersConcepts');
+// })
 
 routes.get('/ResetPassword', function(req, res) {
     return res.render('ResetPassword');

@@ -3,10 +3,12 @@
 	margin-top: 7.75vw;
 	width: 90vw;
 	margin-left:5vw;
-	border-radius: 1vw;
-	padding-bottom: 3vw;
-	padding-top: 2.5vw;
+	padding-top: 0vw;
 	background-color: white;
+}
+
+body{
+	background-color: #393839;
 }
 
 #orderHeadings {
@@ -20,10 +22,17 @@
 #headTitle {
 	font-size: 2.25vw;
 	margin-top: 0vw;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One', cursive;
+	font-family: 'Lora', serif;
+	font-weight: bold;
 }
 
 #headSubtitle {
 	font-size: 1.75vw;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One', cursive;
+	font-family: 'Lora', serif;
 	color:#393839"
 }
 
@@ -32,18 +41,28 @@
 	/* color: rgb(21, 182, 21); */
 	color: #4FCF00;
 	margin-top: 2vw;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One', cursive;
+	font-family: 'Lora', serif;
+	font-weight: bold;
 }
 
 #TxtPrice {
 	margin-top: 2vw;
 	font-size: 2.5vw;
 	display: inline-block;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One', cursive;
+	font-family: 'Lora', serif;
 }
 
 #TxtFullPrice{
 	font-size: 1.85vw;
 	color:dimgray;
 	margin-left: 2vw;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One', cursive;
+	font-family: 'Lora', serif;
 }
 
 #discountTxt {
@@ -51,17 +70,25 @@
 	color: #4FCF00;
 	font-size: 1.85vw;
 	margin-left: 2vw;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One', cursive;
+	font-family: 'Lora', serif;
+	font-weight: bold;
 }
 
 #validityTxt{
 	font-size: 1.75vw;
 	margin-top: 1.25vw;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One', cursive;
+	font-family: 'Lora', serif;	
+
 }
 
 #courseImg {
-	height:40vw;
+	height:45vw;
 	width: 30vw;
-	margin-top: 0vw;
+	margin-top: -5vw;
 	margin-left: 5vw;
 }
 
@@ -137,21 +164,23 @@
 		background-color: #f68331;
 		color: white;
 		border: none;
+		margin-left: -3vw;
 	}
 
 	#orderHeadings {
 		float: left;
-		font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 		margin-top: 12vw;
-		padding-bottom: 3vw;
 		margin-left: 3vw;
+		font-family: 'Alegreya', serif;
+		font-family: 'Concert One', cursive;
+		font-family: 'Lora', serif;
 	}
 	
 	#courseImg {
-		height:108vw;
+		height:115vw;
 		width: 81vw;
 		margin-top: -4vw;
-		margin-left: 5vw;
+		margin-left: 0vw;
 	}
 	
 	#orderDetailsDiv {
@@ -216,6 +245,10 @@
 		margin-top: 3vw;
 		border: none;
 		padding:2vw;
+	}
+
+	#whiteStrip {
+		height: 20vw
 	}
 
 	

@@ -11,7 +11,7 @@
 }
 
 #courseImage{
-	height:32vw;
+	height:36vw;
 	width: 24vw;
 	border-radius: 1vw;
 	margin-top: 0vw;
@@ -55,7 +55,7 @@
 }
 
 #getBtn {
-	margin-top: 27vw;
+	margin-top: 32vw;
 	margin-left: -14vw;
 	position: absolute;
 	border-radius: 0.5vw;
@@ -200,7 +200,7 @@
 	}	
 
 	#courseImage{
-		height:104vw;
+		height:115vw;
 		width: 79vw;
 		border-radius: 1vw;
 		margin-left: 0vw;

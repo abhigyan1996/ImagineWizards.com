@@ -14,7 +14,7 @@
 }
 
 #quesNumRv{
-	font-family: 'Sans Serif Pro';
+	font-family: 'Alegreya', serif;
 	font-size: 1.5vw;
 	margin-left: 2vw;
 	margin-top: 2vw;
@@ -23,7 +23,7 @@
 }
 
 #quesNum{
-	font-family: 'Sans Serif Pro';
+	font-family: 'Alegreya', serif;
 	font-size: 1.5vw;
 	margin-left: 2vw;
 	margin-top: 10vw;
@@ -51,7 +51,7 @@
 
 #OptionsTxt{
 	font-weight: 900;
-	font-family: 'Sans Serif Pro';
+	font-family: 'Alegreya', serif;
 	font-size: 1.5vw;
 	margin-left: 2vw;
 	margin-top: 4vw;
@@ -75,7 +75,7 @@
 
 #optionsA {
 	box-shadow: 2px 2px 2px 2px #bbb;
-	font-family: 'Sans Serif Pro';
+	font-family: 'Alegreya', serif;
 	font-size: 1.5vw;
 	padding: 0.8vw;
 	border-radius: 8px;
@@ -85,7 +85,7 @@
 
 #optionsB {
 	box-shadow: 2px 2px 2px 2px #bbb;
-	font-family: 'Sans Serif Pro';
+	font-family: 'Alegreya', serif;
 	font-size: 1.5vw;
 	padding: 1vw;
 	border-radius: 8px;
@@ -94,7 +94,7 @@
 
 #optionsC {
 	box-shadow: 2px 2px 2px 2px #bbb;
-	font-family: 'Sans Serif Pro';
+	font-family: 'Alegreya', serif;
 	font-size: 1.5vw;
 	padding: 1vw;
 	border-radius: 8px;
@@ -104,7 +104,7 @@
 
 #optionsD {
 	box-shadow: 2px 2px 2px 2px #bbb;
-	font-family: 'Sans Serif Pro';
+	font-family: 'Alegreya', serif;
 	font-size: 1.5vw;
 	padding: 1vw;
 	border-radius: 8px;
@@ -132,7 +132,7 @@
 }
 
 #NextQuesBtn, #submitAnsBtn, #NextQuesBtnRv {
-	font-family: cursive;
+	font-family: 'Alegreya', serif;
 	margin-left: 72vw;
 	font-size: 1.75vw;
 	border-radius: 8px;
@@ -185,14 +185,14 @@
 }
 
 #quesNum, #quesNumRv, #questionWithImg, #questionNoImg, #OptionsTxt, #ExpA, #ExpB, #ExpC #ExpD, #optionsA, #optionsB, #optionsC, #optionsD {
-	font-family: cursive;
+	font-family: 'Alegreya', serif;
 }
 
 #AnsFeedback {
 	background-color: aqua;
 	margin: auto;
 	width: 50%;
-	font-family: cursive;
+	font-family: 'Alegreya', serif;
 	font-size: 1.5vw;
 	padding: 0.25vw;
 	visibility: hidden;
@@ -244,7 +244,7 @@
 #endPracticeBtn {
 	position: absolute;
 	font-size: 1.25vw;
-	font-family: cursive;
+	font-family: 'Alegreya', serif;
 	margin-left: 17vw;
 	margin-top: 2vw;
 	border-radius: 1vw;

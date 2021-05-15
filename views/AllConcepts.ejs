@@ -118,7 +118,7 @@
         <input type="text" id="skipLength" value=<%=SkipQuestionLength%>>
         <input type="text" id="totalLength" value=<%=TotalQuestionLength%>>
     </form>
-    
+
       <figure>
         <div class="graphic">
       
@@ -126,19 +126,15 @@
             <div class="chart">
               <span class="block" title="Correct">
                  <span id="correctPercent" class="value w3-hide"></span>
-                 <span id="correctPercentDisplay"></span>
               </span>
               <span class="block" title="Wrong">
                  <span id="wrongPercent" class="value w3-hide"></span>
-                 <span id="wrongPercentDisplay"></span>
               </span>
               <span class="block" title="Skipped">
                  <span id="skipPercent" class="value w3-hide"></span>
-                 <span id="skipPercentDisplay"></span>
               </span>
               <span class="block" title="Unattempted">
                  <span id="unattemptedPercent" class="value w3-hide"></span>
-                 <span id="unattemptedPercentDisplay"></span>
               </span>
             
             </div>
@@ -153,7 +149,13 @@
           <div id="IndicatorTxt"> <span style="color:#1596CD">&#9679</span> <span style="color:white">Skipped</span> </div>
           <div id="IndicatorTxt"> <span style="color:#565454">&#9679</span> <span style="color:white">Unattempted</span> </div>
       </div>
-  
+      
+    <div id="colorId2"> 
+        <div id="IndicatorTxtC"><span id="correctCount" style="color:white"></span> </div>
+        <div id="IndicatorTxtW"><span id="wrongCount" style="color:white"></span> </div>
+        <div id="IndicatorTxtS"><span id="skipCount" style="color:white"></span> </div>
+        <div id="IndicatorTxtU"><span id="unattemptedCount" style="color:white"></span> </div>
+    </div>
 
     <div id="chapterConceptCard">
       <!-- <div id="Chapters">Averages</div> -->
@@ -241,7 +243,6 @@
 
 <script>
 //var i = 0;
-var i = [0,0,0];
 
 function move() {
 
@@ -295,34 +296,11 @@ function move() {
   document.getElementById('skipPercent').innerHTML = skipPercent + "%";
   document.getElementById('unattemptedPercent').innerHTML = unattemptedPercent + "%";
   
-  if (correctPercent>9) {
-    document.getElementById('correctPercentDisplay').innerHTML = correctPercent.toString().substr(0,4) + "%";
-  }
-  else {
-    document.getElementById('correctPercentDisplay').innerHTML = correctPercent.toString().substr(0,3) + "%";
-  }
-  
-  if (wrongPercent>9) {
-    document.getElementById('wrongPercentDisplay').innerHTML = wrongPercent.toString().substr(0,4) + "%";
-  }
-  else {
-    document.getElementById('wrongPercentDisplay').innerHTML = wrongPercent.toString().substr(0,3) + "%";
-  }
-  
-  if (skipPercent>9) {
-    document.getElementById('skipPercentDisplay').innerHTML = skipPercent.toString().substr(0,4) + "%";
-  }
-  else {
-    document.getElementById('skipPercentDisplay').innerHTML = skipPercent.toString().substr(0,3) + "%";
-  }
-  
-  if (unattemptedPercent>9) {
-    document.getElementById('unattemptedPercentDisplay').innerHTML = unattemptedPercent.toString().substr(0,4) + "%";
-  }
-  else {
-    document.getElementById('unattemptedPercentDisplay').innerHTML = unattemptedPercent.toString().substr(0,3) + "%";
-  }
-  
+  document.getElementById('correctCount').innerHTML = "(" + correctLength + ")";
+  document.getElementById('wrongCount').innerHTML = "(" + wrongLength +  ")";
+  document.getElementById('skipCount').innerHTML = "(" +  skipLength + ")";
+  document.getElementById('unattemptedCount').innerHTML = "(" +  unattemptedLength + ")";
+
   
   $('.value').each(function() {
     var text = $(this).text();

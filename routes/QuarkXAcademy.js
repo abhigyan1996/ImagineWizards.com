@@ -473,10 +473,6 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                      let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
                      let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
                 
-                     //  let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
-                    //  let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-                    //  let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
-        
                     let CorrectQuestionList=[];
                     let SkipQuestionList=[];
                     let WrongQuestionList=[];
@@ -494,23 +490,6 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                        }
                    }
                    
-                   
-                    // if(!TotalQuestionList) {
-                    //     TotalQuestionList.length = 0;
-                    // }
-                    
-                    // if(!CorrectQuestionList) {
-                    //     CorrectQuestionList.length = 0;
-                    // }
-            
-                    // if(!SkipQuestionList) {
-                    //     SkipQuestionList.length = 0;
-                    // }
-            
-                    // if(!WrongQuestionList) {    
-                    //     WrongQuestionList.length = 0;
-                    // }
-                    
                     var correctScore = CorrectQuestionList.length * 4;
                     var wrongScore = -(WrongQuestionList.length * 1);
                     var accuracy = 0;
@@ -531,13 +510,16 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                             break;
                         }
                     }
-                    console.log(userRank);
                              
                     //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
                      
-                       res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
+                    //Newly Added for Restarts
+                    let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
+                    let restarts = leaderboardData.RESTARTS;
+
+                    res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                         SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts: restarts
                       });
                      return;
                     }
@@ -626,13 +608,15 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                          break;
                         }
                     }
-                    console.log(userRank);
-                        
+                    
+                    let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
+                    let restarts = leaderboardData.RESTARTS;
+
                     //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
                      
                        res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                         SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts
                       });
                      return;
                     }
@@ -754,13 +738,15 @@ router.post('/NextQuestion', IsLoggedIn, async function(req, res, next) {
                          break;
                         }
                     }
-                    console.log(userRank);
-                        
+
+                    let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
+                    let restarts = leaderboardData.RESTARTS;
+
                     //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
                      
                        res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                         SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts
                       });
                      return;
                     }
@@ -879,16 +865,17 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
                 break;
                 }
             }
-            console.log(userRank);
-                
             //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
 
             if(TotalQuestionList.length == SolvedQList.length)
                 {
+                    let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
+                    let restarts = leaderboardData.RESTARTS;
+                
                     res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                         SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
                         Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                        ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+                        ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts
                     });  
                     return;
                 }
@@ -1221,16 +1208,18 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
              break;
             }
         }
-        console.log(userRank);
-            
+    
         //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
 
-        if(TotalQuestionList.length == (CorrectQuestionList.length + WrongQuestionList.length +  SkipQuestionList.length))
+        if(TotalQuestionList.length == SolvedQList.length)
             {
+                let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
+                let restarts = leaderboardData.RESTARTS;
+
                 res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                     SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
                     Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                    ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+                    ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts: restarts
                 });  
                 return;
             }
@@ -1258,7 +1247,7 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
         let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
         if(leaderboardData && (leaderboardData.RESTARTS==0))
         {
-            res.send('No more restarts left');
+            res.send('No more restarts left for this concept.');
             return;
         }
 
@@ -1330,13 +1319,14 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
                     break;
                    }
                }
-               console.log(userRank);
-                   
+               let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
+               let restarts = leaderboardData.RESTARTS;
+              
                //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
                 
                   res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                    SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                   Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+                   Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts
                  });
                 return;
         }
@@ -1499,12 +1489,12 @@ router.post('/SolveLevelWiseQuestions', IsLoggedIn, async function(req, res, nex
                     break;
                 }
             }
-            console.log(userRank);
-                   
+            let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
+            let restarts = leaderboardData.RESTARTS;    
                 
             res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalLevelQuestionLength,CorrectQuestions:CorrectQuestionLength, 
             SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
-            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts
             });
             return;
         } 

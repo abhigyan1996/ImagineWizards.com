@@ -68,7 +68,7 @@
     </script>
 
 
-<body style="width:100vw; min-width: 100vw; max-width: 100vw; overflow-x: hidden; background-color:#393839">
+<body style="width:100vw; min-width: 100vw; max-width: 100vw; overflow-x: hidden">
 
 
 <section  id="top-navbar">  
@@ -103,7 +103,7 @@
     <input name="Course" value=<%=Course%> type="text">
 </form>
 
-<div id="orderDetailsDiv" class="w3-card">
+<div id="orderDetailsDiv">
     <img id="courseImg"src=<%=CourseImg%>>
         <div id="orderHeadings">
             <!-- <div id="headTxt">USER NAME :</div>
@@ -122,11 +122,13 @@
 
             <div><button id="trialBtn">START A FREE TRIAL</button></div>
 
+            <div id="whiteStrip" class="w3-hide-large w3-hide-medium"> </div>
 
+            
+            <button class="w3-hide-large w3-hide-medium w3-bottom" id="rzp-button1Ph">BUY NOW</button> 
         </div>
         
 </div>
-<button class="w3-hide-large w3-hide-medium w3-bottom" id="rzp-button1Ph">BUY NOW</button> 
 
 
 <div class="w3-hide" id="OrderId"><%=orderId%></div>

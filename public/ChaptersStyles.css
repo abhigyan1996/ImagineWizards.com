@@ -1,12 +1,12 @@
 #SubjectName {
-	font-family: cursive;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	margin-top: 6vw;
 	/*font-family: 'Source Serif Pro';*/
 	font-size: 5vw;
 	text-transform: uppercase;
 	color:white;
 	padding: 7vw;
-	padding-bottom: 9vw;
+	padding-bottom: 12vw;
 	background-color: black;
 }	
 
@@ -16,12 +16,46 @@
 	margin-left: 5vw;
 }
 
+#IndicatorTxtCorrect {
+	margin-left: 20vw;
+}
+
+#IndicatorTxtC, #IndicatorTxtW, #IndicatorTxtS, #IndicatorTxtU {
+	display: inline-block;
+	font-size: 1.5vw;
+	text-align: center;
+	width:10vw;
+}
+
 #colorId {
 	margin-left: 20vw;
 	margin-top: -1vw;
-	margin-bottom: 2vw;
+	margin-bottom: 0.5vw;
 	width: 80vw;
 }
+
+#colorId2 {
+	margin-left: 0vw;
+	margin-bottom: 2vw;
+	width: 100vw;
+}
+
+#IndicatorTxtC {
+	margin-left: 23.5vw ;
+}
+
+#IndicatorTxtW {
+	margin-left: 0.8vw ;
+}
+
+#IndicatorTxtS {
+	margin-left: 1.5vw ;
+}
+
+#IndicatorTxtU {
+	margin-left: 3.25vw ;
+}
+
 
 #Chapters {
 	font-family: 'Source Serif Pro';
@@ -39,7 +73,7 @@
 	text-align: center;
 	margin-left: -0.5vw;
 	margin-top: 1vw;
-	font-family: cursive;
+	font-family: 'Lora', serif;
 }
 
 #conceptImage {
@@ -199,7 +233,7 @@
 		text-transform: uppercase;
 		color:white;
 		padding-top: 20vw;
-		padding-bottom: 20vw;	
+		padding-bottom: 40vw;	
 		margin-top: 19vw;
 		background-color: black;
 		max-width:100vw;
@@ -324,7 +358,7 @@ figure {
 }
 .graphic {
 	padding-left: 30px;
-	margin-top: -7vw;
+	margin-top: -10vw;
 	margin-left: 15vw;
 	margin-right: 15vw;	
 }
@@ -429,13 +463,13 @@ figure {
 }
 .graphic {
 	padding-left: 0px;
-	margin-top: -20vw;
+	margin-top: -30vw;
 	margin-left: 10vw;
 	margin-right: 10vw;
 }
 
 .block {
-	height: 6vw;
+	height: 7vw;
 	font-size: .75em;
 }
 
@@ -447,11 +481,44 @@ figure {
 
 #colorId {
 	margin-left: 20vw;
-	margin-top: -3vw;
+	margin-top: 0vw;
 	margin-bottom: 8vw;
 	width:80vw;
 
 }
 
+#colorId2 {
+	margin-left: 0vw;
+	margin-bottom: 5vw;
+	width: 100vw;
+	margin-top: -7vw;
+}
+
+#IndicatorTxtCorrect {
+	margin-left: 20vw;
+}
+
+#IndicatorTxtC, #IndicatorTxtW, #IndicatorTxtS, #IndicatorTxtU {
+	display: inline-block;
+	font-size: 3.25vw;
+	text-align: center;
+	width:10vw;
+}
+
+#IndicatorTxtC {
+	margin-left: 23.5vw ;
+}
+
+#IndicatorTxtW {
+	margin-left: 3vw ;
+}
+
+#IndicatorTxtS {
+	margin-left: 3vw ;
+}
+
+#IndicatorTxtU {
+	margin-left: 8vw ;
+}
 
 }
