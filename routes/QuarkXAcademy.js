@@ -340,77 +340,15 @@ router.post('/SolveQuestions', IsLoggedIn, async function(req, res, next) {
     }
     else
     {
-        try
-        {
-            let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-            let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
-            let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-            let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
-
-            if(!TotalQuestionList) {
-                TotalQuestionList.length = 0;
-            }
-            
-            if(!CorrectQuestionList) {
-                CorrectQuestionList.length = 0;
-            }
-    
-            if(!SkipQuestionList) {
-                SkipQuestionList.length = 0;
-            }
-    
-            if(!WrongQuestionList) {    
-                WrongQuestionList.length = 0;
-            }
-            
-            var correctScore = CorrectQuestionList.length * 4;
-            var wrongScore = -(WrongQuestionList.length * 1);
-            var accuracy = 0;
-
-            accuracy = correctScore + wrongScore;
+        //no more questions
+        res.render('error');   
+        return;
+    }
+    }
         
-            //await STUDENT_LEADERBOARD_COLLECTION.update({EMAIL:req.user.EMAIL,ACCURACY:accuracy, CONCEPT_ID:req.body.Concept, CLASS_ID:req.body.Class, CHAPTER_ID: req.body.Chapter ,COURSE_ID: req.body.Course},{}, {upsert: true,setDefaultsOnInsert: true});
-
-            
-               //res.render (Leaderboard)
-
-               await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
-               let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
-               let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
-                //Add try catch may be?
-               let userRank=0;
-
-               for(let i=0;i<LeaderBoardList.length;i++)
-               {
-                   if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
-                   {
-                    userRank=i+1;
-                    break;
-                   }
-               }
-               console.log(userRank);
-                   
-               //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
-                
-                  res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
-                   SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                   Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
-                 });
-                return;
-        }
-
-        catch(err)
-        {
-            console.log("DB Connection Error: "+err.message);
-            res.status(200).json({ ErrCode: 7, ResMsg: "DB Connection Error"});
-            return;
-        }
-        //res.send("Concept Completed");
-     }
-   }
     catch(err)
     {
-        //logger
+        //something went wrong
         res.json({ResMsg:`Error occured- ${err.message}`});
         return;
     }
@@ -424,9 +362,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
             return;
             //logger
          }
-
          
-
          //Fetch User Name
          let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
          let username = userStr.USERNAME;
@@ -436,12 +372,31 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
 
          //NEWLY ADDED. LAST QUESTION ON SUBMIT WILL REFLECT ON LEADERBOARD IF NOT PROCEEDED.
          let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-         let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
-         let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-         let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
+         let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
+         
+        //  let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
+        //  let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
+        //  let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
+
+        //  let CorrectQuestionList=[];
+        //  let SkipQuestionList=[];
+        //  let WrongQuestionList=[];
+
+        //  for (let i = 0; i<SolvedQList.length;i++) {
+
+        //     if(SolvedQList[i].CORRECT_FLAG == 1) {
+        //         CorrectQuestionList.push(SolvedQList[i]);
+        //     }
+        //     else if(SolvedQList[i].CORRECT_FLAG == 0) {
+        //         WrongQuestionList.push(SolvedQList[i]);
+        //     }
+        //     else if(SolvedQList[i].CORRECT_FLAG == 2) {
+        //         SkipQuestionList.push(SolvedQList[i]);
+        //     }
+        // }
 
          //Update on Leaderboard only if concept is complete
-        if ((CorrectQuestionList.length + WrongQuestionList.length + SkipQuestionList.length) == TotalQuestionList.length) {
+        if (SolvedQList.length == TotalQuestionList.length) {
             await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
             let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
             //let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
@@ -516,25 +471,45 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                         try
                     {
                      let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-                     let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
-                     let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-                     let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
+                     let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
+                
+                     //  let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
+                    //  let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
+                    //  let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
         
-                    if(!TotalQuestionList) {
-                        TotalQuestionList.length = 0;
-                    }
+                    let CorrectQuestionList=[];
+                    let SkipQuestionList=[];
+                    let WrongQuestionList=[];
+           
+                    for (let i = 0; i<SolvedQList.length;i++) {
+           
+                       if(SolvedQList[i].CORRECT_FLAG == 1) {
+                           CorrectQuestionList.push(SolvedQList[i]);
+                       }
+                       else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                           WrongQuestionList.push(SolvedQList[i]);
+                       }
+                       else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                           SkipQuestionList.push(SolvedQList[i]);
+                       }
+                   }
+                   
+                   
+                    // if(!TotalQuestionList) {
+                    //     TotalQuestionList.length = 0;
+                    // }
                     
-                    if(!CorrectQuestionList) {
-                        CorrectQuestionList.length = 0;
-                    }
+                    // if(!CorrectQuestionList) {
+                    //     CorrectQuestionList.length = 0;
+                    // }
             
-                    if(!SkipQuestionList) {
-                        SkipQuestionList.length = 0;
-                    }
+                    // if(!SkipQuestionList) {
+                    //     SkipQuestionList.length = 0;
+                    // }
             
-                    if(!WrongQuestionList) {    
-                        WrongQuestionList.length = 0;
-                    }
+                    // if(!WrongQuestionList) {    
+                    //     WrongQuestionList.length = 0;
+                    // }
                     
                     var correctScore = CorrectQuestionList.length * 4;
                     var wrongScore = -(WrongQuestionList.length * 1);
@@ -594,26 +569,43 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                         try
                     {
                     let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-                    let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
-                    let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-                    let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
+                    let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
+                    // let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
+                    // let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
+                    // let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
         
-                    if(!TotalQuestionList) {
-                        TotalQuestionList.length = 0;
-                    }
+                    // if(!TotalQuestionList) {
+                    //     TotalQuestionList.length = 0;
+                    // }
                     
-                    if(!CorrectQuestionList) {
-                        CorrectQuestionList.length = 0;
-                    }
+                    // if(!CorrectQuestionList) {
+                    //     CorrectQuestionList.length = 0;
+                    // }
             
-                    if(!SkipQuestionList) {
-                        SkipQuestionList.length = 0;
-                    }
+                    // if(!SkipQuestionList) {
+                    //     SkipQuestionList.length = 0;
+                    // }
             
-                    if(!WrongQuestionList) {    
-                        WrongQuestionList.length = 0;
-                    }
-                    
+                    // if(!WrongQuestionList) {    
+                    //     WrongQuestionList.length = 0;
+                    // }
+                    let CorrectQuestionList=[];
+                    let SkipQuestionList=[];
+                    let WrongQuestionList=[];
+           
+                    for (let i = 0; i<SolvedQList.length;i++) {
+           
+                       if(SolvedQList[i].CORRECT_FLAG == 1) {
+                           CorrectQuestionList.push(SolvedQList[i]);
+                       }
+                       else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                           WrongQuestionList.push(SolvedQList[i]);
+                       }
+                       else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                           SkipQuestionList.push(SolvedQList[i]);
+                       }
+                   }
+                  
                     var correctScore = CorrectQuestionList.length * 4;
                     var wrongScore = -(WrongQuestionList.length * 1);
                     var accuracy = 0;
@@ -702,25 +694,45 @@ router.post('/NextQuestion', IsLoggedIn, async function(req, res, next) {
                 try
                     {
                     let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-                    let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
-                    let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-                    let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
+                    let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
+                 
+                    // let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
+                    // let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
+                    // let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
         
-                    if(!TotalQuestionList) {
-                        TotalQuestionList.length = 0;
-                    }
+                    // if(!TotalQuestionList) {
+                    //     TotalQuestionList.length = 0;
+                    // }
                     
-                    if(!CorrectQuestionList) {
-                        CorrectQuestionList.length = 0;
-                    }
+                    // if(!CorrectQuestionList) {
+                    //     CorrectQuestionList.length = 0;
+                    // }
             
-                    if(!SkipQuestionList) {
-                        SkipQuestionList.length = 0;
-                    }
+                    // if(!SkipQuestionList) {
+                    //     SkipQuestionList.length = 0;
+                    // }
             
-                    if(!WrongQuestionList) {    
-                        WrongQuestionList.length = 0;
-                    }
+                    // if(!WrongQuestionList) {    
+                    //     WrongQuestionList.length = 0;
+                    // }
+
+                    let CorrectQuestionList=[];
+                    let SkipQuestionList=[];
+                    let WrongQuestionList=[];
+           
+                    for (let i = 0; i<SolvedQList.length;i++) {
+           
+                       if(SolvedQList[i].CORRECT_FLAG == 1) {
+                           CorrectQuestionList.push(SolvedQList[i]);
+                       }
+                       else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                           WrongQuestionList.push(SolvedQList[i]);
+                       }
+                       else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                           SkipQuestionList.push(SolvedQList[i]);
+                       }
+                   }
+                  
                     
                     var correctScore = CorrectQuestionList.length * 4;
                     var wrongScore = -(WrongQuestionList.length * 1);
@@ -809,26 +821,44 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
 
         else {
             let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-        
-            let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});          
-            let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-            let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
-            
-            if(!TotalQuestionList) {
-                TotalQuestionList.length = 0;
-            }
-            
-            if(!CorrectQuestionList) {
-                CorrectQuestionList.length = 0;
-            }
+            let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
 
-            if(!SkipQuestionList) {
-                SkipQuestionList.length = 0;
-            }
+            // let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});          
+            // let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
+            // let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
+            
+            // if(!TotalQuestionList) {
+            //     TotalQuestionList.length = 0;
+            // }
+            
+            // if(!CorrectQuestionList) {
+            //     CorrectQuestionList.length = 0;
+            // }
 
-            if(!WrongQuestionList) {    
-                WrongQuestionList.length = 0;
-            } 
+            // if(!SkipQuestionList) {
+            //     SkipQuestionList.length = 0;
+            // }
+
+            // if(!WrongQuestionList) {    
+            //     WrongQuestionList.length = 0;
+            // } 
+
+            let CorrectQuestionList=[];
+            let SkipQuestionList=[];
+            let WrongQuestionList=[];
+   
+            for (let i = 0; i<SolvedQList.length;i++) {
+   
+               if(SolvedQList[i].CORRECT_FLAG == 1) {
+                   CorrectQuestionList.push(SolvedQList[i]);
+               }
+               else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                   WrongQuestionList.push(SolvedQList[i]);
+               }
+               else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                   SkipQuestionList.push(SolvedQList[i]);
+               }
+           }
             
             var correctScore = CorrectQuestionList.length * 4;
             var wrongScore = -(WrongQuestionList.length * 1);
@@ -853,7 +883,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
                 
             //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
 
-            if(TotalQuestionList.length == (CorrectQuestionList.length + WrongQuestionList.length +  SkipQuestionList.length))
+            if(TotalQuestionList.length == SolvedQList.length)
                 {
                     res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
                         SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
@@ -897,13 +927,31 @@ router.post('/ShowChapters', IsLoggedIn, async function(req,res,next) {
         let ChapArr = await CHAPTER_IMG_COLLECTION.find({CLASS_ID:req.body.ClassId,COURSE_ID:req.body.CourseId}).sort({CHAPTER_NUM: 1});  
         let Chapter = null;
 
-        //Newly Addded
+        //Newly Addded 
         let ChapterName = [];
         for(let i=0; i<ChapArr.length;i++) {
             ChapterName[i] = ChapArr[i].CHAPTER_ID;
         }
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.ClassId, COURSE_ID: req.body.CourseId, CHAPTER_ID: { $in: ChapterName}}).sort({CHAPTER_NUM: 1});          
         let SolvedQuestionsList = await STUDENT_PERFORMANCE_COLLECTION.find({EMAIL:req.user.EMAIL, CLASS_ID: req.body.ClassId, COURSE_ID: req.body.CourseId, CHAPTER_ID: { $in: ChapterName}}).sort({CHAPTER_NUM: 1});
+      
+        let CorrectQuestionLength=0;
+        let SkipQuestionLength=0;
+        let WrongQuestionLength=0;
+
+        for (let i = 0; i<SolvedQuestionsList.length;i++) {
+
+           if(SolvedQuestionsList[i].CORRECT_FLAG == 1) {
+               CorrectQuestionLength++;
+           }
+           else if(SolvedQuestionsList[i].CORRECT_FLAG == 0) {
+                WrongQuestionLength++;
+           }
+           else if(SolvedQuestionsList[i].CORRECT_FLAG == 2) {
+               SkipQuestionLength++;
+           }
+       }
+       
         var a = [],
         b = [],
         prev;
@@ -965,17 +1013,17 @@ router.post('/ShowChapters', IsLoggedIn, async function(req,res,next) {
         let trialFlag = premiumData.TRIAL_FLAG;
 
         if(trialFlag == 1) {
-            res.render('AllChaptersTrial',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username});
+            res.render('AllChaptersTrial',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength: TotalQuestionList.length});
          }
         else {
-            res.render('ChaptersConcepts',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username});
+            res.render('ChaptersConcepts',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength:TotalQuestionList.length});
         }
         return;
     }
     catch(err)
     {
         //logger
-        res.json({ResMsg:`Error Occured`});
+        res.render('error');
     }
 
 });
@@ -1000,8 +1048,8 @@ router.post('/ShowConcepts', IsLoggedIn, async function(req,res,next) {
        let premiumData = await USER_PREMIUM_COLLECTION.findOne({EMAIL:req.user.EMAIL, CLASS_ID: req.body.ClassId, COURSE_ID: req.body.CourseId});
        let trialFlag = premiumData.TRIAL_FLAG;
 
-       if((trialFlag == 1) && (req.body.ChapNum>5)) {
-            res.send("Get buy the full course to view.")
+       if((trialFlag == 1) && (req.body.ChapNum>3)) {
+            res.send("Upgrade your plan to unlock the full course.")
         }
 
         let ConceptsArr = await CONCEPT_IMG_COLLECTION.find({CLASS_ID:req.body.ClassId,COURSE_ID:req.body.CourseId, CHAPTER_ID:req.body.ChapterId}).sort({CONCEPT_NUM: 1});  
@@ -1016,6 +1064,23 @@ router.post('/ShowConcepts', IsLoggedIn, async function(req,res,next) {
         //Newly Addded
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.ClassId, COURSE_ID: req.body.CourseId, CHAPTER_ID: req.body.ChapterId, CONCEPT_ID:{ $in: ConceptName}}).sort({CONCEPT_NUM: 1});          
         let SolvedQuestionsList = await STUDENT_PERFORMANCE_COLLECTION.find({EMAIL:req.user.EMAIL, CLASS_ID: req.body.ClassId, COURSE_ID: req.body.CourseId, CHAPTER_ID: req.body.ChapterId, CONCEPT_ID:{ $in: ConceptName}}).sort({CONCEPT_NUM: 1});
+
+        let CorrectQuestionLength=0;
+        let SkipQuestionLength=0;
+        let WrongQuestionLength=0;
+
+        for (let i = 0; i<SolvedQuestionsList.length;i++) {
+
+           if(SolvedQuestionsList[i].CORRECT_FLAG == 1) {
+               CorrectQuestionLength++;
+           }
+           else if(SolvedQuestionsList[i].CORRECT_FLAG == 0) {
+                WrongQuestionLength++;
+           }
+           else if(SolvedQuestionsList[i].CORRECT_FLAG == 2) {
+               SkipQuestionLength++;
+           }
+       }
 
         var a = [],
         b = [],
@@ -1071,14 +1136,14 @@ router.post('/ShowConcepts', IsLoggedIn, async function(req,res,next) {
          }
         console.log("SolvedPercent", SolvedPercent);
         
-        res.render('AllConcepts',{Concepts:ConceptsArr,CourseId:req.body.CourseId, ChapterId:req.body.ChapterId, ClassId:req.body.ClassId, SolvedPercent: SolvedPercent, TotalConcepts: ConceptsArr.length, username: username, ChapNum: req.body.ChapNum});
+        res.render('AllConcepts',{Concepts:ConceptsArr,CourseId:req.body.CourseId, ChapterId:req.body.ChapterId, ClassId:req.body.ClassId, SolvedPercent: SolvedPercent, TotalConcepts: ConceptsArr.length, username: username, ChapNum: req.body.ChapNum, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength:TotalQuestionList.length});
         //  res.json({ResMsg:ConceptsArr});
         return;
     }
     catch(err)
     {
         //logger
-        res.send("Error ")
+        res.render('error');
     }
 
 });
@@ -1098,26 +1163,24 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
         }
         
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
+        let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
         
-        let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});          
-        let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-        let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
-        
-        if(!TotalQuestionList) {
-            TotalQuestionList.length = 0;
-        }
-        
-        if(!CorrectQuestionList) {
-            CorrectQuestionList.length = 0;
-        }
+        let CorrectQuestionList=[];
+        let SkipQuestionList=[];
+        let WrongQuestionList=[];
 
-        if(!SkipQuestionList) {
-            SkipQuestionList.length = 0;
-        }
+        for (let i = 0; i<SolvedQList.length;i++) {
 
-        if(!WrongQuestionList) {    
-            WrongQuestionList.length = 0;
-        } 
+           if(SolvedQList[i].CORRECT_FLAG == 1) {
+               CorrectQuestionList.push(SolvedQList[i]);
+           }
+           else if(SolvedQList[i].CORRECT_FLAG == 0) {
+               WrongQuestionList.push(SolvedQList[i]);
+           }
+           else if(SolvedQList[i].CORRECT_FLAG == 2) {
+               SkipQuestionList.push(SolvedQList[i]);
+           }
+       }
         
         var correctScore = CorrectQuestionList.length * 4;
         var wrongScore = -(WrongQuestionList.length * 1);
@@ -1127,7 +1190,7 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
         
 
         //Update on Leaderboard if stopped only if concept is complete
-        if ((CorrectQuestionList.length + WrongQuestionList.length + SkipQuestionList.length) == TotalQuestionList.length) {
+        if (SolvedQList.length == TotalQuestionList.length) {
             await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
             let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
             //let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
@@ -1227,42 +1290,37 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
         try
         {
             let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-            let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
-            let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-            let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
-
-            if(!TotalQuestionList) {
-                TotalQuestionList.length = 0;
-            }
-            
-            if(!CorrectQuestionList) {
-                CorrectQuestionList.length = 0;
-            }
-    
-            if(!SkipQuestionList) {
-                SkipQuestionList.length = 0;
-            }
-    
-            if(!WrongQuestionList) {    
-                WrongQuestionList.length = 0;
-            }
-            
+            let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
+        
+            let CorrectQuestionList=[];
+            let SkipQuestionList=[];
+            let WrongQuestionList=[];
+   
+            for (let i = 0; i<SolvedQList.length;i++) {
+   
+               if(SolvedQList[i].CORRECT_FLAG == 1) {
+                   CorrectQuestionList.push(SolvedQList[i]);
+               }
+               else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                   WrongQuestionList.push(SolvedQList[i]);
+               }
+               else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                   SkipQuestionList.push(SolvedQList[i]);
+               }
+           }
+           
             var correctScore = CorrectQuestionList.length * 4;
             var wrongScore = -(WrongQuestionList.length * 1);
             var accuracy = 0;
 
             accuracy = correctScore + wrongScore;
         
-            //await STUDENT_LEADERBOARD_COLLECTION.update({EMAIL:req.user.EMAIL,ACCURACY:accuracy, CONCEPT_ID:req.body.Concept, CLASS_ID:req.body.Class, CHAPTER_ID: req.body.Chapter ,COURSE_ID: req.body.Course},{}, {upsert: true,setDefaultsOnInsert: true});
 
-            
-               //res.render (Leaderboard)
-
-               await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
-               let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
-               let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
+                await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
+                let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
+                let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
                 //Add try catch may be?
-               let userRank=0;
+                let userRank=0;
 
                for(let i=0;i<LeaderBoardList.length;i++)
                {
@@ -1299,7 +1357,6 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
     }
 })
 
-
 router.post('/OrderDetails', IsLoggedIn, async function(req, res) {
     try{
         if(!(req.body.Class && req.body.Course && req.body.Price && req.body.orderId)) {
@@ -1327,8 +1384,138 @@ router.post('/OrderDetails', IsLoggedIn, async function(req, res) {
     catch(err) {
         res.render('error');
     }
-
 });
+
+
+router.post('/SolveLevelWiseQuestions', IsLoggedIn, async function(req, res, next) {
+
+    try
+    {
+     //Class, course, concept, chapter, concept   
+     if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum)
+     {
+         res.json({ResMsg:"Invalid Request Parameters"});
+         return;
+     }
+
+     //Fetch User Name
+     let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+     let username = userStr.USERNAME;
+     username = username.substr(0, username.indexOf(' '));
+
+    let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL});
+    let AttemptedQuestionArray=[];
+    for(let i=0;i<AttemptedQuestionList.length;i++)
+    {
+        AttemptedQuestionArray.push(AttemptedQuestionList[i].QUESTION_ID );
+    }
+
+    let UnattemptedQuestionsList = await All_QUESTIONS_COLLECTION.find({COURSE_ID:req.body.Course, CLASS_ID:req.body.Class, QUESTION_ID: { $nin: AttemptedQuestionArray }});
+    let RequiredQuestion=null;
+
+    for(let i=0;i<UnattemptedQuestionsList.length;i++)
+    {
+        let strScore=UnattemptedQuestionsList[i].SCORE.split(' ');
+        let EachQuestionScore=parseInt(strScore[0])/parseInt(strScore[1]);
+        if(EachQuestionScore<=1 && EachQuestionScore > 0.75 && req.body.Concept == "Easy")
+        {
+            RequiredQuestion= UnattemptedQuestionsList[i];
+            break;
+        }
+        else if(EachQuestionScore<=0.75 && EachQuestionScore > 0.25 && req.body.Concept == "Medium")
+        {
+            RequiredQuestion= UnattemptedQuestionsList[i];
+            break;
+        }
+        else if(EachQuestionScore<=0.25 && EachQuestionScore >= 0 && req.body.Concept == "Hard")
+        {
+            RequiredQuestion= UnattemptedQuestionsList[i];
+            break; 
+        }
+     }
+        if(RequiredQuestion)
+        {
+            res.render('SolveQuestions',{Question:RequiredQuestion.QUESTION,OptionA:RequiredQuestion.OptionA ,OptionB:RequiredQuestion.OptionB,OptionC:RequiredQuestion.OptionC,OptionD:RequiredQuestion.OptionD,CorrectOption:RequiredQuestion.CORRECT_OPT ,Explanation:RequiredQuestion.EXPLANATION,QuestionImg:RequiredQuestion.Q_IMG ,ExplainationImg:RequiredQuestion.EXPLANATION_IMAGE,QuestionId:RequiredQuestion.QUESTION_ID, Ques_Img_flag:RequiredQuestion.QUESTION_IMG_FLAG, Ans_img_flag:RequiredQuestion.ANS_IMG_FLAG, Concept:RequiredQuestion.CONCEPT_ID, Chapter:RequiredQuestion.CHAPTER_ID, Class:RequiredQuestion.CLASS_ID, Course:RequiredQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
+            return;
+        } 
+        else
+        {
+            let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});  
+            let TotalLevelQuestionLength=0;     
+            let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
+            
+            for (let i=0;i<TotalQuestionList.length;i++)
+            {
+                let strScore=UnattemptedQuestionsList[i].SCORE.split(' ');
+                let EachQuestionScore=parseInt(strScore[0])/parseInt(strScore[1]);
+                if(EachQuestionScore<=1 && EachQuestionScore > 0.75  && req.body.Concept=="Easy")
+                {
+                    TotalLevelQuestionLength++;
+                }
+                else if(EachQuestionScore<=0.75 && EachQuestionScore > 0.25 && req.body.Concept=="Medium")
+                {
+                    TotalLevelQuestionLength++;
+                }
+                else if(EachQuestionScore<=0.25 && EachQuestionScore >= 0 && req.body.Concept=="Hard")
+                {
+                    TotalLevelQuestionLength++;
+                }
+           }
+        
+            let CorrectQuestionLength=0;
+            let SkipQuestionLength=0;
+            let WrongQuestionLength=0;
+   
+            for (let i = 0; i<SolvedQList.length;i++) {
+   
+               if(SolvedQList[i].CORRECT_FLAG == 1) {
+                CorrectQuestionLength++;
+               }
+               else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                WrongQuestionLength++;
+               }
+               else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                SkipQuestionLength++;
+               }
+           }
+           
+            var correctScore = CorrectQuestionLength * 4;
+            var wrongScore = -(WrongQuestionLength* 1);
+            var accuracy = 0;
+
+            accuracy = correctScore + wrongScore;
+
+            await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
+            let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
+            let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
+
+            let userRank=0;
+
+            for(let i=0;i<LeaderBoardList.length;i++)
+            {
+                if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
+                {
+                    userRank=i+1;
+                    break;
+                }
+            }
+            console.log(userRank);
+                   
+                
+            res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalLevelQuestionLength,CorrectQuestions:CorrectQuestionLength, 
+            SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
+            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+            });
+            return;
+        } 
+}     
+    catch(err)
+    {
+        //something went wrong
+        res.json({ResMsg:`Error occured- ${err.message}`});
+        return;
+    }
+})
 
 
 module.exports = router;

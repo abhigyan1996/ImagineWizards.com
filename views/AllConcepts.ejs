@@ -161,40 +161,24 @@
 </script>
 
 <script>
-  const ul = document.querySelectorAll('ul');
-  var ConceptString = "";
-  for (let i = 0; i <= ul.length - 1; i++) {
-    var conceptName = document.getElementById("conceptName").value;  
-      console.log(ul[i]);
-      ConceptString = ul[i];
-      ConceptString = $("#conceptBlocks  li #conceptName").text();
-  }
-      var n = ConceptString.length;
-      ConceptString = ConceptString.substr(0,n-1);
-      console.log("Length of a string is:", n);
+      var ConceptString = $("#conceptBlocks  li #conceptName").text();
       var res = ConceptString.split(",");
-      console.log("res", res);
-      console.log(typeof(res));
-      console.log("Concept is", ConceptString);
-
+  
       $("#conceptBlocks li").click(function() {
           var index = $(this).index();
           let conceptNumber = null;
-
           let conceptName = null;
             //alert("Index " + index + " was clicked");
           if(index<9) {
               chapterName = res[index];
               chapterName = chapterName.substr(3,chapterName.length);
-              res[index] = chapterName;
           }
-          else if (index>=9) {
+          else if (index>=9) {  //since index starts at 0
               chapterName = res[index];
               chapterName = chapterName.substr(4,chapterName.length);
-              res[index] = chapterName;
           }           
-              //Above three lines were imp to remove the dots after chapter name
-          document.getElementById("Concept").value = res[index];
+
+          document.getElementById("Concept").value = chapterName;
           var ChapName = document.getElementById('TopmostChapName').innerHTML;
           document.getElementById('Chapter').value = ChapName;
 
@@ -218,28 +202,17 @@ var i = [0,0,0];
 function move() {
 
   var TotalConcepts = document.getElementById("totalConcepts").value;  
-  console.log("Total Concepts", TotalConcepts);
+  var SolvedPercent = $("#percentList li #solvedPercent").text();
 
-  var SolvedPercent = "";
-  const ul = document.querySelectorAll('ul');
-
-  for (let i = 0; i <= ul.length - 1; i++) {
-    SolvedPercent = $("#percentList").text();
-    SolvedPercent = SolvedPercent.replace(/(\r\n|\n|\r| )/gm,"");
-  }
   var res = SolvedPercent.split(",");
-  console.log(res);
   var completedPercent = [];
   for(let i=0;i<res.length-1;i++) {
     completedPercent[i] = parseInt(res[i]); 
   }
-  console.log("completedPercent", completedPercent);
   //Till here Concent Completed Percentage is found 
         
   var elem = document.getElementsByClassName("accuracyBar");
       
-  var widthAcc = [1,1,1];
-
   for (var k=0; k<TotalConcepts;k++) {  
     /*if (i[k] == 0) {
         i[k] = 1;

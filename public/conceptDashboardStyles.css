@@ -23,12 +23,12 @@
   }
   
 #PerformanceTxt {
-	font-family: 'Source Serif Pro';
-	font-size: 2vw;
+	font-family: 'Alegreya', serif;
+	font-size: 2.5vw;
 	margin-top: 2vw;
-	margin-left: 6.5vw;
-	font-family: cursive;
+	text-align: center;
 	text-transform: uppercase;
+	margin-bottom: 2vw;
 }
 
 #PerformanceDiv {
@@ -169,10 +169,10 @@
 }
 
 #piechartQuestionsSmall {
-	width: 125vw;
-	height: 95vw;
-	margin-top: 0vw;
-	margin-left: -12vw;
+	width: 100vw;
+	height: 70vw;
+	margin-top: 2vw;
+	margin-left: 0vw;
 }
 
 #totalQCard, #CorrectQCard, #WrongQCard, #SkippedQCard, #UnattemptedQCard {
@@ -292,8 +292,9 @@ table {
 		font-family: 'Alegreya', serif;
 		font-size: 7vw;
 		margin-top: 10vw;
-		margin-left: 10vw;
+		margin-left: 0vw;
 		text-transform: uppercase;
+		text-align: center;
 	}
 
 	#LeaderboardDiv {

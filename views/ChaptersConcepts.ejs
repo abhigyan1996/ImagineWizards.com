@@ -64,7 +64,6 @@
       }
     </script>
 
-
 <body onload="move()" class="w3-white" style="width:100vw; min-width: 100vw; max-width: 100vw; overflow-x: hidden;">
 
 
@@ -115,6 +114,47 @@
     <div class="w3-card" id="whiteStrip">Welcome to class</div>
     <div class="w3-center glow" id="SubjectName"><%=CourseId%> </div>
 
+  <form class="w3-hide">
+    <input type="text" id="correctLength" value=<%=CorrectQuestionLength%>>
+    <input type="text" id="wrongLength" value=<%=WrongQuestionLength%>>
+    <input type="text" id="skipLength" value=<%=SkipQuestionLength%>>
+    <input type="text" id="totalLength" value=<%=TotalQuestionLength%>>
+</form>
+
+  <figure>
+      <div class="graphic">
+    
+        <div class="row">
+          <div class="chart">
+            <span class="block" title="Correct">
+               <span id="correctPercent" class="value w3-hide"></span>
+               <span id="correctPercentDisplay"></span>
+            </span>
+            <span class="block" title="Wrong">
+               <span id="wrongPercent" class="value w3-hide"></span>
+               <span id="wrongPercentDisplay"></span>
+            </span>
+            <span class="block" title="Skipped">
+               <span id="skipPercent" class="value w3-hide"></span>
+               <span id="skipPercentDisplay"></span>
+            </span>
+            <span class="block" title="Unattempted">
+               <span id="unattemptedPercent" class="value w3-hide"></span>
+               <span id="unattemptedPercentDisplay"></span>
+            </span>
+          
+          </div>
+        </div>
+      </div>
+    
+    </figure>
+
+    <div id="colorId"> 
+        <div id="IndicatorTxt"> <span style="color:green">&#9679</span> <span style="color:white">Correct</span> </div>
+        <div id="IndicatorTxt"> <span style="color:#CD3615">&#9679</span> <span style="color:white">Wrong</span> </div>
+        <div id="IndicatorTxt"> <span style="color:#1596CD">&#9679</span> <span style="color:white">Skipped</span> </div>
+        <div id="IndicatorTxt"> <span style="color:#565454">&#9679</span> <span style="color:white">Unattempted</span> </div>
+    </div>
 
     <div id="chapterConceptCard">
       <!-- <div id="Chapters">Averages</div> -->
@@ -161,22 +201,8 @@
 </script>
 
 <script>
-  const ul = document.querySelectorAll('ul');
-  var ConceptString = "";
-  for (let i = 0; i <= ul.length - 1; i++) {
-    var conceptName = document.getElementById("conceptName").value;  
-      console.log(ul[i]);
-      ConceptString = ul[i];
-      ConceptString = $("#conceptBlocks li #conceptName").text();
-    }
-    //  ConceptString = ConceptString.replace(/(\r\n|\n|\r|  |Completed%)/gm,"");
-      var n = ConceptString.length;
-      ConceptString = ConceptString.substr(0,n-1);  
-      console.log("Length of a string is:", n);
+      var ConceptString = $("#conceptBlocks li #conceptName").text();
       var res = ConceptString.split(",");
-      console.log(res);
-      console.log(typeof(res));
-      console.log("Concept is", ConceptString);
     
       $("#conceptBlocks li").click(function() {
         var index = $(this).index();
@@ -188,15 +214,13 @@
        if(index<9) {
           chapterName = res[index];
           chapterName = chapterName.substr(3,chapterName.length);
-          res[index] = chapterName;
        }
        else if (index>=9) {
-        chapterName = res[index];
+          chapterName = res[index];
           chapterName = chapterName.substr(4,chapterName.length);
-          res[index] = chapterName;
        }       
           //Above three lines were imp to remove the dots after chapter name
-          document.getElementById("Chapter").value = res[index];
+          document.getElementById("Chapter").value = chapterName;
           document.getElementById("ChapNum").value = index+1;
         $("#chaptersForm").submit();
     });
@@ -205,28 +229,17 @@
 
 
 <script>
-//var i = 0;
-var i = [0,0,0];
 
 function move() {
   
   var TotalConcepts = document.getElementById("totalConcepts").value;  
-  console.log("Total Concepts", TotalConcepts);
-
-  var SolvedPercent = "";
-  const ul = document.querySelectorAll('ul');
-
-  for (let i = 0; i <= ul.length - 1; i++) {
-    SolvedPercent = $("#percentList").text();
-    SolvedPercent = SolvedPercent.replace(/(\r\n|\n|\r| )/gm,"");
-  }
+  var SolvedPercent = $("#percentList li #solvedPercent").text();
   var res = SolvedPercent.split(",");
-  console.log(res);
+
   var completedPercent = [];
   for(let i=0;i<res.length-1;i++) {
     completedPercent[i] = parseInt(res[i]); 
   }
-  console.log("completedPercent", completedPercent);
   //Till here Concent Completed Percentage is found 
 
   var elem = document.getElementsByClassName("accuracyBar");
@@ -251,5 +264,59 @@ function move() {
 //}
 </script>
 
+<script>  //for the horizontal figure
+
+var correctLength = parseInt(document.getElementById('correctLength').value);
+var wrongLength = parseInt(document.getElementById('wrongLength').value);
+var skipLength = parseInt(document.getElementById('skipLength').value);
+var totalLength = parseInt(document.getElementById('totalLength').value);
+var unattemptedLength = totalLength - (correctLength + wrongLength + skipLength);
+
+var correctPercent = (correctLength/totalLength) * 100;
+var wrongPercent = (wrongLength/totalLength) * 100;
+var skipPercent = (skipLength/totalLength) * 100;
+var unattemptedPercent = (unattemptedLength/totalLength) * 100;
+
+document.getElementById('correctPercent').innerHTML = correctPercent + "%";
+document.getElementById('wrongPercent').innerHTML = wrongPercent + "%";
+document.getElementById('skipPercent').innerHTML = skipPercent + "%";
+document.getElementById('unattemptedPercent').innerHTML = unattemptedPercent + "%";
+
+if (correctPercent>9) {
+  document.getElementById('correctPercentDisplay').innerHTML = correctPercent.toString().substr(0,4) + "%";
+}
+else {
+  document.getElementById('correctPercentDisplay').innerHTML = correctPercent.toString().substr(0,3) + "%";
+}
+
+if (wrongPercent>9) {
+  document.getElementById('wrongPercentDisplay').innerHTML = wrongPercent.toString().substr(0,4) + "%";
+}
+else {
+  document.getElementById('wrongPercentDisplay').innerHTML = wrongPercent.toString().substr(0,3) + "%";
+}
+
+if (skipPercent>9) {
+  document.getElementById('skipPercentDisplay').innerHTML = skipPercent.toString().substr(0,4) + "%";
+}
+else {
+  document.getElementById('skipPercentDisplay').innerHTML = skipPercent.toString().substr(0,3) + "%";
+}
+
+if (unattemptedPercent>9) {
+  document.getElementById('unattemptedPercentDisplay').innerHTML = unattemptedPercent.toString().substr(0,4) + "%";
+}
+else {
+  document.getElementById('unattemptedPercentDisplay').innerHTML = unattemptedPercent.toString().substr(0,3) + "%";
+}
+
+
+$('.value').each(function() {
+	var text = $(this).text();
+	$(this).parent().css('width', text);
+});
+
+$('.block').tooltip();
+</script>
 
 </html>

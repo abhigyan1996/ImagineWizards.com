@@ -156,7 +156,7 @@
 
 
   <section id="PerformanceDiv">
-    <div id="PerformanceTxt">Performance Analysis</div>
+    <div id="PerformanceTxt">Performance Analysis of Whole Concept</div>
 
     <div id = "PieCharts">  
 
@@ -173,19 +173,19 @@
             <p id="totalTxt">Total Questions </p>
             <p id="totalCount"><%=TotalQuestions%></p>
         </div>
-        <div id="CorrectQCard" class="w3-card w3-container w3-green">
+        <div id="CorrectQCard" class="w3-card w3-container" style="background-color: green; color:white">
            <p id="CorrectTxt">Correct </p>
            <p id="correctCount"><%=CorrectQuestions%></p>
         </div>
-        <div id="WrongQCard" class="w3-card w3-container w3-red">
+        <div id="WrongQCard" class="w3-card w3-container" style="background-color: #CD3615; color:white">
             <p id="WrongTxt">Wrong </p>
             <p id="wrongCount"><%=WrongQuestions%></p>
         </div>
-        <div id="SkippedQCard" class="w3-card w3-container w3-blue">
+        <div id="SkippedQCard" class="w3-card w3-container"  style="background-color: #1596CD; color:white">
             <p id="SkippedTxt">Skipped </p>
             <p id="skipCount"><%=SkippedQuestions%></p>
         </div>
-        <div id="UnattemptedQCard" class="w3-card w3-container w3-orange">
+        <div id="UnattemptedQCard" class="w3-card w3-container" style="background-color: #565454; color:white">
             <p id="UnattemptedTxt">Unattempted </p>
             <p id="Unattemptedcount"></p>
       </div>
@@ -197,19 +197,19 @@
           <p id="totalTxt">Total</p>
           <p id="totalCount"><%=TotalQuestions%></p>
       </li>
-      <li id="CorrectQCard" class="w3-card w3-container w3-green">
+      <li id="CorrectQCard" class="w3-card w3-container" style="background-color: green; color:white">
         <p id="CorrectTxt">Correct </p>
         <p id="correctCount"><%=CorrectQuestions%></p>
       </li>
-      <li id="WrongQCard" class="w3-card w3-container w3-red">
+      <li id="WrongQCard" class="w3-card w3-container" style="background-color: #CD3615; color:white">
           <p id="WrongTxt">Wrong </p>
           <p id="wrongCount"><%=WrongQuestions%></p>
       </li>
-      <li id="SkippedQCard" class="w3-card w3-container w3-blue">
+      <li id="SkippedQCard" class="w3-card w3-container" style="background-color: #1596CD; color:white">
           <p id="SkippedTxt">Skipped </p>
           <p id="skipCount"><%=SkippedQuestions%></p>
       </li>
-      <li id="UnattemptedQCard" class="w3-card w3-container w3-orange">
+      <li id="UnattemptedQCard" class="w3-card w3-container" style="background-color: #565454; color:white">
           <p id="UnattemptedTxt">Unattempted</p>
           <p id="UnattemptedcountPh"></p>
     </li>
@@ -268,18 +268,10 @@
   var feedback = document.getElementById("DisplayFeedback").value;
 
   var temp = parseInt(CorrectQuestions) + parseInt(WrongQuestions) + parseInt(SkippedQuestions)
-  console.log("temp", temp);
   var UnattemptedQuestions = parseInt(TotalQuestions) - parseInt(temp);
-  console.log("UnattemptedQuestions", UnattemptedQuestions);
 
   document.getElementById("Unattemptedcount").innerHTML = UnattemptedQuestions;
   document.getElementById("UnattemptedcountPh").innerHTML = UnattemptedQuestions;
-
-  console.log("total", TotalQuestions);
-  console.log("Correct", CorrectQuestions);
-  console.log("Wrong", WrongQuestions);
-  console.log("Skipped", SkippedQuestions);
-  console.log("Unattempted", UnattemptedQuestions);
 
   var score = parseInt(CorrectQuestions) * 4 - parseInt(WrongQuestions) * 1;
   document.getElementById('Score').innerHTML = "SCORE: " + score;
@@ -287,13 +279,10 @@
   var attemptedMaxScore = (parseInt(TotalQuestions) - parseInt(UnattemptedQuestions)) * 4;
   document.getElementById('attemptedMaxScore').innerHTML = "OUT OF: " + attemptedMaxScore;
 
-
   var correctPercentage = (CorrectQuestions/TotalQuestions) * 100;
   var wrongPercentage = (WrongQuestions/TotalQuestions) * 100;
   var skipPercentage = (SkippedQuestions/TotalQuestions) * 100;
   var UnattemptedPercentage = (UnattemptedQuestions/TotalQuestions) * 100;
-
-  console.log("correctPercentage", correctPercentage, "wrongPercentage" , wrongPercentage);
 
   if(parseInt(TotalQuestions) == UnattemptedQuestions) {
     ///That is if concept is not yet started
@@ -339,15 +328,15 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
   ['Task', 'Questions'],
-  ['Skipped in whole Concept', skipPercentage],
-  ['Wrong in whole Concept', wrongPercentage],
-  ['Unattempted in whole Concept', UnattemptedPercentage],
-  ['Correct in whole Concept', correctPercentage]
+  ['Correct', correctPercentage],
+  ['Wrong', wrongPercentage],
+  ['Skipped', skipPercentage],
+  ['Unattempted', UnattemptedPercentage]
 ]);
 
   // Optional; add a title and set the width and height of the chart
-  var options = {'title':'All Questions', slices: {0: {color: '#1596CD'}, 1:{color: '#CD3615'}, 2:{color: 'orange'}, 3: {color: 'green'}}};;
- 
+  var options = {'title':'All Questions', slices: {0: {color: 'green'}, 1:{color: '#CD3615'}, 2:{color: '#1596CD'}, 3: {color: '#565454'}}};
+  
   // Display the chart inside the <div> element with id="piechart"
   var chartLarge = new google.visualization.PieChart(document.getElementById('piechartQuestionsLarge'));
   

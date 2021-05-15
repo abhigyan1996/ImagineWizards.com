@@ -174,23 +174,9 @@
 </script>
 
 <script>
-  const ul = document.querySelectorAll('ul');
-  var ConceptString = "";
-  for (let i = 0; i <= ul.length - 1; i++) {
-    var conceptName = document.getElementById("conceptName").value;  
-      console.log(ul[i]);
-      ConceptString = ul[i];
-      ConceptString = $("#conceptBlocks li #conceptName").text();
-    }
-    //  ConceptString = ConceptString.replace(/(\r\n|\n|\r|  |Completed%)/gm,"");
-      var n = ConceptString.length;
-      ConceptString = ConceptString.substr(0,n-1);  
-      console.log("Length of a string is:", n);
+      var ConceptString = $("#conceptBlocks  li #conceptName").text();
       var res = ConceptString.split(",");
-      console.log(res);
-      console.log(typeof(res));
-      console.log("Concept is", ConceptString);
-    
+  
       $("#conceptBlocks li").click(function() {
         var index = $(this).index();
         let chapterNumber = null;
@@ -201,18 +187,16 @@
        if(index<9) {
           chapterName = res[index];
           chapterName = chapterName.substr(3,chapterName.length);
-          res[index] = chapterName;
        }
        else if (index>=9) {
-        chapterName = res[index];
+          chapterName = res[index];
           chapterName = chapterName.substr(4,chapterName.length);
-          res[index] = chapterName;
        }       
           //Above three lines were imp to remove the dots after chapter name
-          document.getElementById("Chapter").value = res[index];
+          document.getElementById("Chapter").value = chapterName;
           document.getElementById("ChapNum").value = index+1;
 
-       if(index<5){
+       if(index<3){
         $("#chaptersForm").submit();
        }
       });
@@ -227,23 +211,14 @@ var i = [0,0,0];
 function move() {
   
   var TotalConcepts = document.getElementById("totalConcepts").value;  
-  console.log("Total Concepts", TotalConcepts);
+  var SolvedPercent = $("#percentList li #solvedPercent").text();
 
-  var SolvedPercent = "";
-  const ul = document.querySelectorAll('ul');
-
-  for (let i = 0; i <= ul.length - 1; i++) {
-    SolvedPercent = $("#percentList").text();
-    SolvedPercent = SolvedPercent.replace(/(\r\n|\n|\r| )/gm,"");
-  }
   var res = SolvedPercent.split(",");
-  console.log(res);
   var completedPercent = [];
   for(let i=0;i<res.length-1;i++) {
     completedPercent[i] = parseInt(res[i]); 
   }
-  console.log("completedPercent", completedPercent);
-  //Till here Concent Completed Percentage is found 
+//Till here Concent Completed Percentage is found 
 
   var elem = document.getElementsByClassName("accuracyBar");
 

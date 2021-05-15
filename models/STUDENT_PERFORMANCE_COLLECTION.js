@@ -57,7 +57,7 @@ var STUDENT_PERFORMANCE_COLLECTION = new Schema({
     }
 });
 
-STUDENT_PERFORMANCE_COLLECTION.index({ EMAIL: 1, QUESTION_ID: 1}, { unique: true });
+STUDENT_PERFORMANCE_COLLECTION.index({ EMAIL: 1, QUESTION_ID: 1, CHAPTER_ID: 1, CONCEPT_ID: 1}, { unique: true });
 STUDENT_PERFORMANCE_COLLECTION.plugin(uniqueValidator)
 
 module.exports = mongoose.model(
