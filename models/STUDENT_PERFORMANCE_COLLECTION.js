@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var ALL_QUESTIONS_COLLECTION=require("./ALL_QUESTIONS_COLLECTION");
 const uniqueValidator = require('mongoose-unique-validator')
 var Schema = mongoose.Schema;
 
@@ -55,7 +56,15 @@ var STUDENT_PERFORMANCE_COLLECTION = new Schema({
         type: Number,
         required:true 
     }
-});
+},{toObject: {virtuals:true},toJSON:true,collection:"STUDENT_PERFORMANCE_COLLECTION"});
+
+
+STUDENT_PERFORMANCE_COLLECTION.virtual('PerformanceToAllQuestionCollectionJoin', {
+    ref: 'ALL_QUESTIONS_COLLECTION',
+    localField: 'QUESTION_ID',
+    foreignField: 'QUESTION_ID',
+    justOne: true
+  });
 
 STUDENT_PERFORMANCE_COLLECTION.index({ EMAIL: 1, QUESTION_ID: 1, CHAPTER_ID: 1, CONCEPT_ID: 1}, { unique: true });
 STUDENT_PERFORMANCE_COLLECTION.plugin(uniqueValidator)

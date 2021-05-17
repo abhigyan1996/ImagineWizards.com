@@ -335,7 +335,15 @@ router.post('/SolveQuestions', IsLoggedIn, async function(req, res, next) {
     let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID: { $nin: AttemptedQuestionArray },CONCEPT_ID:req.body.Concept, CHAPTER_ID:req.body.Chapter, COURSE_ID:req.body.Course, CLASS_ID:req.body.Class});
     if(NewQuestion)
     {
-        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
+        let Attempts = parseInt(NewQuestion.SCORE.split(" ")[1]);
+        let corrects= parseInt(NewQuestion.SCORE.split(" ")[0]);
+        let level = 0;     
+        level = corrects/Attempts;
+        if(Attempts==0) {
+            level = 1;
+        }        
+   
+        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, level: level});
         return;
     }
     else
@@ -444,7 +452,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                 }
 
                 let ScoreStr = correctStR.toString()+" "+AttemptStr.toString();
-                let QuestionLevel = await All_QUESTIONS_COLLECTION.updateOne({QUESTION_ID: req.body.quesID},{$set:{SCORE:ScoreStr}});
+                await All_QUESTIONS_COLLECTION.updateOne({QUESTION_ID: req.body.quesID},{$set:{SCORE:ScoreStr}});
          }
          catch(err) {
              res.render('error');
@@ -463,35 +471,99 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                     let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:{ $nin: AttemptedQuestionArray }, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
                     if(NewQuestion)
                     {
-                        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
+                        let Attempts = parseInt(NewQuestion.SCORE.split(" ")[1]);
+                        let corrects= parseInt(NewQuestion.SCORE.split(" ")[0]);
+                        let level = 0;     
+                        level = corrects/Attempts;
+                        if(Attempts==0) {
+                            level = 1;
+                        }
+                        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, level:level});
                         return;
                     }
                     else
                     {
                         try
                     {
-                     let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-                     let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
+                        let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
+                        let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL}).select().populate('PerformanceToAllQuestionCollectionJoin');
                 
-                    let CorrectQuestionList=[];
-                    let SkipQuestionList=[];
-                    let WrongQuestionList=[];
+                        let TotalEasyQueLength=0,TotalMediumQueLength=0,TotalHardQueLength=0;
+                        let QuestionScore=0;
+                        for (let i=0;i<TotalQuestionList.length;i++)
+                        {
+                         QuestionScore=parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]);
+                
+                         if((QuestionScore>0.75 && QuestionScore<=1) || TotalQuestionList[i].SCORE.split(" ")[1]==0){
+                            TotalEasyQueLength++;
+                          }
+                  
+                          else if(QuestionScore>0.25 && QuestionScore<=0.75){
+                            TotalMediumQueLength++;
+                          }
+                          else if(QuestionScore>=0 && QuestionScore<=0.25){
+                            TotalHardQueLength++;
+                          }
+                        }
+                
+                        let SolvedEasyQueLength=0,SolvedMediumQueLength=0,SolvedHardQueLength=0;
+                
+                        let CorrectEasyQLength=0, WrongEasyQLength=0, SkipEasyQLength = 0
+                        let CorrectMediumQLength=0, WrongMediumQLength=0, SkipMediumQLength = 0
+                        let CorrectHardQLength=0, WrongHardQLength=0, SkipHardQLength = 0
+                
+                
+                        for (let i = 0; i<SolvedQList.length;i++) {
+                            QuestionScore=parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
+                            console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
+                
+                            if((QuestionScore>0.75 && QuestionScore<=1) || SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]==0){
+                                SolvedEasyQueLength++;  //total easy solved
+                                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                                    CorrectEasyQLength++;    //total correct easy
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                                    WrongEasyQLength++;
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                                    SkipEasyQLength++;
+                                }
+                             }
+                     
+                             else if(QuestionScore>0.25 && QuestionScore<=0.75){
+                                SolvedMediumQueLength++;
+                                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                                    CorrectMediumQLength++;    
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                                    WrongMediumQLength++;
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                                    SkipMediumQLength++;
+                                }
+                             }
+                             
+                             else if(QuestionScore>=0 && QuestionScore<=0.25){
+                                SolvedHardQueLength++;
+                                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                                    CorrectHardQLength++;    
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                                    WrongHardQLength++;
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                                    SkipHardQLength++;
+                                }
+                            }
+                        }
+                
+                    let CorrectQuestionLength= CorrectEasyQLength + CorrectMediumQLength + CorrectHardQLength;
+                    let SkipQuestionLength= SkipEasyQLength + SkipMediumQLength + SkipHardQLength;
+                    let WrongQuestionLength= WrongEasyQLength + WrongMediumQLength + WrongHardQLength;
            
-                    for (let i = 0; i<SolvedQList.length;i++) {
-           
-                       if(SolvedQList[i].CORRECT_FLAG == 1) {
-                           CorrectQuestionList.push(SolvedQList[i]);
-                       }
-                       else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                           WrongQuestionList.push(SolvedQList[i]);
-                       }
-                       else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                           SkipQuestionList.push(SolvedQList[i]);
-                       }
-                   }
                    
-                    var correctScore = CorrectQuestionList.length * 4;
-                    var wrongScore = -(WrongQuestionList.length * 1);
+                    var correctScore = CorrectQuestionLength * 4;
+                    var wrongScore = -(WrongQuestionLength * 1);
                     var accuracy = 0;
 
                     accuracy = correctScore + wrongScore;
@@ -517,9 +589,11 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                     let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
                     let restarts = leaderboardData.RESTARTS;
 
-                    res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
-                        SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts: restarts
+                    res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
+                        SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts: restarts,
+                        CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
+                        SkipHardQLength:SkipHardQLength
                       });
                      return;
                     }
@@ -543,53 +617,102 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                     let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:req.body.quesID, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
                     if(NewQuestion)
                     {
-                        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
+                        let Attempts = parseInt(NewQuestion.SCORE.split(" ")[1]);
+                        let corrects= parseInt(NewQuestion.SCORE.split(" ")[0]);
+                        let level = 0;     
+                        level = corrects/Attempts;
+                        if(Attempts==0) {
+                            level = 1;
+                        }
+                        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, level:level});
                         return;
                     }
                     else
                     {
                         try
                     {
-                    let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-                    let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
-                    // let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
-                    // let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-                    // let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
-        
-                    // if(!TotalQuestionList) {
-                    //     TotalQuestionList.length = 0;
-                    // }
-                    
-                    // if(!CorrectQuestionList) {
-                    //     CorrectQuestionList.length = 0;
-                    // }
-            
-                    // if(!SkipQuestionList) {
-                    //     SkipQuestionList.length = 0;
-                    // }
-            
-                    // if(!WrongQuestionList) {    
-                    //     WrongQuestionList.length = 0;
-                    // }
-                    let CorrectQuestionList=[];
-                    let SkipQuestionList=[];
-                    let WrongQuestionList=[];
-           
-                    for (let i = 0; i<SolvedQList.length;i++) {
-           
-                       if(SolvedQList[i].CORRECT_FLAG == 1) {
-                           CorrectQuestionList.push(SolvedQList[i]);
-                       }
-                       else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                           WrongQuestionList.push(SolvedQList[i]);
-                       }
-                       else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                           SkipQuestionList.push(SolvedQList[i]);
-                       }
-                   }
+                        let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
+                        let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL}).select().populate('PerformanceToAllQuestionCollectionJoin');
+                
+                        let TotalEasyQueLength=0,TotalMediumQueLength=0,TotalHardQueLength=0;
+                        let QuestionScore=0;
+                        for (let i=0;i<TotalQuestionList.length;i++)
+                        {
+                         QuestionScore=parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]);
+                
+                         if((QuestionScore>0.75 && QuestionScore<=1) || TotalQuestionList[i].SCORE.split(" ")[1]==0){
+                            TotalEasyQueLength++;
+                          }
                   
-                    var correctScore = CorrectQuestionList.length * 4;
-                    var wrongScore = -(WrongQuestionList.length * 1);
+                          else if(QuestionScore>0.25 && QuestionScore<=0.75){
+                            TotalMediumQueLength++;
+                          }
+                          else if(QuestionScore>=0 && QuestionScore<=0.25){
+                            TotalHardQueLength++;
+                          }
+                        }
+                
+                        let CorrectQuestionList=[];
+                        let SkipQuestionList=[];
+                        let WrongQuestionList=[];
+                        let SolvedEasyQueLength=0,SolvedMediumQueLength=0,SolvedHardQueLength=0;
+                
+                        let CorrectEasyQLength=0, WrongEasyQLength=0, SkipEasyQLength = 0
+                        let CorrectMediumQLength=0, WrongMediumQLength=0, SkipMediumQLength = 0
+                        let CorrectHardQLength=0, WrongHardQLength=0, SkipHardQLength = 0
+                
+                
+                        for (let i = 0; i<SolvedQList.length;i++) {
+                            QuestionScore=parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
+                            console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
+                
+                            if((QuestionScore>0.75 && QuestionScore<=1) || SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]==0){
+                                SolvedEasyQueLength++;  //total easy solved
+                                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                                    CorrectEasyQLength++;    //total correct easy
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                                    WrongEasyQLength++;
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                                    SkipEasyQLength++;
+                                }
+                             }
+                     
+                             else if(QuestionScore>0.25 && QuestionScore<=0.75){
+                                SolvedMediumQueLength++;
+                                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                                    CorrectMediumQLength++;    
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                                    WrongMediumQLength++;
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                                    SkipMediumQLength++;
+                                }
+                             }
+                             
+                             else if(QuestionScore>=0 && QuestionScore<=0.25){
+                                SolvedHardQueLength++;
+                                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                                    CorrectHardQLength++;    
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                                    WrongHardQLength++;
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                                    SkipHardQLength++;
+                                }
+                            }
+                        }
+                
+
+                    let CorrectQuestionLength= CorrectEasyQLength + CorrectMediumQLength + CorrectHardQLength;
+                    let SkipQuestionLength= SkipEasyQLength + SkipMediumQLength + SkipHardQLength;
+                    let WrongQuestionLength= WrongEasyQLength + WrongMediumQLength + WrongHardQLength;
+                                 
+                    var correctScore = CorrectQuestionLength * 4;
+                    var wrongScore = -(WrongQuestionLength * 1);
                     var accuracy = 0;
 
                     accuracy = correctScore + wrongScore;
@@ -614,9 +737,11 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
 
                     //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
                      
-                       res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
-                        SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts
+                       res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
+                        SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts,
+                        CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
+                        SkipHardQLength:SkipHardQLength
                       });
                      return;
                     }
@@ -670,56 +795,101 @@ router.post('/NextQuestion', IsLoggedIn, async function(req, res, next) {
             let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:{ $nin: AttemptedQuestionArray }, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
             if(NewQuestion)
             {
-                res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
+                let Attempts = parseInt(NewQuestion.SCORE.split(" ")[1]);
+                let corrects= parseInt(NewQuestion.SCORE.split(" ")[0]);
+                let level = 0;     
+                level = corrects/Attempts;
+                if(Attempts==0) {
+                    level = 1;
+                }
+                res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, level:level});
                 return;
             }
             else
             {
                 try
                     {
-                    let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-                    let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
-                 
-                    // let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});
-                    // let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-                    // let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
-        
-                    // if(!TotalQuestionList) {
-                    //     TotalQuestionList.length = 0;
-                    // }
-                    
-                    // if(!CorrectQuestionList) {
-                    //     CorrectQuestionList.length = 0;
-                    // }
-            
-                    // if(!SkipQuestionList) {
-                    //     SkipQuestionList.length = 0;
-                    // }
-            
-                    // if(!WrongQuestionList) {    
-                    //     WrongQuestionList.length = 0;
-                    // }
-
-                    let CorrectQuestionList=[];
-                    let SkipQuestionList=[];
-                    let WrongQuestionList=[];
-           
-                    for (let i = 0; i<SolvedQList.length;i++) {
-           
-                       if(SolvedQList[i].CORRECT_FLAG == 1) {
-                           CorrectQuestionList.push(SolvedQList[i]);
-                       }
-                       else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                           WrongQuestionList.push(SolvedQList[i]);
-                       }
-                       else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                           SkipQuestionList.push(SolvedQList[i]);
-                       }
-                   }
+                        let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
+                        let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL}).select().populate('PerformanceToAllQuestionCollectionJoin');
+                
+                        let TotalEasyQueLength=0,TotalMediumQueLength=0,TotalHardQueLength=0;
+                        let QuestionScore=0;
+                        for (let i=0;i<TotalQuestionList.length;i++)
+                        {
+                         QuestionScore=parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]);
+                
+                         if((QuestionScore>0.75 && QuestionScore<=1) || TotalQuestionList[i].SCORE.split(" ")[1]==0){
+                            TotalEasyQueLength++;
+                          }
                   
-                    
-                    var correctScore = CorrectQuestionList.length * 4;
-                    var wrongScore = -(WrongQuestionList.length * 1);
+                          else if(QuestionScore>0.25 && QuestionScore<=0.75){
+                            TotalMediumQueLength++;
+                          }
+                          else if(QuestionScore>=0 && QuestionScore<=0.25){
+                            TotalHardQueLength++;
+                          }
+                        }
+                
+                        let CorrectQuestionList=[];
+                        let SkipQuestionList=[];
+                        let WrongQuestionList=[];
+                        let SolvedEasyQueLength=0,SolvedMediumQueLength=0,SolvedHardQueLength=0;
+                
+                        let CorrectEasyQLength=0, WrongEasyQLength=0, SkipEasyQLength = 0
+                        let CorrectMediumQLength=0, WrongMediumQLength=0, SkipMediumQLength = 0
+                        let CorrectHardQLength=0, WrongHardQLength=0, SkipHardQLength = 0
+                
+                
+                        for (let i = 0; i<SolvedQList.length;i++) {
+                            QuestionScore=parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
+                            console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
+                
+                            if((QuestionScore>0.75 && QuestionScore<=1) || SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]==0){
+                                SolvedEasyQueLength++;  //total easy solved
+                                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                                    CorrectEasyQLength++;    //total correct easy
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                                    WrongEasyQLength++;
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                                    SkipEasyQLength++;
+                                }
+                             }
+                     
+                             else if(QuestionScore>0.25 && QuestionScore<=0.75){
+                                SolvedMediumQueLength++;
+                                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                                    CorrectMediumQLength++;    
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                                    WrongMediumQLength++;
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                                    SkipMediumQLength++;
+                                }
+                             }
+                             
+                             else if(QuestionScore>=0 && QuestionScore<=0.25){
+                                SolvedHardQueLength++;
+                                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                                    CorrectHardQLength++;    
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                                    WrongHardQLength++;
+                                }
+                                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                                    SkipHardQLength++;
+                                }
+                            }
+                        }
+                
+                    let CorrectQuestionLength= CorrectEasyQLength + CorrectMediumQLength + CorrectHardQLength;
+                    let SkipQuestionLength= SkipEasyQLength + SkipMediumQLength + SkipHardQLength;
+                    let WrongQuestionLength= WrongEasyQLength + WrongMediumQLength + WrongHardQLength;
+                                     
+                    var correctScore = CorrectQuestionLength * 4;
+                    var wrongScore = -(WrongQuestionLength * 1);
                     var accuracy = 0;
 
                     accuracy = correctScore + wrongScore;
@@ -744,9 +914,11 @@ router.post('/NextQuestion', IsLoggedIn, async function(req, res, next) {
 
                     //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
                      
-                       res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
-                        SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts
+                       res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
+                        SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts,
+                        CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
+                        SkipHardQLength:SkipHardQLength
                       });
                      return;
                     }
@@ -785,7 +957,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
         username = username.substr(0, username.indexOf(' '));
 
 
-        let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1});;
+        let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1});
         let AttemptedQuestionArray=[];
         let submittedInputArray=[];
         for(let i=0;i<AttemptedQuestionList.length;i++)
@@ -801,53 +973,95 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
         let NewQuestion =await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:quesId, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
         if (NewQuestion) {
             quesNum++;
-            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, quesNum: quesNum});
+            let Attempts = parseInt(NewQuestion.SCORE.split(" ")[1]);
+            let corrects= parseInt(NewQuestion.SCORE.split(" ")[0]);
+            let level = corrects/Attempts;
+            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, quesNum: quesNum, level: level});
             return;
         }
 
         else {
             let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-            let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
-
-            // let CorrectQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:1});          
-            // let SkipQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, INPUT_OPT:"SKIPPED"});     
-            // let WrongQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL, CORRECT_FLAG:0}); 
-            
-            // if(!TotalQuestionList) {
-            //     TotalQuestionList.length = 0;
-            // }
-            
-            // if(!CorrectQuestionList) {
-            //     CorrectQuestionList.length = 0;
-            // }
-
-            // if(!SkipQuestionList) {
-            //     SkipQuestionList.length = 0;
-            // }
-
-            // if(!WrongQuestionList) {    
-            //     WrongQuestionList.length = 0;
-            // } 
-
+            let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL}).select().populate('PerformanceToAllQuestionCollectionJoin');
+    
+            let TotalEasyQueLength=0,TotalMediumQueLength=0,TotalHardQueLength=0;
+            let QuestionScore=0;
+            for (let i=0;i<TotalQuestionList.length;i++)
+            {
+             QuestionScore=parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]);
+    
+             if((QuestionScore>0.75 && QuestionScore<=1) || TotalQuestionList[i].SCORE.split(" ")[1]==0){
+                TotalEasyQueLength++;
+              }
+      
+              else if(QuestionScore>0.25 && QuestionScore<=0.75){
+                TotalMediumQueLength++;
+              }
+              else if(QuestionScore>=0 && QuestionScore<=0.25){
+                TotalHardQueLength++;
+              }
+            }
+    
             let CorrectQuestionList=[];
             let SkipQuestionList=[];
             let WrongQuestionList=[];
-   
+            let SolvedEasyQueLength=0,SolvedMediumQueLength=0,SolvedHardQueLength=0;
+    
+            let CorrectEasyQLength=0, WrongEasyQLength=0, SkipEasyQLength = 0
+            let CorrectMediumQLength=0, WrongMediumQLength=0, SkipMediumQLength = 0
+            let CorrectHardQLength=0, WrongHardQLength=0, SkipHardQLength = 0
+    
+    
             for (let i = 0; i<SolvedQList.length;i++) {
-   
-               if(SolvedQList[i].CORRECT_FLAG == 1) {
-                   CorrectQuestionList.push(SolvedQList[i]);
-               }
-               else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                   WrongQuestionList.push(SolvedQList[i]);
-               }
-               else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                   SkipQuestionList.push(SolvedQList[i]);
-               }
-           }
-            
-            var correctScore = CorrectQuestionList.length * 4;
-            var wrongScore = -(WrongQuestionList.length * 1);
+                QuestionScore=parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
+                console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
+    
+                if((QuestionScore>0.75 && QuestionScore<=1) || SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]==0){
+                    SolvedEasyQueLength++;  //total easy solved
+                    if(SolvedQList[i].CORRECT_FLAG == 1) {
+                        CorrectEasyQLength++;    //total correct easy
+                    }
+                    else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                        WrongEasyQLength++;
+                    }
+                    else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                        SkipEasyQLength++;
+                    }
+                 }
+         
+                 else if(QuestionScore>0.25 && QuestionScore<=0.75){
+                    SolvedMediumQueLength++;
+                    if(SolvedQList[i].CORRECT_FLAG == 1) {
+                        CorrectMediumQLength++;    
+                    }
+                    else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                        WrongMediumQLength++;
+                    }
+                    else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                        SkipMediumQLength++;
+                    }
+                 }
+                 
+                 else if(QuestionScore>=0 && QuestionScore<=0.25){
+                    SolvedHardQueLength++;
+                    if(SolvedQList[i].CORRECT_FLAG == 1) {
+                        CorrectHardQLength++;    
+                    }
+                    else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                        WrongHardQLength++;
+                    }
+                    else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                        SkipHardQLength++;
+                    }
+                }
+            }
+    
+            let CorrectQuestionLength= CorrectEasyQLength + CorrectMediumQLength + CorrectHardQLength;
+            let SkipQuestionLength= SkipEasyQLength + SkipMediumQLength + SkipHardQLength;
+            let WrongQuestionLength= WrongEasyQLength + WrongMediumQLength + WrongHardQLength;
+                             
+            var correctScore = CorrectQuestionLength * 4;
+            var wrongScore = -(WrongQuestionLength * 1);
             var accuracy = 0;
 
             accuracy = correctScore + wrongScore;
@@ -872,18 +1086,21 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
                     let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
                     let restarts = leaderboardData.RESTARTS;
                 
-                    res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
-                        SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
+                    res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
+                        SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
                         Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                        ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts
+                        ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts,
+                        CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
+                        SkipHardQLength:SkipHardQLength
                     });  
                     return;
                 }
     
-            res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
-                SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
+            res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
+                SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
                 Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+                ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
+                SkipHardQLength:SkipHardQLength
             });
 
         }
@@ -1148,29 +1365,88 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
             res.json({ResMsg:"Invalid request parameters"});
             return;
         }
-        
+
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-        let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
-        
+        let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL}).select().populate('PerformanceToAllQuestionCollectionJoin');
+
+        let TotalEasyQueLength=0,TotalMediumQueLength=0,TotalHardQueLength=0;
+        let QuestionScore=0;
+        for (let i=0;i<TotalQuestionList.length;i++)
+        {
+         QuestionScore=parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]);
+
+         if((QuestionScore>0.75 && QuestionScore<=1) || TotalQuestionList[i].SCORE.split(" ")[1]==0){
+            TotalEasyQueLength++;
+          }
+  
+          else if(QuestionScore>0.25 && QuestionScore<=0.75){
+            TotalMediumQueLength++;
+          }
+          else if(QuestionScore>=0 && QuestionScore<=0.25){
+            TotalHardQueLength++;
+          }
+        }
+
         let CorrectQuestionList=[];
         let SkipQuestionList=[];
         let WrongQuestionList=[];
+        let SolvedEasyQueLength=0,SolvedMediumQueLength=0,SolvedHardQueLength=0;
+
+        let CorrectEasyQLength=0, WrongEasyQLength=0, SkipEasyQLength = 0
+        let CorrectMediumQLength=0, WrongMediumQLength=0, SkipMediumQLength = 0
+        let CorrectHardQLength=0, WrongHardQLength=0, SkipHardQLength = 0
+
 
         for (let i = 0; i<SolvedQList.length;i++) {
+            QuestionScore=parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
+            console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
 
-           if(SolvedQList[i].CORRECT_FLAG == 1) {
-               CorrectQuestionList.push(SolvedQList[i]);
-           }
-           else if(SolvedQList[i].CORRECT_FLAG == 0) {
-               WrongQuestionList.push(SolvedQList[i]);
-           }
-           else if(SolvedQList[i].CORRECT_FLAG == 2) {
-               SkipQuestionList.push(SolvedQList[i]);
-           }
-       }
-        
-        var correctScore = CorrectQuestionList.length * 4;
-        var wrongScore = -(WrongQuestionList.length * 1);
+            if((QuestionScore>0.75 && QuestionScore<=1) || SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]==0){
+                SolvedEasyQueLength++;  //total easy solved
+                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                    CorrectEasyQLength++;    //total correct easy
+                }
+                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                    WrongEasyQLength++;
+                }
+                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                    SkipEasyQLength++;
+                }
+             }
+     
+             else if(QuestionScore>0.25 && QuestionScore<=0.75){
+                SolvedMediumQueLength++;
+                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                    CorrectMediumQLength++;    
+                }
+                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                    WrongMediumQLength++;
+                }
+                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                    SkipMediumQLength++;
+                }
+             }
+             
+             else if(QuestionScore>=0 && QuestionScore<=0.25){
+                SolvedHardQueLength++;
+                if(SolvedQList[i].CORRECT_FLAG == 1) {
+                    CorrectHardQLength++;    
+                }
+                else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                    WrongHardQLength++;
+                }
+                else if(SolvedQList[i].CORRECT_FLAG == 2) {
+                    SkipHardQLength++;
+                }
+            }
+        }
+
+        let CorrectQuestionLength= CorrectEasyQLength + CorrectMediumQLength + CorrectHardQLength;
+        let SkipQuestionLength= SkipEasyQLength + SkipMediumQLength + SkipHardQLength;
+        let WrongQuestionLength= WrongEasyQLength + WrongMediumQLength + WrongHardQLength;
+                         
+        var correctScore = CorrectQuestionLength * 4;
+        var wrongScore = -(WrongQuestionLength * 1);
         var accuracy = 0;
 
         accuracy = correctScore + wrongScore;
@@ -1216,21 +1492,25 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
                 let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
                 let restarts = leaderboardData.RESTARTS;
 
-                res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
-                    SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
+                res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectEasyQLength, 
+                    SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
                     Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                    ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts: restarts
+                    ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts: restarts,
+                    CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
+                    SkipHardQLength:SkipHardQLength
                 });  
                 return;
             }
    
-        res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
-            SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
+        res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectEasyQLength, 
+            SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
             Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-            ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+            ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username,
+            CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
+            SkipHardQLength:SkipHardQLength
           });
-    }
-
+        }
+    
     catch(err)
         {
             res.send("Error");
@@ -1260,87 +1540,79 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
         let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
         let username = userStr.USERNAME;
         username = username.substr(0, username.indexOf(' '));
-        
-    let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL});
-    let AttemptedQuestionArray=[];
-    for(let i=0;i<AttemptedQuestionList.length;i++)
-    {
-        AttemptedQuestionArray.push(AttemptedQuestionList[i].QUESTION_ID );
-    }
+       
+        // Removed by Abhigyan
+    // let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL});
+    // let AttemptedQuestionArray=[];
+    // for(let i=0;i<AttemptedQuestionList.length;i++)
+    // {
+    //     AttemptedQuestionArray.push(AttemptedQuestionList[i].QUESTION_ID );
+    // }
 
-    let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID: { $nin: AttemptedQuestionArray },CONCEPT_ID:req.body.Concept, CHAPTER_ID:req.body.Chapter, COURSE_ID:req.body.Course, CLASS_ID:req.body.Class});
-    if(NewQuestion)
-    {
-        res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
-        return;
-    }
-    else
-    {
-        try
-        {
-            let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-            let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
+    // let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID: { $nin: AttemptedQuestionArray },CONCEPT_ID:req.body.Concept, CHAPTER_ID:req.body.Chapter, COURSE_ID:req.body.Course, CLASS_ID:req.body.Class});
+    // if(NewQuestion)
+    // {
+    //     res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
+    //     return;
+    // }
+    // else
+    // {
+        // try
+        // {
+        let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
+        // let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
         
-            let CorrectQuestionList=[];
-            let SkipQuestionList=[];
-            let WrongQuestionList=[];
+        // let CorrectQuestionList=[];
+        // let SkipQuestionList=[];
+        // let WrongQuestionList=[];
    
-            for (let i = 0; i<SolvedQList.length;i++) {
+        // for (let i = 0; i<SolvedQList.length;i++) {
    
-               if(SolvedQList[i].CORRECT_FLAG == 1) {
-                   CorrectQuestionList.push(SolvedQList[i]);
-               }
-               else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                   WrongQuestionList.push(SolvedQList[i]);
-               }
-               else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                   SkipQuestionList.push(SolvedQList[i]);
-               }
-           }
+        //     if(SolvedQList[i].CORRECT_FLAG == 1) {
+        //         CorrectQuestionList.push(SolvedQList[i]);
+        //     }
+        //     else if(SolvedQList[i].CORRECT_FLAG == 0) {
+        //         WrongQuestionList.push(SolvedQList[i]);
+        //    }
+        //     else if(SolvedQList[i].CORRECT_FLAG == 2) {
+        //            SkipQuestionList.push(SolvedQList[i]);
+        //    }
+        //    }
            
-            var correctScore = CorrectQuestionList.length * 4;
-            var wrongScore = -(WrongQuestionList.length * 1);
-            var accuracy = 0;
+        // var correctScore = CorrectQuestionList.length * 4;
+        // var wrongScore = -(WrongQuestionList.length * 1);
+        // var accuracy = 0;
 
-            accuracy = correctScore + wrongScore;
+        // accuracy = correctScore + wrongScore;
         
-
-                await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
-                let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
-                let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
+        var accuracy = 0;
+        await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
+        let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
+        let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
                 //Add try catch may be?
-                let userRank=0;
+        let userRank=0;
 
-               for(let i=0;i<LeaderBoardList.length;i++)
-               {
-                   if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
+        for(let i=0;i<LeaderBoardList.length;i++)
+            {
+                if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
                    {
                     userRank=i+1;
                     break;
                    }
-               }
-               let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
-               let restarts = leaderboardData.RESTARTS;
+            }
+        // let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
+        // let restarts = leaderboardData.RESTARTS;
               
-               //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
+        //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
                 
-                  res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionList.length, 
-                   SkippedQuestions: SkipQuestionList.length, WrongQuestions: WrongQuestionList.length,
-                   Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts
-                 });
-                return;
+        res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:0, 
+        SkippedQuestions: 0, WrongQuestions: 0,
+        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+        });
+        return;
         }
 
-        catch(err)
-        {
-            console.log("DB Connection Error: "+err.message);
-            res.render('error');
-          //  res.status(200).json({ ErrCode: 7, ResMsg: "DB Connection Error"});
-            return;
-        }
         //res.send("Concept Completed");
-     }
-   }
 
     catch(err) {
         res.render('error');
@@ -1376,7 +1648,129 @@ router.post('/OrderDetails', IsLoggedIn, async function(req, res) {
     }
 });
 
+router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next) {
+    try
+    {
+     //Class, course, concept, chapter, concept   
+     if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum)
+     {
+         res.json({ResMsg:"Invalid Request Parameters"});
+         return;
+     }
+    
+     //fetch after sort
+     let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});      
+     TotalQuestionList.sort(function (b,a){
+     return ((parseInt(a.SCORE.split(" ")[0])/parseInt(a.SCORE.split(" ")[1]))-((b.SCORE.split(" ")[0])/parseInt(b.SCORE.split(" ")[1])))
+     }) ;
 
+
+    
+     ///////////////////////////////////////
+     let allQuestionsScoreList = [];
+     for(let i=0;i<TotalQuestionList.length;i++)
+     {
+        allQuestionsScoreList.push(parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]))
+        console.log("i",allQuestionsScoreList[i]);
+     }
+     ///////////////////////////////////////
+
+
+
+     //All questions sorted in descending based on Score.
+
+     let easyQList=TotalQuestionList.slice(0,TotalQuestionList.length/2);
+     let difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
+    //EASY ARRAY            DIFFICULT ARRAY        is made.
+
+     let SolvedQList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
+     // Last most attempted question is fetched
+
+     if(SolvedQList.length==0) {
+        res.send('TotalQuestionList');
+        //render first question of Total Question List 
+        return; 
+     }
+
+     ///////////
+     easyQList = easyQList.filter(easyQListEle =>!SolvedQList.find(SolvedQListEle => (SolvedQListEle.QUESTION_ID === easyQListEle.QUESTION_ID) ));
+     difficultQList = difficultQList.filter(difficultQListEle => !SolvedQList.find(SolvedQListEle => (SolvedQListEle.QUESTION_ID === difficultQListEle.QUESTION_ID) ));
+     // attempted questions are removed from easy and difficult question list 
+
+
+    //Fetch score of easy last easy question
+    let lastEasyQScore =easyQList.length>0 ?parseInt(easyQList[easyQList.length-1].SCORE.split(" ")[0])/parseInt(easyQList[easyQList.length-1].SCORE.split(" ")[1]): 0;
+       
+    let lastAttemptedQuestionScore=parseInt(SolvedQList[0].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[0].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
+    let NewQusetiontoDisplay=null;
+
+     //EASY C       EASY W/S       DIFF C       DIFF W/S
+
+
+     //irrespective of last question being correct or wrong, because any one of the lists are exhausted
+    if(easyQList.length==0 && difficultQList.length>0)
+    {
+        NewQusetiontoDisplay=difficultQList[0]; 
+    }
+    else if(difficultQList.length==0 && easyQList.length>0)
+    {
+        NewQusetiontoDisplay=easyQList[0]; 
+    }
+    
+    //If both lists are available, last attempted question was difficult
+    else if (lastAttemptedQuestionScore <= lastEasyQScore) {  
+         
+        if(SolvedQList[0].CORRECT_FLAG=="1" ) 
+        {
+            NewQusetiontoDisplay=difficultQList[0];              //if difficult corr, show diff
+        }
+        else
+        {
+            NewQusetiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct
+        }
+    }
+    
+    //if both lists are available, last attempted question was easy 
+    else if (lastAttemptedQuestionScore > lastEasyQScore) {  
+         
+        if(SolvedQList[0].CORRECT_FLAG=="1" ) 
+        {
+            NewQusetiontoDisplay=difficultQList[0];              //if difficult corr, show diff
+        }
+        else
+        {
+            NewQusetiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct
+        }
+    }
+  
+
+    //Most easiest or least difficult is shown by taking 0 index from the array 
+
+    if(!NewQusetiontoDisplay){
+        //render page with no question available message
+        res.send('No question');
+    }  
+    
+    else
+    {
+         //render qusetion page
+        res.send(NewQusetiontoDisplay);
+    }
+}
+catch(err) {
+         res.render('error');
+     }
+});
+
+
+
+
+
+
+
+
+
+//Unused API 
 router.post('/SolveLevelWiseQuestions', IsLoggedIn, async function(req, res, next) {
 
     try

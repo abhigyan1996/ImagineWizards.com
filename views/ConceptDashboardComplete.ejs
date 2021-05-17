@@ -103,16 +103,16 @@
     <input name="WrongQuestions" id="WrongQuestions" value=<%=WrongQuestions%> type="text">
   </form>
 
-<form action="/QuarkXAcademy/ResetConcept" method="POST">  
+<form id="restartForm" action="/QuarkXAcademy/ResetConcept" method="POST">  
   <input class="w3-hide" name="Concept" id="Concept" type="text">
   <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
   <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
   <input class="w3-hide" name="Chapter" id="Chapter" type="text">
   <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
   <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
-  <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
+  <!-- <input class="w3-hide" id="theme" type="text" name="Theme" value=1> -->
   <!-- newly added-->
-   <div class="btn w3-pink w3-hover-blue w3-button" id="practiceBtn"> Restart Practice </div> 
+   <div class="btn w3-pink w3-hover-blue w3-button" id="practiceBtn">Restart Concept</div> 
    <div class="w3-button w3-pink w3-hover-blue" id="viewSolBtn">Review Solved Questions</div>
 </form>
 
@@ -129,6 +129,7 @@
 
   <form class="w3-hide">
     <input name="userRank" id="userRank" value=<%=userRank%> type="text">
+    <input id="restartCount" value=<%=restarts%> type="text">
   </form>
 
 
@@ -161,8 +162,8 @@
   <div id="modalDiv" class="modal-content">
     <span style="color:red; font-size:5vw; font-weight: 900;" class="close w3-hide-small">&times;</span>
     <span style="color:red; font-size:10vw; font-weight: 900;" class="close w3-hide-large w3-hide-medium">&times;</span>
-    <p id="restartLeftTxt">Restarts Left for this Concept: <%=restarts%></p>
-    <p id="restartTxt">Restarting will reset all your performance for this concept, except your leaderboard entry if any. Confirm to restart.</p>
+    <p id="restartLeftTxt">Restarts Left for this Concept: <span id="showRestartCount"><%=restarts%></span></p>
+    <p id="restartTxt">Restarting will reset all your performance for this concept. Confirm to restart.</p>
     <div class="w3-green w3-hover-grey" id="restartModalBtn">YES, RESTART</div>
   </div>
 
@@ -264,6 +265,22 @@
   <div id="noteMsg">* Your leaderboard entry is updated only when you finish a concept. *</div>
 
   </div>
+
+
+  <!-- MODIFY LATER -->
+  <form id="AdaptiveStartQues" action="/QuarkXAcademy/SolveAdaptiveQuestions" method="POST">
+    <input class="w3-hide" name="Concept" id="conceptAdap" type="text">
+    <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
+    <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
+    <input class="w3-hide" name="Chapter" id="chapAdap" type="text">
+    <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
+    <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
+    <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
+
+    <button type="submit" class="w3-blue btn btn-default">Submit</button>
+    <!-- newly added-->
+  </form>
+<!-- REMOVE LATER -->
 
 </body>  <!--All divisions inside here-->
 
@@ -408,6 +425,11 @@ var userRank = document.getElementById('userRank').value;
 
     document.getElementById('ConceptRv').value = conceptName;
     document.getElementById('ChapterRv').value = chapterName;
+
+    document.getElementById('conceptAdap').value = conceptName;
+  document.getElementById('chapAdap').value = chapterName;
+
+   
   
   </script>
 
@@ -416,6 +438,21 @@ var userRank = document.getElementById('userRank').value;
     $("#viewSolBtn").click(function(){
       $("#reviewSolForm").submit();
     });
+
+    var restartCount = parseInt(document.getElementById('restartCount').value);
+
+    if(restartCount == 0) {
+      document.getElementById('restartTxt').innerHTML = "Oops! You have no more restarts left for this Concept. You can still view the questions by clicking on 'Review solved questions'."      
+      $("#restartModalBtn").hide(); 
+    }
+
+    $("#restartModalBtn").click(function(){
+      if (restartCount > 0){
+        document.getElementById('showRestartCount').innerHTML = restartCount-1;
+        $("#restartForm").submit(); 
+      }
+    });
+
   });
 </script>
 

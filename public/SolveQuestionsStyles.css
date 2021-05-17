@@ -28,7 +28,17 @@
 	margin-left: 2vw;
 	margin-top: 10vw;
 	font-weight: 900;
-	color: orange
+	color: orange;
+}
+
+#Qlevel {
+	font-family: 'Alegreya', serif;
+	font-size: 1.5vw;
+	margin-left: 10vw;
+	font-weight: 900;
+	color: purple;
+	position: absolute;
+	margin-top: -2.1vw;
 }
 
 #questionWithImg {
@@ -292,7 +302,7 @@
 		margin-left: 2vw;
 	}
 
-	#quesNum, #quesNumRv {
+	#quesNum, #quesNumRv, #Qlevel {
 		margin-left: 2vw;
 		margin-top: 22vw;
 		font-weight: 900;

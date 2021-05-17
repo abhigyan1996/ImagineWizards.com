@@ -38,7 +38,7 @@ var STUDENT_LEADERBOARD_COLLECTION = new Schema({
         type:Number,
         default:2,
         min: 0,
-        max: 2
+        max: 4
     }
 },{toObject: {virtuals:true},toJSON:true,collection:"STUDENT_LEADERBOARD_COLLECTION"});
 

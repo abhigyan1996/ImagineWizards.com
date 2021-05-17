@@ -169,7 +169,7 @@
    </div>
 
     <section id="div1">
-      <div id="quesNum" class="w3-hide-small">Question:</div>
+      <div id="quesNum" class="w3-hide-small">Question:</div><span id = "Qlevel"></span>
       <div id="quesNum" class="w3-hide-medium w3-hide-large">Question:</div>
 
 <!-- 
@@ -238,6 +238,7 @@
         <input id="quesFlag" type="text" value=<%=Ques_Img_flag%>>
         <input id="AnsFlag" type="text" value=<%=Ans_img_flag%>>
         <input id="userName" type="text" value=<%=username%>>
+        <input id="level" type="text" value=<%=level%>>
         <!-- Note: Only first name is coming due to space. For full name, put in div and fetch that to form input -->
       </form>      
     </section>
@@ -687,6 +688,23 @@
     } 
 
     </script>
+
+
+    <script>
+        var level = document.getElementById('level').value;
+
+        if(level>0.75 && level<=1){
+          document.getElementById('Qlevel').innerHTML = "(Easy)";
+        }
+
+        else if(level>0.25 && level<=0.75){
+          document.getElementById('Qlevel').innerHTML = "(Medium)";
+        }
+        else if(level>=0 && level<=0.25){
+         document.getElementById('Qlevel').innerHTML = "(Hard)";
+        }
+    </script>
+
 
   </body>
   </html>
