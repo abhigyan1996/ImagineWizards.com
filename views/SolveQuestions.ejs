@@ -123,7 +123,7 @@
   <div class="w3-hide" id="conceptName"><%=Concept%></div>
   <div class="w3-hide" id="chapterName"><%=Chapter%></div>
 
-  <form id="submitForm" action="/QuarkXAcademy/SubmitAnswer" method="POST">
+  <form id="submitForm" action="/QuarkXAcademy/SubmitAdaptiveAnswers" method="POST">
     <input class="w3-hide" name="quesID" id="quesID" value=<%=QuestionId%> type="text">
     <input class="w3-hide" name="inputAns" id="inputAns" type="text">
     <input class="w3-hide" name="Concept" id="Concept" type="text">
@@ -135,13 +135,15 @@
     <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
     <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
     <input class="w3-hide" id="themeId1" type="text" name="Theme" value=<%=Theme%>>
+    <input class="w3-hide" id="restarts" type="text" name="restarts" value=<%=restarts%>>
+
   <!-- newly added-->      
     <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-small" id="submitAnsBtn"> Skip Question </button>        
     <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-bottom w3-hide-large w3-hide-medium " id="submitAnsBtnPh"> Skip Question </button>        
 
   </form>
 
-<form action="/QuarkXAcademy/NextQuestion" method="POST">
+<form action="/QuarkXAcademy/SolveAdaptiveQuestions" method="POST">
   <input class="w3-hide" name="Concept" id="ConceptAk" type="text">
   <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
   <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
@@ -149,6 +151,7 @@
   <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
   <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>  
   <input class="w3-hide" id="themeId2" type="text" name="Theme" value=<%=Theme%>>
+  <input class="w3-hide" id="restarts" type="text" name="restarts" value=<%=restarts%>>
   <!-- newly added-->
   <button type="submit" class="w3-button  w3-pink w3-hover-blue w3-hide-small" id="NextQuesBtn">
   <button type="submit" class="w3-button w3-pink w3-hover-blue w3-hide-large w3-hide-medium w3-bottom" id="NextQuesBtnPh"> 
@@ -169,7 +172,7 @@
    </div>
 
     <section id="div1">
-      <div id="quesNum" class="w3-hide-small">Question:</div><span id = "Qlevel"></span>
+      <div id="quesNum" class="w3-hide-small">Question:</div>
       <div id="quesNum" class="w3-hide-medium w3-hide-large">Question:</div>
 
 <!-- 
@@ -238,7 +241,6 @@
         <input id="quesFlag" type="text" value=<%=Ques_Img_flag%>>
         <input id="AnsFlag" type="text" value=<%=Ans_img_flag%>>
         <input id="userName" type="text" value=<%=username%>>
-        <input id="level" type="text" value=<%=level%>>
         <!-- Note: Only first name is coming due to space. For full name, put in div and fetch that to form input -->
       </form>      
     </section>
@@ -688,23 +690,6 @@
     } 
 
     </script>
-
-
-    <script>
-        var level = document.getElementById('level').value;
-
-        if(level>0.75 && level<=1){
-          document.getElementById('Qlevel').innerHTML = "(Easy)";
-        }
-
-        else if(level>0.25 && level<=0.75){
-          document.getElementById('Qlevel').innerHTML = "(Medium)";
-        }
-        else if(level>=0 && level<=0.25){
-         document.getElementById('Qlevel').innerHTML = "(Hard)";
-        }
-    </script>
-
 
   </body>
   </html>

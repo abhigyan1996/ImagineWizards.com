@@ -150,9 +150,8 @@
 
     <section id="div1">
       <div id="quesNumRv" class="w3-hide-small">Question:</div>
-      <div id="quesNumRv" class="w3-hide-medium w3-hide-large">Question:</div><span id = "Qlevel"></span>
+      <div id="quesNumRv" class="w3-hide-medium w3-hide-large">Question:</div>
 
-        
       <div style="visibility: hidden;" class="w3-card" id="quesImgContainer">
         <img id="questionImage" src= <%=QuestionImg%>>
       </div>
@@ -210,7 +209,6 @@
         <input id="quesFlag" type="text" value=<%=Ques_Img_flag%>>
         <input id="AnsFlag" type="text" value=<%=Ans_img_flag%>>
         <input id="userName" type="text" value=<%=username%>>
-        <input id="level" type="text" value=<%=level%>>
         <!-- Note: Only first name is coming due to space. For full name, put in div and fetch that to form input -->
       </form>      
     </section>
@@ -505,23 +503,6 @@
     } 
 
     </script>
-
-
-
-<script>
-  var level = document.getElementById('level').value;
-
-  if(level>0.75 && level<=1){
-    document.getElementById('Qlevel').innerHTML = "(Easy)";
-  }
-
-  else if(level>0.25 && level<=0.75){
-    document.getElementById('Qlevel').innerHTML = "(Medium)";
-  }
-  else if(level>=0 && level<=0.25){
-   document.getElementById('Qlevel').innerHTML = "(Hard)";
-  }
-</script>
 
 
   </html>

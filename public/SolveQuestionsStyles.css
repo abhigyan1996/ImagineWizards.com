@@ -31,16 +31,6 @@
 	color: orange;
 }
 
-#Qlevel {
-	font-family: 'Alegreya', serif;
-	font-size: 1.5vw;
-	margin-left: 10vw;
-	font-weight: 900;
-	color: purple;
-	position: absolute;
-	margin-top: -2.1vw;
-}
-
 #questionWithImg {
 	font-family: 'Sans Serif Pro';
 	font-size: 1.5vw;

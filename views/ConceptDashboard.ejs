@@ -103,7 +103,7 @@
     <input name="WrongQuestions" id="WrongQuestions" value=<%=WrongQuestions%> type="text">
   </form>
 
-<form action="/QuarkXAcademy/SolveQuestions" method="POST">  
+<form action="/QuarkXAcademy/SolveAdaptiveQuestions" method="POST">  
   <input class="w3-hide" name="Concept" id="Concept" type="text">
   <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
   <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
@@ -111,6 +111,7 @@
   <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
   <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
   <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
+  <input class="w3-hide" id="restarts" type="text" name="restarts" value=<%=restarts%>>
   <!-- newly added-->
    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-small" id="practiceBtn"> Start Practice </button> 
    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-medium w3-hide-large" id="practiceBtnPh"> Start Practice </button> 
@@ -137,17 +138,6 @@
     <!-- newly added-->
   </form>
 
-
-  <!-- Newly added for level of difficulty -->
-  <form id="LevelWiseQForm" class="w3-hide" action="/QuarkXAcademy/SolveLevelWiseQuestions" method="POST">  
-    <input class="w3-hide" name="Concept" id="ConceptLod" type="text">
-    <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
-    <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
-    <input class="w3-hide" name="Chapter" id="ChapterLod" type="text">
-    <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
-    <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
-    <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
-  </form>
 
   <div class="w3-white" id="firstDiv">
     <!-- <div class="w3-button w3-pink w3-hover-blue" id="practiceBtn"> Start Practice </div> -->
@@ -255,25 +245,7 @@
   </div>
 
 
-<!-- MODIFY LATER -->
-  <form id="AdaptiveStartQues" action="/QuarkXAcademy/SolveAdaptiveQuestions" method="POST">
-    <input class="w3-hide" name="Concept" id="conceptAdap" type="text">
-    <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
-    <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
-    <input class="w3-hide" name="Chapter" id="chapAdap" type="text">
-    <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
-    <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
-    <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
-
-    <button type="submit" class="w3-blue btn btn-default">Submit</button>
-    <!-- newly added-->
-  </form>
-<!-- REMOVE LATER -->
-
-
 </body>  <!--All divisions inside here-->
-
-
 
 <!-- To draw the pic Chart -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

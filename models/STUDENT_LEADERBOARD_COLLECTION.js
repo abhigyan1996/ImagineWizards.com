@@ -36,7 +36,7 @@ var STUDENT_LEADERBOARD_COLLECTION = new Schema({
     },
     RESTARTS: {
         type:Number,
-        default:2,
+        default:4,
         min: 0,
         max: 4
     }

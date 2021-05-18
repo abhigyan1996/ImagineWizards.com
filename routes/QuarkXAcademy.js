@@ -1356,102 +1356,99 @@ router.post('/ShowConcepts', IsLoggedIn, async function(req,res,next) {
 router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
 
     try{
-         //Fetch User Name
-         let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-         let username = userStr.USERNAME;
-         username = username.substr(0, username.indexOf(' '));
 
         if(!(req.body.Class && req.body.Course && req.body.Chapter && req.body.Concept && req.body.ChapNum && req.body.ConceptNum)) {
             res.json({ResMsg:"Invalid request parameters"});
             return;
         }
 
+        //Fetch User Name
+        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+        let username = userStr.USERNAME;
+        username = username.substr(0, username.indexOf(' '));
+
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-        let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL}).select().populate('PerformanceToAllQuestionCollectionJoin');
-
-        let TotalEasyQueLength=0,TotalMediumQueLength=0,TotalHardQueLength=0;
-        let QuestionScore=0;
-        for (let i=0;i<TotalQuestionList.length;i++)
-        {
-         QuestionScore=parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]);
-
-         if((QuestionScore>0.75 && QuestionScore<=1) || TotalQuestionList[i].SCORE.split(" ")[1]==0){
-            TotalEasyQueLength++;
-          }
-  
-          else if(QuestionScore>0.25 && QuestionScore<=0.75){
-            TotalMediumQueLength++;
-          }
-          else if(QuestionScore>=0 && QuestionScore<=0.25){
-            TotalHardQueLength++;
-          }
-        }
-
-        let CorrectQuestionList=[];
-        let SkipQuestionList=[];
-        let WrongQuestionList=[];
-        let SolvedEasyQueLength=0,SolvedMediumQueLength=0,SolvedHardQueLength=0;
-
-        let CorrectEasyQLength=0, WrongEasyQLength=0, SkipEasyQLength = 0
-        let CorrectMediumQLength=0, WrongMediumQLength=0, SkipMediumQLength = 0
-        let CorrectHardQLength=0, WrongHardQLength=0, SkipHardQLength = 0
-
-
-        for (let i = 0; i<SolvedQList.length;i++) {
-            QuestionScore=parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
-            console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
-
-            if((QuestionScore>0.75 && QuestionScore<=1) || SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]==0){
-                SolvedEasyQueLength++;  //total easy solved
-                if(SolvedQList[i].CORRECT_FLAG == 1) {
-                    CorrectEasyQLength++;    //total correct easy
-                }
-                else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                    WrongEasyQLength++;
-                }
-                else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                    SkipEasyQLength++;
-                }
+        
+        TotalQuestionList.sort(function (b,a){
+            return ((parseInt(a.SCORE.split(" ")[0])/parseInt(a.SCORE.split(" ")[1]))-((b.SCORE.split(" ")[0])/parseInt(b.SCORE.split(" ")[1])))
+            }) ;
+            
+             ///////////////////////////////////////
+             let allQuestionsScoreList = [];
+             for(let i=0;i<TotalQuestionList.length;i++)
+             {
+                allQuestionsScoreList.push(parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]))
+                console.log("i",allQuestionsScoreList[i]);
              }
-     
-             else if(QuestionScore>0.25 && QuestionScore<=0.75){
-                SolvedMediumQueLength++;
-                if(SolvedQList[i].CORRECT_FLAG == 1) {
-                    CorrectMediumQLength++;    
-                }
-                else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                    WrongMediumQLength++;
-                }
-                else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                    SkipMediumQLength++;
-                }
-             }
-             
-             else if(QuestionScore>=0 && QuestionScore<=0.25){
-                SolvedHardQueLength++;
-                if(SolvedQList[i].CORRECT_FLAG == 1) {
-                    CorrectHardQLength++;    
-                }
-                else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                    WrongHardQLength++;
-                }
-                else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                    SkipHardQLength++;
-                }
-            }
-        }
+             ///////////////////////////////////////
+        
+             //All questions sorted in descending based on Score.
+        
+             let easyQList=TotalQuestionList.slice(0,TotalQuestionList.length/2);
+             let difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
+            //EASY ARRAY            DIFFICULT ARRAY        is made.
+        
+             let SolvedQList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
+             // Last most attempted question is fetched
+            let easyCorrect = 0, easyWrong = 0, easySkipped = 0;
+            let difficultCorrect = 0, difficultWrong = 0, difficultSkipped = 0;
 
-        let CorrectQuestionLength= CorrectEasyQLength + CorrectMediumQLength + CorrectHardQLength;
-        let SkipQuestionLength= SkipEasyQLength + SkipMediumQLength + SkipHardQLength;
-        let WrongQuestionLength= WrongEasyQLength + WrongMediumQLength + WrongHardQLength;
-                         
+            ///////////
+             easyQList = easyQList.filter(easyQListEle =>!SolvedQList.find(SolvedQListEle =>
+                { 
+                    if(SolvedQListEle.QUESTION_ID === easyQListEle.QUESTION_ID) 
+                    {
+                        if(SolvedQListEle.CORRECT_FLAG=="1")
+                        {
+                            easyCorrect++;
+                        }
+                        else if(SolvedQListEle.CORRECT_FLAG=="0")
+                        {
+                            easyWrong++;
+                        }
+                        else if(SolvedQListEle.CORRECT_FLAG=="2")
+                        {
+                            easySkipped++;
+                        }
+                        return true;
+                    }
+                })
+             );
+
+             difficultQList = difficultQList.filter(difficultQListEle => !SolvedQList.find(SolvedQListEle => 
+                {
+                   if (SolvedQListEle.QUESTION_ID === difficultQListEle.QUESTION_ID)
+                   {
+                    if(SolvedQListEle.CORRECT_FLAG=="1")
+                    {
+                        difficultCorrect++;
+                    }
+                    else if(SolvedQListEle.CORRECT_FLAG=="0")
+                    {
+                        difficultWrong++;
+                    }
+                    else if(SolvedQListEle.CORRECT_FLAG=="2")
+                    {
+                        difficultSkipped++;
+                    }
+                    return true;
+                   }
+                } ));
+             // attempted questions are removed from easy and difficult question list 
+
+        let CorrectQuestionLength = easyCorrect + difficultCorrect;
+        let WrongQuestionLength = difficultWrong + easyWrong;
+        let SkipQuestionLength = easySkipped + difficultSkipped; 
+
+        let easyUnattemptedLength = easyQList.length;
+        let difficultUnattemptedLength = difficultQList.length;
+        
         var correctScore = CorrectQuestionLength * 4;
         var wrongScore = -(WrongQuestionLength * 1);
         var accuracy = 0;
 
         accuracy = correctScore + wrongScore;
         
-
         //Update on Leaderboard if stopped only if concept is complete
         if (SolvedQList.length == TotalQuestionList.length) {
             await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
@@ -1486,29 +1483,32 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
         }
     
         //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
+        let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
+        let restarts = 0;
+        if(leaderboardData) {
+            restarts = leaderboardData.RESTARTS;
+        }
+        else {
+            restarts = 4;
+        }
 
         if(TotalQuestionList.length == SolvedQList.length)
             {
-                let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
-                let restarts = leaderboardData.RESTARTS;
-
-                res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectEasyQLength, 
+                res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
                     SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
-                    Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                    ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts: restarts,
-                    CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
-                    SkipHardQLength:SkipHardQLength
-                });  
+                    Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts,
+                    easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
+                    easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
+                    });  
                 return;
             }
    
-        res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectEasyQLength, 
+        res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
             SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
-            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-            ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username,
-            CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
-            SkipHardQLength:SkipHardQLength
-          });
+            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts,
+            easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
+            easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
+            });
         }
     
     catch(err)
@@ -1534,56 +1534,13 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
         await STUDENT_LEADERBOARD_COLLECTION.updateOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL},{RESTARTS:leaderboardData.RESTARTS-1},{upsert: true, setDefaultsOnInsert: false});
     
         await STUDENT_PERFORMANCE_COLLECTION.deleteMany({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, CHAPTER_NUM: req.body.ChapNum, CONCEPT_NUM: req.body.ConceptNum, EMAIL: req.user.EMAIL});
-        
 
         //Fetch User Name
         let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
         let username = userStr.USERNAME;
         username = username.substr(0, username.indexOf(' '));
        
-        // Removed by Abhigyan
-    // let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL});
-    // let AttemptedQuestionArray=[];
-    // for(let i=0;i<AttemptedQuestionList.length;i++)
-    // {
-    //     AttemptedQuestionArray.push(AttemptedQuestionList[i].QUESTION_ID );
-    // }
-
-    // let NewQuestion=await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID: { $nin: AttemptedQuestionArray },CONCEPT_ID:req.body.Concept, CHAPTER_ID:req.body.Chapter, COURSE_ID:req.body.Course, CLASS_ID:req.body.Class});
-    // if(NewQuestion)
-    // {
-    //     res.render('SolveQuestions',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username});
-    //     return;
-    // }
-    // else
-    // {
-        // try
-        // {
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-        // let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL});
-        
-        // let CorrectQuestionList=[];
-        // let SkipQuestionList=[];
-        // let WrongQuestionList=[];
-   
-        // for (let i = 0; i<SolvedQList.length;i++) {
-   
-        //     if(SolvedQList[i].CORRECT_FLAG == 1) {
-        //         CorrectQuestionList.push(SolvedQList[i]);
-        //     }
-        //     else if(SolvedQList[i].CORRECT_FLAG == 0) {
-        //         WrongQuestionList.push(SolvedQList[i]);
-        //    }
-        //     else if(SolvedQList[i].CORRECT_FLAG == 2) {
-        //            SkipQuestionList.push(SolvedQList[i]);
-        //    }
-        //    }
-           
-        // var correctScore = CorrectQuestionList.length * 4;
-        // var wrongScore = -(WrongQuestionList.length * 1);
-        // var accuracy = 0;
-
-        // accuracy = correctScore + wrongScore;
         
         var accuracy = 0;
         await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
@@ -1600,19 +1557,14 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
                     break;
                    }
             }
-        // let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
-        // let restarts = leaderboardData.RESTARTS;
-              
-        //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
-                
+                              
         res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:0, 
-        SkippedQuestions: 0, WrongQuestions: 0,
-        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username
+        SkippedQuestions: 0, WrongQuestions: 0, easyQLength:0, difficultQLength: 0,easyCorrect: 0, easyWrong:0, easySkipped:0, difficultCorrect:0,difficultWrong:0,difficultSkipped:0,
+        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username,
+        restarts:leaderboardData.RESTARTS-1
         });
         return;
         }
-
-        //res.send("Concept Completed");
 
     catch(err) {
         res.render('error');
@@ -1648,10 +1600,491 @@ router.post('/OrderDetails', IsLoggedIn, async function(req, res) {
     }
 });
 
+
 router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next) {
     try
     {
      //Class, course, concept, chapter, concept   
+     if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts)
+     {
+         res.json({ResMsg:"Invalid Request Parameters"});
+         return;
+     }
+     
+    //Fetch User Name
+    let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+    let username = userStr.USERNAME;
+    username = username.substr(0, username.indexOf(' '));
+
+     //fetch after sort
+    let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});      
+    TotalQuestionList.sort(function (b,a){
+    return ((parseInt(a.SCORE.split(" ")[0])/parseInt(a.SCORE.split(" ")[1]))-((b.SCORE.split(" ")[0])/parseInt(b.SCORE.split(" ")[1])))
+    }) ;
+    
+     ///////////////////////////////////////
+     let allQuestionsScoreList = [];
+     for(let i=0;i<TotalQuestionList.length;i++)
+     {
+        allQuestionsScoreList.push(parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]))
+        console.log("i",allQuestionsScoreList[i]);
+     }
+     ///////////////////////////////////////
+
+     //All questions sorted in descending based on Score.
+
+     let easyQList=TotalQuestionList.slice(0,TotalQuestionList.length/2);
+     let difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
+    //EASY ARRAY            DIFFICULT ARRAY        is made.
+
+     let SolvedQList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
+     // Last most attempted question is fetched
+
+     if(SolvedQList.length==0) {
+        let NewQuestiontoDisplay = TotalQuestionList[0];
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        //render first question of Total Question List 
+        return; 
+     }
+
+     ///////////
+     easyQList = easyQList.filter(easyQListEle =>!SolvedQList.find(SolvedQListEle => (SolvedQListEle.QUESTION_ID === easyQListEle.QUESTION_ID) ));
+     difficultQList = difficultQList.filter(difficultQListEle => !SolvedQList.find(SolvedQListEle => (SolvedQListEle.QUESTION_ID === difficultQListEle.QUESTION_ID) ));
+     // attempted questions are removed from easy and difficult question list 
+
+
+    //Fetch score of easy last easy question
+    let lastEasyQScore =easyQList.length>0 ?parseInt(easyQList[easyQList.length-1].SCORE.split(" ")[0])/parseInt(easyQList[easyQList.length-1].SCORE.split(" ")[1]): 0;
+       
+    let lastAttemptedQuestionScore=parseInt(SolvedQList[0].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[0].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
+    let NewQuestiontoDisplay=null;
+
+     //EASY C       EASY W/S       DIFF C       DIFF W/S
+
+
+     //irrespective of last question being correct or wrong, because any one of the lists are exhausted
+    if(easyQList.length==0 && difficultQList.length>0)
+    {
+        NewQuestiontoDisplay=difficultQList[0]; 
+    }
+    else if(difficultQList.length==0 && easyQList.length>0)
+    {
+        NewQuestiontoDisplay=easyQList[0]; 
+    }
+    
+    //If both lists are available, last attempted question was difficult
+    else if (lastAttemptedQuestionScore <= lastEasyQScore) {  
+         
+        if(SolvedQList[0].CORRECT_FLAG=="1" ) 
+        {
+            NewQuestiontoDisplay=difficultQList[0];              //if difficult corr, show diff
+        }
+        else
+        {
+            NewQuestiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct
+        }
+    }
+    
+    //if both lists are available, last attempted question was easy 
+    else if (lastAttemptedQuestionScore > lastEasyQScore) {  
+         
+        if(SolvedQList[0].CORRECT_FLAG=="1" ) 
+        {
+            NewQuestiontoDisplay=difficultQList[0];              //if difficult corr, show diff
+        }
+        else
+        {
+            NewQuestiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct
+        }
+    }
+  
+
+    //Most easiest or least difficult is shown by taking 0 index from the array 
+
+    if(!NewQuestiontoDisplay){
+        //render page with no question available message
+
+        easyQList=TotalQuestionList.slice(0,TotalQuestionList.length/2);
+        difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
+     
+        let easyCorrect = 0, easyWrong = 0, easySkipped = 0;
+        let difficultCorrect = 0, difficultWrong = 0, difficultSkipped = 0;
+
+        ///////////
+         easyQList = easyQList.filter(easyQListEle =>!SolvedQList.find(SolvedQListEle =>
+            { 
+                if(SolvedQListEle.QUESTION_ID === easyQListEle.QUESTION_ID) 
+                {
+                    if(SolvedQListEle.CORRECT_FLAG=="1")
+                    {
+                        easyCorrect++;
+                    }
+                    else if(SolvedQListEle.CORRECT_FLAG=="0")
+                    {
+                        easyWrong++;
+                    }
+                    else if(SolvedQListEle.CORRECT_FLAG=="2")
+                    {
+                        easySkipped++;
+                    }
+                    return true;
+                }
+            })
+         );
+
+         difficultQList = difficultQList.filter(difficultQListEle => !SolvedQList.find(SolvedQListEle => 
+            {
+               if (SolvedQListEle.QUESTION_ID === difficultQListEle.QUESTION_ID)
+               {
+                if(SolvedQListEle.CORRECT_FLAG=="1")
+                {
+                    difficultCorrect++;
+                }
+                else if(SolvedQListEle.CORRECT_FLAG=="0")
+                {
+                    difficultWrong++;
+                }
+                else if(SolvedQListEle.CORRECT_FLAG=="2")
+                {
+                    difficultSkipped++;
+                }
+                return true;
+               }
+            } ));
+         // attempted questions are removed from easy and difficult question list 
+
+        let CorrectQuestionLength = easyCorrect + difficultCorrect;
+        let WrongQuestionLength = difficultWrong + easyWrong;
+        let SkipQuestionLength = easySkipped + difficultSkipped; 
+
+        let easyUnattemptedLength = easyQList.length;
+        let difficultUnattemptedLength = difficultQList.length;
+        
+        var correctScore = CorrectQuestionLength * 4;
+        var wrongScore = -(WrongQuestionLength * 1);
+        var accuracy = 0;
+
+        accuracy = correctScore + wrongScore;
+        
+        await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
+        let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
+        //let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
+        let userRank=0;
+
+        for(let i=0;i<LeaderBoardList.length;i++)
+        {
+            if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
+            {
+                userRank=i+1;
+                break;
+            }
+        }
+
+        let LeaderboardListTopTen=LeaderBoardList.slice(0,10);   
+                
+        res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
+            SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
+            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:req.body.restarts,
+            easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
+            easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
+            }); 
+    }  
+    
+    else
+    {           
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        return;
+         //render qusetion page
+    }
+}
+catch(err) {
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        return;
+        //  res.render('error');
+     }
+});
+
+
+
+router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next) {
+    try
+    {
+     //Class, course, concept, chapter   
+     if(!req.body.quesID || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts)
+     {
+         res.json({ResMsg:"Invalid Request Parameters"});
+         return;
+     }
+    
+          //UPDATE CURRENT ATTEMPT IN PERFORMACE TABLE
+    let studentPerformanceObj = new STUDENT_PERFORMANCE_COLLECTION({
+        CLASS_ID: req.body.Class,
+        COURSE_ID: req.body.Course,
+        CHAPTER_ID: req.body.Chapter,
+        CONCEPT_ID: req.body.Concept,
+        QUESTION_ID: req.body.quesID,
+        EMAIL:req.user.EMAIL,
+        INPUT_OPT: req.body.inputAns || "SKIPPED",
+        CORRECT_FLAG: req.body.CorrectFlag,
+        CHAPTER_NUM:  req.body.ChapNum,
+        CONCEPT_NUM: req.body.ConceptNum
+     })
+
+     await studentPerformanceObj.save();
+
+     //Fetch User Name
+      let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+      let username = userStr.USERNAME;
+      username = username.substr(0, username.indexOf(' '));
+
+     let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});      
+     TotalQuestionList.sort(function (b,a){
+        return ((parseInt(a.SCORE.split(" ")[0])/parseInt(a.SCORE.split(" ")[1]))-((b.SCORE.split(" ")[0])/parseInt(b.SCORE.split(" ")[1])))
+        });
+
+        //UPDATE SCORE OF QUESTION
+
+     let SolvedQList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
+     //if(req.body.restartReamining==5) PUT THIS CONDITION     
+
+     let quesDetails=[];
+     for(let i =0; i<TotalQuestionList.length; i++) {
+         if(TotalQuestionList[i].QUESTION_ID == req.body.quesID) {
+            quesDetails.push(TotalQuestionList[i]);
+            break;
+         }
+     }
+     let AttemptStr = quesDetails[0].SCORE.split(" ")[1];
+     let correctStR= quesDetails[0].SCORE.split(" ")[0];
+        
+     AttemptStr=parseInt(AttemptStr)+1;
+ 
+     if(req.body.CorrectFlag==1) {
+            correctStR=parseInt(correctStR)+1;  
+     }
+ 
+     let ScoreStr = correctStR.toString()+" "+AttemptStr.toString();
+     await All_QUESTIONS_COLLECTION.updateOne({QUESTION_ID: req.body.quesID},{$set:{SCORE:ScoreStr}});
+
+     //If Last Answer is submitted and Go to Next not done, then performance entry should be updated in leaderboard
+     if (SolvedQList.length == TotalQuestionList.length) {
+        //accuracy value find
+            let CorrectQuestionLength=0;
+            let WrongQuestionLength=0;
+   
+            for (let i = 0; i<SolvedQList.length;i++) {
+   
+               if(SolvedQList[i].CORRECT_FLAG == 1) {
+                CorrectQuestionLength++;
+               }
+               else if(SolvedQList[i].CORRECT_FLAG == 0) {
+                WrongQuestionLength++;
+               }
+           }           
+            var correctScore = CorrectQuestionLength * 4;
+            var wrongScore = -(WrongQuestionLength* 1);
+            var accuracy = 0;
+
+            accuracy = correctScore + wrongScore;
+ 
+            await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
+            let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
+            //let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
+            let userRank=0;
+
+            for(let i=0;i<LeaderBoardList.length;i++)
+            {
+                if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
+                {
+                    userRank=i+1;
+                    break;
+                }
+            }
+    }
+
+    //If user skipped
+    if(!req.body.inputAns) {
+        //If last ques is skipped
+        if (SolvedQList.length == TotalQuestionList.length) {
+            
+            easyQList=TotalQuestionList.slice(0,TotalQuestionList.length/2);
+            difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
+         
+            let easyCorrect = 0, easyWrong = 0, easySkipped = 0;
+            let difficultCorrect = 0, difficultWrong = 0, difficultSkipped = 0;
+    
+            ///////////
+             easyQList = easyQList.filter(easyQListEle =>!SolvedQList.find(SolvedQListEle =>
+                { 
+                    if(SolvedQListEle.QUESTION_ID === easyQListEle.QUESTION_ID) 
+                    {
+                        if(SolvedQListEle.CORRECT_FLAG=="1")
+                        {
+                            easyCorrect++;
+                        }
+                        else if(SolvedQListEle.CORRECT_FLAG=="0")
+                        {
+                            easyWrong++;
+                        }
+                        else if(SolvedQListEle.CORRECT_FLAG=="2")
+                        {
+                            easySkipped++;
+                        }
+                        return true;
+                    }
+                })
+             );
+    
+             difficultQList = difficultQList.filter(difficultQListEle => !SolvedQList.find(SolvedQListEle => 
+                {
+                   if (SolvedQListEle.QUESTION_ID === difficultQListEle.QUESTION_ID)
+                   {
+                    if(SolvedQListEle.CORRECT_FLAG=="1")
+                    {
+                        difficultCorrect++;
+                    }
+                    else if(SolvedQListEle.CORRECT_FLAG=="0")
+                    {
+                        difficultWrong++;
+                    }
+                    else if(SolvedQListEle.CORRECT_FLAG=="2")
+                    {
+                        difficultSkipped++;
+                    }
+                    return true;
+                   }
+                } ));
+             // attempted questions are removed from easy and difficult question list 
+    
+            let CorrectQuestionLength = easyCorrect + difficultCorrect;
+            let WrongQuestionLength = difficultWrong + easyWrong;
+            let SkipQuestionLength = easySkipped + difficultSkipped; 
+    
+            let easyUnattemptedLength = easyQList.length;
+            let difficultUnattemptedLength = difficultQList.length;
+            
+            var correctScore = CorrectQuestionLength * 4;
+            var wrongScore = -(WrongQuestionLength * 1);
+            var accuracy = 0;
+    
+            accuracy = correctScore + wrongScore;
+
+            await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
+            let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
+            //let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
+            let userRank=0;
+
+            for(let i=0;i<LeaderBoardList.length;i++)
+            {
+                if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
+                {
+                    userRank=i+1;
+                    break;
+                }
+            }
+            let LeaderboardListTopTen=LeaderBoardList.slice(0,10);   
+                
+            res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
+                SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
+                Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:req.body.restarts,
+                easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
+                easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
+            }); 
+        } 
+    
+        else{   //Show new question which is always available below      
+            ///////////////////////////////////////
+            let allQuestionsScoreList = [];
+            for(let i=0;i<TotalQuestionList.length;i++)
+            {
+                allQuestionsScoreList.push(parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]))
+                console.log("i",allQuestionsScoreList[i]);
+            }
+            ///////////////////////////////////////
+            //All questions sorted in descending based on Score.
+
+            let easyQList=TotalQuestionList.slice(0,TotalQuestionList.length/2);
+            let difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
+            //EASY ARRAY            DIFFICULT ARRAY        is made.
+
+            if(SolvedQList.length==0) {
+                res.send('TotalQuestionList');
+                //render first question of Total Question List 
+                return; 
+            }
+
+            ///////////
+            easyQList = easyQList.filter(easyQListEle =>!SolvedQList.find(SolvedQListEle => (SolvedQListEle.QUESTION_ID === easyQListEle.QUESTION_ID) ));
+            difficultQList = difficultQList.filter(difficultQListEle => !SolvedQList.find(SolvedQListEle => (SolvedQListEle.QUESTION_ID === difficultQListEle.QUESTION_ID) ));
+            // attempted questions are removed from easy and difficult question list 
+
+            //Fetch score of easy last easy question
+            let lastEasyQScore =easyQList.length>0 ?parseInt(easyQList[easyQList.length-1].SCORE.split(" ")[0])/parseInt(easyQList[easyQList.length-1].SCORE.split(" ")[1]): 0;
+            
+            let lastAttemptedQuestionScore=parseInt(SolvedQList[0].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[0].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
+            let NewQuestiontoDisplay=null;
+
+            //EASY C       EASY W/S       DIFF C       DIFF W/S
+
+            //irrespective of last question being correct or wrong, because any one of the lists are exhausted
+            if(easyQList.length==0 && difficultQList.length>0)
+            {
+                NewQuestiontoDisplay=difficultQList[0]; 
+            }
+            else if(difficultQList.length==0 && easyQList.length>0)
+            {
+                NewQuestiontoDisplay=easyQList[0]; 
+            }
+            
+            //If both lists are available, last attempted question was difficult
+            else if (lastAttemptedQuestionScore <= lastEasyQScore) {  
+                
+                if(SolvedQList[0].CORRECT_FLAG=="1" ) 
+                {
+                    NewQuestiontoDisplay=difficultQList[0];              //if difficult corr, show diff
+                }
+                else
+                {
+                    NewQuestiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct
+                }
+            }
+            
+            //if both lists are available, last attempted question was easy 
+            else if (lastAttemptedQuestionScore > lastEasyQScore) {  
+                
+                if(SolvedQList[0].CORRECT_FLAG=="1" ) 
+                {
+                    NewQuestiontoDisplay=difficultQList[0];              //if difficult corr, show diff
+                }
+                else
+                {
+                    NewQuestiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct       
+               }
+            }        
+        //Show new question
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        return;
+        }   
+    }
+    
+    else{   //If req.body.InputAns Exists, i.e. user corrected or wrong
+
+        res.render('SolveQuestions',{Question:quesDetails[0].QUESTION,OptionA:quesDetails[0].OptionA ,OptionB:quesDetails[0].OptionB,OptionC:quesDetails[0].OptionC,OptionD:quesDetails[0].OptionD,CorrectOption:quesDetails[0].CORRECT_OPT ,Explanation:quesDetails[0].EXPLANATION,QuestionImg:quesDetails[0].Q_IMG ,ExplainationImg:quesDetails[0].EXPLANATION_IMAGE,QuestionId:quesDetails[0].QUESTION_ID, Ques_Img_flag:quesDetails[0].QUESTION_IMG_FLAG, Ans_img_flag:quesDetails[0].ANS_IMG_FLAG, Concept:quesDetails[0].CONCEPT_ID, Chapter:quesDetails[0].CHAPTER_ID, Class:quesDetails[0].CLASS_ID, Course:quesDetails[0].COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        return;
+    }
+}
+catch(err) {
+         res.render('error');
+     }
+});
+
+
+//THIS API IS THE BASE, IS NOT CALLED, BUT WON"T BE REMOVED FROM HERE
+//Unused API
+router.post('/StartAdaptiveQuestions', IsLoggedIn, async function(req, res, next) {
+    try
+    {
+     //Class, course, concept, chapter   
      if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum)
      {
          res.json({ResMsg:"Invalid Request Parameters"});
@@ -1664,8 +2097,7 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
      return ((parseInt(a.SCORE.split(" ")[0])/parseInt(a.SCORE.split(" ")[1]))-((b.SCORE.split(" ")[0])/parseInt(b.SCORE.split(" ")[1])))
      }) ;
 
-
-    
+  
      ///////////////////////////////////////
      let allQuestionsScoreList = [];
      for(let i=0;i<TotalQuestionList.length;i++)
@@ -1674,7 +2106,6 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
         console.log("i",allQuestionsScoreList[i]);
      }
      ///////////////////////////////////////
-
 
 
      //All questions sorted in descending based on Score.
@@ -1702,7 +2133,7 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
     let lastEasyQScore =easyQList.length>0 ?parseInt(easyQList[easyQList.length-1].SCORE.split(" ")[0])/parseInt(easyQList[easyQList.length-1].SCORE.split(" ")[1]): 0;
        
     let lastAttemptedQuestionScore=parseInt(SolvedQList[0].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[0].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
-    let NewQusetiontoDisplay=null;
+    let NewQuestiontoDisplay=null;
 
      //EASY C       EASY W/S       DIFF C       DIFF W/S
 
@@ -1710,11 +2141,11 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
      //irrespective of last question being correct or wrong, because any one of the lists are exhausted
     if(easyQList.length==0 && difficultQList.length>0)
     {
-        NewQusetiontoDisplay=difficultQList[0]; 
+        NewQuestiontoDisplay=difficultQList[0]; 
     }
     else if(difficultQList.length==0 && easyQList.length>0)
     {
-        NewQusetiontoDisplay=easyQList[0]; 
+        NewQuestiontoDisplay=easyQList[0]; 
     }
     
     //If both lists are available, last attempted question was difficult
@@ -1722,11 +2153,11 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
          
         if(SolvedQList[0].CORRECT_FLAG=="1" ) 
         {
-            NewQusetiontoDisplay=difficultQList[0];              //if difficult corr, show diff
+            NewQuestiontoDisplay=difficultQList[0];              //if difficult corr, show diff
         }
         else
         {
-            NewQusetiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct
+            NewQuestiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct
         }
     }
     
@@ -1735,18 +2166,18 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
          
         if(SolvedQList[0].CORRECT_FLAG=="1" ) 
         {
-            NewQusetiontoDisplay=difficultQList[0];              //if difficult corr, show diff
+            NewQuestiontoDisplay=difficultQList[0];              //if difficult corr, show diff
         }
         else
         {
-            NewQusetiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct
+            NewQuestiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct
         }
     }
   
 
     //Most easiest or least difficult is shown by taking 0 index from the array 
 
-    if(!NewQusetiontoDisplay){
+    if(!NewQuestiontoDisplay){
         //render page with no question available message
         res.send('No question');
     }  
@@ -1754,20 +2185,13 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
     else
     {
          //render qusetion page
-        res.send(NewQusetiontoDisplay);
+        res.send(NewQuestiontoDisplay);
     }
 }
 catch(err) {
          res.render('error');
      }
 });
-
-
-
-
-
-
-
 
 
 //Unused API 
