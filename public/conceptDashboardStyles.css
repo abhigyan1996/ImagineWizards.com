@@ -82,7 +82,7 @@
 	position: absolute;
 	font-size: 1.5vw;
 	font-family: 'Alegreya', serif;
-	margin-left: 42vw;
+	margin-left: 40vw;
 	margin-top: 2vw;
 	border-radius: 0.5vw;
 	background-size: 300% 300%;
@@ -400,7 +400,7 @@ table {
 
 	#parentsNoteBtn {
 		font-size: 5vw;
-		margin-left: 25vw;
+		margin-left: 19vw;
 	}
 	
 	#LevelMsgNote {
@@ -881,7 +881,7 @@ figure {
 }
 
 #IndicatorTxtU {
-	margin-left: 13.5vw ;
+	margin-left: 13vw ;
 }
 
 
