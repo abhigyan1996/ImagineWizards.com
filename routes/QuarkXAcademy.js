@@ -944,18 +944,15 @@ router.post('/NextQuestion', IsLoggedIn, async function(req, res, next) {
 
 router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
     try{
-        if(!req.body.quesNum || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum)
+        if(!req.body.quesNum || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum
+            || !req.body.easyCorrect || !req.body.easyWrong || !req.body.easySkipped || !req.body.easyUnattemptedLength || !req.body.difficultCorrect || !req.body.difficultWrong
+            || !req.body.difficultSkipped || !req.body.difficultUnattemptedLength || !req.body.restarts
+            )
         {
            res.send("Invalid Request Parameters");
            return;
            //logger
         }
-
-        //Fetch User Name
-        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-        let username = userStr.USERNAME;
-        username = username.substr(0, username.indexOf(' '));
-
 
         let AttemptedQuestionList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1});
         let AttemptedQuestionArray=[];
@@ -973,143 +970,66 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
         let NewQuestion =await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:quesId, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
         if (NewQuestion) {
             quesNum++;
-            let Attempts = parseInt(NewQuestion.SCORE.split(" ")[1]);
-            let corrects= parseInt(NewQuestion.SCORE.split(" ")[0]);
-            let level = corrects/Attempts;
-            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, quesNum: quesNum, level: level});
+            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme,quesNum: quesNum, restarts: req.body.restarts,
+                easyCorrect:req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, easyUnattempted:req.body.easyUnattempted, difficultCorrect:req.body.difficultCorrect, difficultWrong:req.body.difficultWrong, difficultSkipped:req.body.difficultSkipped, difficultUnattemptedLength:req.body.difficultUnattemptedLength, username:req.body.username});
             return;
         }
 
         else {
-            let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
-            let SolvedQList =await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept,EMAIL:req.user.EMAIL}).select().populate('PerformanceToAllQuestionCollectionJoin');
-    
-            let TotalEasyQueLength=0,TotalMediumQueLength=0,TotalHardQueLength=0;
-            let QuestionScore=0;
-            for (let i=0;i<TotalQuestionList.length;i++)
-            {
-             QuestionScore=parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]);
-    
-             if((QuestionScore>0.75 && QuestionScore<=1) || TotalQuestionList[i].SCORE.split(" ")[1]==0){
-                TotalEasyQueLength++;
-              }
-      
-              else if(QuestionScore>0.25 && QuestionScore<=0.75){
-                TotalMediumQueLength++;
-              }
-              else if(QuestionScore>=0 && QuestionScore<=0.25){
-                TotalHardQueLength++;
-              }
-            }
-    
-            let CorrectQuestionList=[];
-            let SkipQuestionList=[];
-            let WrongQuestionList=[];
-            let SolvedEasyQueLength=0,SolvedMediumQueLength=0,SolvedHardQueLength=0;
-    
-            let CorrectEasyQLength=0, WrongEasyQLength=0, SkipEasyQLength = 0
-            let CorrectMediumQLength=0, WrongMediumQLength=0, SkipMediumQLength = 0
-            let CorrectHardQLength=0, WrongHardQLength=0, SkipHardQLength = 0
-    
-    
-            for (let i = 0; i<SolvedQList.length;i++) {
-                QuestionScore=parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
-                console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
-    
-                if((QuestionScore>0.75 && QuestionScore<=1) || SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]==0){
-                    SolvedEasyQueLength++;  //total easy solved
-                    if(SolvedQList[i].CORRECT_FLAG == 1) {
-                        CorrectEasyQLength++;    //total correct easy
-                    }
-                    else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                        WrongEasyQLength++;
-                    }
-                    else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                        SkipEasyQLength++;
-                    }
-                 }
-         
-                 else if(QuestionScore>0.25 && QuestionScore<=0.75){
-                    SolvedMediumQueLength++;
-                    if(SolvedQList[i].CORRECT_FLAG == 1) {
-                        CorrectMediumQLength++;    
-                    }
-                    else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                        WrongMediumQLength++;
-                    }
-                    else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                        SkipMediumQLength++;
-                    }
-                 }
-                 
-                 else if(QuestionScore>=0 && QuestionScore<=0.25){
-                    SolvedHardQueLength++;
-                    if(SolvedQList[i].CORRECT_FLAG == 1) {
-                        CorrectHardQLength++;    
-                    }
-                    else if(SolvedQList[i].CORRECT_FLAG == 0) {
-                        WrongHardQLength++;
-                    }
-                    else if(SolvedQList[i].CORRECT_FLAG == 2) {
-                        SkipHardQLength++;
-                    }
-                }
-            }
-    
-            let CorrectQuestionLength= CorrectEasyQLength + CorrectMediumQLength + CorrectHardQLength;
-            let SkipQuestionLength= SkipEasyQLength + SkipMediumQLength + SkipHardQLength;
-            let WrongQuestionLength= WrongEasyQLength + WrongMediumQLength + WrongHardQLength;
-                             
+            let CorrectQuestionLength = req.body.easyCorrect + req.body.difficultCorrect;
+            let WrongQuestionLength = req.body.difficultWrong + req.body.easyWrong;
+            let SkipQuestionLength = req.body.easySkipped + req.body.difficultSkipped; 
+
+            let easyUnattemptedLength = req.body.easyUnattemptedLength;
+            let difficultUnattemptedLength = req.body.difficultUnattemptedLength;
+
+            let totalQuestions = CorrectQuestionLength + WrongQuestionLength + SkipQuestionLength + easyUnattemptedLength + difficultUnattemptedLength;
+
             var correctScore = CorrectQuestionLength * 4;
             var wrongScore = -(WrongQuestionLength * 1);
             var accuracy = 0;
 
             accuracy = correctScore + wrongScore;
-
-            let LeaderBoardList1 = await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
-            let LeaderboardListTopTen=LeaderBoardList1.slice(0,10);
-
+            
+            let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
             let userRank=0;
 
-            for(let i=0;i<LeaderBoardList1.length;i++)
+            for(let i=0;i<LeaderBoardList.length;i++)
             {
-                if(LeaderBoardList1[i].EMAIL==req.user.EMAIL)
+                if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
                 {
-                userRank=i+1;
-                break;
+                    userRank=i+1;
+                    break;
                 }
             }
-            //res.status(200).json({ ErrCode: 0, ResMsg: "Data insertion Successful."});
 
+            let LeaderboardListTopTen=LeaderBoardList.slice(0,10);   
+            
             if(TotalQuestionList.length == SolvedQList.length)
                 {
-                    let leaderboardData = await STUDENT_LEADERBOARD_COLLECTION.findOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL});
-                    let restarts = leaderboardData.RESTARTS;
-                
-                    res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
+                    res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:totalQuestions,CorrectQuestions:CorrectQuestionLength, 
                         SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
-                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                        ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts,
-                        CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
-                        SkipHardQLength:SkipHardQLength
+                        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:req.body.restarts,
+                        easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
+                        easyCorrect: req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, difficultCorrect:req.body.difficultCorrect,difficultWrong:req.body.difficultWrong,difficultSkipped:req.body.difficultSkipped
                     });  
                     return;
                 }
     
-            res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
-                SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
-                Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter,
-                ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, CorrectEasyQLength:CorrectEasyQLength, WrongEasyQLength:WrongEasyQLength, SkipEasyQLength:SkipEasyQLength, CorrectMediumQLength:CorrectMediumQLength, WrongMediumQLength:WrongMediumQLength, SkipMediumQLength:SkipMediumQLength, CorrectHardQLength:CorrectHardQLength, WrongHardQLength:WrongHardQLength,
-                SkipHardQLength:SkipHardQLength
-            });
-
+            res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:totalQuestions,CorrectQuestions:CorrectQuestionLength, 
+                    SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
+                    Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:req.body.restarts,
+                    easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
+                    easyCorrect: req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, difficultCorrect:req.body.difficultCorrect,difficultWrong:req.body.difficultWrong,difficultSkipped:req.body.difficultSkipped
+                });
+            return;
         }
     }
 
     catch(err)
     {
         //logger
-        res.json({ResMsg:`Error Occured`});
+        res.render('error');
     }
 });
 
@@ -1829,9 +1749,12 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
         CHAPTER_NUM:  req.body.ChapNum,
         CONCEPT_NUM: req.body.ConceptNum
      })
+     
 
      await studentPerformanceObj.save();
+    //  [ lbl ] DuplicateQuestion:
 
+    // Duplicate_Question
      //Fetch User Name
       let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
       let username = userStr.USERNAME;
@@ -2074,6 +1997,14 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
     }
 }
 catch(err) {
+    if(err._message==='STUDENT_PERFORMANCE_COLLECTION validation failed')
+    {
+        //replace this with any logic
+       
+      
+        // goto Duplicate_Question;
+
+    }
          res.render('error');
      }
 });

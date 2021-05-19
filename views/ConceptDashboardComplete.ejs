@@ -116,16 +116,6 @@
    <div class="w3-button w3-pink w3-hover-blue" id="viewSolBtn">Review Solved Questions</div>
 </form>
 
-<form class="w3-hide" action="" method ="POST">
-  <!-- On Restart Practice, show a dialog to reset Concept, then upon confirm reset, remove entry from 
-    leaderboard and performance table-->>
-  <input class="w3-hide" name="Concept" id="Concept" value=<%=Concept%> type="text">
-  <input class="w3-hide" name="Class" id="Class" value=<%=Class%> type="text">
-  <input class="w3-hide" name="Course" id="Course" value=<%=Course%> type="text">
-  <input class="w3-hide" name="Chapter" id="Chapter" value=<%=Chapter%> type="text">
-  <input id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
-  <input id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
-</form>
 
   <form class="w3-hide">
     <input name="userRank" id="userRank" value=<%=userRank%> type="text">
@@ -143,6 +133,17 @@
     <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
     <input class="w3-hide" id="quesNum" type="text" name = "quesNum" value=0>
 
+    <input class="w3-hide" type="text" name="easyCorrect" value=<%=easyCorrect%>>
+    <input class="w3-hide" type="text" name="easyWrong" value=<%=easyWrong%>>
+    <input class="w3-hide" type="text" name="easySkipped" value=<%=easySkipped%>>
+    <input class="w3-hide" type="text" name="easyUnattempted" value=<%=easyUnattemptedLength%>>
+    <input class="w3-hide" type="text" name="difficultCorrect" value=<%=difficultCorrect%>>
+    <input class="w3-hide" type="text" name="difficultWrong" value=<%=difficultWrong%>>
+    <input class="w3-hide" type="text" name="difficultSkipped" value=<%=difficultSkipped%>>
+    <input class="w3-hide" type="text" name="difficultUnattemptedLength" value=<%=difficultUnattemptedLength%>>
+    <input class="w3-hide" type="text" name="username" value=<%=username%>>
+    <input class="w3-hide" id="restarts" type="text" name="restarts" value=<%=restarts%>>
+
     <button type="submit" class="w3-hide w3-blue btn btn-default">Submit</button>
     <!-- newly added-->
   </form>
@@ -157,16 +158,14 @@
 
   <!-- The Modal -->
 <div id="myModal" class="modal">
-
   <!-- Modal content -->
   <div id="modalDiv" class="modal-content">
     <span style="color:red; font-size:5vw; font-weight: 900;" class="close w3-hide-small">&times;</span>
-    <span style="color:red; font-size:10vw; font-weight: 900;" class="close w3-hide-large w3-hide-medium">&times;</span>
+    <span style="color:red; font-size:10vw; font-weight: 900;" class="closePh w3-hide-large w3-hide-medium">&times;</span>
     <p id="restartLeftTxt">Restarts Left for this Concept: <span id="showRestartCount"><%=restarts%></span></p>
     <p id="restartTxt">Restarting will reset all your performance for this concept. Confirm to restart.</p>
     <div class="w3-green w3-hover-grey" id="restartModalBtn">YES, RESTART</div>
   </div>
-
 </div>
 
 
@@ -229,8 +228,104 @@
           <p id="UnattemptedcountPh"></p>
     </li>
   </ul>
-
   </section>
+
+
+  <div id="EasyQAnalysisTxt">Analysis of Easy Questions</div>
+
+  <figure>
+    <div class="graphic">
+  
+      <div class="row">
+        <div class="chart">
+          <span class="block" title="Correct">
+             <span id="easyCorrectPercent" class="value w3-hide"></span>
+          </span>
+          <span class="block" title="Wrong">
+             <span id="easyWrongPercent" class="value w3-hide"></span>
+          </span>
+          <span class="block" title="Skipped">
+             <span id="easySkippedPercent" class="value w3-hide"></span>
+          </span>
+          <span class="block" title="Unattempted">
+             <span id="easyUnattemptedPercent" class="value w3-hide"></span>
+          </span>
+        
+        </div>
+      </div>
+    </div>
+  
+  </figure>
+
+  <div id="colorId"> 
+    <div id="IndicatorTxt"> <span style="color:green">&#9679</span> <span style="color:black">Correct</span> </div>
+    <div id="IndicatorTxt"> <span style="color:#CD3615">&#9679</span> <span style="color:black">Wrong</span> </div>
+    <div id="IndicatorTxt"> <span style="color:#1596CD">&#9679</span> <span style="color:black">Skipped</span> </div>
+    <div id="IndicatorTxt"> <span style="color:#565454">&#9679</span> <span style="color:black">Unattempted</span> </div>
+  </div>
+
+  <div id="colorId2"> 
+    <div id="IndicatorTxtC"><span id="correctEasyCount" style="color:black"></span> </div>
+    <div id="IndicatorTxtW"><span id="wrongEasyCount" style="color:black"></span> </div>
+    <div id="IndicatorTxtS"><span id="skipEasyCount" style="color:black"></span> </div>
+    <div id="IndicatorTxtU"><span id="unattemptedEasyCount" style="color:black"></span> </div>
+  </div>
+
+  <div id="DifficultQAnalysisTxt">Analysis of Difficult Questions</div>
+
+
+  <figure>
+    <div class="graphic">
+
+      <div class="row">
+        <div class="chart">
+          <span class="block" title="Correct">
+            <span id="difficultCorrectPercent" class="value w3-hide"></span>
+          </span>
+          <span class="block" title="Wrong">
+            <span id="difficultWrongPercent" class="value w3-hide"></span>
+          </span>
+          <span class="block" title="Skipped">
+            <span id="difficultSkippedPercent" class="value w3-hide"></span>
+          </span>
+          <span class="block" title="Unattempted">
+            <span id="difficultUnattemptedPercent" class="value w3-hide"></span>
+          </span>
+        
+        </div>
+      </div>
+    </div>
+
+  </figure>
+
+  <div id="colorId"> 
+    <div id="IndicatorTxt"> <span style="color:green">&#9679</span> <span style="color:black">Correct</span> </div>
+    <div id="IndicatorTxt"> <span style="color:#CD3615">&#9679</span> <span style="color:black">Wrong</span> </div>
+    <div id="IndicatorTxt"> <span style="color:#1596CD">&#9679</span> <span style="color:black">Skipped</span> </div>
+    <div id="IndicatorTxt"> <span style="color:#565454">&#9679</span> <span style="color:black">Unattempted</span> </div>
+  </div>
+
+  <div id="colorId2"> 
+  <div id="IndicatorTxtC"><span id="correctDifficultCount" style="color:black"></span> </div>
+  <div id="IndicatorTxtW"><span id="wrongDifficultCount" style="color:black"></span> </div>
+  <div id="IndicatorTxtS"><span id="skipDifficultCount" style="color:black"></span> </div>
+  <div id="IndicatorTxtU"><span id="unattemptedDifficultCount" style="color:black"></span> </div>
+  </div>
+
+  <div class="w3-button w3-pink w3-hover-amber" id="parentsNoteBtn"> Note to Parents </div>
+
+ <!-- The Modal -->
+ <div id="myModal2" class="modal">
+  <!-- Modal content -->
+  <div id="modalDiv" class="modal-content">
+    <span style="color:red; font-size:5vw; font-weight: 900;" class="close w3-hide-small">&times;</span>
+    <span style="color:red; font-size:10vw; font-weight: 900;" class="closePh w3-hide-large w3-hide-medium">&times;</span>
+    <div id="LevelMsgNote">
+      <p style="color:green">Dear parents,</p>
+      <p>Not just your child learns from us. But our questions learn from them too. Our questions automatically adjust their difficulty levels based on your child's attempts. So, this analysis of easy and difficult questions will keep updating and get better with time. </p>
+  </div>
+</div>
+</div>
 
   <div id = "LeaderboardDiv">
     <div id="scoreboardDiv">
@@ -239,7 +334,7 @@
     </div>
     <div id="attemptedMaxScore"></div>
 
-    <div id="leaderboardMsg">You are not in top 100 yet!</div>
+    <div id="leaderboardMsg">Complete the concept with a better score to be in top 100!</div>
           
       <div id="topTenTxt">QuarkX Leaderboard (TOP 10):</div>
         <table id="LeaderboardTbl" class="w3-black">
@@ -265,6 +360,19 @@
   <div id="noteMsg">* Your leaderboard entry is updated only when you finish a concept. *</div>
 
   </div>
+
+  
+  <form class="w3-hide">
+    <input type="text" id="easyCorrect" value=<%=easyCorrect%>>
+    <input type="text" id="easyWrong" value=<%=easyWrong%>>
+    <input type="text" id="easySkipped" value=<%=easySkipped%>>
+    <input type="text" id="easyUnattempted" value=<%=easyUnattemptedLength%>>
+
+    <input type="text" id="difficultCorrect" value=<%=difficultCorrect%>>
+    <input type="text" id="difficultWrong" value=<%=difficultWrong%>>
+    <input type="text" id="difficultSkipped" value=<%=difficultSkipped%>>
+    <input type="text" id="difficultUnattemptedLength" value=<%=difficultUnattemptedLength%>>
+</form>
 
 </body>  <!--All divisions inside here-->
 
@@ -411,10 +519,7 @@ var userRank = document.getElementById('userRank').value;
     document.getElementById('ChapterRv').value = chapterName;
 
     document.getElementById('conceptAdap').value = conceptName;
-  document.getElementById('chapAdap').value = chapterName;
-
-   
-  
+    document.getElementById('chapAdap').value = chapterName;
   </script>
 
 <script>
@@ -440,18 +545,77 @@ var userRank = document.getElementById('userRank').value;
   });
 </script>
 
+<script>
+  //easy analysis
+  var easyCorrect = parseInt(document.getElementById('easyCorrect').value);
+  var easyWrong = parseInt(document.getElementById('easyWrong').value);
+  var easySkipped = parseInt(document.getElementById('easySkipped').value);
+  var easyUnattemptedLength = parseInt(document.getElementById('easyUnattempted').value);
+  var totalEasy = easyCorrect + easyWrong + easySkipped + easyUnattemptedLength;
+
+  var easyCorrectPercent = (easyCorrect/totalEasy) * 100;
+  var easyWrongPercent = (easyWrong/totalEasy) * 100;
+  var easySkippedPercent = (easySkipped/totalEasy) * 100;
+  var easyUnattemptedPercent = (easyUnattemptedLength/totalEasy) * 100;
+  
+  document.getElementById('easyCorrectPercent').innerHTML = easyCorrectPercent + "%";
+  document.getElementById('easyWrongPercent').innerHTML = easyWrongPercent + "%";
+  document.getElementById('easySkippedPercent').innerHTML = easySkippedPercent + "%";
+  document.getElementById('easyUnattemptedPercent').innerHTML = easyUnattemptedPercent + "%";
+  
+  document.getElementById('correctEasyCount').innerHTML = "(" + easyCorrect + ")";
+  document.getElementById('wrongEasyCount').innerHTML = "(" + easyWrong +  ")";
+  document.getElementById('skipEasyCount').innerHTML = "(" +  easySkipped + ")";
+  document.getElementById('unattemptedEasyCount').innerHTML = "(" +  easyUnattemptedLength + ")";
+
+
+
+  //Difficult analysis
+  var difficultCorrect = parseInt(document.getElementById('difficultCorrect').value);
+  var difficultWrong = parseInt(document.getElementById('difficultWrong').value);
+  var difficultSkipped = parseInt(document.getElementById('difficultSkipped').value);
+  var difficultUnattemptedLength = parseInt(document.getElementById('difficultUnattemptedLength').value);
+  var totalEasy = difficultCorrect + difficultWrong + difficultSkipped + difficultUnattemptedLength;
+
+  var difficultCorrectPercent = (difficultCorrect/totalEasy) * 100;
+  var difficultWrongPercent = (difficultWrong/totalEasy) * 100;
+  var difficultSkippedPercent = (difficultSkipped/totalEasy) * 100;
+  var difficultUnattemptedPercent = (difficultUnattemptedLength/totalEasy) * 100;
+  
+  document.getElementById('difficultCorrectPercent').innerHTML = difficultCorrectPercent + "%";
+  document.getElementById('difficultWrongPercent').innerHTML = difficultWrongPercent + "%";
+  document.getElementById('difficultSkippedPercent').innerHTML = difficultSkippedPercent + "%";
+  document.getElementById('difficultUnattemptedPercent').innerHTML = difficultUnattemptedPercent + "%";
+  
+  document.getElementById('correctDifficultCount').innerHTML = "(" + difficultCorrect + ")";
+  document.getElementById('wrongDifficultCount').innerHTML = "(" + difficultWrong +  ")";
+  document.getElementById('skipDifficultCount').innerHTML = "(" +  difficultSkipped + ")";
+  document.getElementById('unattemptedDifficultCount').innerHTML = "(" +  difficultUnattemptedLength + ")";
+
+  $('.value').each(function() {
+    var text = $(this).text();
+    $(this).parent().css('width', text);
+  });
+
+  $('.block').tooltip();
+</script>
+
 
 
 <script>
   // Get the modal
   var modal = document.getElementById("myModal");
+  var modal2 = document.getElementsByClassName("modal")[1];
   
   // Get the button that opens the modal
   var btn = document.getElementById("practiceBtn");
   
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
-  
+
+  var spanPh = document.getElementsByClassName("closePh")[0];
+
+
   // When the user clicks the button, open the modal 
   btn.onclick = function() {
     modal.style.display = "block";
@@ -461,14 +625,49 @@ var userRank = document.getElementById('userRank').value;
   span.onclick = function() {
     modal.style.display = "none";
   }
+
+  spanPh.onclick = function() {
+    modal.style.display = "none";
+  }
   
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+    if (event.target == modal || event.target == modal2) {
+      // modal.style.display = "none";
+      // modal2.style.display = "none";
+      $(".modal").hide();
     }
   }
   </script>
 
+
+
+<script>
+  // Get the modal
+  var modal2 = document.getElementsByClassName("modal")[1];
+  
+  // Get the button that opens the modal
+  var btn = document.getElementById("parentsNoteBtn");
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[1];
+
+  var spanPh2 = document.getElementsByClassName("closePh")[1];
+  
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal2.style.display = "block";
+  }
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal2.style.display = "none";
+  }
+  
+  spanPh2.onclick = function() {
+    modal2.style.display = "none";
+  }
+
+  </script>
 
 </html>
