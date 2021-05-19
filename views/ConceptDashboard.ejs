@@ -112,6 +112,8 @@
   <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
   <input class="w3-hide" id="theme" type="text" name="Theme" value=1>
   <input class="w3-hide" id="restarts" type="text" name="restarts" value=<%=restarts%>>
+  <input class="w3-hide" type="text" name="username" value=<%=username%>>
+
   <!-- newly added-->
    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-small" id="practiceBtn"> Start Practice </button> 
    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-medium w3-hide-large" id="practiceBtnPh"> Start Practice </button> 
@@ -309,11 +311,11 @@
   <!-- Modal content -->
   <div id="modalDiv" class="modal-content">
     <span style="color:red; font-size:5vw; font-weight: 900;" class="close w3-hide-small">&times;</span>
-    <span style="color:red; font-size:10vw; font-weight: 900;" class="close w3-hide-large w3-hide-medium">&times;</span>
+    <span style="color:red; font-size:10vw; font-weight: 900;" class="closePh w3-hide-large w3-hide-medium">&times;</span>
     <div id="LevelMsgNote">
       <p style="color:green">Dear parents,</p>
-      <p>Not just your child learns from us. But our questions learn from them too. Our questions automatically adjust their difficulty levels based on your child's attempts. So, this analysis of easy and difficult questions will keep updating and get better with time. </p>
-  </div>
+      <p>Not just your child learns from us, but our questions learn from them too. Our questions automatically adjust their difficulty levels based on your child's attempts. So, this analysis of easy and difficult questions will keep updating and automatically get better with time. </p>
+    </div>
 
 </div>
 </div>
@@ -594,6 +596,8 @@ var userRank = document.getElementById('userRank').value;
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
   
+  var spanPh2 = document.getElementsByClassName("closePh")[0];
+
   // When the user clicks the button, open the modal 
   btn.onclick = function() {
     modal.style.display = "block";
@@ -604,6 +608,10 @@ var userRank = document.getElementById('userRank').value;
     modal.style.display = "none";
   }
   
+  spanPh2.onclick = function() {
+    modal.style.display = "none";
+  }
+
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
     if (event.target == modal) {

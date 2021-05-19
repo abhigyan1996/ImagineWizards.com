@@ -400,7 +400,7 @@ table {
 
 	#parentsNoteBtn {
 		font-size: 5vw;
-		margin-left: 27vw;
+		margin-left: 25vw;
 	}
 	
 	#LevelMsgNote {
@@ -842,50 +842,47 @@ figure {
 
 #IndicatorTxt {
 	display: inline-block;
-	font-size: 3.25vw;
-	margin-left: 0vw;
+	font-size: 4vw;
+	margin-left: 2vw;
 }
 
 #colorId {
-	margin-left: 20vw;
+	margin-left: 5vw;
 	margin-top: 0vw;
 	margin-bottom: 8vw;
-	width:80vw;
+	width:90vw;
 
 }
 
 #colorId2 {
 	margin-left: 0vw;
-	margin-bottom: 5vw;
+	margin-bottom: 8vw;
 	width: 100vw;
 	margin-top: -7vw;
 }
 
-#IndicatorTxtCorrect {
-	margin-left: 20vw;
-}
-
 #IndicatorTxtC, #IndicatorTxtW, #IndicatorTxtS, #IndicatorTxtU {
 	display: inline-block;
-	font-size: 3.25vw;
+	font-size: 4vw;
 	text-align: center;
 	width:10vw;
 }
 
 #IndicatorTxtC {
-	margin-left: 23.5vw ;
+	margin-left: 12.5vw ;
 }
 
 #IndicatorTxtW {
-	margin-left: 3vw ;
+	margin-left: 7.25vw ;
 }
 
 #IndicatorTxtS {
-	margin-left: 3vw ;
+	margin-left: 9vw ;
 }
 
 #IndicatorTxtU {
-	margin-left: 8vw ;
+	margin-left: 13.5vw ;
 }
+
 
 }

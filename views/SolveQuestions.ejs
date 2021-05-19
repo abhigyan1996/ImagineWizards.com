@@ -136,6 +136,8 @@
     <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
     <input class="w3-hide" id="themeId1" type="text" name="Theme" value=<%=Theme%>>
     <input class="w3-hide" id="restarts" type="text" name="restarts" value=<%=restarts%>>
+    <input class="w3-hide" name="username" type="text" value=<%=username%>>
+
 
   <!-- newly added-->      
     <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-small" id="submitAnsBtn"> Skip Question </button>        
@@ -152,6 +154,8 @@
   <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>  
   <input class="w3-hide" id="themeId2" type="text" name="Theme" value=<%=Theme%>>
   <input class="w3-hide" id="restarts" type="text" name="restarts" value=<%=restarts%>>
+  <input class="w3-hide" id="userName" name="username" type="text" value=<%=username%>>
+
   <!-- newly added-->
   <button type="submit" class="w3-button  w3-pink w3-hover-blue w3-hide-small" id="NextQuesBtn">
   <button type="submit" class="w3-button w3-pink w3-hover-blue w3-hide-large w3-hide-medium w3-bottom" id="NextQuesBtnPh"> 
@@ -240,7 +244,6 @@
       <form class="w3-hide">
         <input id="quesFlag" type="text" value=<%=Ques_Img_flag%>>
         <input id="AnsFlag" type="text" value=<%=Ans_img_flag%>>
-        <input id="userName" type="text" value=<%=username%>>
         <!-- Note: Only first name is coming due to space. For full name, put in div and fetch that to form input -->
       </form>      
     </section>

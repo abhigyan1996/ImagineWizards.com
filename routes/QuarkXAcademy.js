@@ -971,7 +971,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
         if (NewQuestion) {
             quesNum++;
             res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme,quesNum: quesNum, restarts: req.body.restarts,
-                easyCorrect:req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, easyUnattempted:req.body.easyUnattempted, difficultCorrect:req.body.difficultCorrect, difficultWrong:req.body.difficultWrong, difficultSkipped:req.body.difficultSkipped, difficultUnattemptedLength:req.body.difficultUnattemptedLength, username:req.body.username});
+                easyCorrect:req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, easyUnattemptedLength:req.body.easyUnattemptedLength, difficultCorrect:req.body.difficultCorrect, difficultWrong:req.body.difficultWrong, difficultSkipped:req.body.difficultSkipped, difficultUnattemptedLength:req.body.difficultUnattemptedLength, username:req.body.username});
             return;
         }
 
@@ -1525,17 +1525,12 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
     try
     {
      //Class, course, concept, chapter, concept   
-     if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts)
+     if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts || !req.body.username)
      {
          res.json({ResMsg:"Invalid Request Parameters"});
          return;
      }
      
-    //Fetch User Name
-    let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-    let username = userStr.USERNAME;
-    username = username.substr(0, username.indexOf(' '));
-
      //fetch after sort
     let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});      
     TotalQuestionList.sort(function (b,a){
@@ -1562,7 +1557,7 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
 
      if(SolvedQList.length==0) {
         let NewQuestiontoDisplay = TotalQuestionList[0];
-        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
         //render first question of Total Question List 
         return; 
      }
@@ -1704,7 +1699,7 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
                 
         res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
             SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
-            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:req.body.restarts,
+            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:req.body.restarts,
             easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
             easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
             }); 
@@ -1712,13 +1707,13 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
     
     else
     {           
-        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
         return;
          //render qusetion page
     }
 }
 catch(err) {
-        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
         return;
         //  res.render('error');
      }
@@ -1730,7 +1725,7 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
     try
     {
      //Class, course, concept, chapter   
-     if(!req.body.quesID || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts)
+     if(!req.body.quesID || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts || !req.body.username)
      {
          res.json({ResMsg:"Invalid Request Parameters"});
          return;
@@ -1755,10 +1750,6 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
     //  [ lbl ] DuplicateQuestion:
 
     // Duplicate_Question
-     //Fetch User Name
-      let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-      let username = userStr.USERNAME;
-      username = username.substr(0, username.indexOf(' '));
 
      let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});      
      TotalQuestionList.sort(function (b,a){
@@ -1769,26 +1760,26 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
 
      let SolvedQList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
      //if(req.body.restartReamining==5) PUT THIS CONDITION     
-
-     let quesDetails=[];
-     for(let i =0; i<TotalQuestionList.length; i++) {
-         if(TotalQuestionList[i].QUESTION_ID == req.body.quesID) {
-            quesDetails.push(TotalQuestionList[i]);
-            break;
-         }
-     }
-     let AttemptStr = quesDetails[0].SCORE.split(" ")[1];
-     let correctStR= quesDetails[0].SCORE.split(" ")[0];
-        
-     AttemptStr=parseInt(AttemptStr)+1;
- 
-     if(req.body.CorrectFlag==1) {
-            correctStR=parseInt(correctStR)+1;  
-     }
- 
-     let ScoreStr = correctStR.toString()+" "+AttemptStr.toString();
-     await All_QUESTIONS_COLLECTION.updateOne({QUESTION_ID: req.body.quesID},{$set:{SCORE:ScoreStr}});
-
+     if(req.body.restarts > 2) {
+        let quesDetails=[];
+        for(let i =0; i<TotalQuestionList.length; i++) {
+            if(TotalQuestionList[i].QUESTION_ID == req.body.quesID) {
+                quesDetails.push(TotalQuestionList[i]);
+                break;
+            }
+        }
+        let AttemptStr = quesDetails[0].SCORE.split(" ")[1];
+        let correctStR= quesDetails[0].SCORE.split(" ")[0];
+            
+        AttemptStr=parseInt(AttemptStr)+1;
+    
+        if(req.body.CorrectFlag==1) {
+                correctStR=parseInt(correctStR)+1;  
+        }
+    
+        let ScoreStr = correctStR.toString()+" "+AttemptStr.toString();
+        await All_QUESTIONS_COLLECTION.updateOne({QUESTION_ID: req.body.quesID},{$set:{SCORE:ScoreStr}});
+    }
      //If Last Answer is submitted and Go to Next not done, then performance entry should be updated in leaderboard
      if (SolvedQList.length == TotalQuestionList.length) {
         //accuracy value find
@@ -1909,7 +1900,7 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
                 
             res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
                 SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
-                Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:req.body.restarts,
+                Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:req.body.restarts,
                 easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
                 easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
             }); 
@@ -1985,14 +1976,14 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
                }
             }        
         //Show new question
-        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
         return;
         }   
     }
     
     else{   //If req.body.InputAns Exists, i.e. user corrected or wrong
 
-        res.render('SolveQuestions',{Question:quesDetails[0].QUESTION,OptionA:quesDetails[0].OptionA ,OptionB:quesDetails[0].OptionB,OptionC:quesDetails[0].OptionC,OptionD:quesDetails[0].OptionD,CorrectOption:quesDetails[0].CORRECT_OPT ,Explanation:quesDetails[0].EXPLANATION,QuestionImg:quesDetails[0].Q_IMG ,ExplainationImg:quesDetails[0].EXPLANATION_IMAGE,QuestionId:quesDetails[0].QUESTION_ID, Ques_Img_flag:quesDetails[0].QUESTION_IMG_FLAG, Ans_img_flag:quesDetails[0].ANS_IMG_FLAG, Concept:quesDetails[0].CONCEPT_ID, Chapter:quesDetails[0].CHAPTER_ID, Class:quesDetails[0].CLASS_ID, Course:quesDetails[0].COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:quesDetails[0].QUESTION,OptionA:quesDetails[0].OptionA ,OptionB:quesDetails[0].OptionB,OptionC:quesDetails[0].OptionC,OptionD:quesDetails[0].OptionD,CorrectOption:quesDetails[0].CORRECT_OPT ,Explanation:quesDetails[0].EXPLANATION,QuestionImg:quesDetails[0].Q_IMG ,ExplainationImg:quesDetails[0].EXPLANATION_IMAGE,QuestionId:quesDetails[0].QUESTION_ID, Ques_Img_flag:quesDetails[0].QUESTION_IMG_FLAG, Ans_img_flag:quesDetails[0].ANS_IMG_FLAG, Concept:quesDetails[0].CONCEPT_ID, Chapter:quesDetails[0].CHAPTER_ID, Class:quesDetails[0].CLASS_ID, Course:quesDetails[0].COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
         return;
     }
 }
