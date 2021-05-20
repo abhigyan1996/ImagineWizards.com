@@ -963,27 +963,26 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
             submittedInputArray.push(AttemptedQuestionList[i].INPUT_OPT);
         }
 
-        let quesNum = req.body.quesNum;
-        var quesId = AttemptedQuestionArray[quesNum];
-        var submittedInput = submittedInputArray[quesNum];
+        let quesId = AttemptedQuestionArray[req.body.quesNum];
+        let submittedInput = submittedInputArray[req.body.quesNum];
 
         let NewQuestion =await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:quesId, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
         if (NewQuestion) {
-            quesNum++;
-            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme,quesNum: quesNum, restarts: req.body.restarts,
+            quesId++;
+            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme,quesNum: quesId, restarts: req.body.restarts,
                 easyCorrect:req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, easyUnattemptedLength:req.body.easyUnattemptedLength, difficultCorrect:req.body.difficultCorrect, difficultWrong:req.body.difficultWrong, difficultSkipped:req.body.difficultSkipped, difficultUnattemptedLength:req.body.difficultUnattemptedLength, username:req.body.username});
             return;
         }
 
         else {
-            let CorrectQuestionLength = req.body.easyCorrect + req.body.difficultCorrect;
-            let WrongQuestionLength = req.body.difficultWrong + req.body.easyWrong;
-            let SkipQuestionLength = req.body.easySkipped + req.body.difficultSkipped; 
+            var CorrectQuestionLength = parseInt(req.body.easyCorrect) + parseInt(req.body.difficultCorrect);
+            var WrongQuestionLength = parseInt(req.body.difficultWrong) + parseInt(req.body.easyWrong);
+            var SkipQuestionLength = parseInt(req.body.easySkipped) + parseInt(req.body.difficultSkipped); 
 
-            let easyUnattemptedLength = req.body.easyUnattemptedLength;
-            let difficultUnattemptedLength = req.body.difficultUnattemptedLength;
+            let easyUnattemptedLength = parseInt(req.body.easyUnattemptedLength);
+            let difficultUnattemptedLength = parseInt(req.body.difficultUnattemptedLength);
 
-            let totalQuestions = CorrectQuestionLength + WrongQuestionLength + SkipQuestionLength + easyUnattemptedLength + difficultUnattemptedLength;
+            var totalQuestions = CorrectQuestionLength + WrongQuestionLength + SkipQuestionLength + easyUnattemptedLength + difficultUnattemptedLength;
 
             var correctScore = CorrectQuestionLength * 4;
             var wrongScore = -(WrongQuestionLength * 1);
@@ -1005,7 +1004,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
 
             let LeaderboardListTopTen=LeaderBoardList.slice(0,10);   
             
-            if(TotalQuestionList.length == SolvedQList.length)
+            if(totalQuestions == AttemptedQuestionList.length)
                 {
                     res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:totalQuestions,CorrectQuestions:CorrectQuestionLength, 
                         SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
@@ -1525,7 +1524,7 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
     try
     {
      //Class, course, concept, chapter, concept   
-     if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts || !req.body.username)
+     if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts)
      {
          res.json({ResMsg:"Invalid Request Parameters"});
          return;
@@ -1725,7 +1724,7 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
     try
     {
      //Class, course, concept, chapter   
-     if(!req.body.quesID || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts || !req.body.username)
+     if(!req.body.quesID || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts)
      {
          res.json({ResMsg:"Invalid Request Parameters"});
          return;
@@ -1760,14 +1759,15 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
 
      let SolvedQList=await STUDENT_PERFORMANCE_COLLECTION.find({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
      //if(req.body.restartReamining==5) PUT THIS CONDITION     
-     if(req.body.restarts > 2) {
-        let quesDetails=[];
+     let quesDetails=[];
         for(let i =0; i<TotalQuestionList.length; i++) {
             if(TotalQuestionList[i].QUESTION_ID == req.body.quesID) {
                 quesDetails.push(TotalQuestionList[i]);
                 break;
             }
-        }
+     }
+
+     if(req.body.restarts > 2) {
         let AttemptStr = quesDetails[0].SCORE.split(" ")[1];
         let correctStR= quesDetails[0].SCORE.split(" ")[0];
             
