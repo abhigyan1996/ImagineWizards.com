@@ -92,25 +92,18 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
 <!-- Lower Nav -->
 <section id="MobileNavbar" onclick="closeSlideMenu()">
         <div class="nav">
-            <a href="QuarkX" class="navlink">
-                     <i id="iconNavNow" class="fas fa-home"></i>
+          <a href="index" class="navlink">
+            <i id="iconNav" class="fas fa-bolt"></i>
+            <div id="navName">Angshuman</div>
+        </a>
+            <a href="TempPay" class="navlink">
+              <i id="iconNavNow" class="fas fa-home"></i>
+              <div id="navName">Academy</div>
+            </a>
+            
+              <a href="QuarkX" class="navlink">
+                <i id="iconNav" class="fas fa-book"></i>
                 <div id="navName">QuarkX</div>
-            </a>
-            <a href="AllQuarks" class="navlink">
-                     <i id="iconNav" class="fas fa-book"></i>
-                     <div id="navName">Read</div>
-            </a>
-            <a href="QuarkXRewards" class="navlink">
-              <i id="iconNav" class="fas fa-bolt"></i>
-                <div id="navName">Rewards</div>
-            </a>
-            <a href="CrazyArchery" class="navlink">
-               <i id="iconNav" class='fas fa-gamepad'></i>
-                <div id="navName">Games</div>
-            </a>
-            <a href="QuarkXClasses" class="navlink">
-                <i id="iconNav" class="fa fa-child" aria-hidden="true"></i>
-                <div id="navName">Classes</div>
             </a>
         </nav>
     </section>
@@ -123,7 +116,7 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
     </a>
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     
-    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks"> Quark</span><span id="XName">X</span> </div>
+    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</div>
     <div style="margin-top:3vh">
  
     <a href="WriteQuarks" style="margin-left: 80vw; font-family: 'Quicksand'" class="navItems w3-bar-item w3-hide-small" id="navItem3Home">Write</a>
@@ -141,36 +134,37 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
   <!-- Navbar on small screens -->
 </div>
 
-<div id="errMsg"></div>
+<div id="errMsgCopy"></div>
 
 <div class="container" id="container">
-
 	<div class="form-container sign-up-container">
-	
-	<form action="/UserProfile/Signup" method="POST">
-		<h1>Create Account</h1>
-		<div class="social-container">
+ 	<form action="/UserProfile/Signup" method="POST">
+		<h1 id="createAcTxt">Create Account</h1>
+		<div class="w3-hide-small w3-hide-medium w3-hide-large social-container">
 			<a href="#" class="social"><i class="fa fa-facebook"></i></a>
 			<a href="#" class="social"><i class="fa fa-google"></i></a>
 			<a href="#" class="social"><i class="fa fa-linkedin"></i></a>
 		</div>
-		<span>or use your email for registration </span>
+		<span class="w3-hide-small w3-hide-medium w3-hide-large">or use your email for registration </span>
 		<input type="text" required="true" name="usrname" placeholder="Name">
 		<input type="email" required="true" name="email" placeholder="Email">
 		<input type="password" required="true" name="pwd" placeholder="Password">
 		<input type="password" required="true" name="cnfpwd" placeholder="Confirm Password"><br>
 		<button type="submit">SignUp</button>
+    <div class="w3-hide-large w3-hide-medium" id="OrTxtSignIn">Already have an account?</div>
+    <div class="w3-hide-large w3-hide-medium" id="moveBtnSignIn"><u>SIGN IN</u></div>
+
 	</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="/UserProfile/Login" method="POST">
-			<h1>Sign In</h1>
-			<div class="social-container">
+    <form action="/UserProfile/Login" method="POST">
+			<h1 id="signInTxt">Sign In</h1>
+			<div class="w3-hide-small w3-hide-medium w3-hide-large social-container">
 			<a href="#" class="social"><i class="fa fa-facebook"></i></a>
 			<a href="#" class="social"><i class="fa fa-google"></i></a>
 			<a href="#" class="social"><i class="fa fa-linkedin"></i></a>
 		</div>
-		<span>or use your account</span>
+		<span class="w3-hide-small w3-hide-medium w3-hide-large">or use your account</span>
 		<input type="email" required="true" name="email" placeholder="Email">
 		<input type="password" required="true" name="password" placeholder="Password">
 		<br>
@@ -178,9 +172,12 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
 		<br>
 		<button type="submit">Sign In</button>
 		</form>
-	</div>
+    <div class="w3-hide-large w3-hide-medium" id="OrTxt">New to QuarkX?</div>
+    <div class="w3-hide-large w3-hide-medium" id="moveBtnSignUp"><u>SIGN UP</u></div>
+
+  </div>
 	
-	<div class="overlay-container">
+	<div class=" w3-hide-small overlay-container">
 		<div class="overlay">
 			<div class="overlay-panel overlay-left">
 				<h1>Welcome Back!</h1>
@@ -196,7 +193,7 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
 	</div>
 	</div>
 
-	<script type="text/javascript">
+	<script>
 		const signUpButton = document.getElementById('signUp');
 		const signInButton = document.getElementById('signIn');
 		const container = document.getElementById('container');
@@ -207,6 +204,22 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
 		signInButton.addEventListener('click', () => {
 			container.classList.remove("right-panel-active");
 		});
+
+
+  $(document).ready(function(){
+    $("#moveBtnSignUp").click(function() {
+      $(".sign-in-container").animate({left: '100vw'});
+      $(".sign-up-container").animate({left: '0vw'});
+    });
+    
+    $("#moveBtnSignIn").click(function() {
+      $(".sign-in-container").animate({left: '0vw'});
+      $(".sign-up-container").animate({left: '-100vw'});
+    });
+
+  });
+    
+
 	</script>
 	
 
