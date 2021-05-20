@@ -33,7 +33,7 @@ routes.get('/AllQuarks', function(req, res) {
 
 
 routes.get('/WriteQuarks', function(req, res) {
-    return res.render('WriteQuarks');
+    return res.render('submitQuarks');
 })
 
 
