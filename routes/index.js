@@ -22,6 +22,55 @@ routes.get('/QuarkXAcademy',IsLoggedIn, function(req, res) {
     return res.render('QuarkXAcademy');
 })
 
+routes.get('/index', function(req, res) {
+    return res.render('index');
+})
+
+routes.get('/AllQuarks', function(req, res) {
+    return res.render('AllQuarks');
+})
+
+
+
+routes.get('/WriteQuarks', function(req, res) {
+    return res.render('WriteQuarks');
+})
+
+
+routes.get('/GkQuarks', function(req, res) {
+    return res.render('GkQuarks');
+})
+
+routes.get('/ScienceQuarks', function(req, res) {
+    return res.render('ScienceQuarks');
+})
+
+routes.get('/MythologyQuarks', function(req, res) {
+    return res.render('MythologyQuarks');
+})
+
+routes.get('/HistoryQuarks', function(req, res) {
+    return res.render('HistoryQuarks');
+})
+
+routes.get('/BusinessQuarks', function(req, res) {
+    return res.render('BusinessQuarks');
+})
+
+routes.get('/MythologyQuarks', function(req, res) {
+    return res.render('MythologyQuarks');
+})
+
+routes.get('/MathsQuarks', function(req, res) {
+    return res.render('MathsQuarks');
+})
+
+routes.get('/CampusAmbassador', function(req, res) {
+    return res.render('CampusAmbassador');
+})
+
+
+
 routes.get('/PostQuestions',IsLoggedIn, function(req, res) {
     if(req.user.EMAIL != "abhigyankashyap82@gmail.com") {
         res.send("You are not an admin");

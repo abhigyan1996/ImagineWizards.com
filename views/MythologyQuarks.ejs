@@ -10,17 +10,18 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Serif Pro">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="QuarkStylesDesktop.css">
-<!-- <link rel="stylesheet" href="QuarksmallPh.css">
-<link rel="stylesheet" href="QuarksNormalPh.css"> -->
 <link rel="stylesheet" href="QuarksLargePh.css">
-<!-- <link rel="stylesheet" href="QuarksmallPhNxt.css"> -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="w3styles.css">
-<meta property="og:url" content="https://angshumankashyap.in/MythologyQuarks" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Micro Blogs on Mythology" />
-<meta property="og:description" content="Join Quarks And Refuel Your Curiosity" />
-<meta property="og:image" content="QuarkImages/quark7.jpg" />
+<link rel="icon" href="QuarkOtherImages/QuarksLogoFinal-1.png" sizes="16x16">
+
+<link rel="stylesheet" href="nav.css">
+
+ <meta property="og:url"           content="https://angshumankashyap.in/AllQuarks" />
+ <meta property="og:type"          content="website" />
+ <meta property="og:title"         content="Join Quarks" />
+ <meta property="og:description"   content="And Refuel Your Curiosity" />
+ <meta property="og:image"         content="images/quark1.jpg" />
 
 <script src="https://www.w3schools.com/lib/w3.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -28,11 +29,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<link rel="icon" href="QuarkOtherImages/QuarksLogoFinal.png" sizes="16x16">
 
 <!-- Facebook Share -->
-<script>
-  (function (d, s, id) {
+  <script>
+    (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
@@ -41,53 +41,37 @@
   }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- Facebook Share -->
-<script async defer crossorigin="anonymous"
-  src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0"></script>
 
-<body>
-  <!-- Navbar (sit on top) -->
-  <div class="w3-top">
-    <div class="w3-bar" id="myNavbar" style="width:100vw; max-width:100vw; min-width:100vw;">
-      <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);"
-        onclick="toggleFunction()" title="Toggle Navigation Menu">
-        <i class="fa fa-bars"></i>
-      </a>
-      <a href="QuarkX" class="w3-bar-item"> <img id="QuarksLogo" src="QuarkOtherImages/QuarksLogoFinal.png"> </a>
-      <a href="QuarkX" class="w3-bar-item" id="nameQuarks" class="w3-black"> QuarkX </a>
-      <!-- Light mode and dark Mode -->
-      <div class="w3-bar-item"> <img id="NightMode" src="QuarkOtherImages/NightMode.png"> </div>
-      <div class="w3-bar-item"> <img id="DayMode" src="QuarkOtherImages/DayMode.png"> </div>
+<!-- NAV BAR  -->
+<link rel="stylesheet" href="nav.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
-      <div style="margin-top:3vh">
-        <a href="/" class="navItems w3-bar-item w3-hide-small" id="navItem1Home"> Home</a>
-        <a href="QuarkX">
-          <div class="navItems w3-bar-item w3-hide-small" id="navItem2submit"> QuarkX</div>
-        </a>
-        <a href="/QuarkX/all" class="navItems w3-bar-item w3-hide-small" id="navItem3subjects"> Read</a>
-        <a href="QuarkX#SubscriptionQuarks" class="navItems w3-hide-medium w3-bar-item w3-hide-small homeSubscribe"
-          id="navItems3Quarks">Subscribe</a>
-        <a href="QuarkX#SubscriptionQuarksTablet" class="navItems w3-hide-large w3-bar-item w3-hide-small homeSubscribe"
-          id="navItems3Quarks">Subscribe</a>
-        <a href="/QuarkX/submitQuarks" class="navItems w3-bar-item w3-hide-small submitBtn"
-          id="navItems4Quarks">Submit</a>
-      </div>
-
-    </div>
-
-    <!-- Navbar on small screens -->
-    <div id="navDemo" style="width:100vw; max-width:100vw; min-width:100vw;"
-      class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-      <a href="/" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Home</a>
-      <a href="/QuarkX" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">QuarkX</a>
-      <a href="/QuarkX/all" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">All Quarks</a>
-      <a href="QuarkX#subscribeCardPh" class="w3-bar-item w3-right w3-button navPh"
-        onclick="toggleFunction()">Subscribe</a>
-      <a href="/QuarkX/submitQuarks" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Submit</a>
-    </div>
+<body id="body">
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white" id="myNavbar" style="box-shadow: 3px 3px 3px #A8A8A8 ; width:100vw; max-width:100vw; min-width:100vw;">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
+    
+    <div style="cursor: pointer;" class="w3-bar-item" id="nameQuarks"> Quark<span style="color:purple">X</span> </div>
+        
   </div>
 
+  </div>
+  <!-- Navbar on small screens -->
+  <div id="navDemo" style="width:100vw; max-width:100vw; min-width:100vw;" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+   <a href="index" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Home</a>
+    <a href="QuarkX" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">QuarkX</a>
+    <a href="QuarkX#subscribeCardPh" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Subscribe</a>
+    <a href="WriteQuarks" class="w3-bar-item w3-right w3-button navPh" onclick="toggleFunction()">Submit</a>
+  </div>
+</div>
 
-  <!-- <div class="w3-container w3-hide-small" style="position: fixed; margin-top: 0vw;">
+
+<!-- <div class="w3-container w3-hide-small" style="position: fixed; margin-top: 0vw;">
   <div class="w3-dropdown-hover">
     <div class="w3-button w3-round w3-black Filters" id="fltrQuarks">Filter Quarks</div>
     <div class="w3-dropdown-content w3-bar-block w3-border w3-animate-zoom">
@@ -98,6 +82,25 @@
   </div>
 </div>
  -->
+<!-- Lower Nav -->
+<section id="MobileNavbar" onclick="closeSlideMenu()">
+  <div class="nav">
+    <a href="index" class="navlink">
+    <i id="iconNav" class="fas fa-user-astronaut"></i>
+    <div id="navName">Angshuman</div>
+  </a>
+    <a href="TempPay" class="navlink">
+      <i id="iconNav" class="fas fa-home"></i>
+      <div id="navName">Academy</div>
+    </a>
+
+    <a href="QuarkX" class="navlink">
+      <i id="iconNavNow" class="fas fa-meteor"></i>
+      <div id="navName">QuarkX</div>
+    </a>
+  </nav>
+</section>
+ 
   <div class="OutQuarks">
     <div class="Quarks w3-row">
 
