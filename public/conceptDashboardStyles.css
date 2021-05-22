@@ -52,7 +52,7 @@
 }
 
 #PerformanceDiv {
-	margin-top: -15vw;	
+	margin-top: -12vw;	
 	width: 100vw;
 	overflow: hidden;
 }
@@ -78,7 +78,7 @@
 	font-family: 'Alegreya', serif;
 }
 
-#parentsNoteBtn {
+#parentsNoteBtn, #parentsNoteBtn1 {
 	position: absolute;
 	font-size: 1.5vw;
 	font-family: 'Alegreya', serif;
@@ -93,10 +93,14 @@
 	text-transform: uppercase;
 }
 
-#parentsNoteBtn:hover{
-	background-position: right center;
+#parentsNoteBtn1{
+	margin-top: -16.5vw;
+	background-image: linear-gradient(to right, hsla(313, 88%, 54%, 0.452) 0%, #3F76FF 50%, hsla(313, 88%, 54%, 0.452) 100%);
 }
 
+#parentsNoteBtn:hover, #parentsNoteBtn1:hover{
+	background-position: right center;
+}
 
 #noteMsg {
 	margin-top: 2vw;
@@ -311,7 +315,7 @@ table {
 	font-family: 'Times New Roman', Times, serif;
 	text-transform: uppercase;
 	color:white;
-	margin-top: vw;
+	margin-top: 1vw;
 	font-size: 2vw;
 }	
 
@@ -349,6 +353,14 @@ table {
 
   @media only screen and (max-width:768px){
 
+	#myCoursesTxt {
+		font-family: 'Times New Roman', Times, serif;
+		text-transform: uppercase;
+		color:white;
+		margin-top: 2vw;
+		font-size: 5vw;
+	}	
+
 	#DisplayFeedback {
 		font-size: 6.25vw;
 		margin-top: 28vw;
@@ -376,7 +388,7 @@ table {
 	#PerformanceTxt {
 		font-family: 'Alegreya', serif;
 		font-size: 7vw;
-		margin-top: 10vw;
+		margin-top: 20vw;
 		margin-left: 0vw;
 		text-transform: uppercase;
 		text-align: center;
@@ -398,11 +410,16 @@ table {
 		text-transform: uppercase;
 	}
 
-	#parentsNoteBtn {
+	#parentsNoteBtn, #parentsNoteBtn1 {
 		font-size: 5vw;
 		margin-left: 19vw;
+		margin-top: 10vw;
 	}
 	
+	#parentsNoteBtn1 {
+		margin-top: -10vw;
+	}
+
 	#LevelMsgNote {
 		margin-top: 0vw;
 		font-size: 5vw;

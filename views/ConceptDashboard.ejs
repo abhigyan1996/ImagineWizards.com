@@ -85,7 +85,7 @@
     </a>
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     
-    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</div>
+    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</span></div>
   </div>
   <!-- Navbar on small screens -->
 </div>
@@ -156,6 +156,7 @@
     <!-- <div class="w3-button w3-pink w3-hover-blue" id="practiceBtn"> Start Practice </div> -->
   </div>
 
+  <div class="w3-button w3-pink w3-hover-amber" id="parentsNoteBtn1">View Note to Parents</div>
 
   <div class="w3-hide" id="conceptName"><%=Concept%></div>
   <div class="w3-hide" id="chapterName"><%=Chapter%></div>
@@ -307,16 +308,14 @@
 
  <!-- The Modal -->
  <div id="myModal" class="modal">
-
   <!-- Modal content -->
   <div id="modalDiv" class="modal-content">
     <span style="color:red; font-size:5vw; font-weight: 900;" class="close w3-hide-small">&times;</span>
     <span style="color:red; font-size:10vw; font-weight: 900;" class="closePh w3-hide-large w3-hide-medium">&times;</span>
     <div id="LevelMsgNote">
       <p style="color:green">Dear parents,</p>
-      <p>Not just your child learns from us, but our questions learn from them too. Our questions automatically adjust their difficulty levels based on your child's attempts. So, this analysis of easy and difficult questions will keep updating and automatically get better with time. </p>
+      <p id="msgParents">Not just your child learns from us, but our questions learn from them too. Our questions automatically adjust their difficulty levels based on your child's attempts. So, this analysis of easy and difficult questions will keep updating and automatically get better with time. </p>
     </div>
-
 </div>
 </div>
 
@@ -592,6 +591,8 @@ var userRank = document.getElementById('userRank').value;
   
   // Get the button that opens the modal
   var btn = document.getElementById("parentsNoteBtn");
+
+  var adapBtn = document.getElementById("parentsNoteBtn1");
   
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
@@ -600,9 +601,15 @@ var userRank = document.getElementById('userRank').value;
 
   // When the user clicks the button, open the modal 
   btn.onclick = function() {
+    document.getElementById("msgParents").innerHTML = "Not just your child learns from us, but our questions learn from them too. Our questions automatically adjust their difficulty levels based on your child's attempts. So, this analysis of easy and difficult questions will keep updating and automatically get better with time. ";
     modal.style.display = "block";
   }
   
+  adapBtn.onclick = function() {
+    document.getElementById("msgParents").innerHTML = "We care for your child and do not let them get demotivated with wrong attempts. Our Artificial Intelligence model will guide their emotional level as they solve. We follow a concept of adaptive learning for your child to provide them with the best learning experience.";
+    modal.style.display = "block";
+  }
+
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
