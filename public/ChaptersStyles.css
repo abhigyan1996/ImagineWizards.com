@@ -28,7 +28,7 @@
 }
 
 #colorId {
-	margin-left: 20vw;
+	margin-left: 23vw;
 	margin-top: -1vw;
 	margin-bottom: 0.5vw;
 	width: 80vw;
@@ -43,18 +43,18 @@
 }
 
 #IndicatorTxtC {
-	margin-left: 24vw ;
+	margin-left: 26.5vw ;
 }
 #IndicatorTxtW {
-	margin-left: 1.1vw ;
+	margin-left: 0.9vw ;
 }
 
 #IndicatorTxtS {
-	margin-left: 1.35vw ;
+	margin-left: 0.8vw;
 }
 
 #IndicatorTxtU {
-	margin-left: 3.25vw ;
+	margin-left: 2.4vw  ;
 }
 
 
@@ -513,7 +513,6 @@ figure {
 
 #IndicatorTxtS {
 	margin-left: 7vw ;
-	visibility: hidden;
 }
 
 #IndicatorTxtU {
