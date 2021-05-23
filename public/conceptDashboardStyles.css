@@ -420,6 +420,10 @@ table {
 		margin-top: -10vw;
 	}
 
+	#parentsNoteBtn{
+		margin-top: -1vw;
+	}	
+
 	#LevelMsgNote {
 		margin-top: 0vw;
 		font-size: 5vw;
@@ -543,7 +547,7 @@ table {
 		#PerformanceCountSmall {
 			display: flex;
 			flex-wrap: wrap;
-			margin-left: -7vw;
+			margin-left: -9vw;
 			margin-top: 0vw;
 	   }
 
