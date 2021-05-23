@@ -31,7 +31,7 @@
 	margin-left: 23vw;
 	margin-top: -1vw;
 	margin-bottom: 0.5vw;
-	width: 80vw;
+	width: 77vw;
 	font-family: 'Times New Roman', Times, serif;
 }
 
@@ -46,15 +46,15 @@
 	margin-left: 26.5vw ;
 }
 #IndicatorTxtW {
-	margin-left: 0.9vw ;
+	margin-left: 0.8vw ;
 }
 
 #IndicatorTxtS {
-	margin-left: 0.8vw;
+	margin-left: 0.6vw;
 }
 
 #IndicatorTxtU {
-	margin-left: 2.4vw  ;
+	margin-left: 2.3vw  ;
 }
 
 
@@ -483,7 +483,6 @@ figure {
 #colorId {
 	margin-left: 5vw;
 	margin-top: 0vw;
-	margin-bottom: 8vw;
 	width:95vw;
 	font-family: 'Times New Roman', Times, serif;
 }
@@ -492,7 +491,7 @@ figure {
 	margin-left: 0vw;
 	margin-bottom: 6vw;
 	width: 100vw;
-	margin-top: -7vw;
+	margin-top: 1vw;
 	font-family: 'Times New Roman', Times, serif;
 }
 

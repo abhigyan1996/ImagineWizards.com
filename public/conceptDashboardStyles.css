@@ -904,6 +904,7 @@ figure {
 	margin-top: 0vw;
 	margin-bottom: 8vw;
 	width:95vw;
+	font-family: 'Times New Roman', Times, serif;
 }
 
 #colorId2 {
@@ -911,6 +912,7 @@ figure {
 	margin-bottom: 8vw;
 	width: 100vw;
 	margin-top: -7vw;
+	font-family: 'Times New Roman', Times, serif;
 }
 
 #IndicatorTxtC, #IndicatorTxtW, #IndicatorTxtS, #IndicatorTxtU {
