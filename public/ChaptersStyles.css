@@ -513,6 +513,7 @@ figure {
 
 #IndicatorTxtS {
 	margin-left: 7vw ;
+	visibility: hidden;
 }
 
 #IndicatorTxtU {
