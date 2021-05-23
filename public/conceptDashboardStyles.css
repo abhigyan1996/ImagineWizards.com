@@ -703,7 +703,7 @@ table {
 	cursor: pointer;
   }
 
-  @media only screen and (max-width:600px){
+  @media only screen and (max-width:768px){
 	/* The Close Button */
 	.closePh {
 		color: #aaaaaa;
@@ -740,32 +740,34 @@ table {
 }
 
 #colorId {
-	margin-left: 20vw;
+	margin-left: 23vw;
 	margin-top: -1vw;
 	margin-bottom: 0.5vw;
 	width: 80vw;
+	font-family: 'Times New Roman', Times, serif;
 }
 
 #colorId2 {
 	margin-left: 0vw;
 	margin-bottom: 2vw;
 	width: 100vw;
+	font-family: 'Times New Roman', Times, serif;
 }
+
 
 #IndicatorTxtC {
-	margin-left: 23.5vw ;
+	margin-left: 26.5vw ;
 }
-
 #IndicatorTxtW {
-	margin-left: 0.8vw ;
+	margin-left: 0.9vw ;
 }
 
 #IndicatorTxtS {
-	margin-left: 1.5vw ;
+	margin-left: 0.8vw ;
 }
 
 #IndicatorTxtU {
-	margin-left: 3.25vw ;
+	margin-left: 2.4vw ;
 }
 
 
@@ -919,19 +921,19 @@ figure {
 }
 
 #IndicatorTxtC {
-	margin-left: 12.5vw ;
+	margin-left: 11.75vw ;
 }
 
 #IndicatorTxtW {
-	margin-left: 7.25vw ;
+	margin-left: 7vw ;
 }
 
 #IndicatorTxtS {
-	margin-left: 9vw ;
+	margin-left: 7vw ;
 }
 
 #IndicatorTxtU {
-	margin-left: 13vw ;
+	margin-left: 12vw ;
 }
 
 

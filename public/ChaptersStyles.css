@@ -32,24 +32,25 @@
 	margin-top: -1vw;
 	margin-bottom: 0.5vw;
 	width: 80vw;
+	font-family: 'Times New Roman', Times, serif;
 }
 
 #colorId2 {
 	margin-left: 0vw;
 	margin-bottom: 2vw;
 	width: 100vw;
+	font-family: 'Times New Roman', Times, serif;
 }
 
 #IndicatorTxtC {
-	margin-left: 23.5vw ;
+	margin-left: 24vw ;
 }
-
 #IndicatorTxtW {
-	margin-left: 0.8vw ;
+	margin-left: 1.1vw ;
 }
 
 #IndicatorTxtS {
-	margin-left: 1.5vw ;
+	margin-left: 1.35vw ;
 }
 
 #IndicatorTxtU {
@@ -168,7 +169,7 @@
 
 #username {
 	margin-bottom: 1vw;
-	font-family: cursive;
+	font-family: 'Times New Roman', Times, serif;
 	text-decoration: none;
 }
 
@@ -328,12 +329,12 @@
 	}
 
 	#username {
-		margin-bottom: 1vw;
-		font-family: cursive;
+		margin-bottom: 0vw;
+		font-family: 'Times New Roman', Times, serif;
 		text-decoration: none;
 		font-size: 5vw;
 		color:white;
-		margin-left:9vw;
+		margin-left:0vw;
 	}
 
 	#userImage {
@@ -345,7 +346,7 @@
 		font-family: 'Times New Roman', Times, serif;
 		text-transform: uppercase;
 		color:white;
-		margin-top: 10vw;
+		margin-top: 5vw;
 		font-size: 5vw;
 	}
 }
@@ -454,7 +455,7 @@ figure {
 	}
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
 
 figure {
 	margin: 0 auto;
@@ -484,7 +485,7 @@ figure {
 	margin-top: 0vw;
 	margin-bottom: 8vw;
 	width:90vw;
-
+	font-family: 'Times New Roman', Times, serif;
 }
 
 #colorId2 {
@@ -492,6 +493,7 @@ figure {
 	margin-bottom: 6vw;
 	width: 100vw;
 	margin-top: -7vw;
+	font-family: 'Times New Roman', Times, serif;
 }
 
 #IndicatorTxtC, #IndicatorTxtW, #IndicatorTxtS, #IndicatorTxtU {
@@ -502,19 +504,19 @@ figure {
 }
 
 #IndicatorTxtC {
-	margin-left: 12.5vw ;
+	margin-left: 11.75vw ;
 }
 
 #IndicatorTxtW {
-	margin-left: 7.25vw ;
+	margin-left: 7vw ;
 }
 
 #IndicatorTxtS {
-	margin-left: 9vw ;
+	margin-left: 7vw ;
 }
 
 #IndicatorTxtU {
-	margin-left: 13vw ;
+	margin-left: 12vw ;
 }
 
 }

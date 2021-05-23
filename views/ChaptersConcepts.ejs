@@ -140,10 +140,10 @@
     </div>
 
     <div id="colorId2"> 
-      <div id="IndicatorTxtC"><span id="correctCount" style="color:white"></span> </div>
-      <div id="IndicatorTxtW"><span id="wrongCount" style="color:white"></span> </div>
-      <div id="IndicatorTxtS"><span id="skipCount" style="color:white"></span> </div>
-      <div id="IndicatorTxtU"><span id="unattemptedCount" style="color:white"></span> </div>
+      <div id="IndicatorTxtC"><span id="correctCount" class="counter" style="color:white"></span> </div>
+      <div id="IndicatorTxtW"><span id="wrongCount" class="counter" style="color:white"></span> </div>
+      <div id="IndicatorTxtS"><span id="skipCount" class="counter" style="color:white"></span> </div>
+      <div id="IndicatorTxtU"><span id="unattemptedCount" class="counter" style="color:white"></span> </div>
   </div>
 
     <div id="chapterConceptCard">
@@ -272,11 +272,24 @@ document.getElementById('wrongPercent').innerHTML = wrongPercent + "%";
 document.getElementById('skipPercent').innerHTML = skipPercent + "%";
 document.getElementById('unattemptedPercent').innerHTML = unattemptedPercent + "%";
 
-document.getElementById('correctCount').innerHTML = "(" + correctLength + ")";
-document.getElementById('wrongCount').innerHTML = "(" + wrongLength +  ")";
-document.getElementById('skipCount').innerHTML = "(" +  skipLength + ")";
-document.getElementById('unattemptedCount').innerHTML = "(" +  unattemptedLength + ")";
+document.getElementById('correctCount').innerHTML = correctLength;
+document.getElementById('wrongCount').innerHTML = wrongLength;
+document.getElementById('skipCount').innerHTML = skipLength;
+document.getElementById('unattemptedCount').innerHTML = unattemptedLength;
 
+if(correctLength>=0 && wrongLength>=0 && skipLength>=0 && unattemptedLength>=0) {
+$('.counter').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 4000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
+    });
+});
+}
 
 $('.value').each(function() {
 	var text = $(this).text();
@@ -284,7 +297,6 @@ $('.value').each(function() {
 });
 
 $('.block').tooltip();
-
 </script>
 
 </html>
