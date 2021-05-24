@@ -1,3 +1,33 @@
+#logOutTxt {
+	color: white;
+	font-size: 1.5vw;
+	font-family: 'Times New Roman', Times, serif;
+	text-decoration: none;
+}
+
+#username {
+	margin-bottom: 1vw;
+	font-family: 'Alegreya', serif;
+	text-decoration: none;
+	font-size: 1.5vw;
+	color:white;
+	margin-left:2vw;
+}
+
+#userImage {
+	height: 7vw;
+	width: 7vw;
+	margin-left:1vw;
+}
+
+#myCoursesTxt {
+	font-family: 'Times New Roman', Times, serif;
+	text-transform: uppercase;
+	color:white;
+	margin-top: 1vw;
+	font-size: 2vw;
+}
+
 #questionImage {
 	height:27vw;
 	width:36vw;
@@ -245,7 +275,7 @@
 	position: absolute;
 	font-size: 1.25vw;
 	font-family: 'Alegreya', serif;
-	margin-left: 17vw;
+	margin-left: 20.5vw;
 	margin-top: 2vw;
 	border-radius: 1vw;
 	background-size: 300% 300%;
@@ -260,6 +290,36 @@
 }
 
 @media only screen and (max-width:768px){
+
+	#logOutTxt {
+		color: white;
+		font-size: 5vw;
+		font-family: 'Times New Roman', Times, serif;
+		text-decoration: none;
+	}
+	
+	#username {
+		margin-bottom: 1vw;
+		font-family: 'Alegreya', serif;
+		text-decoration: none;
+		font-size: 5vw;
+		color:white;
+		margin-left:7.5vw;
+	}
+	
+	#userImage {
+		height: 24vw;
+		width: 24vw;
+		margin-left: 5vw;
+	}	
+
+	#myCoursesTxt {
+		font-family: 'Times New Roman', Times, serif;
+		text-transform: uppercase;
+		color:white;
+		margin-top: 2vw;
+		font-size: 5vw;
+	}	
 
 	#QuarksLogo{
 		margin-left: -4vw;

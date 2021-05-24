@@ -74,14 +74,14 @@
 <body id="body" style="width:100vw">
 
   <section  id="top-navbar">  
-      <div id="side-menu" class="side-nav">
-        <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-        <a href="MyCourses">My Courses</a>
-        <a href="../QuarkXAcademy">QuarkX Academy</a>
-        <a href="../QuarkX">QuarkX Home</a>
-      </div>
-   </section>
-  
+    <div id="side-menu" class="side-nav">
+      <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+      <div href="#" id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></div>
+      <div id="username"><%=username%></div>      
+      <a id="myCoursesTxt" href="MyCourses">My Courses</a>
+      <a href="../UserProfile/LogOut"><div id="logOutTxt">LOG OUT</div></a>
+    </div>
+ </section>
   <!-- Navbar (sit on top) -->
   <div class="w3-top">
     <div class="w3-bar w3-white" id="myNavbar" style="box-shadow: 3px 3px 3px #A8A8A8 ; width:100vw; max-width:100vw; min-width:100vw;">

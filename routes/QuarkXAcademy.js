@@ -965,11 +965,12 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
 
         let quesId = AttemptedQuestionArray[req.body.quesNum];
         let submittedInput = submittedInputArray[req.body.quesNum];
+        let quesNum = req.body.quesNum;
 
         let NewQuestion =await All_QUESTIONS_COLLECTION.findOne({QUESTION_ID:quesId, CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class});
         if (NewQuestion) {
-            quesId++;
-            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme,quesNum: quesId, restarts: req.body.restarts,
+            quesNum++;
+            res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme,quesNum: quesNum, restarts: req.body.restarts,
                 easyCorrect:req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, easyUnattemptedLength:req.body.easyUnattemptedLength, difficultCorrect:req.body.difficultCorrect, difficultWrong:req.body.difficultWrong, difficultSkipped:req.body.difficultSkipped, difficultUnattemptedLength:req.body.difficultUnattemptedLength, username:req.body.username});
             return;
         }
