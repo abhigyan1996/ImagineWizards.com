@@ -109,6 +109,7 @@ a:active{
 }
 
 #nameAngz{
+  font-family: 'Quicksand';
   font-size:4.5vw;
   margin-right: -10vw;
   padding-bottom: 20vw;
@@ -135,6 +136,12 @@ a:active{
 		color:black;
 		position:absolute;
 	}
+
+  #nameAngz{
+    font-size:10vw;
+		margin-left: -4vw;
+		color:black;
+  }
 
   #iconBar {
     font-size: 5vw;
