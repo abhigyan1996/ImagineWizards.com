@@ -108,6 +108,11 @@ a:active{
 	background-color: darkgreen;
 }
 
+#nameAngz{
+  font-size:4.5vw;
+  margin-right: -10vw;
+  padding-bottom: 20vw;
+}
 
 @media only screen and (max-width:768px){
 

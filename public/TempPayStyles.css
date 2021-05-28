@@ -570,10 +570,39 @@
 	}
 
 	#aiBg{
-		margin-top: 90vw;
+		margin-top: 94vw;
 		width: 80vw;
 		height: 100vw;
 		margin-left: 10vw;
+		animation: linear infinite;
+		animation-name: run;
+		animation-duration: 1.5s;
+		-webkit-animation: linear infinite;
+		-webkit-animation-name: run;
+		-webkit-animation-duration: 1.5s;
+	}
+
+	@keyframes run{
+		0% {
+			top: -0.5vw;
+		}
+		50% {
+		  top: 0.5vw;
+		}
+		100% {
+			top: -0.5vw;
+		}
+	}
+	@-webkit-keyframes run {
+		0% {
+			top: -0.5vw;
+		}
+		50% {
+		  top: 0.5vw;
+		}
+		100% {
+			top: -0.5vw;
+		}
 	}
 
 	#allHeadTxt {
@@ -590,7 +619,9 @@
 		margin: 0;
 	}
 
-
+	#statsStrip{
+		margin-top: -4vw;
+	}
 
 	#statsStrip li {
 		display: inline-block;
@@ -687,6 +718,11 @@
 	#StartBtn, #tryBtn {
 		font-size: 5vw;
 		padding: 3vw;
+		margin-top: 2vw;
+	}
+
+	#tryBtn{
+		margin-left: 4vw;
 	}
 
 	#quote1, #quote2 {

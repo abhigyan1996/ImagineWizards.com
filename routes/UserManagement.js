@@ -3,10 +3,10 @@ const router = express.Router();
 var USER_PROFILE_COLLECTION= require("../models/USER_PROFILE_COLLECTION");
 const COURSE_IMG_COLLECTION = require ("../models/COURSE_IMG_COLLECTION");
 var USER_PREMIUM_COLLECTION= require("../models/USER_PREMIUM_COLLECTION");
+const moment=require("moment");
 
 router.use(express.json());
 const mongoose = require("mongoose");
-const moment=require('moment');
 const passport = require("passport"); 
 var UserInfoMap = new Map();
 var {ResetPwdRequest,OtpResetRequest,LoginRequest,SignupRequest,OtpSignupRequest}=require("../CommanStructure/AuthParameters");
@@ -259,8 +259,6 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
      // res.status(200).json({Errcode:0,ResMsg: 'You are successfully logged in!'});
         
      try{
-
-
          //Fetch User Name
         let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
         let username = userStr.USERNAME;
@@ -290,13 +288,13 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
         if(availableCourses.length > 0 || availableClasses.length > 0) {
           isCourseFlag = 1;
           let allCourses =await COURSE_IMG_COLLECTION.find({CLASS_ID: { $in: availableClasses }, COURSE_ID: { $in: availableCourses }});
-          res.render('PaidHomePage', {Courses: allCourses, username: username});
+          res.render('MyCourses',{allCourses:allCourses, username:username});
           return;
         }
 
         if(isCourseFlag == 0) { 
           let allCourses =await COURSE_IMG_COLLECTION.find({});
-          res.render('TempPay', {Courses: allCourses});
+          res.render('TempPay', {Courses: allCourses, loginFlag: 1, username:username});
           return;
         }
       }

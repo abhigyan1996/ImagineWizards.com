@@ -631,7 +631,7 @@ table {
 
 		#scoreboardDiv {
 			position: relative;
-		
+	
 			animation: linear infinite;
 			animation-name: run;
 			animation-duration: 1.5s;
