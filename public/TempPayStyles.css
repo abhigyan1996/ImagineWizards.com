@@ -1,13 +1,211 @@
+
+#Sec1 {
+	height: 60vw;
+	width: 100vw;
+	margin-top: 6.85vw;
+	text-align: justify;
+	text-justify: inter-word;
+	background-color: white;
+}
+
+#Sec2{
+	height: fit-content;
+	width: 100vw;
+	margin-top: -7vw;
+	background-color: white;
+	margin-bottom:25vw;
+}
+
+#Sec3 {
+	height: fit-content;
+	width: 100vw;
+}
+
+#Sec4 {
+	height: fit-content;
+	width: 100vw;
+	margin-bottom: 10vw;
+}
+
+#aiBg{
+	width: 38vw;
+	height: 48vw;
+	margin-top: -5vw;
+	margin-left: 60vw;
+	position: relative;
+	animation: linear infinite;
+	animation-name: run;
+	animation-duration: 1.5s;
+	-webkit-animation: linear infinite;
+	-webkit-animation-name: run;
+	-webkit-animation-duration: 3s;
+		}
+
+		@keyframes run{
+			0% {
+				top: -0.5vw;
+			}
+			50% {
+			  top: 0.5vw;
+			}
+			100% {
+				top: -0.5vw;
+			}
+		}
+		@-webkit-keyframes run {
+			0% {
+				top: -0.5vw;
+			}
+			50% {
+			  top: 0.5vw;
+			}
+			100% {
+				top: -0.5vw;
+			}
+		}
+
+#allHeadTxt {
+	margin-top: -38vw;
+	position: absolute;
+}
+
+
+#greyStrip {
+	background-image: linear-gradient(to right, #3F76FF 0%, #5FFF3F 50%, #3F76FF 100%);
+	/* background-image: linear-gradient(to right, rgb(252, 93, 119) 0%, yellow 50%, rgb(252, 93, 119) 100%); */
+	/* background-image: linear-gradient(to right, hsla(313, 88%, 54%, 0.452) 0%, #3F76FF 50%, hsla(313, 88%, 54%, 0.452) 100%); */
+	
+	position: absolute;
+	height: 20vw;
+	width: 40vw;
+	margin-top: 30vw;
+	margin-left:60vw;
+	border-top-left-radius: 50vw;
+	border-bottom-left-radius: 20vw;
+	transform: rotate(0deg);
+	animation: linear infinite;
+	animation-name: stripAnim;
+	animation-duration: 1.5s;
+	-webkit-animation: linear infinite;
+	-webkit-animation-name: stripAnim;
+	-webkit-animation-duration: 8s;
+}
+
+
+
+#TxtHead1, #TxtHead {
+	font-size: 2.5vw;
+	text-transform: uppercase;
+	color:#1E1C1C;
+	margin-left: 10vw;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One';
+	font-family: 'Lora', serif;
+	font-weight: 800;		
+}
+
+#TxtHead1{
+	font-size: 1.5vw;
+	text-transform: none;
+	font-weight: 800;
+	color: green;
+}
+
+#TxtHead {
+	margin-left: 10vw;
+	margin-top: 3vw;
+}
+
+#TxtSubHead2 {
+	color:#1E1C1C;
+	font-family: 'Times New Roman';
+	font-weight: 800;	
+	margin-left: 10vw;
+	font-weight: 100;		
+	margin-top: 2vw;
+	width: 45vw;
+	font-size: 1.75vw;
+}
+
+#StartBtn, #tryBtn, #StartBtnLast, #tryBtnLast {
+	font-size: 2.45vw;
+	font-family: 'Times New Roman';
+	font-weight: 800;	
+	margin-left: 10vw;
+	margin-top: 2vw;
+	font-weight: 100;
+	border-radius: 0.5vw;
+	padding: 0.75vw;
+}
+
+#StartBtnLast, #tryBtnLast {
+	font-size: 3vw;
+	margin-top: 2vw;
+	padding: 3vw;
+	padding-right: 6vw;
+	padding-left: 6vw;
+	font-weight: 800;
+	margin-left: -2.5vw;
+}
+
+#tryBtn {
+	margin-left: 1.25vw;
+}
+
 #div1 {
 	height: fit-content;
 	width: 100vw;
 	margin-top: 7.5vw;
 }
 
-#courseVideo {
-	margin-top: 7vw;
-	height: 35vw;
+#statsStrip, #testimonialsList, #CourseNewList, #feedbackList {
+	height: fit-content;
 	width: 100vw;
+	display:flex;
+	padding: 0;
+	flex-wrap: wrap;
+	margin :auto;
+}
+
+#statsStrip {
+	height: 10vw;
+}
+
+#testimonialsList {
+	width:98vw;
+	margin-left: 1.7vw;
+	margin-top: 2vw;
+}
+
+#feedbackList {
+	width: 90vw;
+	margin-left: 5vw;
+	margin-top: 2vw;
+}
+
+#feedbackList li{
+	margin-top: -2vw;
+}
+
+#CousesList {
+	list-style-type: none;
+	margin-top: 10vw;
+	padding: 0;
+	background-color: white;
+	margin-left: 0vw;
+	width: 100vw;
+}
+
+#CousesList li{
+	display: inline-block;
+	height:fit-content;
+	width: fit-content;
+}
+
+#allCourses {
+	padding-left: 0vw;
+	background-color: white;
+	padding-bottom: 4vw;
 }
 
 #courseImage{
@@ -16,6 +214,115 @@
 	border-radius: 1vw;
 	margin-top: 0vw;
 }
+
+
+#statsStrip li {
+	list-style-type: none;
+	margin:auto;
+	padding: 0;
+	text-align: center;
+	color: white;
+}
+
+#testimonialsList li, #feedbackList li {
+	list-style-type: none;
+	margin:auto;
+	padding: 0;
+	text-align: center;
+	color: white;
+	width: 45vw;
+	padding: 2vw;
+	margin-top: 8vw;
+	display: inline-block;
+	white-space: normal;
+
+}
+
+#feedbackList li {
+	margin-top:6vw;
+	width: 25vw;
+	height: 22vw;
+}
+
+#abhiPic {
+	position: absolute;
+	margin-top:-37vw;
+	margin-left:-5.5vw;
+	height: 12vw;
+	width: 12vw;
+}
+
+#quote1, #quote2 {
+	color: orange;
+	position: absolute;
+	font-size: 4vw;
+	margin-top: -2vw;
+}
+
+#quote1{
+	margin-left: -1vw;
+}
+
+#quote2{
+	margin-left: 0.25vw;
+}
+
+#TestimonialLiText {
+	margin-top: 1vw;
+	font-size: 1.5vw;
+	font-family: 'Alegreya', serif;
+}
+
+#TestimonialName {
+	margin-top: 2vw;
+	font-size: 1.5vw;
+	font-family: 'Alegreya', serif;
+}
+
+#nameTxt{
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One';
+	font-family: 'Lora', serif;
+	color: purple;
+	font-weight: 900;
+}
+
+#collegeTxt {
+	font-size: 2vw;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One';
+	font-family: 'Lora', serif;
+	margin-top: -2vw;
+	color: green;
+	font-weight: 800;
+}
+
+#liHead, #TestliHead{
+	font-size: 2vw;
+	font-weight: 900;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One';
+	font-family: 'Lora', serif;
+}
+
+#TestliHead {
+	margin-top: 5vw;
+}
+
+#LiText {
+	margin-top: 1vw;
+	font-size: 2vw;
+	font-family: 'Alegreya', serif;
+}
+
+#courseVideo {
+	margin-top: 3vw;
+	height: 35vw;
+	width: 80vw;
+	border-radius: 0.5vw;
+	margin-left: 10vw;
+}
+
 
 #courseBlocks {
 	position: relative;
@@ -31,22 +338,28 @@
 	max-width:100vw;
 	margin-left: 0vw;
 	margin-bottom: 2vw;
-	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One';
+	font-family: 'Lora', serif;
+	font-weight: 900;
 }
 
 #CousesList {
 	list-style-type: none;
-	margin-top: 10vw;
+	margin-top: -20vw;
 	padding: 0;
 	background-color: white;
+	text-align: center;
 }
 
 #CousesList li{
 	display: inline-block;
-	margin-left: 4vw;
+	margin-left: 5vw;
 	margin-bottom: 4vw;
 	height:fit-content;
 	width: fit-content;
+	margin: auto;
+	margin-top: -2.8vw;
 }
 
 #allCourses {
@@ -56,14 +369,67 @@
 
 #getBtn {
 	margin-top: 32vw;
-	margin-left: -14vw;
+	margin-left: -19vw;
 	position: absolute;
 	border-radius: 0.5vw;
 	font-family:Arial, Helvetica, sans-serif;
 	text-transform: uppercase;
-	font-size: 1.5vw;
+	font-size: 2.25vw;
 	background-color: #f68331;
 	color: white;
+}
+
+#testDiv {
+	height: fit-content;
+	padding: 0;
+	margin:0;
+	width: 100vw;
+	padding-bottom: 3vw;
+	margin-top: 5vw;
+}
+
+#Sec3 {
+	height: fit-content;
+	width: 100vw;
+	background-color: white;
+}
+
+
+#TestTxt2, #TestTxt, #TestTxt3 {
+	font-family: 'Alegreya', serif;
+	font-size: 1.5vw;
+}
+
+#TestTxt {
+	margin-top: 3vw;
+	color:black
+}
+
+#TestTxt2, #TestTxt2Last {
+	margin-top: 2vw;
+	font-size: 1.75vw;
+	color: purple;
+	font-family: 'Alegreya', serif;
+}
+
+#TestTxt2Last{
+	margin-top: 1.6vw;
+}
+
+#TestTxt3{
+	font-weight: 900;
+	font-size: 1.75vw;
+	margin-top: 0.5vw;
+	color:black
+
+}
+
+#TestPic {
+	position: absolute;
+	margin-left:-3.75vw;
+	height: 8vw;
+	width: 8vw;
+	margin-top:-6.5vw
 }
 
 #perksDiv {
@@ -177,6 +543,7 @@
 }
 
    @media only screen and (max-width:768px){
+
 	#QuarksLogo{
 		margin-left: -4vw;
 		height: 12.5vw;
@@ -193,10 +560,157 @@
 		position:absolute;
 	}
 	
+	#Sec1 {
+		height: fit-content;
+		width: 100vw;
+		margin-top: 6.85vw;
+		text-align: justify;
+		text-justify: inter-word;
+		background-color: white;
+	}
+
+	#aiBg{
+		margin-top: 90vw;
+		width: 80vw;
+		height: 100vw;
+		margin-left: 10vw;
+	}
+
+	#allHeadTxt {
+		margin-top: -170vw;
+		position: absolute;
+		margin-left: -5vw;
+	}
+
+	#statsStrip, #testimonialsList {
+		height: fit-content;
+		width: 100vw;
+		display: inline-block;
+		padding: 0;
+		margin: 0;
+	}
+
+
+
+	#statsStrip li {
+		display: inline-block;
+		padding: 0;
+		width: 40vw;
+		height: 20vw;
+		margin-top: 4vw;
+	}
+	
+	#liHead, #TestliHead{
+		font-size: 5vw;
+		font-weight: 900;
+		font-family: 'Alegreya', serif;
+		font-family: 'Concert One';
+		font-family: 'Lora', serif;
+	}
+
+	#LiText {
+		margin-top: 1vw;
+		font-size: 5vw;
+		font-family: 'Alegreya', serif;
+	}
+
+	#TestliHead {
+		margin-top: 15vw;
+	}
+
+	#testimonialsList li {
+		width: 90vw;
+		margin-top: 22vw;
+		margin-left: 5vw;
+	}
+	
+	#abhiPic{
+		height: 28vw;
+		width: 28vw;
+		margin-top: -123vw;
+		margin-left: -13vw;
+	}
+
+	#TestPic {
+		height: 28vw;
+		width: 28vw;
+		margin-left: -13vw;
+		margin-top: -15vw;
+	}
+
+	#TestimonialLiText, #TestimonialName, #collegeTxt {
+		font-size: 5vw;
+	}
+
+	#TestimonialName{
+		margin-top: 5vw;
+	}
+
+	#Sec2 {
+		margin-top: 0vw;
+		height: fit-content;
+	}
+
+	#Sec3{
+		height: fit-content;
+		margin-top: 0vw;
+	}
+
+	#Sec4{
+		height: fit-content;
+		margin-bottom: 30vw;
+	}
+
+	#greyStrip {
+		margin-top: 170vw;
+		margin-left: 10vw;
+		width:90vw;
+		transform: rotate(0deg);
+	}
+
+	#TxtHead1 {
+		font-size: 3.5vw;
+		width:90vw;
+	}
+	
+	#TxtHead {
+		margin-top: 5vw;
+		font-size: 6vw;
+	}
+
+	#TxtSubHead2 {
+		font-size: 5vw;
+		width:90vw;
+		margin-top: 5vw;
+	}
+
+	#StartBtn, #tryBtn {
+		font-size: 5vw;
+		padding: 3vw;
+	}
+
+	#quote1, #quote2 {
+		color: orange;
+		position: absolute;
+		font-size: 10vw;
+	}
+	
+	#quote1{
+		margin-left: -3vw;
+		margin-top: -4vw;
+	}
+	
+	#quote2{
+		margin-left: 0.25vw;
+		margin-top: -3vw;
+	}
+
 	#courseVideo {
 		margin-top: 20vw;
-		height: 70vw;
-		width: 100vw;
+		height: 60vw;
+		width: 90vw;
+		border-radius: 2vw;
+		margin-left: 5vw;
 	}	
 
 	#courseImage{
@@ -207,11 +721,31 @@
 		margin-right: 10.5vw;
 	}
 		
+	#feedbackList li{
+		width: 90vw;
+		height: fit-content;
+		margin-top: 20vw;
+	}
+
+
+	#TestTxt2, #TestTxt, #TestTxt3, #TestTxt2Last {
+		font-family: 'Alegreya', serif;
+		font-size: 5vw;
+	}
+	
+	#TestTxt {
+		margin-top: 15vw;
+	}
+
+	#TestTxt2 {
+		margin-top: 10vw;
+	}
+
 	#CousesList li{
 		display: inline-block;
 		left: 10.5vw;
 		right: 10.5vw;
-		margin-bottom: 4vw;
+		margin-bottom: 6vw;
 		height:104vw;
 		width: 79vw;
 		border-radius: 1vw;
@@ -226,6 +760,15 @@
 		width: 100vw;
 		margin: 0;
 		padding: 0;
+	}
+
+	#StartBtnLast, #tryBtnLast {
+		font-size: 10vw;
+		border-radius: 2vw;
+	}
+
+	#tryBtnLast {
+		margin-top: -10vw;
 	}
 
 	#perksDiv {
@@ -290,12 +833,12 @@
 
 #getBtn {
 	margin-top: -10vw;
-	margin-left: 35vw;
+	margin-left: -10vw;
 	position: absolute;
 	border-radius: 1vw;
 	font-family:Arial, Helvetica, sans-serif;
 	text-transform: uppercase;
-	font-size: 4.5vw;
+	font-size: 5vw;
 	background-color: #f68331;
 	color: white;
 }

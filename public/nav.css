@@ -79,7 +79,41 @@ a:active{
   margin-right: -4vw; 
 }
 
+#loginBtn, #signUpBtn{
+	font-size: 1.5vw;
+	text-decoration: none;
+	margin-top: 2vw;
+	font-family: 'Alegreya', serif;
+	border-radius: 0.5vw;
+} 
+
+#loginBtn{
+	background-color: white;
+	color:black;
+	margin-left: 50vw;
+	border: 1px solid #bbb;
+} 
+
+#loginBtn:hover{
+	color:green;
+} 
+
+#signUpBtn {
+	margin-left: 2vw;
+	color:white;
+	background-color: green;
+}
+
+#signUpBtn:hover{
+	background-color: darkgreen;
+}
+
+
 @media only screen and (max-width:768px){
+
+  #loginBtn, #signUpBtn{
+    display: none;
+  }
 
 	#QuarksLogo{
 		margin-left: -4vw;
