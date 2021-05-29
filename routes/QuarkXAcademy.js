@@ -31,18 +31,62 @@ router.post("/TrialPurchase",IsLoggedIn, async function (req, res, next) {
         let ExpiryDate=moment(new Date()).add(7, 'd');
         //      
 
+        let premiumData = await USER_PREMIUM_COLLECTION.findOne({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, EMAIL: req.user.EMAIL});
+        let trialFlag = 0;
+        if(premiumData) {
+            trialFlag = 1;
+        }
+
+        if(trialFlag == 0) {
             let ObjUserPremiumCollection=new USER_PREMIUM_COLLECTION({
-                    TRIAL_FLAG:1,
-                    EXPIRY_DATE_TIME:ExpiryDate,
-                    EMAIL:req.user.EMAIL,
-                    CLASS_ID:req.body.Class,
-                    COURSE_ID:req.body.Course
-                });
-                
-            await ObjUserPremiumCollection.save();
-                
-            res.send("Details are successfully saved in premium table");
+                TRIAL_FLAG:1,
+                EXPIRY_DATE_TIME:ExpiryDate,
+                EMAIL:req.user.EMAIL,
+                CLASS_ID:req.body.Class,
+                COURSE_ID:req.body.Course
+            });
+            
+        await ObjUserPremiumCollection.save();
+        }
+           
+            
+            let MyCoursesArr = await USER_PREMIUM_COLLECTION.find({EMAIL:req.user.EMAIL});
+
+            // if(MyCoursesArr.length == 0) {
+            //     res.send("You have not yet subscribed to any course");
+            //     return;
+            // }
+    
+            let availableCourses=[];
+            let availableClasses = [];
+    
+            let currentDateTime = moment(Date.now());
+            var timediffinsec;
+            let y = 0;
+    
+            for(let i=0;i<MyCoursesArr.length;i++)
+            {
+                timediffinsec = parseInt(moment.duration(currentDateTime.diff(MyCoursesArr[i] && MyCoursesArr[i].EXPIRY_DATE_TIME)).asSeconds(),10);
+                if(timediffinsec < 0) {
+                    availableCourses[y++] = MyCoursesArr[i].COURSE_ID;
+                    availableClasses[y++] = MyCoursesArr[i].CLASS_ID;
+                }
+            }
+      
+        //     if(availableCourses.length == 0 || availableClasses.length == 0) {
+        //         res.send("Your Subscription has expired");
+        //         return;
+        //      }
+            
+            let allCourses =await COURSE_IMG_COLLECTION.find({CLASS_ID: { $in: availableClasses }, COURSE_ID: { $in: availableCourses }});
+
+            // res.send("You have subscribed courses available");
+            res.render('MyCourses',{allCourses:allCourses, username:req.body.username});
             return;
+     
+
+            // res.send("Details are successfully saved in premium table");
+            // return;
             
      }
     catch(err)
@@ -1042,7 +1086,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
 router.post('/ShowChapters', IsLoggedIn, async function(req,res,next) {
     try
     {
-        if(!(req.body.ClassId && req.body.CourseId))
+        if(!(req.body.ClassId && req.body.CourseId && req.body.Price))
         {
             res.json({ResMsg:"Invalid request parameters"});
             return;
@@ -1143,10 +1187,10 @@ router.post('/ShowChapters', IsLoggedIn, async function(req,res,next) {
         let trialFlag = premiumData.TRIAL_FLAG;
 
         if(trialFlag == 1) {
-            res.render('AllChaptersTrial',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength: TotalQuestionList.length});
+            res.render('AllChaptersTrial',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength: TotalQuestionList.length, Price:req.body.Price});
          }
         else {
-            res.render('ChaptersConcepts',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength:TotalQuestionList.length});
+            res.render('ChaptersConcepts',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength:TotalQuestionList.length, Price:req.body.Price});
         }
         return;
     }
@@ -1505,19 +1549,25 @@ router.post('/OrderDetails', IsLoggedIn, async function(req, res) {
         }
 
              //Fetch User Name
-       let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-       let username = userStr.USERNAME;
-       username = username.substr(0, username.indexOf(' '));
+    //    let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+    //    let username = userStr.USERNAME;
+    //    username = username.substr(0, username.indexOf(' '));
 
         let selectedCourse =await COURSE_IMG_COLLECTION.findOne({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});
         let DbPrice = selectedCourse.PRICE;
+
+        let premiumData = await USER_PREMIUM_COLLECTION.findOne({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, EMAIL: req.user.EMAIL});
+        let trialFlag = 0;
+        if(premiumData) {
+            trialFlag = 1;
+        }
 
         if ((DbPrice * 100) != req.body.Price) {
             res.render('error');
             return;
         }
 
-        res.render('OrderDetails', {Class:req.body.Class, Course:req.body.Course, Price:req.body.Price, FullPrice:4999, orderId:req.body.orderId, CourseImg: selectedCourse.BUY_COURSE_IMG, Email: req.user.EMAIL, username: username});
+        res.render('OrderDetails', {Class:req.body.Class, Course:req.body.Course, Price:req.body.Price, FullPrice:4999, orderId:req.body.orderId, CourseImg: selectedCourse.BUY_COURSE_IMG, Email: req.user.EMAIL, username: req.body.username, trialFlag: trialFlag});
         return;
 
     }
@@ -1737,8 +1787,10 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
          return;
      }
     
-          //UPDATE CURRENT ATTEMPT IN PERFORMACE TABLE
-    let studentPerformanceObj = new STUDENT_PERFORMANCE_COLLECTION({
+    let thisQuestion = await STUDENT_PERFORMANCE_COLLECTION.findOne({CONCEPT_ID:req.body.Concept, CHAPTER_ID: req.body.Chapter, COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL, QUESTION_ID: req.body.quesID}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
+    if (!thisQuestion) {
+      //UPDATE CURRENT ATTEMPT IN PERFORMACE TABLE ONLY IF QUESTION IS NOT IN PERFORMANCE TABLE
+      let studentPerformanceObj = new STUDENT_PERFORMANCE_COLLECTION({
         CLASS_ID: req.body.Class,
         COURSE_ID: req.body.Course,
         CHAPTER_ID: req.body.Chapter,
@@ -1751,11 +1803,8 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
         CONCEPT_NUM: req.body.ConceptNum
      })
      
-
      await studentPerformanceObj.save();
-    //  [ lbl ] DuplicateQuestion:
-
-    // Duplicate_Question
+    } 
 
      let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});      
      TotalQuestionList.sort(function (b,a){

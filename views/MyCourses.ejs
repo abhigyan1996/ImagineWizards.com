@@ -95,6 +95,8 @@
   <form class="w3-hide" id="allCoursesForm" action="/QuarkXAcademy/ShowChapters" method="POST">
     <input type="text"id="ClassId" name="ClassId" placeholder="class">
     <input type="text" id="CourseId" name="CourseId" placeholder="course">
+    <input type="text" id="username" name="username" placeholder="username" value=<%=username%>>
+    <input type="text" id="Price" name="Price" placeholder="Price">
     <button type="submit" class="w3-blue btn btn-default">Submit</button>
   </form>
 
@@ -110,7 +112,8 @@
           <li>
             <img class="w3-card" id="courseImage" src=<%=course.COURSE_IMG%>>
             <div class="w3-hide" id="courseName"><%=course.COURSE_ID%></div><span class="w3-hide">,</span>
-            <div class="w3-hide"  id="className"><%=course.CLASS_ID%></div><span class="w3-hide">,</span>
+            <div class="w3-hide" id="className"><%=course.CLASS_ID%></div><span class="w3-hide">,</span>
+            <div class="w3-hide" id="coursePrice"><%=course.PRICE%></div><span class="w3-hide">,</span>
           </li>
           <% i++; %>
           <%}%>
@@ -118,58 +121,43 @@
 
 </body>
 
-<script>
-
-
-
-  const ul = document.querySelectorAll('ul');
-  
-  var ClassNew = "";
-  var CourseNew = "";
-  let courseStr = [];
-  let classStr = [];
-  var k = 0; var j = 0;
-  
-  for (let i = 0; i <= ul.length - 1; i++) {
-    var courseClass = document.getElementById("courseName").value;  
-    courseClass = $("#CousesList li").text();
-    courseClass = courseClass.replace(/(\r\n|\n|\r| )/gm,"");
-    console.log(courseClass);
-    var res = courseClass.split(",");
-    console.log("res", res);
-
+<script>  
+  //  var courseClass = document.getElementById("courseName").value;  
     $(document).ready(function() {
- 
-          for (var i = 0; i < res.length-1; i=i+2) {
-            courseStr[k++] = res[i];
-          }
-          for (var i = 1; i < res.length-1; i=i+2) {
-            classStr[j++] = res[i];
-          }
-        
-          console.log("classStr", classStr);
-          console.log("courseStr", courseStr);
+
+        var allCourses = $("#CousesList li #courseName").text();
+        var allClasses =  $("#CousesList li #className").text();
+        var allcoursePrices =  $("#CousesList li #coursePrice").text();
+
+        var res1 = allCourses.split(",");
+        var res2 = allClasses.split(",");
+        var res3 = allcoursePrices.split(",");
 
         $("#CousesList li").click(function() {
+          
           var index = $(this).index();
           console.log("Index", index);
        
-          for (var i = 0; i < courseStr.length; i++) {
-            CourseNew = courseStr[index];
+          for (var i = 0; i < res1.length; i++) {
+            var CourseNew = res1[index];
           }
-          for (var i = 0; i < classStr.length; i++) {
-            ClassNew = classStr[index];
+
+          for (var i = 0; i < res2.length; i++) {
+            var ClassNew = res2[index];
+          }
+
+          for (var i = 0; i < res3.length; i++) {
+            var CoursePrice = res3[index];
           }
           
-          console.log("CourseNew", CourseNew);
-          console.log("ClassNew", ClassNew);
-
           document.getElementById('ClassId').value = ClassNew;
           document.getElementById('CourseId').value = CourseNew;
+          document.getElementById('Price').value = CoursePrice;
+
          $("#allCoursesForm").submit();
         });
     });
-  }
+
 
 </script>
 

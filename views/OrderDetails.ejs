@@ -75,7 +75,7 @@
     <div id="side-menu" class="side-nav">
       <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
       <a href="#" id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></a>
-      <div id="username"><%=username%></div>      
+      <a id="username"><%=username%></a>      
       <a href="../UserProfile/LogOut"><div id="logOutTxt">LOG OUT</div></a>
     </div>
  </section>
@@ -88,6 +88,9 @@
       </a>
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</span></div>
+    <div id="usernameDisplay" style="cursor: pointer;" class="w3-bar-item w3-hide-small">
+        <div style="text-align: center">Hello, <%=username%></div>
+    </div >
   <!-- Navbar on small screens -->
 </div>
 </div>
@@ -96,11 +99,13 @@
     <input id="PriceShown" value=<%=Price%> type="text">
     <input id="ClassShown" value=<%=Class%> type="text">
     <input id="fullPrice" value=<%=FullPrice%> type="text">
+    <input id="trialFlag" value=<%=trialFlag%> type="text">
 </form>
 
 <form id="trialForm" class="w3-hide" action="../QuarkXAcademy/TrialPurchase" method="POST">
     <input name="Class" value=<%=Class%> type="text">
     <input name="Course" value=<%=Course%> type="text">
+    <input name="username" value=<%=username%> type="text">
 </form>
 
 <div id="orderDetailsDiv">
@@ -170,7 +175,7 @@
         if (xmlHttp.readyState === 4) {
     //alert(xmlHttp.responseText);
     console.log(xmlHttp.responseText);
-    location.replace("https://quarkxacademy.herokuapp.com/QuarkXAcademy/MyCourses");
+    location.replace("https://angshumankashyap.in/QuarkXAcademy/MyCourses");
         }
     }
     xmlHttp.open("POST", url, true); // false for synchronous request
@@ -254,6 +259,17 @@ document.getElementById('rzp-button1Ph').onclick = function(e){
 </div>
 
 <script>
+    var trialFlag = document.getElementById('trialFlag').value;
+    if (trialFlag == '1') {
+        $("#trialBtn").hide();
+        if(screen.width>768) {
+            $("#headTitle").css("margin-top", "2vw");
+        }
+    }
+    else
+        $("#trialBtn").show();
+    
+
     $("#trialBtn").click(function() {
         $("#trialForm").submit();
     });
@@ -285,9 +301,19 @@ document.getElementById('rzp-button1Ph').onclick = function(e){
 
     document.getElementById('discountTxt').innerHTML = discountStr + "% off";
     document.getElementById('savedAmt').innerHTML = " ₹" + (fullPrice - price) + " ";
-    
-
 </script>
+
+
+<script>
+    $(document).ready(function(){
+
+      if (screen.width>768){
+        $("#usernameDisplay").show();
+      }
+  });
+  
+  </script>
+  
 
 </body>
 </html>

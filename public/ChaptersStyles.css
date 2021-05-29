@@ -57,6 +57,20 @@
 	margin-left: 2.3vw  ;
 }
 
+#upgradeBtn {
+	font-size: 1.75vw;
+	text-decoration: none;
+	margin-top: 1.75vw;
+	font-family: 'Alegreya', serif;
+	border-radius: 0.5vw;
+	color:white;
+	background: green;
+	margin-left: 50vw;
+}
+
+#upgradeBtn:hover{
+	background-color: darkgreen;
+}
 
 #Chapters {
 	font-family: 'Source Serif Pro';
@@ -167,7 +181,7 @@
   animation: glow 1s ease-in-out infinite alternate;
 }
 
-#username {
+/* #username {
 	margin-bottom: 1vw;
 	font-family: 'Times New Roman', Times, serif;
 	text-decoration: none;
@@ -189,7 +203,7 @@
 #logOutTxt {
 	font-family: 'Times New Roman', Times, serif;
 	text-decoration: none;
-}
+} */
 
 @keyframes glow {
 	from {
@@ -321,7 +335,16 @@
 		border-radius: 8px;
 	}
 		
-	#logOutTxt {
+	#upgradeBtn {
+		font-size:4.5vw;
+		margin-left: 31vw;
+		padding: 2vw;
+		display:none;
+		text-transform: uppercase;
+		margin-top: 4.5vw;
+	}
+
+	/* #logOutTxt {
 		color: white;
 		font-size: 5vw;
 		font-family: 'Times New Roman', Times, serif;
@@ -348,7 +371,7 @@
 		color:white;
 		margin-top: 5vw;
 		font-size: 5vw;
-	}
+	} */
 }
 
 

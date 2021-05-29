@@ -86,8 +86,8 @@
     </a>
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     
-    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</span></div>
- 
+    <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</span></div>    
+    <div style="cursor: pointer;" class="w3-bar-item" id="upgradeBtn">Upgrade Plan</div>
     
   </div>
   <!-- Navbar on small screens -->
@@ -158,13 +158,14 @@
       <div id="IndicatorTxt"> <span style="color:#1596CD">&#9679</span> <span style="color:white">Skipped</span> </div>
       <div id="IndicatorTxt"> <span style="color:#565454">&#9679</span> <span style="color:white">Unattempted</span> </div>
   </div>
-
+  
   <div id="colorId2"> 
-    <div id="IndicatorTxtC"><span id="correctCount" class="counter" style="color:white"></span> </div>
-    <div id="IndicatorTxtW"><span id="wrongCount" class="counter" style="color:white"></span> </div>
-    <div id="IndicatorTxtS"><span id="skipCount" class="counter" style="color:white"></span> </div>
-    <div id="IndicatorTxtU"><span id="unattemptedCount" class="counter" style="color:white"></span> </div>
-</div>
+      <div id="IndicatorTxtC"><span id="correctCount" class="counter" style="color:white"></span> </div>
+      <div id="IndicatorTxtW"><span id="wrongCount" class="counter" style="color:white"></span> </div>
+      <div id="IndicatorTxtS"><span id="skipCount" class="counter" style="color:white"></span> </div>
+      <div id="IndicatorTxtU"><span id="unattemptedCount" class="counter" style="color:white"></span> </div>
+  </div>
+
     
     <div id="chapterConceptCard">
       <!-- <div id="Chapters">Averages</div> -->
@@ -216,6 +217,15 @@
     <input type="text" id="totalConcepts" value=<%=TotalConcepts%>>
   </form>
 
+  <form class="w3-hide" id="selectCourseForm" action="../QuarkXAcademy/OrderDetails" style="margin-top: 20vw;" method="POST">
+    <input type="text" placeholder="Class" name="Class" value=<%=ClassId%>>
+    <input type="text" placeholder="Course" name="Course" value=<%=CourseId%>>
+    <input type="text" id="Price" name = "Price" placeholder="Price" value=<%=Price%>>
+    <input type="text" id="orderId" name = "orderId" placeholder="Order Id">
+    <input type="text" id="username" name = "username" value=<%=username%>>
+    <button type="submit" id="submitCourse">Submit</button>
+</form> 
+
 </body>
 
 <script>
@@ -247,7 +257,7 @@
           document.getElementById("ChapNum").value = index+1;
 
        if(index<3){
-        $("#chaptersForm").submit();
+          $("#chaptersForm").submit();
        }
       });
 
@@ -335,5 +345,39 @@ $('.counter').each(function () {
   
   $('.block').tooltip();
   </script>
+
+<script>
+    var FinalPrice = ( document.getElementById('Price').value ) * 100;
+    document.getElementById('Price').value = FinalPrice;
+
+    if(screen.width<=768) {
+      document.getElementById('upgradeBtn').innerHTML = "Upgrade";
+      $("#upgradeBtn").show();
+    }
+
+    $("#upgradeBtn").click(function() {
+      var url = '/api/payment/order';
+      var params = {
+      amount: FinalPrice,  
+      currency: "INR",
+      receipt: "su001",
+      payment_capture: '1',
+      };
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function (res) {
+          if (xmlHttp.readyState === 4) {
+              res=JSON.parse(xmlHttp.responseText);
+              document.getElementById("orderId").value = res.sub.id;
+              $("#selectCourseForm").submit();
+          }
+      }
+      xmlHttp.open("POST", url, true); // false for synchronous request
+      xmlHttp.withCredentials = true;
+      xmlHttp.setRequestHeader("Content-type", "application/json");
+      xmlHttp.send(JSON.stringify(params));
+
+  });
+</script>
+
 
 </html>
