@@ -72,16 +72,19 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
 <body class="w3-white" style="width:100vw; max-width:100vw; min-width:100vw; overflow: hidden">
 
 
-<section  id="top-navbar">  
-    <div id="side-menu" class="side-nav">
-      <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-      <a href="index">Home</a>
-      <a href="#subscribeCard" class="homeSubscribe w3-hide-medium w3-hide-small">Subscribe</a>
-      <a href="#subscribeCardTablet" class="homeSubscribe w3-hide-large w3-hide-small">Subscribe</a>
-      <a href="#subscribeCardPh" class="homeSubscribe w3-hide-large w3-hide-medium">Subscribe</a>
-
-    </div>
-  </section>
+    <section  id="top-navbar">  
+        <div id="side-menu" class="side-nav">
+          <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
+          <a href="#" id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></a>
+          <a href="#" id="username"><%=username%></a>
+          <a href="#subscribeCard" class="homeSubscribe w3-hide-medium w3-hide-small">Subscribe</a>
+          <a href="#subscribeCardTablet" class="homeSubscribe w3-hide-large w3-hide-small">Subscribe</a>
+          <a href="#subscribeCardPh" class="homeSubscribe w3-hide-large w3-hide-medium">Subscribe</a>    
+           <!-- <a id="myCoursesTxt" href="MyCourses">My Courses</a> -->
+          <a href="../UserProfile/LogOut"><div id="logOutTxt">LOG OUT</div></a>
+          <a href="../signup"><div id="RegiTxt">SIGN IN / REGISTER</div></a>
+        </div>
+     </section>
 
 <!-- Lower Nav -->
 <section id="MobileNavbar" onclick="closeSlideMenu()">
@@ -108,10 +111,16 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
           <i class="fa fa-bars"></i>
       </a>
       <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
-      <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</span></div>
+      <!-- <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</span></div> -->
+      <div style="cursor: pointer;" id="nameQuarkXH" class="w3-bar-item">QuarkX</div>
       <a href="../signup" id="loginBtn" style="cursor: pointer;" class="w3-bar-item">Log In</a>
       <a href="../signup" id="signUpBtn" style="cursor: pointer;" class="w3-bar-item">Sign Up</a>
-       <!-- Navbar on small screens -->
+      <a style="cursor: pointer;" href="../signup" ><div style="cursor: pointer;" class="w3-bar-item w3-hide-small" id="loginBtn">Log In</div></a>
+      <a href="../signup" style="cursor: pointer;"><div style="cursor: pointer;" class="w3-bar-item w3-hide-small" id="signUpBtn">Sign Up</div></a>
+      <div id="usernameDisplay" style="cursor: pointer;" class="w3-bar-item w3-hide-small">
+          <div style="text-align: center">Hello, <%=username%></div>
+      </div >
+     <!-- Navbar on small screens -->
   </div>
   </div>
 
@@ -422,6 +431,11 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
 
 </div>
 
+<form class="w3-hide">
+    <input class="w3-hide" type="text" id="loginFlag" name="loginFlag" value=<%=loginFlag%>>
+    <input class="w3-hide" type="text" id="username1" name="username" value=<%=username%>>
+</form>
+
 <script>
 $(document).ready(function(){
   // Add smooth scrolling to all links
@@ -536,27 +550,42 @@ $(document).ready(function(){
 </script> 
 
 <script>
-  $("#navItem2Home").click(function() {
-    $("html, body").animate({ scrollTop: 0 }, 750);
-    return false;
+
+    $(document).ready(function(){
+      var username = document.getElementById('username1').value;
+      var loginFlag = document.getElementById('loginFlag').value;
+  
+      if (loginFlag == '0' && screen.width>768){
+        $("#usernameDisplay").hide();
+        $("#loginBtn").show();
+        $("#signUpBtn").show();
+        $('#RegiTxt').show();
+        $('#logOutTxt').hide();
+        $('#userImage').hide();
+        $('#myCoursesTxt').hide();
+      }
+      else if (loginFlag == '1' && screen.width>768){   //if logged in
+        $("#loginBtn").hide();
+        $("#signUpBtn").hide();
+        $("#usernameDisplay").show();  
+        $('#RegiTxt').hide();
+        $('#logOutTxt').show();
+        $('#userImage').show();
+        $('#username').show();
+      }
+      
+      if (loginFlag == '1' && screen.width<=768){
+        $('#RegiTxt').hide();
+        $('#logOutTxt').show();
+      }
+      else if (loginFlag == '0' && screen.width<=768) {
+        $('#RegiTxt').show();
+        $('#logOutTxt').hide();
+      }
   });
-</script>
-
-<script>
-  $("#nameQuarks").click(function() {
-    $("html, body").animate({ scrollTop: 0 }, 750);
-    return false;
-  });
-</script>
-
-<script>
-  $("#QuarksLogo").click(function() {
-    $("html, body").animate({ scrollTop: 0 }, 750);
-    return false;
-  });
-</script>
-
-
+  
+  </script>
+  
 <!-- 
 <script>
   AOS.init();

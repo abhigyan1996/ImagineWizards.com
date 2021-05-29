@@ -54,35 +54,6 @@
 	-moz-animation: glow 1s ease-in-out infinite alternate;
 	animation: glow 1s ease-in-out infinite alternate;
   }
-  
-  #logOutTxt {
-		color: white;
-		font-size: 1.5vw;
-		font-family: 'Times New Roman', Times, serif;
-		text-decoration: none;
-	}
-
-	#username {
-		margin-bottom: 1vw;
-		font-family: cursive;
-		text-decoration: none;
-		font-size: 1.5vw;
-		color:white;
-		margin-left:2vw;
-	}
-
-	#userImage {
-		height: 7vw;
-		width: 7vw;
-	}
-	
-	#myCoursesTxt {
-		font-family: 'Times New Roman', Times, serif;
-		text-transform: uppercase;
-		color:white;
-		margin-top: 2vw;
-		font-size: 2vw;
-	}
 	
 
 	@keyframes glow {
@@ -123,14 +94,14 @@
 		position:absolute;
 	}
 	
-	#myCoursesTxt {
+	/* #myCoursesTxt {
 		font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 		text-transform: uppercase;
 		color:white;
 		margin-top: 40vw;
 		font-size: 8vw;
 		margin-bottom: 20vw;
-	}
+	} */
 
 	#courseImage{
 		height:69vw;
@@ -157,27 +128,20 @@
 		padding: 0;
 	}
 
-		
+/* 		
 #logOutTxt {
 	color: white;
 	font-size: 5vw;
 	font-family: 'Times New Roman', Times, serif;
 	text-decoration: none;
-}
+} */
 
-#username {
-	margin-bottom: 1vw;
-	font-family: cursive;
-	text-decoration: none;
-	font-size: 5vw;
-	color:white;
-	margin-left:9vw;
-}
 
-#userImage {
+
+/* #userImage {
 	height: 24vw;
 	width: 24vw;
-}
+} */
 
 #CoursesHeadTxt {
 	font-size: 9.5vw;

@@ -85,6 +85,8 @@ a:active{
 	margin-top: 2vw;
 	font-family: 'Alegreya', serif;
 	border-radius: 0.5vw;
+  display: none;
+  /* visibility:hidden; */
 } 
 
 #loginBtn{
@@ -108,6 +110,17 @@ a:active{
 	background-color: darkgreen;
 }
 
+#usernameDisplay {
+  font-family: 'Alegreya', serif;
+  font-size:1.75vw;
+  color: green;
+  margin-top: 1.75vw;
+  margin-left: 35.5vw;
+  width: 31vw;
+  display: none;
+  /* visibility:hidden; */
+}
+
 #nameAngz{
   font-family: 'Quicksand';
   font-size:4.5vw;
@@ -115,9 +128,64 @@ a:active{
   padding-bottom: 20vw;
 }
 
+#username {
+	margin-bottom: 1vw;
+	font-family: 'Times New Roman', Times, serif;
+	text-decoration: none;
+}
+
+#userImage {
+	height: 7vw;
+	width: 7vw;
+}
+
+#myCoursesTxt {
+	font-family: 'Times New Roman', Times, serif;
+	text-transform: uppercase;
+	color:white;
+	margin-top: 2vw;
+	font-size: 2vw;
+}
+
+#logOutTxt, #RegiTxt, .homeSubscribe {
+  font-family: 'Alegreya', serif;
+	text-decoration: none;
+  font-size: 1.5vw;
+}
+
 @media only screen and (max-width:768px){
 
-  #loginBtn, #signUpBtn{
+  	
+#logOutTxt, #RegiTxt, .homeSubscribe {
+		color: white;
+		font-size: 5vw;
+	  font-family: 'Alegreya', serif;
+		text-decoration: none;
+	}
+
+	#username {
+		margin-bottom: 0vw;
+		font-family: 'Times New Roman', Times, serif;
+		text-decoration: none;
+		font-size: 5vw;
+		color:white;
+		margin-left:0vw;
+	}
+
+	#userImage {
+		height: 24vw;
+		width: 24vw;
+	}
+
+	#myCoursesTxt {
+		font-family: 'Times New Roman', Times, serif;
+		text-transform: uppercase;
+		color:white;
+		margin-top: 5vw;
+		font-size: 5vw;
+	}
+
+  #loginBtn, #signUpBtn, #usernameDisplay{
     display: none;
   }
 
@@ -128,7 +196,7 @@ a:active{
 		margin-top:1.25vh;
 	}
 	
-	#nameQuarks{
+	#nameQuarks, #nameQuarkXH{
 		font-family: 'Quicksand';
 		font-size: 10vw;
 		text-decoration: none;
@@ -136,6 +204,10 @@ a:active{
 		color:black;
 		position:absolute;
 	}
+
+  #nameQuarkXH {
+    margin-left:26.5vw
+  }
 
   #nameAngz{
     font-size:10vw;

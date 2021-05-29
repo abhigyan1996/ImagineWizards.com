@@ -93,8 +93,14 @@ router.get("/MyCourses", IsLoggedIn, async function(req, res, next) {
         let allCourses =await COURSE_IMG_COLLECTION.find({CLASS_ID: { $in: availableClasses }, COURSE_ID: { $in: availableCourses }});
 
        // res.send("You have subscribed courses available");
-        
-       res.render('MyCourses',{allCourses:allCourses, username:username});
+        if (allCourses) {
+            res.render('MyCourses',{allCourses:allCourses, username:username});
+            return;
+        }
+
+        else {
+            res.send("Select A Course you want to buy wala page");
+        }
        return;
     }
        // 

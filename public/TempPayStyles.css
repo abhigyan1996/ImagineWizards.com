@@ -486,18 +486,6 @@
 	height: 5vw;
 }
 
-#userName {
-	margin-bottom: 1vw;
-	font-family: cursive;
-	text-decoration: none;
-}
-
-#userImage {
-	height: 7vw;
-	width: 7vw;
-}
-
-
 #myCoursesBtn{
 	font-size: 2.5vw;
 	margin-left: 43vw;
@@ -525,22 +513,6 @@
 #myCoursesBtn:hover {
 	background-position: right center;
   }
-
-#logOutTxt {
-	color: white;
-	font-size: 1.5vw;
-	font-family: 'Times New Roman', Times, serif;
-	text-decoration: none;
-}
-
-#username {
-	margin-bottom: 1vw;
-	font-family: cursive;
-	text-decoration: none;
-	font-size: 1.5vw;
-	color:white;
-	margin-left:2vw;
-}
 
    @media only screen and (max-width:768px){
 
@@ -901,25 +873,5 @@
 	margin-bottom: 5vw;
 }
 
-#logOutTxt {
-	color: white;
-	font-size: 5vw;
-	font-family: 'Times New Roman', Times, serif;
-	text-decoration: none;
-}
-
-#username {
-	margin-bottom: 1vw;
-	font-family: cursive;
-	text-decoration: none;
-	font-size: 5vw;
-	color:white;
-	margin-left:9vw;
-}
-
-#userImage {
-	height: 24vw;
-	width: 24vw;
-}
 
 }

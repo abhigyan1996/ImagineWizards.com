@@ -313,7 +313,7 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
    //res.render('signupErr', {ErrCode: 2, ResMsg: "You have successfully Logged Out"});  
    //logger.info(`${req.baseUrl+req.url} api response-${req.user && req.user.username} have successfully logged out`);
       let allCourses =await COURSE_IMG_COLLECTION.find({});   
-      res.render('TempPay', {Courses: allCourses});
+      res.render('TempPay', {Courses: allCourses, loginFlag: 0, username: ""});  
       return;
     }
     catch(err)

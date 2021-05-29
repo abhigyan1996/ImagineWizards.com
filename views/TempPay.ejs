@@ -77,7 +77,12 @@
 <section  id="top-navbar">  
     <div id="side-menu" class="side-nav">
       <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-      <a href="../signup"><div id="logOutTxt">SIGN IN / REGISTER</div></a>
+
+      <a href="#" id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></a>
+      <a href="#" id="username"><%=username%></a>
+      <a id="myCoursesTxt" href="../QuarkXAcademy/MyCourses">My Courses</a>
+      <a href="../UserProfile/LogOut"><div id="logOutTxt">LOG OUT</div></a>      
+      <a href="../signup"><div id="RegiTxt">SIGN IN / REGISTER</div></a>
     </div>
  </section>
 
@@ -89,8 +94,11 @@
     </a>
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</span></div>
-    <a href="../signup" id="loginBtn" style="cursor: pointer;" class="w3-bar-item">Log In</a>
-    <a href="../signup" id="signUpBtn" style="cursor: pointer;" class="w3-bar-item">Sign Up</a>
+    <a style="cursor: pointer;" href="../signup" ><div style="cursor: pointer;" class="w3-bar-item w3-hide-small" id="loginBtn">Log In</div></a>
+    <a href="../signup" style="cursor: pointer;"><div style="cursor: pointer;" class="w3-bar-item w3-hide-small" id="signUpBtn">Sign Up</div></a>
+    <div id="usernameDisplay" style="cursor: pointer;" class="w3-bar-item w3-hide-small">
+        <div style="text-align: center">Hello, <%=username%></div>
+    </div >
   <!-- Navbar on small screens -->
 </div>
 </div>
@@ -121,6 +129,12 @@
     <button type="submit" id="submitCourse">Submit</button>
 </form> 
 
+<form class="w3-hide">
+    <input class="w3-hide" type="text" id="loginFlag" name="loginFlag" value=<%=loginFlag%>>
+    <input class="w3-hide" type="text" id="username1" name="username" value=<%=username%>>
+</form>
+
+
 <div id="Sec1" onclick="closeSlideMenu()">
     <div data-aos="zoom-in" id="greyStrip"> </div>
 
@@ -132,8 +146,8 @@
           
         <!-- <h3 id="TxtSubHead">Practice, Compete, Repeat!</h1> -->
         <h3 id="TxtSubHead2">We want to help every child achieve great things in life and every great thing starts from childhood. Our <span style="font-weight:900; color:green; font-family: 'Alegreya'">AI-powered courses</span> are designed to transform the way children learn. Our questions adapt based on the user performance to deliver the most engaging experience.</h1>
-        <a href="../signup"><h3 class="w3-button w3-blue w3-hover-blue" id="StartBtn">Get Started</h3></a>
-        <a href="../signup"><h3 id="tryBtn" class="w3-button w3-orange w3-hover-orange" >Try for free</h3></a>
+        <a href="../QuarkXAcademy/MyCourses"><h3 class="w3-button w3-blue w3-hover-blue" id="StartBtn">Get Started</h3></a>
+        <a href="../QuarkXAcademy/MyCourses"><h3 id="tryBtn" class="w3-button w3-orange w3-hover-orange" >Try for free</h3></a>
    </div>
 
    <ul data-aos="fade-up" class="w3-card w3-green" id="statsStrip">
@@ -253,11 +267,11 @@
         </li>
 
         <li>
-            <a href="../signup"><div data-aos="zoom-out" id="StartBtnLast" class="w3-blue w3-button w3-hover-blue">Get Started </div></a>    
+            <a href="../QuarkXAcademy/MyCourses"><div data-aos="zoom-out" id="StartBtnLast" class="w3-blue w3-button w3-hover-blue">Get Started </div></a>    
         </li>
 
         <li>
-            <a href="../signup"><div data-aos="zoom-out" id="tryBtnLast" class="w3-orange w3-button w3-hover-orange">Try for free </div></a>
+            <a href="../QuarkXAcademy/MyCourses"><div data-aos="zoom-out" id="tryBtnLast" class="w3-orange w3-button w3-hover-orange">Try for free </div></a>
         </li>
     </ul>
 </div>
@@ -340,6 +354,44 @@
 
     });
 </script>
+
+<script>
+
+  $(document).ready(function(){
+    var username = document.getElementById('username1').value;
+    var loginFlag = document.getElementById('loginFlag').value;
+
+    if (loginFlag == '0' && screen.width>768){
+      $("#usernameDisplay").hide();
+      $("#loginBtn").show();
+      $("#signUpBtn").show();
+      $('#RegiTxt').show();
+      $('#logOutTxt').hide();
+      $('#userImage').hide();
+      $('#myCoursesTxt').hide();
+    }
+    else if (loginFlag == '1' && screen.width>768){   //if logged in
+      $("#loginBtn").hide();
+      $("#signUpBtn").hide();
+      $("#usernameDisplay").show();  
+      $('#RegiTxt').hide();
+      $('#logOutTxt').show();
+      $('#userImage').show();
+      $('#username').show();
+    }
+
+    if (loginFlag == '1' && screen.width<=768){
+      $('#RegiTxt').hide();
+      $('#logOutTxt').show();
+    }
+    else if (loginFlag == '0' && screen.width<=768) {
+      $('#RegiTxt').show();
+      $('#logOutTxt').hide();
+    }
+});
+
+</script>
+
 
 
 <script>
