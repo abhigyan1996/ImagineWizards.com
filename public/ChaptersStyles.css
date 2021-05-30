@@ -64,12 +64,70 @@
 	font-family: 'Alegreya', serif;
 	border-radius: 0.5vw;
 	color:white;
-	background: green;
+	background: red;
+	display: none;
 	margin-left: 50vw;
+	/* box-shadow: 0px 3px 3px 3px #bbb; */
+	position: relative;
+
+	animation: linear infinite;
+	animation-name: btnAnim;
+	animation-duration: 2s;
+    -webkit-animation: linear infinite;
+    -webkit-animation-name: btnAnim;
+    -webkit-animation-duration: 1.2s;
 }
 
+@keyframes btnAnim{
+	0% {
+		box-shadow: 0px 1px 2px 2px #bbb;
+	}
+	12.5%{
+		box-shadow: 0px 1.5px 2.5px 2.5px #bbb;
+	}
+	25% {
+		box-shadow: 0px 2px 3px 3px #bbb;
+	}
+	50% {
+		box-shadow: 0px 3.5px 4.5px 4.5px #bbb;
+	}
+	75% {
+		box-shadow: 0px 2px 3px 3px #bbb;
+	}
+	87.5%{
+		box-shadow: 0px 1.5px 2.5px 2.5px #bbb;
+	}
+	100% {
+		box-shadow: 0px 1px 2px 2px #bbb;
+	}
+}
+@-webkit-keyframes btnAnim {
+	0% {
+		box-shadow: 0px 1px 2px 2px #bbb;
+	}
+	12.5%{
+		box-shadow: 0px 1.5px 2.5px 2.5px #bbb;
+	}
+	25% {
+		box-shadow: 0px 2px 3px 3px #bbb;
+	}
+	50% {
+		box-shadow: 0px 3.5px 4.5px 4.5px #bbb;
+	}
+	75% {
+		box-shadow: 0px 2px 3px 3px #bbb;
+	}
+	87.5%{
+		box-shadow: 0px 1.5px 2.5px 2.5px #bbb;
+	}
+	100% {
+		box-shadow: 0px 1px 2px 2px #bbb;
+	}
+}
+
+
 #upgradeBtn:hover{
-	background-color: darkgreen;
+	background-color: #CD3615;
 }
 
 #Chapters {
@@ -337,11 +395,12 @@
 		
 	#upgradeBtn {
 		font-size:4.5vw;
-		margin-left: 31vw;
+		margin-left: 0vw;
 		padding: 2vw;
 		display:none;
 		text-transform: uppercase;
 		margin-top: 4.5vw;
+		margin-right: 2vw;
 	}
 
 	/* #logOutTxt {

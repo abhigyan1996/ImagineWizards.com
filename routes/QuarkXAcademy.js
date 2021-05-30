@@ -996,7 +996,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
     try{
         if(!req.body.quesNum || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum
             || !req.body.easyCorrect || !req.body.easyWrong || !req.body.easySkipped || !req.body.easyUnattemptedLength || !req.body.difficultCorrect || !req.body.difficultWrong
-            || !req.body.difficultSkipped || !req.body.difficultUnattemptedLength || !req.body.restarts
+            || !req.body.difficultSkipped || !req.body.difficultUnattemptedLength || !req.body.restarts || !req.body.Price
             )
         {
            res.send("Invalid Request Parameters");
@@ -1021,7 +1021,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
         if (NewQuestion) {
             quesNum++;
             res.render('ReviewAnswers',{Question:NewQuestion.QUESTION,OptionA:NewQuestion.OptionA ,OptionB:NewQuestion.OptionB,OptionC:NewQuestion.OptionC,OptionD:NewQuestion.OptionD,CorrectOption:NewQuestion.CORRECT_OPT ,Explanation:NewQuestion.EXPLANATION,QuestionImg:NewQuestion.Q_IMG ,ExplainationImg:NewQuestion.EXPLANATION_IMAGE,QuestionId:NewQuestion.QUESTION_ID, Ques_Img_flag:NewQuestion.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestion.ANS_IMG_FLAG, Concept:NewQuestion.CONCEPT_ID, Chapter:NewQuestion.CHAPTER_ID, Class:NewQuestion.CLASS_ID, Course:NewQuestion.COURSE_ID, submittedInput:submittedInput, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme,quesNum: quesNum, restarts: req.body.restarts,
-                easyCorrect:req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, easyUnattemptedLength:req.body.easyUnattemptedLength, difficultCorrect:req.body.difficultCorrect, difficultWrong:req.body.difficultWrong, difficultSkipped:req.body.difficultSkipped, difficultUnattemptedLength:req.body.difficultUnattemptedLength, username:req.body.username});
+                easyCorrect:req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, easyUnattemptedLength:req.body.easyUnattemptedLength, difficultCorrect:req.body.difficultCorrect, difficultWrong:req.body.difficultWrong, difficultSkipped:req.body.difficultSkipped, difficultUnattemptedLength:req.body.difficultUnattemptedLength, username:req.body.username, Price:req.body.Price});
             return;
         }
 
@@ -1061,7 +1061,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
                         SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
                         Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:req.body.restarts,
                         easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
-                        easyCorrect: req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, difficultCorrect:req.body.difficultCorrect,difficultWrong:req.body.difficultWrong,difficultSkipped:req.body.difficultSkipped
+                        easyCorrect: req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, difficultCorrect:req.body.difficultCorrect,difficultWrong:req.body.difficultWrong,difficultSkipped:req.body.difficultSkipped, Price:req.body.Price
                     });  
                     return;
                 }
@@ -1070,7 +1070,7 @@ router.post('/ReviewAnswers', IsLoggedIn, async function(req,res,next) {
                     SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
                     Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:req.body.restarts,
                     easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
-                    easyCorrect: req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, difficultCorrect:req.body.difficultCorrect,difficultWrong:req.body.difficultWrong,difficultSkipped:req.body.difficultSkipped
+                    easyCorrect: req.body.easyCorrect, easyWrong:req.body.easyWrong, easySkipped:req.body.easySkipped, difficultCorrect:req.body.difficultCorrect,difficultWrong:req.body.difficultWrong,difficultSkipped:req.body.difficultSkipped, Price:req.body.Price
                 });
             return;
         }
@@ -1190,7 +1190,7 @@ router.post('/ShowChapters', IsLoggedIn, async function(req,res,next) {
             res.render('AllChaptersTrial',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength: TotalQuestionList.length, Price:req.body.Price});
          }
         else {
-            res.render('ChaptersConcepts',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength:TotalQuestionList.length, Price:req.body.Price});
+            res.render('ChaptersConcepts',{Concepts: ChapArr, ClassId:req.body.ClassId, CourseId:req.body.CourseId, SolvedPercent: SolvedPercent, TotalConcepts: ChapArr.length, username: username, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength:TotalQuestionList.length, Price:0});
         }
         return;
     }
@@ -1205,7 +1205,7 @@ router.post('/ShowChapters', IsLoggedIn, async function(req,res,next) {
 router.post('/ShowConcepts', IsLoggedIn, async function(req,res,next) {
     try
     {
-        if(!(req.body.ClassId && req.body.CourseId && req.body.ChapterId && req.body.ChapNum))
+        if(!(req.body.ClassId && req.body.CourseId && req.body.ChapterId && req.body.ChapNum && req.body.Price))
         {
             res.json({ResMsg:"Invalid request parameters"});
             return;
@@ -1310,7 +1310,7 @@ router.post('/ShowConcepts', IsLoggedIn, async function(req,res,next) {
          }
         console.log("SolvedPercent", SolvedPercent);
         
-        res.render('AllConcepts',{Concepts:ConceptsArr,CourseId:req.body.CourseId, ChapterId:req.body.ChapterId, ClassId:req.body.ClassId, SolvedPercent: SolvedPercent, TotalConcepts: ConceptsArr.length, username: username, ChapNum: req.body.ChapNum, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength:TotalQuestionList.length});
+        res.render('AllConcepts',{Concepts:ConceptsArr,CourseId:req.body.CourseId, ChapterId:req.body.ChapterId, ClassId:req.body.ClassId, SolvedPercent: SolvedPercent, TotalConcepts: ConceptsArr.length, username: username, ChapNum: req.body.ChapNum, CorrectQuestionLength:CorrectQuestionLength, WrongQuestionLength:WrongQuestionLength, SkipQuestionLength:SkipQuestionLength, TotalQuestionLength:TotalQuestionList.length, Price:req.body.Price});
         //  res.json({ResMsg:ConceptsArr});
         return;
     }
@@ -1327,15 +1327,10 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
 
     try{
 
-        if(!(req.body.Class && req.body.Course && req.body.Chapter && req.body.Concept && req.body.ChapNum && req.body.ConceptNum)) {
-            res.json({ResMsg:"Invalid request parameters"});
+        if(!(req.body.Class && req.body.Course && req.body.Chapter && req.body.Concept && req.body.ChapNum && req.body.ConceptNum && req.body.Price)) {
+            res.render('error');
             return;
         }
-
-        //Fetch User Name
-        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-        let username = userStr.USERNAME;
-        username = username.substr(0, username.indexOf(' '));
 
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
         
@@ -1466,31 +1461,31 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
             {
                 res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
                     SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
-                    Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts,
+                    Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:restarts,
                     easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
-                    easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
+                    easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped, Price: req.body.Price
                     });  
                 return;
             }
    
         res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
             SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
-            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username, restarts:restarts,
+            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:restarts,
             easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
-            easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
+            easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped, Price: req.body.Price
             });
         }
     
     catch(err)
         {
-            res.send("Error");
+            res.render('error');
         }
 });
 
 router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
 
     try{
-        if(!(req.body.Class && req.body.Course && req.body.Chapter && req.body.Concept && req.body.ChapNum && req.body.ConceptNum)) {
+        if(!(req.body.Class && req.body.Course && req.body.Chapter && req.body.Concept && req.body.ChapNum && req.body.ConceptNum && req.body.Price)) {
             res.render('error');
             return;
         }
@@ -1504,11 +1499,6 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
         await STUDENT_LEADERBOARD_COLLECTION.updateOne({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, EMAIL: req.user.EMAIL},{RESTARTS:leaderboardData.RESTARTS-1},{upsert: true, setDefaultsOnInsert: false});
     
         await STUDENT_PERFORMANCE_COLLECTION.deleteMany({CHAPTER_ID:req.body.Chapter, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CONCEPT_ID: req.body.Concept, CHAPTER_NUM: req.body.ChapNum, CONCEPT_NUM: req.body.ConceptNum, EMAIL: req.user.EMAIL});
-
-        //Fetch User Name
-        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-        let username = userStr.USERNAME;
-        username = username.substr(0, username.indexOf(' '));
        
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          
         
@@ -1528,11 +1518,12 @@ router.post('/ResetConcept', IsLoggedIn, async function(req, res) {
                    }
             }
                               
-        res.render('ConceptDashboard',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:0, 
-        SkippedQuestions: 0, WrongQuestions: 0, easyQLength:0, difficultQLength: 0,easyCorrect: 0, easyWrong:0, easySkipped:0, difficultCorrect:0,difficultWrong:0,difficultSkipped:0,
-        Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:username,
-        restarts:leaderboardData.RESTARTS-1
-        });
+        res.render('ConceptDashboard', {LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:0, 
+            SkippedQuestions: 0, WrongQuestions: 0,
+            Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:restarts,
+            easyUnattemptedLength:0, difficultUnattemptedLength:0,
+            easyCorrect: 0, easyWrong:0, easySkipped:0, difficultCorrect:0,difficultWrong:0,difficultSkipped:0, Price: req.body.Price
+            });
         return;
         }
 
@@ -1581,7 +1572,7 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
     try
     {
      //Class, course, concept, chapter, concept   
-     if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts)
+     if(!req.body.Concept || !req.body.Chapter || !req.body.Course  || !req.body.Class || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts || !req.body.Price)
      {
          res.json({ResMsg:"Invalid Request Parameters"});
          return;
@@ -1613,7 +1604,7 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
 
      if(SolvedQList.length==0) {
         let NewQuestiontoDisplay = TotalQuestionList[0];
-        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts, Price:req.body.Price});
         //render first question of Total Question List 
         return; 
      }
@@ -1757,19 +1748,19 @@ router.post('/SolveAdaptiveQuestions', IsLoggedIn, async function(req, res, next
             SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
             Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:req.body.restarts,
             easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
-            easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
+            easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped, Price:req.body.Price
             }); 
     }  
     
     else
     {           
-        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts, Price:req.body.Price});
         return;
          //render qusetion page
     }
 }
 catch(err) {
-        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts, Price:req.body.Price});
         return;
         //  res.render('error');
      }
@@ -1781,7 +1772,7 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
     try
     {
      //Class, course, concept, chapter   
-     if(!req.body.quesID || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts)
+     if(!req.body.quesID || !req.body.Concept || !req.body.Course || !req.body.Class || !req.body.Chapter || !req.body.ChapNum || !req.body.ConceptNum || !req.body.restarts || !req.body.Price)
      {
          res.json({ResMsg:"Invalid Request Parameters"});
          return;
@@ -1958,7 +1949,7 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
                 SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength,
                 Course:req.body.Course, Concept:req.body.Concept, Class:req.body.Class, Chapter: req.body.Chapter, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, username:req.body.username, restarts:req.body.restarts,
                 easyUnattemptedLength:easyUnattemptedLength, difficultUnattemptedLength:difficultUnattemptedLength,
-                easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped
+                easyCorrect: easyCorrect, easyWrong:easyWrong, easySkipped:easySkipped, difficultCorrect:difficultCorrect,difficultWrong:difficultWrong,difficultSkipped:difficultSkipped, Price: req.body.Price
             }); 
         } 
     
@@ -1968,7 +1959,7 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
             for(let i=0;i<TotalQuestionList.length;i++)
             {
                 allQuestionsScoreList.push(parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]))
-                console.log("i",allQuestionsScoreList[i]);
+                //console.log("i",allQuestionsScoreList[i]);
             }
             ///////////////////////////////////////
             //All questions sorted in descending based on Score.
@@ -1977,6 +1968,7 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
             let difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
             //EASY ARRAY            DIFFICULT ARRAY        is made.
 
+            //This case won't come if once submitted 
             if(SolvedQList.length==0) {
                 res.send('TotalQuestionList');
                 //render first question of Total Question List 
@@ -2032,26 +2024,26 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
                }
             }        
         //Show new question
-        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts, Price: req.body.Price});
         return;
         }   
     }
     
     else{   //If req.body.InputAns Exists, i.e. user corrected or wrong
 
-        res.render('SolveQuestions',{Question:quesDetails[0].QUESTION,OptionA:quesDetails[0].OptionA ,OptionB:quesDetails[0].OptionB,OptionC:quesDetails[0].OptionC,OptionD:quesDetails[0].OptionD,CorrectOption:quesDetails[0].CORRECT_OPT ,Explanation:quesDetails[0].EXPLANATION,QuestionImg:quesDetails[0].Q_IMG ,ExplainationImg:quesDetails[0].EXPLANATION_IMAGE,QuestionId:quesDetails[0].QUESTION_ID, Ques_Img_flag:quesDetails[0].QUESTION_IMG_FLAG, Ans_img_flag:quesDetails[0].ANS_IMG_FLAG, Concept:quesDetails[0].CONCEPT_ID, Chapter:quesDetails[0].CHAPTER_ID, Class:quesDetails[0].CLASS_ID, Course:quesDetails[0].COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts});
+        res.render('SolveQuestions',{Question:quesDetails[0].QUESTION,OptionA:quesDetails[0].OptionA ,OptionB:quesDetails[0].OptionB,OptionC:quesDetails[0].OptionC,OptionD:quesDetails[0].OptionD,CorrectOption:quesDetails[0].CORRECT_OPT ,Explanation:quesDetails[0].EXPLANATION,QuestionImg:quesDetails[0].Q_IMG ,ExplainationImg:quesDetails[0].EXPLANATION_IMAGE,QuestionId:quesDetails[0].QUESTION_ID, Ques_Img_flag:quesDetails[0].QUESTION_IMG_FLAG, Ans_img_flag:quesDetails[0].ANS_IMG_FLAG, Concept:quesDetails[0].CONCEPT_ID, Chapter:quesDetails[0].CHAPTER_ID, Class:quesDetails[0].CLASS_ID, Course:quesDetails[0].COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts, Price: req.body.Price});
         return;
     }
 }
 catch(err) {
-    if(err._message==='STUDENT_PERFORMANCE_COLLECTION validation failed')
-    {
-        //replace this with any logic
+    // if(err._message==='STUDENT_PERFORMANCE_COLLECTION validation failed')
+    // {
+    //     //replace this with any logic
        
       
-        // goto Duplicate_Question;
+    //     // goto Duplicate_Question;
 
-    }
+    // }
          res.render('error');
      }
 });

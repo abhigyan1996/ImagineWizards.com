@@ -70,7 +70,7 @@
     <div id="side-menu" class="side-nav">
       <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
       <a href="#" id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></a>
-      <div id="username"><%=username%></div>      
+      <a id="username"><%=username%></a>      
       <a id="myCoursesTxt" href="MyCourses">My Courses</a>
       <a href="../UserProfile/LogOut"><div id="logOutTxt">LOG OUT</div></a>
       </div>
@@ -85,6 +85,8 @@
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     
     <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</span></div>
+    <div style="cursor: pointer;" class="w3-bar-item" id="upgradeBtn">Upgrade Plan</div>
+
   </div>
   <!-- Navbar on small screens -->
 </div>
@@ -110,6 +112,9 @@
   <input class="w3-hide" name="Chapter" id="Chapter" type="text">
   <input class="w3-hide" id="ChapNum" type="text" name="ChapNum" value=<%=ChapNum%>>
   <input class="w3-hide" id="ConceptNum" type="text" name="ConceptNum" value=<%=ConceptNum%>>
+  <input class="w3-hide" type="text" id="Price2" placeholder="Price" name="Price" value=<%=Price%>>
+  <input class="w3-hide" type="text" name="username" value=<%=username%>>
+
   <!-- <input class="w3-hide" id="theme" type="text" name="Theme" value=1> -->
   <!-- newly added-->
    <div class="btn w3-pink w3-hover-blue w3-button" id="practiceBtn">Restart Concept</div> 
@@ -143,6 +148,8 @@
     <input class="w3-hide" type="text" name="difficultUnattemptedLength" value=<%=difficultUnattemptedLength%>>
     <input class="w3-hide" type="text" name="username" value=<%=username%>>
     <input class="w3-hide" id="restarts" type="text" name="restarts" value=<%=restarts%>>
+    <input class="w3-hide" type="text" id="Price2" placeholder="Price" name="Price" value=<%=Price%>>
+
 
     <button type="submit" class="w3-hide w3-blue btn btn-default">Submit</button>
     <!-- newly added-->
@@ -375,6 +382,15 @@
     <input type="text" id="difficultSkipped" value=<%=difficultSkipped%>>
     <input type="text" id="difficultUnattemptedLength" value=<%=difficultUnattemptedLength%>>
 </form>
+
+<form class="w3-hide" id="selectCourseForm" action="../QuarkXAcademy/OrderDetails" method="POST">
+  <input type="text" placeholder="Class" name="Class" value=<%=Class%>>
+  <input type="text" placeholder="Course" name="Course" value=<%=Course%>>
+  <input type="text" id="Price" name = "Price" placeholder="Price" value=<%=Price%>>
+  <input type="text" id="orderId" name = "orderId" placeholder="Order Id">
+  <input type="text" id="username" name = "username" value=<%=username%>>
+  <button type="submit" id="submitCourse">Submit</button>
+</form> 
 
 </body>  <!--All divisions inside here-->
 
@@ -678,7 +694,43 @@ var userRank = document.getElementById('userRank').value;
   spanPh2.onclick = function() {
     modal2.style.display = "none";
   }
-
   </script>
+
+<script>
+  var FinalPrice = document.getElementById('Price').value;
+
+  if(screen.width<=768) {
+    document.getElementById('upgradeBtn').innerHTML = "Upgrade";
+    $("#upgradeBtn").css("float","right");
+  }
+
+  if(FinalPrice>0) {
+    $("#upgradeBtn").show();
+  }
+
+  $("#upgradeBtn").click(function() {
+    var url = '/api/payment/order';
+    var params = {
+    amount: FinalPrice,  
+    currency: "INR",
+    receipt: "su001",
+    payment_capture: '1',
+    };
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function (res) {
+        if (xmlHttp.readyState === 4) {
+            res=JSON.parse(xmlHttp.responseText);
+            document.getElementById("orderId").value = res.sub.id;
+            $("#selectCourseForm").submit();
+        }
+    }
+    xmlHttp.open("POST", url, true); // false for synchronous request
+    xmlHttp.withCredentials = true;
+    xmlHttp.setRequestHeader("Content-type", "application/json");
+    xmlHttp.send(JSON.stringify(params));
+
+});
+</script>
+
 
 </html>

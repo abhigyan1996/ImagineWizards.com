@@ -290,7 +290,7 @@ table {
 	  font-family: 'Franklin Gothic Medium';
   }
 
-  #logOutTxt {
+  /* #logOutTxt {
 	color: white;
 	font-size: 1.5vw;
 	font-family: 'Times New Roman', Times, serif;
@@ -317,7 +317,7 @@ table {
 	color:white;
 	margin-top: 1vw;
 	font-size: 2vw;
-}	
+}	*/
 
 #restartModalBtn {
 	border-radius: 0.5vw;
@@ -350,16 +350,88 @@ table {
 	font-family: 'Alegreya', serif;
 }
 
+#upgradeBtn {
+	font-size: 1.75vw;
+	text-decoration: none;
+	margin-top: 1.75vw;
+	font-family: 'Alegreya', serif;
+	border-radius: 0.5vw;
+	color:white;
+	background: red;
+	display: none;
+	margin-left: 50vw;
+	/* box-shadow: 0px 3px 3px 3px #bbb; */
+	position: relative;
+
+	animation: linear infinite;
+	animation-name: btnAnim;
+	animation-duration: 2s;
+    -webkit-animation: linear infinite;
+    -webkit-animation-name: btnAnim;
+    -webkit-animation-duration: 1.2s;
+}
+
+@keyframes btnAnim{
+	0% {
+		box-shadow: 0px 1px 2px 2px #bbb;
+	}
+	12.5%{
+		box-shadow: 0px 1.5px 2.5px 2.5px #bbb;
+	}
+	25% {
+		box-shadow: 0px 2px 3px 3px #bbb;
+	}
+	50% {
+		box-shadow: 0px 3.5px 4.5px 4.5px #bbb;
+	}
+	75% {
+		box-shadow: 0px 2px 3px 3px #bbb;
+	}
+	87.5%{
+		box-shadow: 0px 1.5px 2.5px 2.5px #bbb;
+	}
+	100% {
+		box-shadow: 0px 1px 2px 2px #bbb;
+	}
+}
+@-webkit-keyframes btnAnim {
+	0% {
+		box-shadow: 0px 1px 2px 2px #bbb;
+	}
+	12.5%{
+		box-shadow: 0px 1.5px 2.5px 2.5px #bbb;
+	}
+	25% {
+		box-shadow: 0px 2px 3px 3px #bbb;
+	}
+	50% {
+		box-shadow: 0px 3.5px 4.5px 4.5px #bbb;
+	}
+	75% {
+		box-shadow: 0px 2px 3px 3px #bbb;
+	}
+	87.5%{
+		box-shadow: 0px 1.5px 2.5px 2.5px #bbb;
+	}
+	100% {
+		box-shadow: 0px 1px 2px 2px #bbb;
+	}
+}
+
+#upgradeBtn:hover{
+	background-color: #CD3615;
+}
+
 
   @media only screen and (max-width:768px){
 
-	#myCoursesTxt {
+	/* #myCoursesTxt {
 		font-family: 'Times New Roman', Times, serif;
 		text-transform: uppercase;
 		color:white;
 		margin-top: 2vw;
 		font-size: 5vw;
-	}	
+	}	 */
 
 	#DisplayFeedback {
 		font-size: 6.25vw;
@@ -576,7 +648,7 @@ table {
 			margin-top: 2vw;
 			font-family: 'Alegreya', serif;
 		}
-		#logOutTxt {
+		/* #logOutTxt {
 			color: white;
 			font-size: 5vw;
 			font-family: 'Times New Roman', Times, serif;
@@ -595,7 +667,7 @@ table {
 		#userImage {
 			height: 24vw;
 			width: 24vw;
-		}	
+		}	 */
 
 
 		#restartModalBtn {
@@ -663,6 +735,16 @@ table {
 			}
 		}
 		
+		
+	#upgradeBtn {
+		font-size:4.5vw;
+		margin-left: 0vw;
+		padding: 2vw;
+		display:none;
+		text-transform: uppercase;
+		margin-top: 4.5vw;
+		margin-right: 2vw;
+	}
 }
 
 

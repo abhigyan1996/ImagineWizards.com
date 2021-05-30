@@ -109,6 +109,7 @@
     <input type="text" id="Class" placeholder="Class" name="ClassId" value=<%=ClassId%>>
     <input type="text" id="Course" placeholder="Course" name="CourseId" value=<%=CourseId%>>
     <input type="text" id="ChapNum" placeholder="ChapNum" name="ChapNum">>
+    <input type="text" id="Price2" placeholder="Price" name="Price" value=<%=Price%>>
 
     <button type="submit"  class="w3-blue btn btn-default">Submit</button>
   </form>
@@ -347,11 +348,14 @@ $('.counter').each(function () {
   </script>
 
 <script>
-    var FinalPrice = ( document.getElementById('Price').value ) * 100;
-    document.getElementById('Price').value = FinalPrice;
+    var FinalPrice = document.getElementById('Price').value;
 
     if(screen.width<=768) {
       document.getElementById('upgradeBtn').innerHTML = "Upgrade";
+      $("#upgradeBtn").css("float","right");
+    }
+
+    if(FinalPrice>0) {
       $("#upgradeBtn").show();
     }
 

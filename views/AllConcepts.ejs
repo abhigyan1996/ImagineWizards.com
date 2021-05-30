@@ -88,6 +88,7 @@
     <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/QuarkOtherImages/QuarksLogoFinal-1.png"> </div> 
     
     <div style="cursor: pointer;" class="w3-bar-item"><span id="nameQuarks">QuarkX</div>
+    <div style="cursor: pointer;" class="w3-bar-item" id="upgradeBtn">Upgrade Plan</div>
  
     
   </div>
@@ -98,9 +99,12 @@
   <form class="w3-hide" id="conceptsForm" action="/QuarkXAcademy/ConceptPerformance" method="POST">
     <input type="text" id="Concept" placeholder="concept" name="Concept">
     <input type="text" id="Chapter" placeholder="Chapter" name="Chapter">
-    <input type="text" id="Class" placeholder="Class" name="Class" value=<%=ClassId%>>
-    <input type="text" id="Course" placeholder="Course" name="Course" value=<%=CourseId%>>
+    <input type="text" id="ClassId" placeholder="Class" name="Class" value=<%=ClassId%>>
+    <input type="text" id="CourseId" placeholder="Course" name="Course" value=<%=CourseId%>>
     <input id="ChapNum" type="text" id="ChapNum" name="ChapNum" value=<%=ChapNum%>>
+    <input type="text" id="Price2" placeholder="Price" name="Price" value=<%=Price%>>
+    <input class="w3-hide" name="username" type="text" value=<%=username%>>
+
     <input id="ConceptNum" name="ConceptNum" type="text">
 
     <button type="submit"  class="w3-blue btn btn-default">Submit</button>
@@ -190,12 +194,18 @@
         <%}%>
     </ul>
 
-
-
-
   <form class="w3-hide">
     <input type="text" id="totalConcepts" value=<%=TotalConcepts%>>
   </form>
+
+  <form class="w3-hide" id="selectCourseForm" action="../QuarkXAcademy/OrderDetails" style="margin-top: 20vw;" method="POST">
+    <input type="text" placeholder="Class" name="Class" value=<%=ClassId%>>
+    <input type="text" placeholder="Course" name="Course" value=<%=CourseId%>>
+    <input type="text" id="Price" name = "Price" placeholder="Price" value=<%=Price%>>
+    <input type="text" id="orderId" name = "orderId" placeholder="Order Id">
+    <input type="text" id="username" name = "username" value=<%=username%>>
+    <button type="submit" id="submitCourse">Submit</button>
+</form> 
 
   </body>
 
@@ -323,5 +333,45 @@ $('.counter').each(function () {
   $('.block').tooltip();
   </script>
   
+
+  <script>
+    var FinalPrice = document.getElementById('Price').value;
+    console.log('FinalPrice',FinalPrice);
+
+    if(screen.width<=768) {
+      document.getElementById('upgradeBtn').innerHTML = "Upgrade";
+      $("#upgradeBtn").css("float","right");
+    }
+
+    if(FinalPrice>0) {
+      $("#upgradeBtn").show();
+    }
+
+    $("#upgradeBtn").click(function() {
+      var url = '/api/payment/order';
+      var params = {
+      amount: FinalPrice,  
+      currency: "INR",
+      receipt: "su001",
+      payment_capture: '1',
+      };
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function (res) {
+          if (xmlHttp.readyState === 4) {
+              res=JSON.parse(xmlHttp.responseText);
+              document.getElementById("orderId").value = res.sub.id;
+              $("#selectCourseForm").submit();
+          }
+      }
+      xmlHttp.open("POST", url, true); // false for synchronous request
+      xmlHttp.withCredentials = true;
+      xmlHttp.setRequestHeader("Content-type", "application/json");
+      xmlHttp.send(JSON.stringify(params));
+
+  });
+</script>
+
+
+
 </body>
 </html>
