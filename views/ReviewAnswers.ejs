@@ -76,8 +76,8 @@
   <section  id="top-navbar">  
       <div id="side-menu" class="side-nav">
         <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a>
-        <div href="#" id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></div>
-        <div id="username"><%=username%></div>      
+        <a href="#" id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></a>
+        <a id="username"><%=username%></a>      
         <a id="myCoursesTxt" href="MyCourses">My Courses</a>
         <a href="../UserProfile/LogOut"><div id="logOutTxt">LOG OUT</div></a>
       </div>
@@ -108,14 +108,13 @@
       
       </form>
 
-
-      <div id="themesBtn" class="w3-dropdown-hover w3-hide-small">
+      <!-- <div id="themesBtn" class="w3-dropdown-hover w3-hide-small">
         <button class="w3-button w3-black">Themes <i id="dropdownIcon" class="fa fa-caret-down" style="font-size:1vw"></i></button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <div id="darkMode" class="w3-bar-item w3-button">Dark Mode</div>
           <div id="lightMode" class="w3-bar-item w3-button">Light Mode</div>
         </div>
-      </div>   
+      </div>    -->
       
     </div>
     <!-- Navbar on small screens -->
@@ -160,11 +159,20 @@
     <img class="w3-animate-zoom" id="feedbackImgCorrect4" src="https://abhigyan1996.github.io/QA/QA/1/dance3.gif">
     <img class="w3-animate-zoom" id="feedbackImgWrong" src="https://abhigyan1996.github.io/QA/QA/1/sad.gif">
     <!-- <img class="w3-animate-zoom" id="feedbackImgWrong2" src="https://abhigyan1996.github.io/QA/QA/1/sad2.gif"> -->
-  
+        <!-- Themes switch -->
+        <label class="switch" id="switch">
+          <input type="checkbox" checked id="checkbox">
+          <span class="slider round">
+            <div class="moon"></div>
+            <div class="sun"></div>
+          </span>
+        </label>
+
     <div class="w3-card" id="AnsFeedback">
    </div>
 
     <section id="div1">
+      
       <div id="quesNumRv" class="w3-hide-small">Question:</div>
       <div id="quesNumRv" class="w3-hide-medium w3-hide-large">Question:</div>
 
@@ -273,11 +281,15 @@
 
   </script>
   
-  
+<!--   
   <script>
     var themeFlag = document.getElementById('themeId1').value;
-    console.log("Theme", themeFlag);
+    // console.log("Theme", themeFlag);
   
+
+    var atLeastOneIsChecked = $('#checkbox:checkbox:checked').length > 0;
+    console.log('atLeastOneIsChecked', atLeastOneIsChecked);
+
     if (themeFlag=="0"){  //dark mode
       $("#body").css({"background-image": "url(https://abhigyan1996.github.io/QA/QA/1/stars.gif)", "background-repeat" : "repeat-x repeat-y"});
       $("#quesNumRv").css("color", "orange");
@@ -320,11 +332,90 @@
           document.getElementById('themeId2').value = "1";
         })
     })
-  </script>
+  </script> -->
   
   
+<script>
+  var themeFlag = document.getElementById('themeId1').value;
+  // console.log("Theme", themeFlag);
+
+  var sunHide;
+  var moonHide;
+
+  // $(".sun").hide();
+  // var sunHide = true;
+  // var moonHide = false;
+
+  if (themeFlag=="0"){  //dark mode
+      $("#body").css({"background-image": "url(https://abhigyan1996.github.io/QA/QA/1/stars.gif)", "background-repeat" : "repeat-x repeat-y"});
+      $("#quesNumRv").css("color", "orange");
+      $("#questionWithImg").css("color", "yellow");
+      $("#quesImgContainer").css("border", "0.1px solid #bbb");
+      $("#questionNoImg").css("color", "yellow");
+      $("#OptionsTxt").css("color", "aqua");
+      $("#checkbox").prop('checked', false);
+      $(".moon").hide();
+      $(".sun").show();
+      moonHide = true;
+      sunHide = false;
+    }
+    else if (themeFlag=="1") {  //light mode
+      $("#body").css("background", "white");
+      $("#quesNumRv").css("color", "orange");
+      $("#questionWithImg").css("color", "black");
+      $("#questionNoImg").css("color", "black");
+      $("#OptionsTxt").css("color", "indigo");
+      $("#quesImgContainer").css("border", "none");
+      $("#checkbox").prop('checked', true);
+      $(".moon").show();
+      $(".sun").hide();
+      moonHide = false;
+      sunHide = true;
+    }
+  
+
+    $("#checkbox").click(function(){    
+ 
+    if (sunHide){ //initial case, toggle to dark mode
+          $(".moon").hide();
+          $(".sun").show();
+          moonHide = true;
+          sunHide = false;
+
+          $("#body").css({"background-image": "url(https://abhigyan1996.github.io/QA/QA/1/stars.gif)", "background-repeat" : "repeat-x repeat-y"});
+          $("#quesNumRv").css("color", "orange");
+          $("#questionWithImg").css("color", "yellow");
+          $("#quesImgContainer").css("border", "0.1px solid #bbb");
+          $("#questionNoImg").css("color", "yellow");
+          $("#OptionsTxt").css("color", "aqua");
+          document.getElementById('themeId1').value = "0";
+
+    }
+    
+    else if(moonHide) {   //toggling to light mode
+          $(".moon").show();
+          $(".sun").hide();
+          sunHide = true;
+          moonHide = false;
+
+          
+          $("#body").css("background", "white");
+          $("#quesNumRv").css("color", "orange");
+          $("#questionWithImg").css("color", "black");
+          $("#questionNoImg").css("color", "black");
+          $("#OptionsTxt").css("color", "indigo");
+          $("#quesImgContainer").css("border", "none");
+          document.getElementById('themeId1').value = "1";
+
+        }
+
+    });
+
+</script>
+
+
   <script>
-    //Options
+    // Options
   $(document).ready(function(){
 
       $("#ExpA").hide();
