@@ -114,8 +114,8 @@
             <!-- <div id="headTxt">USER NAME :</div>
             <div id="headTxt">EMAIL ID :</div> -->
             <div id="headTitle"><span id="payDesc">Class <span id="valueTxtClass"></span> <%=Course%> Course </span> by QuarkX</div>
-            <div id="headSubtitle" class="w3-hide-small">* Instant Access post payment confirmation *</div>
-            <div id="headSubtitlePh" class="w3-hide-medium w3-hide-large">Instant Access post payment confirmation</div>
+            <div id="headSubtitle" class="w3-hide-small">* Instant Access post payment confirmation * <span id="TnC">T&C</span></div>
+            <div id="headSubtitlePh" class="w3-hide-medium w3-hide-large">Instant Access post payment confirmation <span id="TnCPh">T&C</span></div>
             <b><div id="TxtPrice"></div></b>
             <span><s id="TxtFullPrice"></s></span>
             <span id="discountTxt"></span>
@@ -131,9 +131,27 @@
 
             
             <button class="w3-hide-large w3-hide-medium w3-bottom" id="rzp-button1Ph">BUY NOW</button> 
+
+            <!-- <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_HHFjAuieFlDYlV" async> </script> </form> -->
         </div>
         
 </div>
+
+ <!-- The Modal -->
+ <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div id="modalDiv" class="modal-content">
+      <span style="color:red; font-size:5vw; font-weight: 900;" class="close w3-hide-small">&times;</span>
+      <span style="color:red; font-size:10vw; font-weight: 900;" class="closePh w3-hide-large w3-hide-medium">&times;</span>
+      <div id="LevelMsgNote">
+        <p style="color:green">Terms and Conditions:</p>
+        <p id="msgParents">1. The course validity is 1 year.</p>
+        <p id="msgParents">2. You can buy a course as many times as you want. That will renew your validity, counting 1 year from the latest time of payment.</p>
+        <p id="msgParents">3. Your payments are secured with Razorpay. There is no refund policy post successful payment and access to the course.</p>
+        <p id="msgParents">4. For any further queries, reach us at '+91 8638108598'. We give our best in resolving your queries.</p>
+    </div>
+  </div>
+  </div>
 
 
 <div class="w3-hide" id="OrderId"><%=orderId%></div>
@@ -303,7 +321,6 @@ document.getElementById('rzp-button1Ph').onclick = function(e){
     document.getElementById('savedAmt').innerHTML = " ₹" + (fullPrice - price) + " ";
 </script>
 
-
 <script>
     $(document).ready(function(){
 
@@ -314,6 +331,47 @@ document.getElementById('rzp-button1Ph').onclick = function(e){
   
   </script>
   
+
+  <script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    
+    // Get the button that opens the modal
+    var btn = document.getElementById("TnC");
+
+    var btnPh = document.getElementById("TnCPh");
+  
+    // Get the <span> element that closes the modal
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    var closePhBtn = document.getElementsByClassName("closePh")[0];
+  
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    btnPh.onclick = function() {
+      modal.style.display = "block";
+    }
+  
+    // When the user clicks on <span> (x), close the modal
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+    }
+      
+    closePhBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
+
 
 </body>
 </html>

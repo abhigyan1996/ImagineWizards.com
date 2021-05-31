@@ -8,7 +8,7 @@
 }
 
 body{
-	background-color: #393839;
+	background-color: white;
 }
 
 #orderHeadings {
@@ -138,7 +138,49 @@ body{
 	width: 7vw;
 }
 
+#TnC, TnCPh{
+	color: #528FF0;
+	font-size: 1.5vw;
+	font-family: 'Times New Roman', Times, serif;
+	cursor: pointer;
+}
+
+#myModal {
+	text-align: justify;
+	font-family: 'Alegreya', serif;
+	font-size: 1.5vw;
+	width: 90vw;
+	margin-top: 10vw;
+	margin-left: 5vw;
+}
+
+#LevelMsgNote {
+	padding: 5vw;
+}
+
    @media only screen and (max-width:768px){
+
+	#TnCPh {
+		font-size: 4vw;
+		color: #528FF0;
+		font-family: 'Times New Roman', Times, serif;
+		cursor: pointer;
+	}
+
+	#LevelMsgNote {
+		padding: 3vw;
+	}
+
+	#myModal {
+		text-align: justify;
+		font-family: 'Alegreya', serif;
+		font-size: 4vw;
+		width: 90vw;
+		margin-top: 20vw;
+		margin-left: 5vw;
+		overflow: auto;
+	}
+	
 	#QuarksLogo{
 		margin-left: -4vw;
 		height: 12.5vw;
@@ -199,7 +241,7 @@ body{
 		margin-top: -12vw;
 	}
 	
-	#headSubtitlePh {
+	#headSubtitle {
 		font-size: 4.5vw;
 		color:#393839"
 	}
@@ -274,6 +316,60 @@ body{
 	height: 24vw;
 	width: 24vw;
 }
-	
 
+}
+
+
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+	color: #aaaaaa;
+	float: right;
+	font-weight: bold;
+	margin-top: -1.5vw;
+  }
+  
+  .close:hover,
+  .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+  }
+
+  @media only screen and (max-width:768px){
+	/* The Close Button */
+	.closePh {
+		color: #aaaaaa;
+		float: right;
+		font-weight: bold;
+		margin-top: -5vw;
+		font-size: 5vw;
+	  }
+	  
+	  .closePh:hover,
+	  .closePh:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	  }
 }
