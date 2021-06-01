@@ -61,18 +61,25 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
     ===================================================================
  -->
 
-    <script>
-      function openSlideMenu(){
-        document.getElementById('side-menu').style.width = '300px';
-        document.getElementById('main').style.marginLeft = '300px';
-        document.getElementById('wholebody').style = '1';
-      }
-  
-      function closeSlideMenu(){
-        document.getElementById('side-menu').style.width = '0';
-        document.getElementsByClassName('w3-row').style.opacity = '1';
-      }
-    </script>
+ <script>
+  function openSlideMenu(){
+    if (screen.width <=768) {
+      document.getElementById('side-menu').style.width = '65vw';
+      document.getElementById('main').style.marginLeft = '65vw';
+      document.getElementById('wholebody').style = '1';
+    }
+    else {
+      document.getElementById('side-menu').style.width = '25vw';
+      document.getElementById('main').style.marginLeft = '25vw';
+      document.getElementById('wholebody').style = '1';
+    }
+  }
+
+  function closeSlideMenu(){
+    document.getElementById('side-menu').style.width = '0';
+    document.getElementsByClassName('w3-row').style.opacity = '1';
+  }
+</script>
 
 
 <body class="w3-white" style="width:100vw; max-width:100vw; min-width:100vw; overflow: hidden">
@@ -129,7 +136,7 @@ document.write('<script src="https://sharehulk.com/api/sharingbutton.php?type=ve
 
 
 
-<div class="w3-card w3-container" id="div1OTP"> 
+<div onclick="closeSlideMenu()" class="w3-card w3-container" id="div1OTP"> 
 
   <div id="verifyOTPTxt"> <%=Message%></div>
   <div id="TxtOtp" class="w3-center"> Enter the OTP that has been sent to your registered Email ID:</div> 

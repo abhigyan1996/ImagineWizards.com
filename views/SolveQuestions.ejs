@@ -50,19 +50,25 @@
                               Hemburgar Menu
     ===================================================================
  -->
+ <script>
+  function openSlideMenu(){
+    if (screen.width <=768) {
+      document.getElementById('side-menu').style.width = '65vw';
+      document.getElementById('main').style.marginLeft = '65vw';
+      document.getElementById('wholebody').style = '1';
+    }
+    else {
+      document.getElementById('side-menu').style.width = '25vw';
+      document.getElementById('main').style.marginLeft = '25vw';
+      document.getElementById('wholebody').style = '1';
+    }
+  }
 
-    <script>
-      function openSlideMenu(){
-        document.getElementById('side-menu').style.width = '300px';
-        document.getElementById('main').style.marginLeft = '300px';
-        document.getElementById('wholebody').style = '1';
-      }
-  
-      function closeSlideMenu(){
-        document.getElementById('side-menu').style.width = '0';
-        document.getElementsByClassName('w3-row').style.opacity = '1';
-      }
-    </script>
+  function closeSlideMenu(){
+    document.getElementById('side-menu').style.width = '0';
+    document.getElementsByClassName('w3-row').style.opacity = '1';
+  }
+</script>
 
 <audio id="correctMp3">
   <source src="https://abhigyan1996.github.io/QA/QA/1/kids.mp3" type="audio/mpeg">
@@ -79,6 +85,15 @@
       <a href="#" id="userImg"> <img id="userImage" src="https://cdn.pixabay.com/photo/2016/06/14/09/33/bulldog-1456110_960_720.png"></a>
       <a id="username"><%=username%></a>      
       <a id="myCoursesTxt" href="MyCourses">My Courses</a>
+                    <!-- Themes switch -->
+                    <label class="switch" id="switchSolvePage">
+                      <input type="checkbox" checked id="checkbox">
+                        <span class="slider round">
+                          <div class="moon"></div>
+                          <div class="sun"></div>
+                        </span>
+                    </label>
+
       <a href="../UserProfile/LogOut"><div id="logOutTxt">LOG OUT</div></a>
     </div>
  </section>
@@ -168,22 +183,13 @@
 </form>
 
 
-  <div onscroll="myFunction()" class="twoSec" id="twoSec">
+  <div onclick="closeSlideMenu()" onscroll="myFunction()" class="twoSec" id="twoSec">
     <img class="w3-animate-zoom" id="feedbackImgCorrect" src="https://abhigyan1996.github.io/QA/QA/1/dance.gif">
     <img class="w3-animate-zoom" id="feedbackImgCorrect2" src="https://abhigyan1996.github.io/QA/QA/1/guitarist.gif">
     <img class="w3-animate-zoom" id="feedbackImgCorrect3" src="https://abhigyan1996.github.io/QA/QA/1/dance2.gif">
     <img class="w3-animate-zoom" id="feedbackImgCorrect4" src="https://abhigyan1996.github.io/QA/QA/1/dance3.gif">
     <img class="w3-animate-zoom" id="feedbackImgWrong" src="https://abhigyan1996.github.io/QA/QA/1/sad.gif">
     <!-- <img class="w3-animate-zoom" id="feedbackImgWrong2" src="https://abhigyan1996.github.io/QA/QA/1/sad2.gif"> -->
-        
-    <!-- Themes switch -->
-      <label class="switch" id="switchSolvePage">
-        <input type="checkbox" checked id="checkbox">
-          <span class="slider round">
-            <div class="moon"></div>
-            <div class="sun"></div>
-          </span>
-      </label>
 
     <div class="w3-card" id="AnsFeedback">
    </div>
@@ -354,7 +360,17 @@
         })
     })
     </script> -->
-  
+
+  <script>
+    if(screen.width<=768) {
+      $("#myCoursesTxt").css("margin-top", "15vw")
+    }
+    else{
+      $("#myCoursesTxt").css("margin-top", "4vw")      
+    }
+
+  </script>    
+
   <script>
     var themeFlag = document.getElementById('themeId1').value;
     // console.log("Theme", themeFlag);
@@ -596,11 +612,6 @@
 
     else {      //if ShowAnswer is 1
             $("#quesNum").css("margin-top", "2vw");
-            $("#switchSolvePage").css("margin-top", "-3.75vw");
-
-            if (screen.width<768) {
-              $("#switchSolvePage").css("margin-top", "25vw");
-            }
 
             var userName = document.getElementById('userName').value;
             var correctSol = document.getElementById("CorrectOptionDB").value;

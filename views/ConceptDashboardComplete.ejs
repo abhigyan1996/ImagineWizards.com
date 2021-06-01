@@ -51,18 +51,25 @@
     ===================================================================
  -->
 
-    <script>
-      function openSlideMenu(){
-        document.getElementById('side-menu').style.width = '300px';
-        document.getElementById('main').style.marginLeft = '300px';
-        document.getElementById('wholebody').style = '1';
-      }
-  
-      function closeSlideMenu(){
-        document.getElementById('side-menu').style.width = '0';
-        document.getElementsByClassName('w3-row').style.opacity = '1';
-      }
-    </script>
+ <script>
+  function openSlideMenu(){
+    if (screen.width <=768) {
+      document.getElementById('side-menu').style.width = '65vw';
+      document.getElementById('main').style.marginLeft = '65vw';
+      document.getElementById('wholebody').style = '1';
+    }
+    else {
+      document.getElementById('side-menu').style.width = '25vw';
+      document.getElementById('main').style.marginLeft = '25vw';
+      document.getElementById('wholebody').style = '1';
+    }
+  }
+
+  function closeSlideMenu(){
+    document.getElementById('side-menu').style.width = '0';
+    document.getElementsByClassName('w3-row').style.opacity = '1';
+  }
+</script>
 
 <body class="w3-white" style="width:100vw;">
 
@@ -91,7 +98,7 @@
   <!-- Navbar on small screens -->
 </div>
 
-
+<div onclick="closeSlideMenu()" >
   <div id= "whiteStripBlank">
     <p>This is your performance analysis </p>
   </div>
@@ -392,6 +399,7 @@
   <button type="submit" id="submitCourse">Submit</button>
 </form> 
 
+</div>
 </body>  <!--All divisions inside here-->
 
 

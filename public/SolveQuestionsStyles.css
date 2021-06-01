@@ -1,4 +1,4 @@
-#logOutTxt {
+/* #logOutTxt {
 	color: white;
 	font-size: 1.5vw;
 	font-family: 'Times New Roman', Times, serif;
@@ -26,7 +26,7 @@
 	color:white;
 	margin-top: 1vw;
 	font-size: 2vw;
-}
+} */
 
 #questionImage {
 	height:27vw;
@@ -540,10 +540,11 @@
 	height: 2.5vw;
 	margin-top: -3.5vw;
 	z-index: 1;
+	margin-left: -80.5vw
 }
 
 #switchSolvePage{
-	margin-top: -6.25vw;
+	margin-top: -6vw;
 }
 
 #checkbox {
@@ -554,6 +555,7 @@
 		}
 
 			#checkbox:checked  + .slider {
+				/* background-color: rgb(19, 13, 73); */
 				background-color: black;
 			}
 				.moon {
@@ -577,6 +579,7 @@
 				left: 0;
 				right: 0;
 				bottom: 0;
+				/* background-color: rgb(54, 54, 54); */
 				background-color: black;
 				-webkit-transition: .4s;
 				transition: .4s;
@@ -643,22 +646,23 @@
 		width: 15vw;
 		height: 7.5vw;
 		margin-top: 25vw;
-		margin-left: 6vw;
+		margin-left: -70vw;
 		z-index: 0;
 		transform: translate(-50%, -50%);
 	}
 
 	#switchSolvePage{
-		margin-top: 4vw;
+		margin-top: -20vw;
 	}
 
 	#checkbox:checked  + .slider {
-		background-color: rgb(19, 13, 73);
-
+		/* background-color: rgb(19, 13, 73); */
+		background-color: black;
 	}
 
 	.slider{
-		background-color: rgb(54, 54, 54);
+		/* background-color: rgb(54, 54, 54); */
+		background-color: black;
 	}
 
 	.moon {

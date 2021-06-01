@@ -307,13 +307,13 @@ a:active{
   z-index:1;
   top:0;
   left:0;
-  background-color: black;
-  opacity:0.9;
+  /* background-color: hsl(325, 95%, 8%); */
+  background-image: linear-gradient(to right, purple , black);
+  opacity:0.95;
   overflow-x:hidden;
   padding-top:60px;
   transition:0.5s;
   z-index: 60;
-
 }
 
 .side-nav a{
