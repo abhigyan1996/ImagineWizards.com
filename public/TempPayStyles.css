@@ -27,6 +27,28 @@
 	margin-bottom: 10vw;
 }
 
+#Sec5{
+	height: fit-content;
+	width: 100vw;
+	margin-top: 0vw;
+}
+
+#contactUs, #developers, #address {
+	font-size: 1.5vw;
+	font-family: 'Alegreya', serif;
+	padding: 5vw
+}
+
+#developers {
+	margin-top: -8vw ;
+}
+
+#address {
+	margin-top: -8vw;
+	margin-bottom: 4vw;
+}
+
+
 #aiBg{
 	width: 38vw;
 	height: 48vw;
@@ -246,7 +268,7 @@
 
 #abhiPic {
 	position: absolute;
-	margin-top:-37vw;
+	margin-top:-8.5vw;
 	margin-left:-5.5vw;
 	height: 12vw;
 	width: 12vw;
@@ -515,7 +537,7 @@
 
    @media only screen and (max-width:768px){
 
-	#QuarksLogo{
+	/* #QuarksLogo{
 		margin-left: -4vw;
 		height: 12.5vw;
 		width: 12.5vw;
@@ -529,8 +551,16 @@
 		margin-left: -4vw;
 		color:black;
 		position:absolute;
-	}
+	} */
 	
+	#contactUs, #developers, #address {
+		font-size: 4vw;
+	}
+
+	#address {
+		padding-bottom: 20vw
+	}
+
 	#Sec1 {
 		height: fit-content;
 		width: 100vw;
@@ -629,7 +659,7 @@
 	#abhiPic{
 		height: 28vw;
 		width: 28vw;
-		margin-top: -123vw;
+		margin-top: -16vw;
 		margin-left: -13vw;
 	}
 
