@@ -286,10 +286,24 @@
     </ul>
 </div>
 
+<div id="SecQuickLinks" class="w3-center">
+
+    <div id="allLinksTxt">
+        <u> <div id="quickLinksTxt">QUICK LINKS</div>
+        <div id="linksTxt"><a id="link1" href="#Sec3">COURSES AND PRICING</a></div> 
+        <div id="linksTxt"><a id="link1" href="../index">ABOUT US</a></div> 
+        <div id="linksTxt">CONTACT US </u><i class="fa fa-phone" id="phnIcon"></i> +91 8638108598</div> 
+        <u><div id="linksTxt"><a id="link1" href="../RefundCancellationPolicy">REFUND AND CANCELLATION POLICIES</a></div> 
+        <div id="linksTxt"><a id="link1" href="../TermsAndConditions">TERMS AND CONDITIONS</a></div>
+        <div id="linksTxt"><a id="link1" href="../TermsAndConditions">PRIVACY POLICY</a></div></u>
+    </div>
+</div>
+
+
 <div id="Sec5" class="w3-aqua w3-center">
     <h1 id="contactUs"> Contact Us at +91 8638108598 </h1>
     <h2 id="developers"> DEVELOPED BY, <br><br> Abhigyan Kashyap (IIM Raipur | Ex Software Developer at Pine Labs | NIT Silchar) <br><br>  Gaurav Kohli (NIT Kurukshetra | Software Developer at Pine Labs)</h2>
-    <h2 id="address"> Jail Road, near Central Jail, Borbheta, PO: 785004<br><br>© COPYRIGHT <br>All Rights Reserved</h2>
+    <h2 id="address"> Jail Road, near Central Jail, Borbheta, Jorhat, Assam, PO: 785004<br><br>© COPYRIGHT <br>All Rights Reserved</h2>
 </div>
 
 <!-- <a href="../QuarkXAcademy/MyCourses"><button class="w3-pink" id="myCoursesBtn" style="visibility: hidden; display:none">My Courses</button></a> -->
@@ -335,13 +349,13 @@
     var AmountSel = $("#CousesList li #AmountSel").text();
 
     var resCls = ClassSel.split(",");
-    console.log(resCls);
+    // console.log(resCls);
 
     var resCourse = CourseSel.split(",");
-    console.log(resCourse);
+    // console.log(resCourse);
 
     var resAmt = AmountSel.split(",");
-    console.log(resAmt);
+    // console.log(resAmt);
 
     $("#CousesList li").click(function() {
         var index = $(this).index();

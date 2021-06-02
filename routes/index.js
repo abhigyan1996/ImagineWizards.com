@@ -37,8 +37,13 @@ routes.get('/QuarkX', async function(req, res) {
     return;
 })
 
-routes.get('/QuarkXAcademy',IsLoggedIn, function(req, res) {
-    return res.render('QuarkXAcademy');
+
+routes.get('/TermsAndConditions', function(req, res) {
+    return res.render('TermsAndConditions');
+})
+
+routes.get('/RefundCancellationPolicy', function(req, res) {
+    return res.render('RefundCancellationPolicy');
 })
 
 routes.get('/index', async function(req, res) {
@@ -57,8 +62,6 @@ routes.get('/index', async function(req, res) {
 routes.get('/AllQuarks', function(req, res) {
     return res.render('AllQuarks');
 })
-
-
 
 routes.get('/WriteQuarks', function(req, res) {
     return res.render('submitQuarks');

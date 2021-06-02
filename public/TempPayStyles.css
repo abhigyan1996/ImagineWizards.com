@@ -535,6 +535,46 @@
 	background-position: right center;
   }
 
+
+#SecQuickLinks {
+	background-color: #1E1C1C;
+	height: fit-content;
+	width: 100vw;
+	margin-top: -5vw;
+}
+
+#quickLinksTxt {
+	color: white;
+	font-size: 3vw;
+	font-weight: 900;
+	font-family: 'Alegreya', serif;
+	font-family: 'Concert One';
+	font-family: 'Lora', serif;
+	margin-bottom: 3vw;
+}
+
+#link1 {
+	font-size: 1.5vw;
+	font-family: 'Alegreya', serif;
+	color: white;
+}
+
+#linksTxt{
+	margin-top: 1vw;
+	font-size: 1.5vw;
+	font-family: 'Alegreya', serif;
+	color: white;
+}
+
+#phnIcon {
+	margin-left: 1vw;
+}
+
+#allLinksTxt {
+	padding-top: 4vw;
+	padding-bottom: 4vw;
+}
+
    @media only screen and (max-width:768px){
 
 	/* #QuarksLogo{
@@ -711,7 +751,7 @@
 	}
 
 	#TxtSubHead2 {
-		font-size: 5vw;
+		font-size: 4.5vw;
 		width:90vw;
 		margin-top: 5vw;
 	}
@@ -902,5 +942,43 @@
 	margin-bottom: 5vw;
 }
 
+	#SecQuickLinks {
+		background-color: #1E1C1C;
+		height: fit-content;
+		width: 100vw;
+		margin-top: -5vw;
+	}
+
+	#quickLinksTxt {
+		color: white;
+		font-size: 7vw;
+		font-weight: 900;
+		font-family: 'Alegreya', serif;
+		font-family: 'Concert One';
+		font-family: 'Lora', serif;
+		margin-bottom: 5vw;
+	}
+
+	#link1 {
+		font-size: 5vw;
+		font-family: 'Alegreya', serif;
+		color: white;
+	}
+
+	#linksTxt{
+		margin-top: 2.5vw;
+		font-size: 5vw;
+		font-family: 'Alegreya', serif;
+		color: white;
+	}
+
+	#phnIcon {
+		margin-left: 1vw;
+	}
+
+	#allLinksTxt {
+		padding-top: 10vw;
+		padding-bottom: 10vw;
+	}
 
 }
