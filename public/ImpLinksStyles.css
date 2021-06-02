@@ -1,0 +1,63 @@
+
+#tnc, #tncHeadTxt, #tncHeadTxt2 {
+	font-size: 1.25vw;
+	font-family: 'Alegreya', serif;
+	color: black;	
+	margin-left: 3vw;
+	margin-right: 5vw;
+}
+
+#headingsTnc {
+	font-size: 1.75vw;
+	font-family: 'Alegreya', serif;
+	color: green;	
+	margin-left: 3vw;
+	margin-right: 3vw;
+}
+
+#tncHeadTxt {
+	color: black;
+	font-size: 3.25vw;
+}
+
+#tncHeadTxt2 {
+	color: green;
+	font-size: 3vw;
+}
+   
+#SecTnC {
+	margin-top: 8vw;
+}
+
+#allImpTexts {
+	padding-bottom: 10vw;
+}
+
+@media only screen and (max-width:768px){
+	#SecTnC {
+		margin-top: 25vw;
+		padding-bottom: 30vw;
+	}
+
+	#tnc, #tncHeadTxt, #tncHeadTxt2 {
+		font-size: 5vw;
+		margin-left: 5vw;
+	}
+
+	#headingsTnc {
+		font-size: 6vw;
+		margin-left: 5vw;
+	}
+
+	#tncHeadTxt {
+		color: black;
+		font-size: 7vw;
+		margin-left: 5vw;
+	}
+	
+	#tncHeadTxt2 {
+		color: green;
+		font-size: 6.5vw;
+		margin-left: 5vw;
+	}
+}
