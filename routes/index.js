@@ -46,6 +46,22 @@ routes.get('/RefundCancellationPolicy', function(req, res) {
     return res.render('RefundCancellationPolicy');
 })
 
+routes.get('/ViewAllCourses', async function(req, res) {
+
+    let allCourses =await COURSE_IMG_COLLECTION.find({});  
+
+    if(req.user && req.user.EMAIL) {
+        //Fetch User Name
+        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+        let username = userStr.USERNAME;
+        username = username.substr(0, username.indexOf(' '));
+        res.render('ViewAllCourses', {Courses: allCourses, loginFlag: 1, username: username});  
+        return;
+    }
+    res.render('ViewAllCourses', {Courses: allCourses, loginFlag: 0, username: ""});  
+    return;
+})
+
 routes.get('/index', async function(req, res) {
     if(req.user && req.user.EMAIL) {
         //Fetch User Name

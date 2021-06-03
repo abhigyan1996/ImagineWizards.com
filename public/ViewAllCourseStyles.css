@@ -1,14 +1,36 @@
-#orderDetailsDiv {
-	height: fit-content;
-	margin-top: 7.75vw;
-	width: 90vw;
-	margin-left:5vw;
-	padding-top: 0vw;
-	background-color: white;
-}
 
 body{
 	background-color: white;
+}
+
+#CoursesList{
+	height: fit-content;
+	width: 90vw;
+	display:flex;
+	padding: 0;
+	flex-wrap: wrap;
+	margin :auto;
+}
+
+#CoursesList li{
+	display: inline-block;
+	height:fit-content;
+	width: fit-content;
+	margin-left: 5vw;
+	margin-bottom: 10vw;
+	cursor: pointer
+}
+
+
+#courseImg {
+	height:25vw;
+	width: 18vw;
+	margin-top: -5vw;
+	margin-left: 5vw;
+}
+
+#allCoursesSec {
+	margin-top: 15vw;
 }
 
 #orderHeadings {
@@ -20,8 +42,8 @@ body{
 }
 
 #headTitle {
-	font-size: 2.25vw;
-	margin-top: 0vw;
+	font-size: 1.5vw;
+	margin-top: 2vw;
 	font-family: 'Alegreya', serif;
 	font-family: 'Concert One', cursive;
 	font-family: 'Lora', serif;
@@ -29,7 +51,7 @@ body{
 }
 
 #headSubtitle {
-	font-size: 1.75vw;
+	font-size: 1.25vw;
 	font-family: 'Alegreya', serif;
 	font-family: 'Concert One', cursive;
 	font-family: 'Lora', serif;
@@ -37,10 +59,10 @@ body{
 }
 
 #savedTxt{
-	font-size: 1.75vw;
+	font-size: 1.25vw;
 	/* color: rgb(21, 182, 21); */
 	color: #4FCF00;
-	margin-top: 2vw;
+	margin-top: 1vw;
 	font-family: 'Alegreya', serif;
 	font-family: 'Concert One', cursive;
 	font-family: 'Lora', serif;
@@ -48,8 +70,8 @@ body{
 }
 
 #TxtPrice {
-	margin-top: 2vw;
-	font-size: 2.5vw;
+	margin-top: 1vw;
+	font-size: 1.85vw;
 	display: inline-block;
 	font-family: 'Alegreya', serif;
 	font-family: 'Concert One', cursive;
@@ -57,7 +79,7 @@ body{
 }
 
 #TxtFullPrice{
-	font-size: 1.85vw;
+	font-size: 1.5vw;
 	color:dimgray;
 	margin-left: 2vw;
 	font-family: 'Alegreya', serif;
@@ -68,7 +90,7 @@ body{
 #discountTxt {
 	/* color: rgb(21, 182, 21); */
 	color: #4FCF00;
-	font-size: 1.85vw;
+	font-size: 1.5vw;
 	margin-left: 2vw;
 	font-family: 'Alegreya', serif;
 	font-family: 'Concert One', cursive;
@@ -83,13 +105,6 @@ body{
 	font-family: 'Concert One', cursive;
 	font-family: 'Lora', serif;	
 
-}
-
-#courseImg {
-	height:33vw;
-	width: 24vw;
-	margin-top: 2vw;
-	margin-left: 8vw;
 }
 
 #rzp-button1 {
@@ -160,6 +175,10 @@ body{
 
    @media only screen and (max-width:768px){
 
+	#allCoursesSec {
+		margin-top: 30vw;
+	}
+
 	#TnCPh {
 		font-size: 4vw;
 		color: #528FF0;
@@ -219,12 +238,11 @@ body{
 		font-family: 'Lora', serif;
 	}
 	
-	
 	#courseImg {
 		height:110vw;
 		width: 81vw;
-		margin-top: 5vw;
-		margin-left: 9.5vw;
+		margin-top: 0vw;
+		margin-left: 0vw;
 	}
 	
 	#orderDetailsDiv {
@@ -239,10 +257,10 @@ body{
 
 	#headTitle {
 		font-size: 6vw;
-		margin-top: -7.5vw;
+		margin-top: 5vw;
 	}
 	
-	#headSubtitlePh {
+	#headSubtitle {
 		font-size: 4.5vw;
 		color:#393839"
 	}
