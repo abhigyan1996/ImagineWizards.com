@@ -46,6 +46,10 @@ routes.get('/RefundCancellationPolicy', function(req, res) {
     return res.render('RefundCancellationPolicy');
 })
 
+routes.get('/PrivacyPolicy', function(req, res) {
+    return res.render('PrivacyPolicy');
+})
+
 routes.get('/ViewAllCourses', async function(req, res) {
 
     let allCourses =await COURSE_IMG_COLLECTION.find({});  

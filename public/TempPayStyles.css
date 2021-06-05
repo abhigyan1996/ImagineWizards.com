@@ -552,27 +552,34 @@
 	height: fit-content;
 	width: 100vw;
 	margin-top: -5vw;
+	display: flex;
 }
 
-#quickLinksTxt {
+#quickLinksTxt, #quickLinksTxt2 {
 	color: white;
-	font-size: 3vw;
+	font-size: 1.5vw;
 	font-weight: 900;
 	font-family: 'Alegreya', serif;
 	font-family: 'Concert One';
 	font-family: 'Lora', serif;
-	margin-bottom: 3vw;
+	margin-bottom: 2vw;
+	text-transform: uppercase;
+	color: #f68331;
+}
+
+#quickLinksTxt2 {
+	margin-top: 3vw;
 }
 
 #link1 {
-	font-size: 1.5vw;
+	font-size: 1.45vw;
 	font-family: 'Alegreya', serif;
 	color: white;
 }
 
 #linksTxt{
-	margin-top: 1vw;
-	font-size: 1.5vw;
+	margin-top: 0.5vw;
+	font-size: 1.45vw;
 	font-family: 'Alegreya', serif;
 	color: white;
 }
@@ -584,6 +591,24 @@
 #allLinksTxt {
 	padding-top: 4vw;
 	padding-bottom: 4vw;
+	margin-left: 10vw;
+	width: 20vw;
+}
+
+#allLinksTxt2 {
+	padding-top: 4vw;
+	padding-bottom: 4vw;
+	margin-left: 5vw;
+	width: 30vw;
+	display: inline-block;
+}
+
+#allLinksTxt3 {
+	padding-top: 4vw;
+	padding-bottom: 4vw;
+	margin-left: 5vw;
+	width: 30vw;
+	display: inline-block;
 }
 
    @media only screen and (max-width:768px){
@@ -957,31 +982,34 @@
 	#SecQuickLinks {
 		background-color: #1E1C1C;
 		height: fit-content;
-		width: 100vw;
+		width: fit-content;
 		margin-top: -5vw;
+		overflow-x: scroll;
+		padding-bottom: 5vw;
 	}
 
 	#quickLinksTxt {
-		color: white;
-		font-size: 7vw;
+		color: #f68331;
+		font-size: 5vw;
 		font-weight: 900;
 		font-family: 'Alegreya', serif;
 		font-family: 'Concert One';
 		font-family: 'Lora', serif;
-		margin-bottom: 5vw;
+		margin-bottom: 0vw;
 	}
 
 	#link1 {
-		font-size: 5vw;
+		font-size: 4.5vw;
 		font-family: 'Alegreya', serif;
 		color: white;
 	}
 
 	#linksTxt{
 		margin-top: 2.5vw;
-		font-size: 5vw;
+		font-size: 4.5vw;
 		font-family: 'Alegreya', serif;
 		color: white;
+		width: 50vw
 	}
 
 	#phnIcon {
@@ -991,6 +1019,25 @@
 	#allLinksTxt {
 		padding-top: 10vw;
 		padding-bottom: 10vw;
+		width:80vw
+	}
+
+	#allLinksTxt2 {
+		margin-top: 45vw;
+		margin-left: -80vw;
+		width: 80vw
+	}
+
+	#allLinksTxt3 {
+		margin-top: 5vw;
+	}
+
+
+	#quickLinksTxt2 {
+		font-size: 5vw;
+		margin-top: 5vw;
+		width: 90vw;
+		padding-right: 30vw;
 	}
 
 }
