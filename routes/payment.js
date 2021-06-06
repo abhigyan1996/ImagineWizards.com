@@ -7,8 +7,8 @@ const moment=require("moment");
 
 
 let instance = new Razorpay({
-    key_id: 'rzp_test_xmzuzCUfeOjL0Y', // your `KEY_ID`
-    key_secret: 'ZRrQNfVXqr5rZ6mGsXH7ryWj' // your `KEY_SECRET`
+    key_id: 'rzp_live_G3qHxXevgtCMqN', // your `KEY_ID`
+    key_secret: 'GtRmALeAp53dfgyvZA01EDBe' // your `KEY_SECRET`
   });
 
 router.post("/order",(req,res)=>
