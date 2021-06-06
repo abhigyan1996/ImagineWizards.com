@@ -29,7 +29,7 @@ router.post("/verify",async function(req,res)
     try
     {
     let  body=req.body.razorpay_order_id + "|" + req.body.razorpay_payment_id;
-    var expectedSignature = crypto.createHmac('sha256', 'ZRrQNfVXqr5rZ6mGsXH7ryWj').update(body.toString()).digest('hex');
+    var expectedSignature = crypto.createHmac('sha256', 'GtRmALeAp53dfgyvZA01EDBe').update(body.toString()).digest('hex');
     
     if(expectedSignature == req.body.razorpay_signature)
     {
