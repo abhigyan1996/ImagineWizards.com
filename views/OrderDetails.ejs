@@ -115,7 +115,7 @@
 
 <form id="trialForm" class="w3-hide" action="../QuarkXAcademy/TrialPurchase" method="POST">
     <input name="Class" value=<%=Class%> type="text">
-    <input name="Course" value=<%=Course%> type="text">
+    <input name="Course" id="CourseSelected" value=<%=Course%> type="text">
     <input name="username" value=<%=username%> type="text">
 </form>
 
@@ -197,7 +197,9 @@
         var params = {
         razorpay_order_id:  document.getElementById('order-id').value,  
         razorpay_payment_id:  document.getElementById('order-pay-id').value,
-        razorpay_signature:  document.getElementById('order-sig').value
+        razorpay_signature:  document.getElementById('order-sig').value,
+        Course: document.getElementById('CourseSelected').value,
+        Class: document.getElementById('ClassShown').value
         };
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function (res) {

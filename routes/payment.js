@@ -39,8 +39,8 @@ router.post("/verify",async function(req,res)
         //     return;
         // }
 
-       let ExpiryDate=moment(new Date()).add(12, 'M');
-            await USER_PREMIUM_COLLECTION.update({ EMAIL:req.user.EMAIL,CLASS_ID:"C3",COURSE_ID:"Maths"},{ TRIAL_FLAG:0,EXPIRY_DATE_TIME:ExpiryDate,EMAIL:req.user.EMAIL,CLASS_ID:"C3",COURSE_ID:"Maths"},{upsert: true, setDefaultsOnInsert: false});          
+        let ExpiryDate=moment(new Date()).add(12, 'M');
+        await USER_PREMIUM_COLLECTION.update({ EMAIL:req.user.EMAIL,CLASS_ID:req.body.Class,COURSE_ID:req.body.Course},{ TRIAL_FLAG:0,EXPIRY_DATE_TIME:ExpiryDate,EMAIL:req.user.EMAIL,CLASS_ID:req.body.Class,COURSE_ID:req.body.Course},{upsert: true, setDefaultsOnInsert: false});          
         
     //     let ObjUSER_PREMIUM_COLLECTION=new USER_PREMIUM_COLLECTION({
     //         TRIAL_FLAG:0,
