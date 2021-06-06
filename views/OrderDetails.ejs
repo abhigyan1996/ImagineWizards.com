@@ -246,7 +246,9 @@ document.getElementById('rzp-button1Ph').onclick = function(e){
         var params = {
         razorpay_order_id:  document.getElementById('order-id').value,  
         razorpay_payment_id:  document.getElementById('order-pay-id').value,
-        razorpay_signature:  document.getElementById('order-sig').value
+        razorpay_signature:  document.getElementById('order-sig').value,
+        Course: document.getElementById('CourseSelected').value,
+        Class: document.getElementById('ClassShown').value
         };
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function (res) {
