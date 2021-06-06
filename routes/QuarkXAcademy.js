@@ -109,7 +109,8 @@ router.get("/MyCourses", IsLoggedIn, async function(req, res, next) {
         let MyCoursesArr = await USER_PREMIUM_COLLECTION.find({EMAIL:req.user.EMAIL});
 
         if(MyCoursesArr.length == 0) {
-            res.send("You have not yet subscribed to any course");
+            let allCourses =await COURSE_IMG_COLLECTION.find({});  
+            res.render('ViewAllCourses', {Courses: allCourses, loginFlag: 1, username: username});  
             return;
         }
 
@@ -130,7 +131,8 @@ router.get("/MyCourses", IsLoggedIn, async function(req, res, next) {
         }
 
         if(availableCourses.length == 0 || availableClasses.length == 0) {
-            res.send("Your Subscription has expired");
+            let allCourses =await COURSE_IMG_COLLECTION.find({});  
+            res.render('ViewAllCourses', {Courses: allCourses, loginFlag: 1, username: username});  
             return;
         }
         
