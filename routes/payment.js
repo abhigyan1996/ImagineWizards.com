@@ -42,7 +42,7 @@ router.post("/verify",async function(req,res)
         let ExpiryDate=moment(new Date()).add(12, 'M');
         await USER_PREMIUM_COLLECTION.update({ EMAIL:req.user.EMAIL,CLASS_ID:req.body.Class,COURSE_ID:req.body.Course},{ TRIAL_FLAG:0,EXPIRY_DATE_TIME:ExpiryDate,EMAIL:req.user.EMAIL,CLASS_ID:req.body.Class,COURSE_ID:req.body.Course},{upsert: true, setDefaultsOnInsert: false});          
         
-    //     let ObjUSER_PREMIUM_COLLECTION=new USER_PREMIUM_COLLECTION({
+    //     let ObjUSER_PREMIUM_CO   LLECTION=new USER_PREMIUM_COLLECTION({
     //         TRIAL_FLAG:0,
     //         EXPIRY_DATE_TIME:ExpiryDate,
     //         EMAIL:req.user.EMAIL,
