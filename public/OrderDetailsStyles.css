@@ -158,7 +158,43 @@ body{
 	padding: 5vw;
 }
 
+#productVideoTxt {
+	text-align: center;
+	font-size: 4vw;
+	font-family: 'Alegreya', serif;
+	margin-top: 5vw;
+}
+
+#productVideo {
+	width: 50vw;
+	height: 32vw;
+	margin-left: 25vw;
+	border-radius: 1vw;
+}
+
+#videoDiv {
+	margin-top: 2vw;
+}
+
    @media only screen and (max-width:768px){
+
+	#productVideo {
+		width: 90vw;
+		height: 60vw;
+		margin-left: 5vw;
+	}
+
+	#productVideoTxt {
+		text-align: center;
+		font-size: 7vw;
+		font-family: 'Alegreya', serif;
+	}
+
+	#videoDiv {
+		margin-top: 5vw;
+		margin-bottom: 50vw;
+	}
+	
 
 	#TnCPh {
 		font-size: 4vw;
