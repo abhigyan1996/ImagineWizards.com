@@ -428,7 +428,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
          let username = userStr.USERNAME;
          username = username.substr(0, username.indexOf(' '));
 
-         console.log(req.body.inputAns);
+        //  console.log(req.body.inputAns);
 
          //NEWLY ADDED. LAST QUESTION ON SUBMIT WILL REFLECT ON LEADERBOARD IF NOT PROCEEDED.
          let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept});          

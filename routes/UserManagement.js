@@ -15,9 +15,9 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
  router.post("/Signup", async function (req, res, next) {
      try
     {
-      console.log("Request is received for Signup: with Username=" +req.body.usrname);
+      // console.log("Request is received for Signup: with Username=" +req.body.usrname);
       var ObjSignupRequest=new SignupRequest(req.body);
-        if (req.body && ObjSignupRequest.usrname && ObjSignupRequest.pwd && ObjSignupRequest.cnfpwd && ObjSignupRequest.email) 
+        if (req.body && ObjSignupRequest.usrname && ObjSignupRequest.pwd && ObjSignupRequest.cnfpwd && ObjSignupRequest.email && ObjSignupRequest.phnNum) 
         {
 
             if(!(ObjSignupRequest.pwd===ObjSignupRequest.cnfpwd))
@@ -26,10 +26,12 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
                res.render('signupErr', {ErrCode: 1, ResMsg: "Password and Confirm Password mismatch"}); 
                return;
             }
-            if(!ObjSignupRequest.pwd.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/))
+           // if(!ObjSignupRequest.pwd.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) //thik karna
+           if(!(ObjSignupRequest.pwd.length<=8))
             {
                 //res.status(200).json({ ErrCode: 4, ResMsg: "Password must be minimum eight characters long,at least one letter and one number." });
-                res.render('signupErr', {ErrCode: 4, ResMsg: "Password must be minimum 8 characters long, at least 1 letter and 1 number."}); 
+                // res.render('signupErr', {ErrCode: 4, ResMsg: "Password must be minimum 8 characters long, at least 1 letter and 1 number."}); 
+                res.render('signupErr', {ErrCode: 4, ResMsg: "Password must be minimum 8 characters long."}); 
                 return;
             }
             try
@@ -60,7 +62,7 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
               }
             catch(err)
             {
-                console.log("DB Connection Error in Signup request: "+err.message);
+                // console.log("DB Connection Error in Signup request: "+err.message);
                 res.status(200).json({ ErrCode: 7, ResMsg: "DB Connection Error" });
                 return;
             }
@@ -73,7 +75,7 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
     }
     catch(err)
     {
-        console.log("Error in Signup route-" + err.message);
+        // console.log("Error in Signup route-" + err.message);
         res.status(500).json({ ErrCode: 9999, ResMsg: "Exception Occured" });
         return;
     }
@@ -85,7 +87,7 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
     {
       req.body.otp = req.body.digit1 + req.body.digit2 + req.body.digit3 + req.body.digit4 + req.body.digit5 + req.body.digit6;
 
-      console.log("Request is received for OtpSignup: with OTP=" +req.body.otp);
+      // console.log("Request is received for OtpSignup: with OTP=" +req.body.otp);
       var ObjOtpSignupRequest=new OtpSignupRequest(req.body);
       
       if (req.body && ObjOtpSignupRequest.otp && ObjOtpSignupRequest.email) 
@@ -102,7 +104,8 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
        let objUser=new USER_PROFILE_COLLECTION({
          USERNAME:DBData.usrname,
          PASSWORD:generateHash(DBData.pwd),
-         EMAIL:DBData.email
+         EMAIL:DBData.email,
+         PHONE_NUM: DBData.phnNum
         });
         await objUser.save();
         //res.status(200).json({ ErrCode: 0, ResMsg: "Registration Successful."});
@@ -112,7 +115,7 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
 
       catch(err)
       {
-        console.log("DB Connection Error in OtpSignup request: "+err.message);
+        // console.log("DB Connection Error in OtpSignup request: "+err.message);
         res.status(200).json({ ErrCode: 7, ResMsg: "DB Connection Error"});
         return;
       }
@@ -126,7 +129,7 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
     }
     catch(err)
     {
-      console.log("Error in OtpSignup route-" + err.message);
+      // console.log("Error in OtpSignup route-" + err.message);
       res.status(500).json({ ErrCode: 9999, ResMsg: "Exception Occured" });
       return;
     }

@@ -28,6 +28,7 @@ class SignupRequest{
         this.cnfpwd=value.cnfpwd && value.cnfpwd.toString();
         this.usrname=value.usrname && value.usrname.toString();
         this.email=value.email && value.email.toString();
+        this.phnNum=value.phnNum && value.phnNum.toString();
     }
 };
 

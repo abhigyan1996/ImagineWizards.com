@@ -26,11 +26,8 @@ PREMIUM_FLAG:{
     min:0,
     max:1
 },
-CLASSES_FLAG:{
-    type:Number,
-    default:0,
-    min:0,
-    max:1
+PHONE_NUM:{
+    type:String
 },
 INFLUENCER_FLAG:{
     type:Number,
