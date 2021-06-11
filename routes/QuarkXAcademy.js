@@ -471,7 +471,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                     break;
                 }
             }
-            console.log(userRank);
+            // console.log(userRank);
         }
         // NEQLY ADDED TILL HERE
          
@@ -567,7 +567,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                 
                         for (let i = 0; i<SolvedQList.length;i++) {
                             QuestionScore=parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
-                            console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
+                            // console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
                 
                             if((QuestionScore>0.75 && QuestionScore<=1) || SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]==0){
                                 SolvedEasyQueLength++;  //total easy solved
@@ -652,7 +652,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
 
                     catch(err)
                     {
-                        console.log("DB Connection Error: "+err.message);
+                        // console.log("DB Connection Error: "+err.message);
                         res.status(200).json({ ErrCode: 7, ResMsg: "DB Connection Error"});
                         return;
                     }
@@ -660,7 +660,8 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                     }
                 }
                 catch(err) {
-                  console.log(err);
+                //   console.log(err);
+                    res.render('error');
                 }
             }
 
@@ -716,7 +717,7 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
                 
                         for (let i = 0; i<SolvedQList.length;i++) {
                             QuestionScore=parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0])/ parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]);
-                            console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
+                            // console.log(parseInt(SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[0]));
                 
                             if((QuestionScore>0.75 && QuestionScore<=1) || SolvedQList[i].PerformanceToAllQuestionCollectionJoin.SCORE.split(" ")[1]==0){
                                 SolvedEasyQueLength++;  //total easy solved
@@ -800,15 +801,18 @@ router.post('/SubmitAnswer', IsLoggedIn, async function(req, res, next) {
 
                     catch(err)
                     {
-                        console.log("DB Connection Error: "+err.message);
-                        res.status(200).json({ ErrCode: 7, ResMsg: "DB Connection Error"});
+                        // console.log("DB Connection Error: "+err.message);
+                        // res.status(200).json({ ErrCode: 7, ResMsg: "DB Connection Error"});
+                        res.render('Error');
                         return;
                     }
                      //   res.send("Concept Completed");
                     }
                 }
                 catch (err) {
-                    console.log(err);
+                    res.render('Error');
+                    return;
+                    // console.log(err);
                 }
             }
     }
