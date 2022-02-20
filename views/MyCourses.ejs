@@ -117,9 +117,9 @@
         <% for(course of allCourses){%>
           <li>
             <img class="w3-card" id="courseImage" src=<%=course.COURSE_IMG%>>
-            <div class="w3-hide" id="courseName"><%=course.COURSE_ID%></div><span class="w3-hide">,</span>
-            <div class="w3-hide" id="className"><%=course.CLASS_ID%></div><span class="w3-hide">,</span>
-            <div class="w3-hide" id="coursePrice"><%=course.PRICE%></div><span class="w3-hide">,</span>
+            <div class="w3-hide" id="courseName"><%=course.COURSE_ID%><span class="w3-hide">,</span></div>
+            <div class="w3-hide" id="className"><%=course.CLASS_ID%><span class="w3-hide">,</span></div>
+            <div class="w3-hide" id="coursePrice"><%=course.PRICE%><span class="w3-hide">,</span></div>
           </li>
           <% i++; %>
           <%}%>
@@ -134,10 +134,14 @@
         var allCourses = $("#CousesList li #courseName").text();
         var allClasses =  $("#CousesList li #className").text();
         var allcoursePrices =  $("#CousesList li #coursePrice").text();
+        console.log(allCourses);
+      
+        
 
         var res1 = allCourses.split(",");
         var res2 = allClasses.split(",");
         var res3 = allcoursePrices.split(",");
+        console.log(res1,res2,res3);
 
         $("#CousesList li").click(function() {
           
