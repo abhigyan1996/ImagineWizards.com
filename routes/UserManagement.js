@@ -11,6 +11,25 @@ const passport = require("passport");
 var UserInfoMap = new Map();
 var {ResetPwdRequest,OtpResetRequest,LoginRequest,SignupRequest,OtpSignupRequest}=require("../CommanStructure/AuthParameters");
 var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
+const jwt = require('jsonwebtoken');
+const Config=require("../config/config");
+
+
+
+
+// router.get('/insertJwtforALLUsers', async function(req,res){
+//   var User=await USER_PROFILE_COLLECTION.find({}).lean();
+//   for(let i=0;i<User.length;i++){
+//     let UserTokenPayload={Username:User[i].USERNAME}; 
+//     let UserJwtToken=jwt.sign(UserTokenPayload.Username,Config.JwtTokenKey); 
+//     await USER_PROFILE_COLLECTION.findOneAndUpdate({USERNAME:User[i].USERNAME},
+//         {$set: 
+//           {TOKEN: UserJwtToken}});
+//     }
+//   res.send("all token generated");
+
+// });
+
 
  router.post("/Signup", async function (req, res, next) {
      try
@@ -101,11 +120,15 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
        let DBData=JSON.parse(UserInfoMap.get(ObjOtpSignupRequest.email));
        try
        {
+        
+       let UserTokenPayload={Username:DBData.usrname}; 
+       let UserJwtToken=jwt.sign(UserTokenPayload.Username,Config.JwtTokenKey); 
        let objUser=new USER_PROFILE_COLLECTION({
          USERNAME:DBData.usrname,
          PASSWORD:generateHash(DBData.pwd),
          EMAIL:DBData.email,
-         PHONE_NUM: DBData.phnNum
+         PHONE_NUM: DBData.phnNum2, 
+         TOKEN:UserJwtToken
         });
         await objUser.save();
         //res.status(200).json({ ErrCode: 0, ResMsg: "Registration Successful."});
@@ -265,8 +288,10 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
          //Fetch User Name
         let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
         let username = userStr.USERNAME;
+        let userToken=userStr.TOKEN;
 
         username = username.substr(0, username.indexOf(' '));
+        
 
         let isCourseFlag = 0;
 
@@ -291,13 +316,13 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
         if(availableCourses.length > 0 || availableClasses.length > 0) {
           isCourseFlag = 1;
           let allCourses =await COURSE_IMG_COLLECTION.find({CLASS_ID: { $in: availableClasses }, COURSE_ID: { $in: availableCourses }});
-          res.render('MyCourses',{allCourses:allCourses, username:username});
+          res.render('MyCourses',{allCourses:allCourses, username:username,bearerToken: userToken });
           return;
         }
 
         if(isCourseFlag == 0) { 
           let allCourses =await COURSE_IMG_COLLECTION.find({});
-          res.render('TempPay', {Courses: allCourses, loginFlag: 1, username:username});
+          res.render('TempPay', {Courses: allCourses, loginFlag: 1, username:username,bearerToken: userToken });
           return;
         }
       }

@@ -34,6 +34,10 @@ INFLUENCER_FLAG:{
     default:0,
     min:0,
     max:1
+},
+TOKEN:{
+  type: String,
+  required: true
 }
 });
 
