@@ -1,8 +1,7 @@
 #firstDiv {
-	max-width:100vw;
-	min-width: 100vw;
 	overflow: hidden;
 	height:20vw;
+	width: 100vw;
 }
 
 #practiceBtn, #viewSolBtn, #restartBtn{
@@ -616,15 +615,15 @@ table {
 			text-align: center;
 		}
 
-		#PerformanceCountSmall {
+		#PerformanceCountLarge {
 			display: flex;
 			flex-wrap: wrap;
-			margin-left: -9vw;
+			margin-left: 2vw;
 			margin-top: 0vw;
 	   }
 
 
-	   #PerformanceCountSmall li {
+	   #PerformanceCountLarge li {
 			display: inline-block;
 			margin-top: 3vw;
    		}
@@ -638,7 +637,7 @@ table {
 			height: 28vw;
 		}
 		
-		#totalCount, #correctCount, #wrongCount, #skipCount, #UnattemptedcountPh {
+		#totalCount, #correctCount, #wrongCount, #skipCount, #Unattemptedcount {
 			font-size: 8vw;
 			margin-top: -1vw;
 		}
@@ -1024,5 +1023,5 @@ figure {
 	margin-left: 12vw ;
 }
 
-
 }
+/* added in 4th April 2022 */

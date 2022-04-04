@@ -71,7 +71,7 @@
   }
 </script>
 
-<body class="w3-white" style="width:100vw;">
+<body class="w3-white" style="width:100vw; overflow-x: hidden;">
 
 <section  id="top-navbar">  
     <div id="side-menu" class="side-nav">
@@ -192,16 +192,16 @@
     <div id = "PieCharts">  
 
           <div class="w3-hide-small w3-hide-medium" id="piechartQuestionsLarge"></div>
-          <div class="w3-hide-small w3-hide-large" id="piechartQuestionsMedium"></div>
-          <div class="w3-hide-large w3-hide-medium" id="piechartQuestionsSmall"></div>
+          <!-- <div class="w3-hide-small w3-hide-large" id="piechartQuestionsMedium"></div> -->
+          <div class="w3-hide-large" id="piechartQuestionsSmall"></div>
 
           <!-- <div id="piechartLevel"></div> -->
     </div>
 
     <!-- Div only for LAPTOPS -->
-    <div id="PerformanceCountLarge" class="w3-hide-medium w3-hide-small">
+    <div id="PerformanceCountLarge">
         <div id="totalQCard" class="w3-card w3-container w3-black">
-            <p id="totalTxt">Total Questions </p>
+            <p id="totalTxt">Total</p>
             <p id="totalCount"><%=TotalQuestions%></p>
         </div>
         <div id="CorrectQCard" class="w3-card w3-container" style="background-color: green; color:white">
@@ -222,7 +222,7 @@
       </div>
     </div>
 
-    <!-- Div only for Phones -->
+    <!-- Div only for Phones
     <ul id="PerformanceCountSmall" class="w3-hide-medium w3-hide-large">
       <li id="totalQCard" class="w3-card w3-container w3-black">
           <p id="totalTxt">Total</p>
@@ -244,7 +244,7 @@
           <p id="UnattemptedTxt">Unattempted</p>
           <p id="UnattemptedcountPh"></p>
     </li>
-  </ul>
+  </ul> -->
   </section>
 
 
@@ -421,7 +421,7 @@
   var UnattemptedQuestions = parseInt(TotalQuestions) - parseInt(temp);
 
   document.getElementById("Unattemptedcount").innerHTML = UnattemptedQuestions;
-  document.getElementById("UnattemptedcountPh").innerHTML = UnattemptedQuestions;
+  //document.getElementById("UnattemptedcountPh").innerHTML = UnattemptedQuestions;
 
   var score = parseInt(CorrectQuestions) * 4 - parseInt(WrongQuestions) * 1;
   document.getElementById('Score').innerHTML = "SCORE: " + score;
@@ -490,7 +490,7 @@ function drawChart() {
   // Display the chart inside the <div> element with id="piechart"
   var chartLarge = new google.visualization.PieChart(document.getElementById('piechartQuestionsLarge'));
   
-  var chartMedium = new google.visualization.PieChart(document.getElementById('piechartQuestionsMedium'));
+  // var chartMedium = new google.visualization.PieChart(document.getElementById('piechartQuestionsMedium'));
 
   var chartSmall = new google.visualization.PieChart(document.getElementById('piechartQuestionsSmall'));
 
@@ -499,7 +499,7 @@ function drawChart() {
 
   
   chartLarge.draw(data, options);
-  chartMedium.draw(data, options);
+  // chartMedium.draw(data, options);
   chartSmall.draw(data, options);
 
 
