@@ -190,7 +190,7 @@
 	margin-top:36vw;
 }
 
-#submitAnsBtn:hover, #NextQuesBtn:hover{
+#submitAnsBtn:hover, #NextQuesBtn:hover, #NextQuesBtnRv:hover{
 	background-position: right center;
 }
 
@@ -294,7 +294,7 @@
 	background-position: right center;
 }
 
-#NextQuesBtnPh {
+#NextQuesBtnPh, #NextQuesBtnRvPh {
 	font-family: 'Alegreya', serif;
 	margin-left: 0vw;
 	font-size: 5vw;
@@ -331,12 +331,16 @@
 
 	#quesNum, #quesNumRv, #Qlevel {
 		margin-left: 2vw;
-		margin-top: 22vw;
+		margin-top: 10vw;
 		font-weight: 900;
 		margin-bottom: 5vw;
 		color: orange
 	}
-			
+	
+	#quesNumRv{
+		margin-top: 23vw;
+	}
+	
 	#questionWithImg {
 		margin-left: 4vw;
 		margin-top: 10vw;
@@ -397,7 +401,7 @@
 		font-size: 5vw;
 	}
 	
-	#NextQuesBtn, #submitAnsBtn, #submitAnsBtnPh, #NextQuesBtnPh {
+	#NextQuesBtn, #submitAnsBtn, #submitAnsBtnPh, #NextQuesBtnPh, #NextQuesBtnRv, #NextQuesBtnRvPh {
 		font-family: 'Alegreya', serif;
 		margin-left: 0vw;
 		font-size: 5vw;
@@ -709,7 +713,7 @@
 		font-size: 5vw;
 	}
 	
-	#NextQuesBtn, #submitAnsBtn, #submitAnsBtnPh, #NextQuesBtnPh {
+	#NextQuesBtn, #submitAnsBtn, #submitAnsBtnPh, #NextQuesBtnPh, #NextQuesBtnRvPh, #NextQuesBtnRv {
 		font-family: 'Alegreya', serif;
 		margin-left: 0vw;
 		font-size: 5vw;

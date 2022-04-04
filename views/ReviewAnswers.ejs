@@ -162,8 +162,8 @@
   <input class="w3-hide" type="text" id="Price2" placeholder="Price" name="Price" value=<%=Price%>>
 
   <!-- newly added-->
-  <button type="submit" class="btn w3-pink w3-hover-black w3-button w3-hide-small" id="NextQuesBtnRv">Review Next</button>
-  <button type="submit" class="btn w3-pink w3-hover-black w3-button w3-hide-large w3-hide-medium w3-bottom" id="NextQuesBtn">Review Next</button>
+  <button type="submit" style="display:none" class= "w3-pink w3-hover-blue w3-button" id="NextQuesBtnRv">Review Next</button>
+  <button type="submit" style="display:none" class="w3-pink w3-hover-blue w3-button w3-bottom" id="NextQuesBtnRvPh">Review Next</button>
 
 </form>
 
@@ -450,9 +450,23 @@
             var correctSol = document.getElementById("CorrectOptionDB").value;
             var submittedInp = document.getElementById("submittedInput").value;
 
-            console.log("submittedInp", submittedInp);
+            // console.log("submittedInp", submittedInp);
             var ExpImgFlag = document.getElementById("AnsFlag").value;
 
+
+            if($(window).width()<=768) {
+              $("#NextQuesBtnRvPh").show();
+            }
+            else if($(window).width() > 768) {    //then laptop or tablet
+              if(window.innerHeight > window.innerWidth){       //if tablet
+                $("#NextQuesBtnRvPh").show();
+              }
+              else 
+                $("#NextQuesBtnRv").show();        //else laptop
+            }
+
+
+            
             if(submittedInp == "A")
               $("#optionsA").css("background-color", "#FF6868");
             else if (submittedInp == "B")
