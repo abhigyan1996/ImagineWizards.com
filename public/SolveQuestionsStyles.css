@@ -185,6 +185,11 @@
 	margin-left: 74vw;
 }
 
+#NextQuesBtn{
+	margin-left:74vw;
+	margin-top:36vw;
+}
+
 #submitAnsBtn:hover, #NextQuesBtn:hover{
 	background-position: right center;
 }

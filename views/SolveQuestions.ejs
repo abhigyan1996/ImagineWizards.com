@@ -158,8 +158,8 @@
 
 
   <!-- newly added-->      
-    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-small" id="submitAnsBtn"> Skip Question </button>        
-    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-bottom w3-hide-large w3-hide-medium " id="submitAnsBtnPh"> Skip Question </button>        
+    <button type="submit" class="btn w3-pink w3-hover-blue w3-button" id="submitAnsBtn"> Skip Question </button>        
+    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-bottom" id="submitAnsBtnPh"> Skip Question </button>
 
   </form>
 
@@ -176,8 +176,8 @@
   <input class="w3-hide" type="text" id="Price2" placeholder="Price" name="Price" value=<%=Price%>>
 
   <!-- newly added-->
-  <button type="submit" class="w3-button  w3-pink w3-hover-blue w3-hide-small" id="NextQuesBtn">
-  <button type="submit" class="w3-button w3-pink w3-hover-blue w3-hide-large w3-hide-medium w3-bottom" id="NextQuesBtnPh"> 
+  <button type="submit" class="w3-button  w3-pink w3-hover-blue" id="NextQuesBtn">
+  <button type="submit" class="w3-button w3-pink w3-hover-blue w3-bottom" id="NextQuesBtnPh"> 
     
   </button>
 </form>
@@ -471,8 +471,15 @@
         document.getElementById("submitAnsBtn").innerHTML = "Skip Question";
         document.getElementById("submitAnsBtnPh").innerHTML = "Skip Question";
 
-        $("#submitAnsBtn").show();
-        $("#submitAnsBtnPh").show();
+        if($(window).width()<=768) {
+              $("#submitAnsBtn").hide();
+              $("#submitAnsBtnPh").show();
+            }
+            else {
+              $("#submitAnsBtnPh").hide();
+              $("#submitAnsBtn").show();
+            }
+
         
         $("#NextQuesBtn").hide();
         $("#NextQuesBtnPh").hide();
@@ -631,10 +638,17 @@
             document.getElementById("NextQuesBtn").innerHTML = "GO TO NEXT";
             document.getElementById("NextQuesBtnPh").innerHTML = "GO TO NEXT";
 
-            $("#NextQuesBtn").css("margin-left", "74vw");
-            $("#NextQuesBtn").css("margin-top", "36vw");
+            // $("#NextQuesBtn").css("margin-left", "74vw");
+            // $("#NextQuesBtn").css("margin-top", "36vw");
 
-            $("#NextQuesBtn").show();
+            if($(window).width()<=768) {
+              $("#NextQuesBtn").hide();
+              $("#NextQuesBtnPh").show();
+            }
+            else {
+              $("#NextQuesBtnPh").hide();
+              $("#NextQuesBtn").show();
+            }
 
             // console.log("submittedInp", submittedInp);
             var ExpImgFlag = document.getElementById("AnsFlag").value;
