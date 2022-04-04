@@ -191,9 +191,9 @@
 
     <div id = "PieCharts">  
 
-          <div class="w3-hide-small w3-hide-medium" id="piechartQuestionsLarge"></div>
+          <div id="piechartQuestionsLarge"></div>
           <!-- <div class="w3-hide-small w3-hide-large" id="piechartQuestionsMedium"></div> -->
-          <div class="w3-hide-large" id="piechartQuestionsSmall"></div>
+          <!-- <div class="w3-hide-large" id="piechartQuestionsSmall"></div> -->
 
           <!-- <div id="piechartLevel"></div> -->
     </div>
@@ -492,7 +492,7 @@ function drawChart() {
   
   // var chartMedium = new google.visualization.PieChart(document.getElementById('piechartQuestionsMedium'));
 
-  var chartSmall = new google.visualization.PieChart(document.getElementById('piechartQuestionsSmall'));
+  // var chartSmall = new google.visualization.PieChart(document.getElementById('piechartQuestionsSmall'));
 
 
  // var chart2 = new google.visualization.PieChart(document.getElementById('piechartLevel'));
@@ -500,7 +500,7 @@ function drawChart() {
   
   chartLarge.draw(data, options);
   // chartMedium.draw(data, options);
-  chartSmall.draw(data, options);
+  // chartSmall.draw(data, options);
 
 
   //chart2.draw(data,options);

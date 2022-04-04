@@ -214,19 +214,20 @@
 	position: absolute;
 }
 
-#piechartQuestionsMedium {
+/* #piechartQuestionsMedium {
 	width: 90vw;
 	height: 70vw;
 	margin-top: 0vw;
 	position: absolute;
-}
+} */
 
-#piechartQuestionsSmall {
+/* #piechartQuestionsSmall {
 	width: 100vw;
 	height: 70vw;
 	margin-top: 2vw;
 	margin-left: 0vw;
-}
+} */
+
 
 #totalQCard, #CorrectQCard, #WrongQCard, #SkippedQCard, #UnattemptedQCard {
 	margin-left: 70vw;
@@ -615,11 +616,18 @@ table {
 			text-align: center;
 		}
 
+		#piechartQuestionsLarge {
+			width: 100vw;
+			height: 70vw;
+			margin-top: 2vw;
+			margin-left: 0vw;
+		}
+
 		#PerformanceCountLarge {
 			display: flex;
 			flex-wrap: wrap;
 			margin-left: 2vw;
-			margin-top: 0vw;
+			margin-top: 90vw;
 	   }
 
 
