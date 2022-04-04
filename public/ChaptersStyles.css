@@ -1,14 +1,20 @@
 #SubjectName {
 	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-	margin-top: 6vw;
+	margin-top: 5vw;
 	/*font-family: 'Source Serif Pro';*/
 	font-size: 5vw;
 	text-transform: uppercase;
 	color:white;
 	padding: 7vw;
 	padding-bottom: 12vw;
-	background-color: black;
+	/* background-color: black; */
 }	
+
+#graphicBack{
+	background-color: black;
+	height: 27vw;
+	width:100vw;
+}
 
 #IndicatorTxt {
 	display: inline-block;
@@ -29,17 +35,20 @@
 
 #colorId {
 	margin-left: 23vw;
-	margin-top: -1vw;
+	margin-top: 14vw;
 	margin-bottom: 0.5vw;
 	width: 77vw;
 	font-family: 'Times New Roman', Times, serif;
+	position: absolute;
 }
 
 #colorId2 {
 	margin-left: 0vw;
-	margin-bottom: 2vw;
+	/* margin-bottom: 2vw; */
 	width: 100vw;
+	margin-top: 16.5vw;
 	font-family: 'Times New Roman', Times, serif;
+	position: absolute;
 }
 
 #IndicatorTxtC {
@@ -194,15 +203,14 @@
 
 #chapterConceptCard {
 	margin-bottom: 10vw;
-	margin-top: 0vw;
+	margin-top: 19vw;
 	margin-left: 0vw;
 	width: 100vw;
 	min-width: 100vw;
 	max-width: 100vw;
 	overflow: hidden;
 	white-space: nowrap;
-	margin-bottom: 10vw;
-	white-space: nowrap;
+	overflow: hidden;
 }
 
 #whiteStrip{
@@ -367,7 +375,7 @@
 	  
 	#chapterConceptCard {
 		margin-bottom: 10vw;
-		margin-top: 0vw;
+		margin-top: 65vw;
 		margin-left: 0vw;
 		width: 96vw;
 		overflow: hidden;
@@ -448,6 +456,11 @@ figure {
 .row {
 	margin-bottom: 1.5em;
 }
+
+#graphicBack{
+	margin-bottom: -20vw;
+}
+
 @keyframes expand {
 	from {width: 0%;}
 	to {width: 100%;}
@@ -546,14 +559,17 @@ figure {
 }
 .graphic {
 	padding-left: 0px;
-	margin-top: -30vw;
+	margin-top: -35vw;
 	margin-left: 10vw;
 	margin-right: 10vw;
 }
 
-.block {
+/* .block {
 	height: 7vw;
 	font-size: .75em;
+} */
+.row {
+	margin-bottom: 1.5em;
 }
 
 #IndicatorTxt {
@@ -564,7 +580,7 @@ figure {
 
 #colorId {
 	margin-left: 5vw;
-	margin-top: 0vw;
+	margin-top: 45vw;
 	width:95vw;
 	font-family: 'Times New Roman', Times, serif;
 }
@@ -573,7 +589,7 @@ figure {
 	margin-left: 0vw;
 	margin-bottom: 6vw;
 	width: 100vw;
-	margin-top: 1vw;
+	margin-top: 52.5vw;
 	font-family: 'Times New Roman', Times, serif;
 }
 
