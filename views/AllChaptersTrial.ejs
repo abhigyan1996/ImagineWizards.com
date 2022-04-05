@@ -122,8 +122,8 @@
     <button type="submit"  class="w3-blue btn btn-default">Submit</button>
   </form>
 
-    <div class="w3-card" id="whiteStrip">Welcome to class</div>
-    <div class="w3-center glow" id="SubjectName"><%=CourseId%> </div>
+    <!-- <div class="w3-card" id="whiteStrip">Welcome to class</div>
+    <div class="w3-center glow" id="SubjectName"><%=CourseId%> </div> -->
 
     
     <form class="w3-hide">
@@ -133,9 +133,11 @@
       <input type="text" id="totalLength" value=<%=TotalQuestionLength%>>
   </form>
   
-    <figure>
+  
+<div id="graphicBack">
+  <div class="w3-center glow" id="SubjectName"><%=CourseId%></div>    
+  <figure>
       <div class="graphic">
-    
         <div class="row">
           <div class="chart">
             <span class="block" title="Correct">
@@ -154,12 +156,11 @@
                <span id="unattemptedPercent" class="value w3-hide"></span>
                <span id="unattemptedPercentDisplay"></span>
             </span>
-          
           </div>
         </div>
-      </div>
-    
+      </div>    
     </figure>
+</div>
 
     <div id="colorId"> 
       <div id="IndicatorTxt"> <span style="color:green">&#9679</span> <span style="color:white">Correct</span> </div>

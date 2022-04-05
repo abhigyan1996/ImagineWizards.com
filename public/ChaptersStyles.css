@@ -16,6 +16,27 @@
 	width:100vw;
 }
 
+#DashboardBtn {
+	font-family: 'Alegreya', serif;
+	font-size: 1.45vw;
+	margin-left: 82vw;
+	position: absolute;
+	margin-top: -22.5vw;
+	border-radius: 0.5vw;
+	background-size: 300% 300%;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+	background-image: linear-gradient(to right, hsla(313, 88%, 54%, 0.452) 0%, #3F76FF 50%, hsla(313, 88%, 54%, 0.452) 100%);
+	transition: 0.5s;
+	color: white;
+	padding-top: 1vw;
+	padding-bottom: 1vw;
+	text-transform: uppercase;
+}
+
+#DashboardBtn:hover{
+	background-position: right center;
+}
+
 #IndicatorTxt {
 	display: inline-block;
 	font-size: 1.5vw;
@@ -375,7 +396,7 @@
 	  
 	#chapterConceptCard {
 		margin-bottom: 10vw;
-		margin-top: 65vw;
+		margin-top: 68vw;
 		margin-left: 0vw;
 		width: 96vw;
 		overflow: hidden;

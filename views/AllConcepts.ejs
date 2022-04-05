@@ -119,7 +119,7 @@
     <button type="submit"  class="w3-blue btn btn-default">Submit</button>
   </form>
 
-    <div class="w3-center glow" id="SubjectName"></div>
+    <!-- <div class="w3-center glow" id="SubjectName"></div> -->
 
 
       <div id="TopmostChapName" class="w3-hide"><%=ChapterId%></div> 
@@ -132,9 +132,11 @@
         <input type="text" id="totalLength" value=<%=TotalQuestionLength%>>
     </form>
 
-      <figure>
-        <div class="graphic">
       
+<div id="graphicBack">
+  <div class="w3-center glow" id="SubjectName"></div>    
+    <figure>
+        <div class="graphic">
           <div class="row">
             <div class="chart">
               <span class="block" title="Correct">
@@ -152,10 +154,10 @@
             
             </div>
           </div>
-        </div>
-      
+        </div>    
       </figure>
-  
+  </div>
+
       <div id="colorId"> 
           <div id="IndicatorTxt"> <span style="color:green">&#9679</span> <span style="color:white">Correct</span> </div>
           <div id="IndicatorTxt"> <span style="color:#CD3615">&#9679</span> <span style="color:white">Wrong</span> </div>
@@ -216,8 +218,17 @@
     <button type="submit" id="submitCourse">Submit</button>
 </form> 
 
+<!-- Form For Dashboard -->
+
+
+
 
 </div>
+
+
+
+
+
   </body>
 
 
@@ -347,7 +358,7 @@ $('.counter').each(function () {
 
   <script>
     var FinalPrice = document.getElementById('Price').value;
-    console.log('FinalPrice',FinalPrice);
+    // console.log('FinalPrice',FinalPrice);
 
     if(screen.width<=768) {
       document.getElementById('upgradeBtn').innerHTML = "Upgrade";

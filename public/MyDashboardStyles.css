@@ -1,0 +1,15 @@
+.body-content {
+  display: flex;
+}
+
+#chart {
+  flex: 1;
+  margin-top: 10vw;
+  margin-left: 5vw;
+  border-radius: 0.5vw;
+}
+
+#refresh{
+  position: absolute;
+  margin-left: 5vw;
+}

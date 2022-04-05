@@ -20,8 +20,8 @@ const Config=require("../config/config");
 // router.get('/insertJwtforALLUsers', async function(req,res){
 //   var User=await USER_PROFILE_COLLECTION.find({}).lean();
 //   for(let i=0;i<User.length;i++){
-//     let UserTokenPayload={Username:User[i].USERNAME}; 
-//     let UserJwtToken=jwt.sign(UserTokenPayload.Username,Config.JwtTokenKey); 
+//     let UserTokenPayload={username:User[i].USERNAME}; 
+//     let UserJwtToken=jwt.sign(UserTokenPayload,Config.JwtTokenKey); 
 //     await USER_PROFILE_COLLECTION.findOneAndUpdate({USERNAME:User[i].USERNAME},
 //         {$set: 
 //           {TOKEN: UserJwtToken}});
@@ -121,8 +121,8 @@ const Config=require("../config/config");
        try
        {
         
-       let UserTokenPayload={Username:DBData.usrname}; 
-       let UserJwtToken=jwt.sign(UserTokenPayload.Username,Config.JwtTokenKey); 
+       let UserTokenPayload={username:DBData.usrname}; 
+       let UserJwtToken=jwt.sign(UserTokenPayload,Config.JwtTokenKey); 
        let objUser=new USER_PROFILE_COLLECTION({
          USERNAME:DBData.usrname,
          PASSWORD:generateHash(DBData.pwd),

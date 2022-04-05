@@ -1349,7 +1349,7 @@ router.post('/ConceptPerformance', IsLoggedIn, async function(req,res,next) {
              for(let i=0;i<TotalQuestionList.length;i++)
              {
                 allQuestionsScoreList.push(parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]))
-                console.log("i",allQuestionsScoreList[i]);
+                // console.log("i",allQuestionsScoreList[i]);
              }
              ///////////////////////////////////////
         
@@ -2057,6 +2057,38 @@ catch(err) {
          res.render('error');
      }
 });
+
+
+
+
+router.post('/MyDashboard', IsLoggedIn, async function(req, res, next) {
+
+    try{
+        if(!(req.body.Class && req.body.Course && req.body.TotalQuestionLength && req.body.CorrectQuestionLength && req.body.WrongQuestionLength && req.body.SkipQuestionLength && req.body.username)) {
+            res.render('error');
+            return;
+        }
+        let user = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
+        let bearerToken = user.TOKEN;
+
+        res.render('MyDashboard',{TotalQuestions:req.body.TotalQuestionLength,CorrectQuestions:req.body.CorrectQuestionLength, 
+            SkippedQuestions: req.body.SkipQuestionLength, WrongQuestions: req.body.WrongQuestionLength, Email: req.user.EMAIL,
+            Course:req.body.Course, Class:req.body.Class, username:req.body.username, bearerToken: bearerToken});
+
+    }
+    
+    catch(err) {
+            res.render('error');
+
+        }
+    });
+
+
+
+
+
+
+
 
 
 //THIS API IS THE BASE, IS NOT CALLED, BUT WON"T BE REMOVED FROM HERE

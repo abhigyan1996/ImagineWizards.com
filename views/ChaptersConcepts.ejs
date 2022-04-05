@@ -104,6 +104,7 @@
     <input type="text" id="Course" placeholder="Course" name="CourseId" value=<%=CourseId%>>
     <input type="text" id="Price" name = "Price" placeholder="Price" value=<%=Price%>>
     <input type="text" id="ChapNum" placeholder="ChapNum" name="ChapNum">>
+    <input class="w3-hide" name="username" type="text" value=<%=username%>>
 
     <button type="submit"  class="w3-blue btn btn-default">Submit</button>
   </form>
@@ -123,6 +124,7 @@
 
 <div id="graphicBack">
   <div class="w3-center glow" id="SubjectName"><%=CourseId%> </div>
+  <div class="w3-button w3-pink w3-hover-blue" id="DashboardBtn">View Dashboard</div>
   <figure >
       <div class="graphic">  
         <div class="row">
@@ -198,6 +200,20 @@
     <input type="text" id="totalConcepts" value=<%=TotalConcepts%>>
   </form>
 
+
+  <form class="w3-hide" id="DashboardForm" action="/QuarkXAcademy/MyDashboard" method="POST">
+    <input type="text" id="correctLengthDash" name="CorrectQuestionLength" value=<%=CorrectQuestionLength%>>
+    <input type="text" id="wrongLengthDash" name="WrongQuestionLength" value=<%=WrongQuestionLength%>>
+    <input type="text" id="skipLengthDash" name="SkipQuestionLength" value=<%=SkipQuestionLength%>>
+    <input type="text" id="totalLengthDash" name="TotalQuestionLength" value=<%=TotalQuestionLength%>>
+    <input type="text" id="ClassIdDash" name="Class" value=<%=ClassId%>>
+    <input type="text" id="CourseIdDash" name="Course" value=<%=CourseId%>>
+    <input class="w3-hide" name="username" type="text" value=<%=username%>>
+
+    <button type="submit"  class="w3-blue btn btn-default">Submit</button>
+</form>
+
+
 </div>
 </body>
 
@@ -205,10 +221,18 @@
 
 <script>
   let lis = document.getElementById('conceptBlocks').getElementsByTagName('li#conceptName');
-  console.log(lis);
+  // console.log(lis);
 </script>
 
 <script>
+       
+  $(document).ready(function(){
+  // Add smooth scrolling to all links
+    $("#DashboardBtn").on('click', function(event) {
+      $("#DashboardForm").submit();
+    })
+  })
+
       var ConceptString = $("#conceptBlocks li #conceptName").text();
       var res = ConceptString.split(",");
     

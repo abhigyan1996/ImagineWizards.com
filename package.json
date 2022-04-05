@@ -9,6 +9,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@mongodb-js/charts-embed-dom": "^2.2.0",
 		"axios": "^0.20.0",
 		"bcrypt": "^5.0.0",
 		"cookie-parser": "^1.4.5",
