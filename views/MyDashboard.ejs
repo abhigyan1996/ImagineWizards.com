@@ -108,12 +108,18 @@
 
 <div onclick="closeSlideMenu()">
 
-  <div class="chart-container">
+<div class="w3-row" id="allCharts">
+  <div  class="w3-half w3-container chart-container">
     <div class="chart" id="chart"></div>
+    <button class="w3-button w3-green" id="refresh">Refresh this chart</button>
   </div>
-    <!-- <div class="chart" id="chart1Ph"></div> -->
+  <div class="w3-half w3-container chart-container2">
+    <div class="chart" id="chart2"></div>
+    <button class="w3-button w3-green" id="refresh2">Refresh this chart</button>
+  </div>
+</div>
 
-  <button class="w3-button w3-green" id="refresh">Refresh this chart</button>
+    <!-- <div class="chart" id="chart1Ph"></div> -->
 
   <div class="w3-hide" id="bearerToken"><%=bearerToken%></div>  
   <div class="w3-hide" id="EmailId"><%=Email%></div>  
@@ -167,8 +173,56 @@ async function renderCharts() {
 renderCharts().catch((e) => console.log(e));
 
 
-
 document.getElementById('refresh').addEventListener('click', () => {
+  chart1.refresh();
+})
+
+</script>
+
+
+<script type="text/javascript">
+  //import { ChartsEmbedSDK} from "/@mongodb-js/charts-embed-dom";
+  
+  const ChartsEmbedSDK2 = window.ChartsEmbedSDK;
+  
+  // var bearerToken = document.getElementById("bearerToken");
+  var EmailId = document.getElementById("EmailId").innerText;
+  
+  console.log("Email", EmailId);
+  
+  const sdk2 = new ChartsEmbedSDK2({
+    baseUrl: "https://charts.mongodb.com/charts-project-0-qqgxi", // Optional: ~REPLACE~ with the Base URL from your Embed Chart dialog
+    // getUserToken: async function() {
+    //     var bearerToken = document.getElementById("bearerToken");
+    //     console.log(bearerToken);
+    //     return bearerToken;
+    // }
+      // bearerToken:bearerToken,
+      // filter: { "CHAPTER_NUM": { "$gt": 6 } }
+      // filter: { "CHAPTER_NUM": 1 },
+      // filter: { "EMAIL": "gaurav.kohli.1796@gmail.com" }
+      filter: { "EMAIL": EmailId }
+  });
+  
+  
+
+//Chart 2
+const chart2 = sdk2.createChart({
+chartId: "624dae10-ccf6-46c3-81ea-35949d425675", // Optional: ~REPLACE~ with the Chart ID from your Embed Chart dialog
+// height: "35vw",
+// width: "40vw",
+theme: "dark"
+});
+
+
+async function renderCharts() {
+  await chart2.render(document.getElementById("chart2"));
+}
+
+// renderCharts().catch((e) => window.alert(e.message));
+renderCharts().catch((e) => console.log(e));
+
+document.getElementById('refresh2').addEventListener('click', () => {
   chart1.refresh();
 })
 
