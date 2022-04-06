@@ -108,6 +108,9 @@
 
 <div onclick="closeSlideMenu()">
 
+
+  <div class="w3-center glow" id="myDashTxt">My Dashboard</div>
+
 <div class="w3-row" id="allCharts">
   <div  class="w3-half w3-container chart-container">
     <div class="chart" id="chart"></div>
@@ -117,9 +120,15 @@
     <div class="chart" id="chart2"></div>
     <button class="w3-button w3-green" id="refresh2">Refresh this chart</button>
   </div>
+  <div class="w3-half w3-container chart-container3">
+    <div class="chart" id="chart3"> </div>
+    <button class="w3-button w3-green" id="refresh3">Refresh this chart</button>
+  </div>
 </div>
 
-    <!-- <div class="chart" id="chart1Ph"></div> -->
+
+
+<!-- <div class="chart" id="chart1Ph"></div> -->
 
   <div class="w3-hide" id="bearerToken"><%=bearerToken%></div>  
   <div class="w3-hide" id="EmailId"><%=Email%></div>  
@@ -161,7 +170,7 @@ const chart1 = sdk.createChart({
 chartId: "62467466-a9de-4f9c-88d9-62dc6ec28b96", // Optional: ~REPLACE~ with the Chart ID from your Embed Chart dialog
 // height: "35vw",
 // width: "40vw",
-theme: "dark"
+theme: "dark",
 });
 
 
@@ -180,6 +189,7 @@ document.getElementById('refresh').addEventListener('click', () => {
 </script>
 
 
+<!-- Second chart -->
 <script type="text/javascript">
   //import { ChartsEmbedSDK} from "/@mongodb-js/charts-embed-dom";
   
@@ -204,9 +214,6 @@ document.getElementById('refresh').addEventListener('click', () => {
       filter: { "EMAIL": EmailId }
   });
   
-  
-
-//Chart 2
 const chart2 = sdk2.createChart({
 chartId: "624dae10-ccf6-46c3-81ea-35949d425675", // Optional: ~REPLACE~ with the Chart ID from your Embed Chart dialog
 // height: "35vw",
@@ -223,7 +230,55 @@ async function renderCharts() {
 renderCharts().catch((e) => console.log(e));
 
 document.getElementById('refresh2').addEventListener('click', () => {
-  chart1.refresh();
+  chart2.refresh();
+})
+
+</script>
+
+
+
+<!-- Third chart -->
+<script type="text/javascript">
+  //import { ChartsEmbedSDK} from "/@mongodb-js/charts-embed-dom";
+  
+  const ChartsEmbedSDK3 = window.ChartsEmbedSDK;
+  
+  // var bearerToken = document.getElementById("bearerToken");
+  var EmailId = document.getElementById("EmailId").innerText;
+  
+  console.log("Email", EmailId);
+  
+  const sdk3 = new ChartsEmbedSDK3({
+    baseUrl: "https://charts.mongodb.com/charts-project-0-qqgxi", // Optional: ~REPLACE~ with the Base URL from your Embed Chart dialog
+    // getUserToken: async function() {
+    //     var bearerToken = document.getElementById("bearerToken");
+    //     console.log(bearerToken);
+    //     return bearerToken;
+    // }
+      // bearerToken:bearerToken,
+      // filter: { "CHAPTER_NUM": { "$gt": 6 } }
+      // filter: { "CHAPTER_NUM": 1 },
+      // filter: { "EMAIL": "gaurav.kohli.1796@gmail.com" }
+      filter: { "EMAIL": EmailId }
+  });
+  
+const chart3 = sdk3.createChart({
+chartId: "cafabe44-7264-4f6e-8fd0-328f35ac9bad", // Optional: ~REPLACE~ with the Chart ID from your Embed Chart dialog
+// height: "35vw",
+// width: "40vw",
+theme: "dark"
+});
+
+
+async function renderCharts() {
+  await chart3.render(document.getElementById("chart3"));
+}
+
+// renderCharts().catch((e) => window.alert(e.message));
+renderCharts().catch((e) => console.log(e));
+
+document.getElementById('refresh3').addEventListener('click', () => {
+  chart3.refresh3();
 })
 
 </script>
