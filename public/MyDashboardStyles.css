@@ -13,3 +13,34 @@
   position: absolute;
   margin-left: 5vw;
 }
+
+
+#chart {
+  flex: 1;
+  margin-top: 10vw;
+  margin-left: 5vw;
+  border-radius: 0.5vw;
+  height:35vw;
+}
+
+.chart-container{
+  width: 40vw;
+}
+
+@media only screen and (max-width:768px){
+
+#chart {
+  margin-left: 2vw;
+  margin-top: 30vw;
+  height:100vw;
+}
+
+.chart-container{
+  width: 96vw;
+}
+
+#refresh{
+  margin-left: 2vw;
+}
+
+}

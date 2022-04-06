@@ -314,6 +314,15 @@
 
 @media only screen and (max-width:768px){
 
+	#DashboardBtn {
+		font-family: 'Alegreya', serif;
+		font-size: 4vw;
+		margin-left: 65vw;
+		position: absolute;
+		margin-top: -72vw;
+		border-radius: 2vw;
+	}
+
 	#QuarksLogo{
 		margin-left: -4vw;
 		height: 12.5vw;

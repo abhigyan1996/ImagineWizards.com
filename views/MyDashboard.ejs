@@ -108,9 +108,12 @@
 
 <div onclick="closeSlideMenu()">
 
-  <div class="chart" id="chart"></div>
-  <button class="w3-button w3-green" id="refresh">Refresh this chart</button>
+  <div class="chart-container">
+    <div class="chart" id="chart"></div>
+  </div>
+    <!-- <div class="chart" id="chart1Ph"></div> -->
 
+  <button class="w3-button w3-green" id="refresh">Refresh this chart</button>
 
   <div class="w3-hide" id="bearerToken"><%=bearerToken%></div>  
   <div class="w3-hide" id="EmailId"><%=Email%></div>  
@@ -147,11 +150,12 @@ const sdk = new ChartsEmbedSDK({
     filter: { "EMAIL": EmailId }
 });
 
+
 const chart1 = sdk.createChart({
-  chartId: "62467466-a9de-4f9c-88d9-62dc6ec28b96", // Optional: ~REPLACE~ with the Chart ID from your Embed Chart dialog
-  height: "35vw",
-  width: "40vw",
-  theme: "dark"
+chartId: "62467466-a9de-4f9c-88d9-62dc6ec28b96", // Optional: ~REPLACE~ with the Chart ID from your Embed Chart dialog
+// height: "35vw",
+// width: "40vw",
+theme: "dark"
 });
 
 

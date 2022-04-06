@@ -228,6 +228,10 @@
        
   $(document).ready(function(){
   // Add smooth scrolling to all links
+  if($(window).width()<=768) {
+      document.getElementById("DashboardBtn").innerHTML = "Dashboard";
+    }
+
     $("#DashboardBtn").on('click', function(event) {
       $("#DashboardForm").submit();
     })
