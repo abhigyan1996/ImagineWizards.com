@@ -61,7 +61,7 @@
 	  }
 	  else {
 		document.getElementById('side-menu').style.width = '25vw';
-		document.getElementById('main').style.marginLeft = '25vw';
+		document.getElementById('main').style.marginLeft = '15vw';
 		document.getElementById('wholebody').style = '1';
 	  }
 	}
@@ -76,7 +76,7 @@
 
 <script src="/../NewDashboard.js"> </script>
 
-<body onload="move()" class="w3-black" style="width:100vw; overflow: hidden;">
+<body onload="move()" class="w3-black" style="width:100vw;">
 
 
 <section  id="top-navbar">  
@@ -91,7 +91,7 @@
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-  <div class="w3-bar w3-white" id="myNavbar" style="box-shadow: 3px 3px 3px #A8A8A8 ; width:100vw; max-width:100vw; min-width:100vw;">
+  <div class="w3-bar w3-white" id="myNavbar" style="box-shadow: 3px 3px 3px #A8A8A8 ; width:100vw; position:absolute; margin-left: 0vw;">
     <a id="iconBar" class="w3-bar-item w3-left w3-white" href="javascript:void(0);" onclick="openSlideMenu()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i>
     </a>
@@ -114,8 +114,13 @@
   <input name="CorrectQuestions" id="CorrectQuestions" value=<%=CorrectQuestions%> type="text">
   <input name="SkippedQuestions" id="SkippedQuestions" value=<%=SkippedQuestions%> type="text">
   <input name="WrongQuestions" id="WrongQuestions" value=<%=WrongQuestions%> type="text">
+
+  <input name="Class" id="Class" value=<%=Class%> type="text">
+  <input name="Course" id="Course" value=<%=Course%> type="text">
+
 </form>
 
+<div id ="allDiv">
 
 <div class="w3-center glow" id="myDashTxt">My Dashboard</div>
 
@@ -138,7 +143,7 @@
       <div id="TotalAccCount"></div><br>
     </div>
   </div>
-  <div  class="w3-quarter w3-container w3-center myStatsBox" id="totalAccDiv">  
+  <div  class="w3-quarter w3-container w3-center myStatsBox" id="totalRDiv">  
     <div class="w3-card w3-red" id="outerDiv"><br>
       <div id="totalAccTxt">Rank</div>
       <div id="TotalAccCount">1</div><br>
@@ -147,20 +152,22 @@
 </div>
 
 <div class="w3-row" id="allCharts">
-  <div  class="w3-half w3-container chart-container">
+  <div  class="w3-half w3-container">
     <div class="chart" id="chart"></div>
     <button class="w3-button w3-green" id="refresh">Refresh this chart</button>
   </div>
-  <div class="w3-half w3-container chart-container2">
+  <div class="w3-half w3-container">
     <div class="chart" id="chart2"></div>
     <button class="w3-button w3-green" id="refresh2">Refresh this chart</button>
   </div>
-  <div class="w3-half w3-container chart-container3">
+  <div class="w3-half w3-container">
     <div class="chart" id="chart3"> </div>
     <button class="w3-button w3-green" id="refresh3">Refresh this chart</button>
   </div>
 </div>
 
+
+</div> <!-- Closing all div -->
 
 
 <!-- <div class="chart" id="chart1Ph"></div> -->
@@ -205,8 +212,9 @@ const ChartsEmbedSDK = window.ChartsEmbedSDK;
 
 // var bearerToken = document.getElementById("bearerToken");
 var EmailId = document.getElementById("EmailId").innerText;
+var Class = document.getElementById("Class").value;
+var Course = document.getElementById("Course").value;
 
-console.log("Email", EmailId);
 
 const sdk = new ChartsEmbedSDK({
   baseUrl: "https://charts.mongodb.com/charts-project-0-qqgxi", // Optional: ~REPLACE~ with the Base URL from your Embed Chart dialog
@@ -219,7 +227,12 @@ const sdk = new ChartsEmbedSDK({
     // filter: { "CHAPTER_NUM": { "$gt": 6 } }
     // filter: { "CHAPTER_NUM": 1 },
     // filter: { "EMAIL": "gaurav.kohli.1796@gmail.com" }
-    filter: { "EMAIL": EmailId }
+  
+    filter: { "EMAIL": EmailId, "CLASS_ID": Class, "COURSE_ID": Course },
+  
+    // filter: { "EMAIL": EmailId },
+    // filter: { "CLASS_ID": Class },
+    // filter: { "COURSE_ID": Course }
 });
 
 
@@ -254,8 +267,8 @@ document.getElementById('refresh').addEventListener('click', () => {
   
   // var bearerToken = document.getElementById("bearerToken");
   var EmailId = document.getElementById("EmailId").innerText;
-  
-  console.log("Email", EmailId);
+  var Class = document.getElementById("Class").value;
+  var Course = document.getElementById("Course").value;
   
   const sdk2 = new ChartsEmbedSDK2({
     baseUrl: "https://charts.mongodb.com/charts-project-0-qqgxi", // Optional: ~REPLACE~ with the Base URL from your Embed Chart dialog
@@ -268,7 +281,9 @@ document.getElementById('refresh').addEventListener('click', () => {
       // filter: { "CHAPTER_NUM": { "$gt": 6 } }
       // filter: { "CHAPTER_NUM": 1 },
       // filter: { "EMAIL": "gaurav.kohli.1796@gmail.com" }
-      filter: { "EMAIL": EmailId }
+      filter: { "EMAIL": EmailId, "CLASS_ID": Class, "COURSE_ID": Course },
+      // filter: { "CLASS_ID": Class },
+      // filter: { "COURSE_ID": Course }
   });
   
 const chart2 = sdk2.createChart({
@@ -302,8 +317,8 @@ document.getElementById('refresh2').addEventListener('click', () => {
   
   // var bearerToken = document.getElementById("bearerToken");
   var EmailId = document.getElementById("EmailId").innerText;
-  
-  console.log("Email", EmailId);
+  var Class = document.getElementById("Class").value;
+  var Course = document.getElementById("Course").value;
   
   const sdk3 = new ChartsEmbedSDK3({
     baseUrl: "https://charts.mongodb.com/charts-project-0-qqgxi", // Optional: ~REPLACE~ with the Base URL from your Embed Chart dialog
@@ -316,11 +331,14 @@ document.getElementById('refresh2').addEventListener('click', () => {
       // filter: { "CHAPTER_NUM": { "$gt": 6 } }
       // filter: { "CHAPTER_NUM": 1 },
       // filter: { "EMAIL": "gaurav.kohli.1796@gmail.com" }
-      filter: { "EMAIL": EmailId }
+      // filter: { "EMAIL": EmailId },
+      filter: { "EMAIL": EmailId, "CLASS_ID": Class, "COURSE_ID": Course },
+
+
   });
   
 const chart3 = sdk3.createChart({
-chartId: "cafabe44-7264-4f6e-8fd0-328f35ac9bad", // Optional: ~REPLACE~ with the Chart ID from your Embed Chart dialog
+chartId: "0ca11d1b-ef23-4b69-b9cf-2d399f164a53", // Optional: ~REPLACE~ with the Chart ID from your Embed Chart dialog
 // height: "35vw",
 // width: "40vw",
 theme: "dark"

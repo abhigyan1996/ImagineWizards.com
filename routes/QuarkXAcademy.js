@@ -2073,80 +2073,99 @@ router.post('/MyDashboard', IsLoggedIn, async function(req, res, next) {
         let bearerToken = user.TOKEN;
 
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});          
-        
-        TotalQuestionList.sort(function (b,a){
-            return ((parseInt(a.SCORE.split(" ")[0])/parseInt(a.SCORE.split(" ")[1]))-((b.SCORE.split(" ")[0])/parseInt(b.SCORE.split(" ")[1])))
-            }) ;
+      
+        // let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.ClassId, COURSE_ID: req.body.CourseId, CHAPTER_ID: req.body.ChapterId, CONCEPT_ID:{ $in: ConceptName}}).sort({CONCEPT_NUM: 1});          
+        let SolvedQuestionsList = await STUDENT_PERFORMANCE_COLLECTION.find({EMAIL:req.user.EMAIL, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});
+
+        let CorrectQuestionLength=0;
+        let SkipQuestionLength=0;
+        let WrongQuestionLength=0;
+
+        for (let i = 0; i<SolvedQuestionsList.length;i++) {
+
+           if(SolvedQuestionsList[i].CORRECT_FLAG == 1) {
+               CorrectQuestionLength++;
+           }
+           else if(SolvedQuestionsList[i].CORRECT_FLAG == 0) {
+                WrongQuestionLength++;
+           }
+           else if(SolvedQuestionsList[i].CORRECT_FLAG == 2) {
+               SkipQuestionLength++;
+           }
+       }
+        // TotalQuestionList.sort(function (b,a){
+        //     return ((parseInt(a.SCORE.split(" ")[0])/parseInt(a.SCORE.split(" ")[1]))-((b.SCORE.split(" ")[0])/parseInt(b.SCORE.split(" ")[1])))
+        //     }) ;
             
-             ///////////////////////////////////////
-             let allQuestionsScoreList = [];
-             for(let i=0;i<TotalQuestionList.length;i++)
-             {
-                allQuestionsScoreList.push(parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]))
-                // console.log("i",allQuestionsScoreList[i]);
-             }
-             ///////////////////////////////////////
+        //      ///////////////////////////////////////
+        //      let allQuestionsScoreList = [];
+        //      for(let i=0;i<TotalQuestionList.length;i++)
+        //      {
+        //         allQuestionsScoreList.push(parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]))
+        //         // console.log("i",allQuestionsScoreList[i]);
+        //      }
+        //      ///////////////////////////////////////
         
-             //All questions sorted in descending based on Score.
+        //      //All questions sorted in descending based on Score.
         
-             let easyQList=TotalQuestionList.slice(0,TotalQuestionList.length/2);
-             let difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
-            //EASY ARRAY            DIFFICULT ARRAY        is made.
+        //      let easyQList=TotalQuestionList.slice(0,TotalQuestionList.length/2);
+        //      let difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
+        //     //EASY ARRAY            DIFFICULT ARRAY        is made.
         
-             let SolvedQList=await STUDENT_PERFORMANCE_COLLECTION.find({ COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
-             // Last most attempted question is fetched
-            let easyCorrect = 0, easyWrong = 0, easySkipped = 0;
-            let difficultCorrect = 0, difficultWrong = 0, difficultSkipped = 0;
+        //      let SolvedQList=await STUDENT_PERFORMANCE_COLLECTION.find({ COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
+        //      // Last most attempted question is fetched
+        //     let easyCorrect = 0, easyWrong = 0, easySkipped = 0;
+        //     let difficultCorrect = 0, difficultWrong = 0, difficultSkipped = 0;
 
-            ///////////
-             easyQList = easyQList.filter(easyQListEle =>!SolvedQList.find(SolvedQListEle =>
-                { 
-                    if(SolvedQListEle.QUESTION_ID === easyQListEle.QUESTION_ID) 
-                    {
-                        if(SolvedQListEle.CORRECT_FLAG=="1")
-                        {
-                            easyCorrect++;
-                        }
-                        else if(SolvedQListEle.CORRECT_FLAG=="0")
-                        {
-                            easyWrong++;
-                        }
-                        else if(SolvedQListEle.CORRECT_FLAG=="2")
-                        {
-                            easySkipped++;
-                        }
-                        return true;
-                    }
-                })
-             );
+        //     ///////////
+        //      easyQList = easyQList.filter(easyQListEle =>!SolvedQList.find(SolvedQListEle =>
+        //         { 
+        //             if(SolvedQListEle.QUESTION_ID === easyQListEle.QUESTION_ID) 
+        //             {
+        //                 if(SolvedQListEle.CORRECT_FLAG=="1")
+        //                 {
+        //                     easyCorrect++;
+        //                 }
+        //                 else if(SolvedQListEle.CORRECT_FLAG=="0")
+        //                 {
+        //                     easyWrong++;
+        //                 }
+        //                 else if(SolvedQListEle.CORRECT_FLAG=="2")
+        //                 {
+        //                     easySkipped++;
+        //                 }
+        //                 return true;
+        //             }
+        //         })
+        //      );
 
-             difficultQList = difficultQList.filter(difficultQListEle => !SolvedQList.find(SolvedQListEle => 
-                {
-                   if (SolvedQListEle.QUESTION_ID === difficultQListEle.QUESTION_ID)
-                   {
-                    if(SolvedQListEle.CORRECT_FLAG=="1")
-                    {
-                        difficultCorrect++;
-                    }
-                    else if(SolvedQListEle.CORRECT_FLAG=="0")
-                    {
-                        difficultWrong++;
-                    }
-                    else if(SolvedQListEle.CORRECT_FLAG=="2")
-                    {
-                        difficultSkipped++;
-                    }
-                    return true;
-                   }
-                } ));
-             // attempted questions are removed from easy and difficult question list 
+        //      difficultQList = difficultQList.filter(difficultQListEle => !SolvedQList.find(SolvedQListEle => 
+        //         {
+        //            if (SolvedQListEle.QUESTION_ID === difficultQListEle.QUESTION_ID)
+        //            {
+        //             if(SolvedQListEle.CORRECT_FLAG=="1")
+        //             {
+        //                 difficultCorrect++;
+        //             }
+        //             else if(SolvedQListEle.CORRECT_FLAG=="0")
+        //             {
+        //                 difficultWrong++;
+        //             }
+        //             else if(SolvedQListEle.CORRECT_FLAG=="2")
+        //             {
+        //                 difficultSkipped++;
+        //             }
+        //             return true;
+        //            }
+        //         } ));
+        //      // attempted questions are removed from easy and difficult question list 
 
-        let CorrectQuestionLength = easyCorrect + difficultCorrect;
-        let WrongQuestionLength = difficultWrong + easyWrong;
-        let SkipQuestionLength = easySkipped + difficultSkipped; 
+        // let CorrectQuestionLength = easyCorrect + difficultCorrect;
+        // let WrongQuestionLength = difficultWrong + easyWrong;
+        // let SkipQuestionLength = easySkipped + difficultSkipped; 
 
-        let easyUnattemptedLength = easyQList.length;
-        let difficultUnattemptedLength = difficultQList.length;
+        // let easyUnattemptedLength = easyQList.length;
+        // let difficultUnattemptedLength = difficultQList.length;
         
        
 
