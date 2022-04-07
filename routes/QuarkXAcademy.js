@@ -2167,11 +2167,25 @@ router.post('/MyDashboard', IsLoggedIn, async function(req, res, next) {
         // let easyUnattemptedLength = easyQList.length;
         // let difficultUnattemptedLength = difficultQList.length;
         
-       
+        let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
+            //let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
+            let userRank=0;
+
+            for(let i=0;i<LeaderBoardList.length;i++)
+            {
+                if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
+                {
+                    userRank=i+1;
+                    break;
+                }
+            }
+            let LeaderboardListTopTen=LeaderBoardList.slice(0,10);   
+           
 
         res.render('MyDashboard',{TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
             SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength, Email: req.user.EMAIL,
-            Course:req.body.Course, Class:req.body.Class, username:req.body.username, bearerToken: bearerToken});
+            Course:req.body.Course, Class:req.body.Class, username:req.body.username, bearerToken: bearerToken,
+            userRank: userRank, LeaderBoardList:LeaderboardListTopTen});
 
     }
     

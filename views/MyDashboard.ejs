@@ -114,6 +114,7 @@
   <input name="CorrectQuestions" id="CorrectQuestions" value=<%=CorrectQuestions%> type="text">
   <input name="SkippedQuestions" id="SkippedQuestions" value=<%=SkippedQuestions%> type="text">
   <input name="WrongQuestions" id="WrongQuestions" value=<%=WrongQuestions%> type="text">
+  <input name="userRank" id="userRank" value=<%=userRank%> type="text">
 
   <input name="Class" id="Class" value=<%=Class%> type="text">
   <input name="Course" id="Course" value=<%=Course%> type="text">
@@ -147,7 +148,7 @@
   <div  class="w3-quarter w3-container w3-center myStatsBox" id="totalRDiv">  
     <div class="w3-card w3-red" id="outerDiv"><br>
       <div id="totalAccTxt">Rank</div>
-      <div id="TotalAccCount">1</div><br>
+      <div id="TotalAccCount"><%=userRank%></div><br>
     </div>
   </div>
 </div>

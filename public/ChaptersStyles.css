@@ -332,7 +332,7 @@
 		font-size: 4vw;
 		margin-left: 65vw;
 		position: absolute;
-		margin-top: -72vw;
+		margin-top: -30vw;
 		border-radius: 2vw;
 	}
 
@@ -616,10 +616,10 @@ figure {
 }
 
 #colorId {
-	margin-left: 5vw;
+	margin-left: 4.5vw;
 	margin-top: 0vw;
 	padding-top: 3vw;
-	width:95vw;
+	width:95.5vw;
 	font-family: 'Times New Roman', Times, serif;
 	background-color: black;
 }
