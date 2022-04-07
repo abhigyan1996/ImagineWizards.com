@@ -124,7 +124,7 @@
 
 <div id="graphicBack">
   <div class="w3-center glow" id="SubjectName"><%=CourseId%> </div>
-  <div class="w3-button w3-pink w3-hover-blue" id="DashboardBtn">View Dashboard</div>
+  <div class="w3-button w3-pink w3-hover-blue" id="DashboardBtn"></div>
   <figure >
       <div class="graphic">  
         <div class="row">
@@ -230,6 +230,9 @@
   // Add smooth scrolling to all links
   if($(window).width()<=768) {
       document.getElementById("DashboardBtn").innerHTML = "Dashboard";
+    }
+    else{
+      document.getElementById("DashboardBtn").innerHTML = "View Dashboard";
     }
 
     $("#DashboardBtn").on('click', function(event) {

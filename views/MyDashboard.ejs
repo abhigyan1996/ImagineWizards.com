@@ -76,7 +76,7 @@
 
 <script src="/../NewDashboard.js"> </script>
 
-<body onload="move()" class="w3-black" style="width:100vw;">
+<body onload="move()" class="w3-black" style="width:100vw; overflow: hidden;">
 
 
 <section  id="top-navbar">  
@@ -109,7 +109,42 @@
 <div onclick="closeSlideMenu()">
 
 
-  <div class="w3-center glow" id="myDashTxt">My Dashboard</div>
+<form class="w3-hide">
+  <input name="TotalQuestions" id="TotalQuestions" value=<%=TotalQuestions%> type="text">
+  <input name="CorrectQuestions" id="CorrectQuestions" value=<%=CorrectQuestions%> type="text">
+  <input name="SkippedQuestions" id="SkippedQuestions" value=<%=SkippedQuestions%> type="text">
+  <input name="WrongQuestions" id="WrongQuestions" value=<%=WrongQuestions%> type="text">
+</form>
+
+
+<div class="w3-center glow" id="myDashTxt">My Dashboard</div>
+
+<div class="w3-row" id="firstStatsDiv"> 
+  <div  class="w3-quarter w3-container w3-center myStatsBox" id="totalQDiv"> 
+    <div class="w3-card w3-blue" id="outerDiv"><br>
+      <div id="totalQTxt">Total Questions</div>
+      <div id="TotalQCount"><%=TotalQuestions%></div><br>
+  </div>
+  </div>
+  <div  class="w3-quarter w3-container w3-center myStatsBox" id="totalAttDiv">  
+    <div class="w3-card w3-green" id="outerDiv"><br>
+      <div id="totalAttTxt">Attempted Questions</div>
+      <div id="TotalAttCount"></div><br>
+    </div>
+  </div>
+  <div  class="w3-quarter w3-container w3-center myStatsBox" id="totalAccDiv">  
+    <div class="w3-card w3-orange" id="outerDiv"><br>
+      <div id="totalAccTxt">Overall Accuracy</div>
+      <div id="TotalAccCount"></div><br>
+    </div>
+  </div>
+  <div  class="w3-quarter w3-container w3-center myStatsBox" id="totalAccDiv">  
+    <div class="w3-card w3-red" id="outerDiv"><br>
+      <div id="totalAccTxt">Rank</div>
+      <div id="TotalAccCount">1</div><br>
+    </div>
+  </div>
+</div>
 
 <div class="w3-row" id="allCharts">
   <div  class="w3-half w3-container chart-container">
@@ -137,6 +172,28 @@
 </body>
 
 
+<!-- First Div Stats -->
+<script>
+// var TotalQLength = document.getElementById("TotalQCount");
+var TotalQuestions = document.getElementById("TotalQuestions").value;
+var CorrectQuestions = document.getElementById("CorrectQuestions").value;
+var WrongQuestions = document.getElementById("WrongQuestions").value;
+var SkippedQuestions = document.getElementById("SkippedQuestions").value;
+
+var AttemptedQuestions = parseInt(CorrectQuestions) + parseInt(WrongQuestions) + parseInt(SkippedQuestions);
+document.getElementById("TotalAttCount").innerHTML = AttemptedQuestions;
+
+var CorrectQuestions = parseInt(CorrectQuestions);
+var TotalQuestions = parseInt(TotalQuestions);
+
+console.log("CorrectQuestions", CorrectQuestions, "AttemptedQuestions", AttemptedQuestions);
+
+var correctPercentage = (CorrectQuestions/AttemptedQuestions)* 100;
+document.getElementById("TotalAccCount").innerHTML = correctPercentage.toFixed(2)+"%";
+
+</script>
+
+<!-- Charts -->
 <script src="https://unpkg.com/@mongodb-js/charts-embed-dom"></script>
 <script src="https://unpkg.com/regenerator-runtime@0.13.9/runtime.js"></script>
 

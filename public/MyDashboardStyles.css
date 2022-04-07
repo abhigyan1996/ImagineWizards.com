@@ -14,6 +14,21 @@
 	/* background-color: black; */
 }	
 
+#firstStatsDiv{
+  margin-top: 0vw;
+  height: fit-content;
+  margin-bottom: 2vw;
+}
+
+#outerDiv {
+  width: 90%;
+  margin-left: 5%;
+  background-color: aquamarine;
+  font-size: 1.75vw;
+  font-family: 'Alegreya', serif;
+  border-radius: 0.5vw;
+}
+
 #refresh, #refresh3{
   margin-left: 5vw;
 }
@@ -37,7 +52,6 @@
 #allCharts{
   width:100vw;
   height: fit-content;
-  margin-top: -1.75vw;
   padding-bottom: 10vw;
 }
 

@@ -2064,15 +2064,94 @@ catch(err) {
 router.post('/MyDashboard', IsLoggedIn, async function(req, res, next) {
 
     try{
-        if(!(req.body.Class && req.body.Course && req.body.TotalQuestionLength && req.body.CorrectQuestionLength && req.body.WrongQuestionLength && req.body.SkipQuestionLength && req.body.username)) {
+        if(!(req.body.Class && req.body.Course && req.body.username)) {
             res.render('error');
             return;
         }
+
         let user = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
         let bearerToken = user.TOKEN;
 
-        res.render('MyDashboard',{TotalQuestions:req.body.TotalQuestionLength,CorrectQuestions:req.body.CorrectQuestionLength, 
-            SkippedQuestions: req.body.SkipQuestionLength, WrongQuestions: req.body.WrongQuestionLength, Email: req.user.EMAIL,
+        let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});          
+        
+        TotalQuestionList.sort(function (b,a){
+            return ((parseInt(a.SCORE.split(" ")[0])/parseInt(a.SCORE.split(" ")[1]))-((b.SCORE.split(" ")[0])/parseInt(b.SCORE.split(" ")[1])))
+            }) ;
+            
+             ///////////////////////////////////////
+             let allQuestionsScoreList = [];
+             for(let i=0;i<TotalQuestionList.length;i++)
+             {
+                allQuestionsScoreList.push(parseInt(TotalQuestionList[i].SCORE.split(" ")[0])/parseInt(TotalQuestionList[i].SCORE.split(" ")[1]))
+                // console.log("i",allQuestionsScoreList[i]);
+             }
+             ///////////////////////////////////////
+        
+             //All questions sorted in descending based on Score.
+        
+             let easyQList=TotalQuestionList.slice(0,TotalQuestionList.length/2);
+             let difficultQList=TotalQuestionList.slice(TotalQuestionList.length/2,TotalQuestionList.length);
+            //EASY ARRAY            DIFFICULT ARRAY        is made.
+        
+             let SolvedQList=await STUDENT_PERFORMANCE_COLLECTION.find({ COURSE_ID: req.body.Course, CLASS_ID: req.body.Class, EMAIL:req.user.EMAIL}).sort({ANSWER_DATE_TIME: -1}).select().populate('PerformanceToAllQuestionCollectionJoin');
+             // Last most attempted question is fetched
+            let easyCorrect = 0, easyWrong = 0, easySkipped = 0;
+            let difficultCorrect = 0, difficultWrong = 0, difficultSkipped = 0;
+
+            ///////////
+             easyQList = easyQList.filter(easyQListEle =>!SolvedQList.find(SolvedQListEle =>
+                { 
+                    if(SolvedQListEle.QUESTION_ID === easyQListEle.QUESTION_ID) 
+                    {
+                        if(SolvedQListEle.CORRECT_FLAG=="1")
+                        {
+                            easyCorrect++;
+                        }
+                        else if(SolvedQListEle.CORRECT_FLAG=="0")
+                        {
+                            easyWrong++;
+                        }
+                        else if(SolvedQListEle.CORRECT_FLAG=="2")
+                        {
+                            easySkipped++;
+                        }
+                        return true;
+                    }
+                })
+             );
+
+             difficultQList = difficultQList.filter(difficultQListEle => !SolvedQList.find(SolvedQListEle => 
+                {
+                   if (SolvedQListEle.QUESTION_ID === difficultQListEle.QUESTION_ID)
+                   {
+                    if(SolvedQListEle.CORRECT_FLAG=="1")
+                    {
+                        difficultCorrect++;
+                    }
+                    else if(SolvedQListEle.CORRECT_FLAG=="0")
+                    {
+                        difficultWrong++;
+                    }
+                    else if(SolvedQListEle.CORRECT_FLAG=="2")
+                    {
+                        difficultSkipped++;
+                    }
+                    return true;
+                   }
+                } ));
+             // attempted questions are removed from easy and difficult question list 
+
+        let CorrectQuestionLength = easyCorrect + difficultCorrect;
+        let WrongQuestionLength = difficultWrong + easyWrong;
+        let SkipQuestionLength = easySkipped + difficultSkipped; 
+
+        let easyUnattemptedLength = easyQList.length;
+        let difficultUnattemptedLength = difficultQList.length;
+        
+       
+
+        res.render('MyDashboard',{TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
+            SkippedQuestions: SkipQuestionLength, WrongQuestions: WrongQuestionLength, Email: req.user.EMAIL,
             Course:req.body.Course, Class:req.body.Class, username:req.body.username, bearerToken: bearerToken});
 
     }
