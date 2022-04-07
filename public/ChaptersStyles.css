@@ -6,14 +6,21 @@
 	text-transform: uppercase;
 	color:white;
 	padding: 7vw;
-	padding-bottom: 12vw;
-	/* background-color: black; */
+	padding-bottom: 2vw;
+	background-color: black;
 }	
 
-#graphicBack{
+#stats {
 	background-color: black;
-	height: 27vw;
+	margin-top: 0vw;
+	height: fit-content;
+	padding-bottom: 1vw;
+}
+
+#graphicBack{
+	height: fit-content;
 	width:100vw;
+	background-color: black;
 }
 
 #DashboardBtn {
@@ -21,7 +28,7 @@
 	font-size: 1.45vw;
 	margin-left: 82vw;
 	position: absolute;
-	margin-top: -22.5vw;
+	margin-top: -12.5vw;
 	border-radius: 0.5vw;
 	background-size: 300% 300%;
 	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -55,21 +62,22 @@
 }
 
 #colorId {
+	padding-top:1vw;
 	margin-left: 23vw;
-	margin-top: 14vw;
+	margin-top: 0vw;
 	margin-bottom: 0.5vw;
 	width: 77vw;
 	font-family: 'Times New Roman', Times, serif;
-	position: absolute;
+	background-color: black;
 }
 
 #colorId2 {
 	margin-left: 0vw;
 	/* margin-bottom: 2vw; */
 	width: 100vw;
-	margin-top: 16.5vw;
+	margin-top: 0vw;
 	font-family: 'Times New Roman', Times, serif;
-	position: absolute;
+	background-color: black;
 }
 
 #IndicatorTxtC {
@@ -224,7 +232,7 @@
 
 #chapterConceptCard {
 	margin-bottom: 10vw;
-	margin-top: 19vw;
+	margin-top: 0vw;
 	margin-left: 0vw;
 	width: 100vw;
 	min-width: 100vw;
@@ -232,6 +240,7 @@
 	overflow: hidden;
 	white-space: nowrap;
 	overflow: hidden;
+	padding-bottom: 2vw;
 }
 
 #whiteStrip{
@@ -314,6 +323,10 @@
 
 @media only screen and (max-width:768px){
 
+	#stats {
+		padding-bottom: 3vw;
+	}
+
 	#DashboardBtn {
 		font-family: 'Alegreya', serif;
 		font-size: 4vw;
@@ -343,14 +356,13 @@
 		font-size: 9.5vw;
 		text-transform: uppercase;
 		color:white;
-		padding-top: 20vw;
-		padding-bottom: 40vw;	
 		margin-top: 19vw;
 		background-color: black;
 		max-width:100vw;
 		margin-left: 0vw;
 		margin-bottom: 2vw;
-		font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+		padding-top: 15vw;
+		font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	}	
 
 	#conceptBlocks li{
@@ -405,11 +417,13 @@
 	  
 	#chapterConceptCard {
 		margin-bottom: 10vw;
-		margin-top: 68vw;
+		margin-top: 0vw;
 		margin-left: 0vw;
 		width: 96vw;
 		overflow: hidden;
 		white-space: nowrap;
+		position: absolute;
+		padding-bottom: 20vw;
 	}
 
 	#conceptBlocks {
@@ -471,24 +485,21 @@
 	} */
 }
 
-
+/* Below is again for laptop as bracket closed above for phones */
 figure {
 	margin: 0 auto;
 	max-width: 100vw;
 	position: relative;
 }
 .graphic {
-	padding-left: 30px;
-	margin-top: -10vw;
-	margin-left: 17vw;
+	/* padding-left: 30px; */
+	margin-left: 19vw;
 	margin-right: 15vw;	
-}
-.row {
-	margin-bottom: 1.5em;
+
 }
 
 #graphicBack{
-	margin-bottom: -20vw;
+	height: fit-content;
 }
 
 @keyframes expand {
@@ -589,7 +600,6 @@ figure {
 }
 .graphic {
 	padding-left: 0px;
-	margin-top: -35vw;
 	margin-left: 10vw;
 	margin-right: 10vw;
 }
@@ -598,9 +608,6 @@ figure {
 	height: 7vw;
 	font-size: .75em;
 } */
-.row {
-	margin-bottom: 1.5em;
-}
 
 #IndicatorTxt {
 	display: inline-block;
@@ -610,17 +617,21 @@ figure {
 
 #colorId {
 	margin-left: 5vw;
-	margin-top: 45vw;
-	width:95vw;
+	margin-top: 0vw;
+	padding-top: 3vw;
+	width:90vw;
 	font-family: 'Times New Roman', Times, serif;
+	background-color: black;
 }
 
 #colorId2 {
 	margin-left: 0vw;
-	margin-bottom: 6vw;
+	margin-bottom: 0vw;
 	width: 100vw;
-	margin-top: 52.5vw;
+	margin-top: 1vw;
 	font-family: 'Times New Roman', Times, serif;
+	background-color:black;
+
 }
 
 #IndicatorTxtC, #IndicatorTxtW, #IndicatorTxtS, #IndicatorTxtU {
