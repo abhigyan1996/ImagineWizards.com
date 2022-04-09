@@ -169,6 +169,34 @@
 </div>
 
 
+<div id="topTenTxt">QuarkX Leaderboard (TOP 10):</div>
+<table id="LeaderboardTbl">
+  <tr>
+    <th style="text-align: center; padding: 1vw;">RANK</th>
+    <th style="text-align: center; padding: 1vw;">NAME</th>
+    <th style="text-align: center; padding: 1vw;">FINAL SCORE</th>
+  </tr>
+
+  <% var i=0; %>
+  <% for(Leaderboard of LeaderBoardList){%>
+    <tbody>
+    <tr>  
+      <td id="rank"><%= i+1 %></td> 
+      <td id="LeaderboardEmail"><%=Leaderboard.USERNAME%></td>  
+     
+      <td id="LeaderboardScore"><%=Leaderboard.Score%></td>        
+    </tr>
+  </tbody>
+    <% i++; %>
+    <%}%>
+</table>
+
+<!-- <div id="noteMsg">* Your leaderboard entry is updated only when you finish a concept. *</div> -->
+
+</div>
+
+
+
 </div> <!-- Closing all div -->
 
 

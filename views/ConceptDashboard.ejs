@@ -129,7 +129,7 @@
 
   <!-- newly added-->
    <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-small" id="practiceBtn"> Start Practice </button> 
-   <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-medium w3-hide-large" id="practiceBtnPh"> Start Practice </button> 
+   <button type="submit" class="btn w3-pink w3-hover-blue w3-button w3-hide-medium w3-hide-large" id="practiceBtn"> Start Practice </button> 
   
    <div class="w3-button w3-pink w3-hover-blue" style="visibility: hidden;" id="viewSolBtn">Review Solved Questions</div>
 </form>
@@ -359,7 +359,8 @@
             <tbody>
             <tr>  
               <td><%= i+1 %></td> 
-              <td id="LeaderboardEmail"><%=Leaderboard.LeaderBoardToProfileJoin.USERNAME.substr(0,Leaderboard.LeaderBoardToProfileJoin.USERNAME.indexOf(" "))%></td>  
+              <!-- <td id="LeaderboardEmail"><%=Leaderboard.LeaderBoardToProfileJoin.USERNAME.substr(0,Leaderboard.LeaderBoardToProfileJoin.USERNAME.indexOf(" "))%></td>   -->
+              <td id="LeaderboardEmail"><%=Leaderboard.LeaderBoardToProfileJoin.USERNAME%></td>  
               <td id="LeaderboardScore"><%=Leaderboard.ACCURACY%></td>        
             </tr>
           </tbody>
@@ -367,7 +368,7 @@
             <%}%>
       </table>
    
-      <div id="noteMsg">* Your leaderboard entry is updated only when you finish a concept. *</div>
+      <!-- <div id="noteMsg">* Your leaderboard entry is updated only when you finish a concept. *</div> -->
 
   </div>
   

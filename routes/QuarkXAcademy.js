@@ -1824,7 +1824,7 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
             }
      }
 
-     if(req.body.restarts > 2) {
+     if(req.body.restarts > 2) {        //Updating SCORE of ques
         let AttemptStr = quesDetails[0].SCORE.split(" ")[1];
         let correctStR= quesDetails[0].SCORE.split(" ")[0];
             
@@ -1838,7 +1838,9 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
         await All_QUESTIONS_COLLECTION.updateOne({QUESTION_ID: req.body.quesID},{$set:{SCORE:ScoreStr}});
     }
      //If Last Answer is submitted and Go to Next not done, then performance entry should be updated in leaderboard
-     if (SolvedQList.length == TotalQuestionList.length) {
+   
+     //UPDATE: Update on 8th April, 2022 to update leaderboard everytime
+     //  if (SolvedQList.length == TotalQuestionList.length) { 
         //accuracy value find
             let CorrectQuestionLength=0;
             let WrongQuestionLength=0;
@@ -1871,7 +1873,7 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
                     break;
                 }
             }
-    }
+    // }
 
     //If user skipped
     if(!req.body.inputAns) {
@@ -1927,32 +1929,32 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
                 } ));
              // attempted questions are removed from easy and difficult question list 
     
-            let CorrectQuestionLength = easyCorrect + difficultCorrect;
-            let WrongQuestionLength = difficultWrong + easyWrong;
+            // let CorrectQuestionLength = easyCorrect + difficultCorrect;  //UPDATE ON 8th April, 2022
+            // let WrongQuestionLength = difficultWrong + easyWrong;
             let SkipQuestionLength = easySkipped + difficultSkipped; 
     
             let easyUnattemptedLength = easyQList.length;
             let difficultUnattemptedLength = difficultQList.length;
             
-            var correctScore = CorrectQuestionLength * 4;
-            var wrongScore = -(WrongQuestionLength * 1);
-            var accuracy = 0;
+            // var correctScore = CorrectQuestionLength * 4;
+            // var wrongScore = -(WrongQuestionLength * 1);
+            // var accuracy = 0;
     
-            accuracy = correctScore + wrongScore;
+            // accuracy = correctScore + wrongScore;
 
-            await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
-            let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
-            //let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
-            let userRank=0;
+            // await STUDENT_LEADERBOARD_COLLECTION.updateMany({EMAIL:req.user.EMAIL,CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept},{ACCURACY:accuracy},{upsert: true, setDefaultsOnInsert: false});          
+            // let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course, CHAPTER_ID: req.body.Chapter, CONCEPT_ID:req.body.Concept}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
+            // //let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
+            // let userRank=0;
 
-            for(let i=0;i<LeaderBoardList.length;i++)
-            {
-                if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
-                {
-                    userRank=i+1;
-                    break;
-                }
-            }
+            // for(let i=0;i<LeaderBoardList.length;i++)
+            // {
+            //     if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
+            //     {
+            //         userRank=i+1;
+            //         break;
+            //     }
+            // }
             let LeaderboardListTopTen=LeaderBoardList.slice(0,10);   
                 
             res.render('ConceptDashboardComplete',{LeaderboardList:LeaderboardListTopTen, userRank: userRank, TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 
@@ -2033,13 +2035,13 @@ router.post('/SubmitAdaptiveAnswers', IsLoggedIn, async function(req, res, next)
                     NewQuestiontoDisplay=easyQList[0];                  //difficult wong/skip, show correct       
                }
             }        
-        //Show new question
+        //Show new question which is adaptive
         res.render('SolveQuestions',{Question:NewQuestiontoDisplay.QUESTION,OptionA:NewQuestiontoDisplay.OptionA ,OptionB:NewQuestiontoDisplay.OptionB,OptionC:NewQuestiontoDisplay.OptionC,OptionD:NewQuestiontoDisplay.OptionD,CorrectOption:NewQuestiontoDisplay.CORRECT_OPT ,Explanation:NewQuestiontoDisplay.EXPLANATION,QuestionImg:NewQuestiontoDisplay.Q_IMG ,ExplainationImg:NewQuestiontoDisplay.EXPLANATION_IMAGE,QuestionId:NewQuestiontoDisplay.QUESTION_ID, Ques_Img_flag:NewQuestiontoDisplay.QUESTION_IMG_FLAG, Ans_img_flag:NewQuestiontoDisplay.ANS_IMG_FLAG, Concept:NewQuestiontoDisplay.CONCEPT_ID, Chapter:NewQuestiontoDisplay.CHAPTER_ID, Class:NewQuestiontoDisplay.CLASS_ID, Course:NewQuestiontoDisplay.COURSE_ID, ShowAnswer:0, submittedInput:"", ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts, Price: req.body.Price});
         return;
         }   
     }
     
-    else{   //If req.body.InputAns Exists, i.e. user corrected or wrong
+    else{   //If req.body.InputAns Exists, i.e. user corrected or wrong, show the same question
 
         res.render('SolveQuestions',{Question:quesDetails[0].QUESTION,OptionA:quesDetails[0].OptionA ,OptionB:quesDetails[0].OptionB,OptionC:quesDetails[0].OptionC,OptionD:quesDetails[0].OptionD,CorrectOption:quesDetails[0].CORRECT_OPT ,Explanation:quesDetails[0].EXPLANATION,QuestionImg:quesDetails[0].Q_IMG ,ExplainationImg:quesDetails[0].EXPLANATION_IMAGE,QuestionId:quesDetails[0].QUESTION_ID, Ques_Img_flag:quesDetails[0].QUESTION_IMG_FLAG, Ans_img_flag:quesDetails[0].ANS_IMG_FLAG, Concept:quesDetails[0].CONCEPT_ID, Chapter:quesDetails[0].CHAPTER_ID, Class:quesDetails[0].CLASS_ID, Course:quesDetails[0].COURSE_ID, ShowAnswer:1, submittedInput:req.body.inputAns, ChapNum: req.body.ChapNum, ConceptNum: req.body.ConceptNum, Theme: req.body.Theme, username: req.body.username, restarts:req.body.restarts, Price: req.body.Price});
         return;
@@ -2075,24 +2077,6 @@ router.post('/MyDashboard', IsLoggedIn, async function(req, res, next) {
         let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});          
       
         // let TotalQuestionList=await All_QUESTIONS_COLLECTION.find({CLASS_ID: req.body.ClassId, COURSE_ID: req.body.CourseId, CHAPTER_ID: req.body.ChapterId, CONCEPT_ID:{ $in: ConceptName}}).sort({CONCEPT_NUM: 1});          
-        let SolvedQuestionsList = await STUDENT_PERFORMANCE_COLLECTION.find({EMAIL:req.user.EMAIL, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});
-
-        let CorrectQuestionLength=0;
-        let SkipQuestionLength=0;
-        let WrongQuestionLength=0;
-
-        for (let i = 0; i<SolvedQuestionsList.length;i++) {
-
-           if(SolvedQuestionsList[i].CORRECT_FLAG == 1) {
-               CorrectQuestionLength++;
-           }
-           else if(SolvedQuestionsList[i].CORRECT_FLAG == 0) {
-                WrongQuestionLength++;
-           }
-           else if(SolvedQuestionsList[i].CORRECT_FLAG == 2) {
-               SkipQuestionLength++;
-           }
-       }
         // TotalQuestionList.sort(function (b,a){
         //     return ((parseInt(a.SCORE.split(" ")[0])/parseInt(a.SCORE.split(" ")[1]))-((b.SCORE.split(" ")[0])/parseInt(b.SCORE.split(" ")[1])))
         //     }) ;
@@ -2167,19 +2151,101 @@ router.post('/MyDashboard', IsLoggedIn, async function(req, res, next) {
         // let easyUnattemptedLength = easyQList.length;
         // let difficultUnattemptedLength = difficultQList.length;
         
-        let LeaderBoardList=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course}).sort({ACCURACY: -1}).limit(100).select({ "ACCURACY": 1, "EMAIL": 1}).select().populate('LeaderBoardToProfileJoin');
-            //let LeaderboardListTopTen=LeaderBoardList.slice(0,10);
-            let userRank=0;
+        //TO FETCH LEADERBOARD
+        let SolvedQuestionsList = await STUDENT_PERFORMANCE_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course}).sort({EMAIL: 1}).select().populate('PerformaceToProfileJoin');
 
-            for(let i=0;i<LeaderBoardList.length;i++)
-            {
-                if(LeaderBoardList[i].EMAIL==req.user.EMAIL)
-                {
-                    userRank=i+1;
-                    break;
+        let tempScore = 0;
+        CorrectQuestionLength = 0;
+        WrongQuestionLength = 0;
+
+        // let usersDistinct = await STUDENT_PERFORMANCE_COLLECTION.distinct("EMAIL_ID",{CLASS_ID:req.body.Class,COURSE_ID:req.body.Course});
+
+     //   let usersDistinct=await STUDENT_LEADERBOARD_COLLECTION.find({CLASS_ID: req.body.Class, COURSE_ID: req.body.Course}).sort({EMAIL_ID: 1});
+    //  if (SolvedQuestionsList.length>0) {
+    //      tempMail = SolvedQuestionsList[0].EMAIL;
+    //  }
+
+        let accuracy = []
+        let k = 0;
+
+        let flag = 0;
+
+        while (k<SolvedQuestionsList.length){
+
+            if (SolvedQuestionsList[k+1]) {
+                if(SolvedQuestionsList[k].EMAIL==SolvedQuestionsList[k+1].EMAIL) {
+                    if(SolvedQuestionsList[k].CORRECT_FLAG == 1) {
+                        CorrectQuestionLength++;
+                    }
+                    else if(SolvedQuestionsList[k].CORRECT_FLAG == 0) {
+                        WrongQuestionLength++;
+                    }
+                flag = 1;
                 }
             }
-            let LeaderboardListTopTen=LeaderBoardList.slice(0,10);   
+                //if next email is not same as previous, check for last entry of that email
+            
+            if (flag==0) {
+                var personScores = {};
+                if(SolvedQuestionsList[k].CORRECT_FLAG == 1) {
+                    CorrectQuestionLength++;
+                }
+                else if(SolvedQuestionsList[k].CORRECT_FLAG == 0) {
+                        WrongQuestionLength++;
+                }
+                //now compute the score
+                tempScore = tempScore + (CorrectQuestionLength*4) - WrongQuestionLength;
+                // accuracy.push(SolvedQuestionsList[k].EMAIL,tempScore);
+        
+                personScores['Email'] = SolvedQuestionsList[k].EMAIL;
+                personScores['Score'] = tempScore;
+                personScores['USERNAME'] = SolvedQuestionsList[k].PerformaceToProfileJoin.USERNAME;
+
+                accuracy.push(personScores);
+                        
+                tempScore = 0;
+                CorrectQuestionLength = 0;
+                WrongQuestionLength = 0;
+            }
+            flag = 0;
+            k++;
+        }
+        //A list with Email and their Score is made until now. Now, to sort the list based on Score
+
+        accuracy.sort(function(b,a){return a.Score - b.Score});
+        let LeaderboardListTopTen=accuracy.slice(0,10);   
+        
+        //Fetch current user's rank
+        let userRank=0;
+
+        for(let i=0;i<accuracy.length;i++)
+        {
+            if(accuracy[i].Email==req.user.EMAIL)
+            {
+                userRank=i+1;
+                break;
+            }
+        }
+
+        //Fetch current users details
+        SolvedQuestionsList = await STUDENT_PERFORMANCE_COLLECTION.find({EMAIL:req.user.EMAIL, CLASS_ID: req.body.Class, COURSE_ID: req.body.Course});
+
+        CorrectQuestionLength=0;
+        let SkipQuestionLength=0;
+        WrongQuestionLength=0;
+
+        for (let i = 0; i<SolvedQuestionsList.length;i++) {
+
+           if(SolvedQuestionsList[i].CORRECT_FLAG == 1) {
+               CorrectQuestionLength++;
+           }
+           else if(SolvedQuestionsList[i].CORRECT_FLAG == 0) {
+                WrongQuestionLength++;
+           }
+           else if(SolvedQuestionsList[i].CORRECT_FLAG == 2) {
+               SkipQuestionLength++;
+           }
+       } 
            
 
         res.render('MyDashboard',{TotalQuestions:TotalQuestionList.length,CorrectQuestions:CorrectQuestionLength, 

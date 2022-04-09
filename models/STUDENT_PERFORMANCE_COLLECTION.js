@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var ALL_QUESTIONS_COLLECTION=require("./ALL_QUESTIONS_COLLECTION");
 const uniqueValidator = require('mongoose-unique-validator')
 var Schema = mongoose.Schema;
+var USER_PROFILE_COLLECTION=require("./USER_PROFILE_COLLECTION");   //newly added
 
 var STUDENT_PERFORMANCE_COLLECTION = new Schema({
 
@@ -64,6 +65,13 @@ STUDENT_PERFORMANCE_COLLECTION.virtual('PerformanceToAllQuestionCollectionJoin',
     localField: 'QUESTION_ID',
     foreignField: 'QUESTION_ID',
     justOne: true
+  });
+
+STUDENT_PERFORMANCE_COLLECTION.virtual('PerformaceToProfileJoin', { //newly added
+    ref: 'USER_PROFILE_COLLECTION',
+    localField: 'EMAIL',
+    foreignField: 'EMAIL',
+    justOne: true 
   });
 
 STUDENT_PERFORMANCE_COLLECTION.index({ EMAIL: 1, QUESTION_ID: 1, CHAPTER_ID: 1, CONCEPT_ID: 1}, { unique: true });

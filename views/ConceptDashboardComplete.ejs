@@ -366,7 +366,9 @@
             <tbody>
             <tr>  
               <td><%= i+1 %></td> 
-              <td id="LeaderboardEmail"><%=Leaderboard.LeaderBoardToProfileJoin.USERNAME.substr(0,Leaderboard.LeaderBoardToProfileJoin.USERNAME.indexOf(" "))%></td>  
+              <!-- <td id="LeaderboardEmail"><%=Leaderboard.LeaderBoardToProfileJoin.USERNAME.substr(0,Leaderboard.LeaderBoardToProfileJoin.USERNAME.indexOf(" "))%></td>   -->
+           
+              <td id="LeaderboardEmail"><%=Leaderboard.LeaderBoardToProfileJoin.USERNAME%></td>  
               <td id="LeaderboardScore"><%=Leaderboard.ACCURACY%></td>        
             </tr>
           </tbody>
@@ -374,7 +376,7 @@
             <%}%>
       </table>
    
-  <div id="noteMsg">* Your leaderboard entry is updated only when you finish a concept. *</div>
+  <!-- <div id="noteMsg">* Your leaderboard entry is updated only when you finish a concept. *</div> -->
 
   </div>
 
