@@ -157,6 +157,7 @@
   <div  class="w3-half w3-container">
     <div class="chart" id="chart"></div>
     <button class="w3-button w3-green" id="refresh">Refresh this chart</button>
+    <!-- <label>Show data from: <input class="w3-black" type="date" id="data-from"/></label> -->
   </div>
   <div class="w3-half w3-container">
     <div class="chart" id="chart2"></div>
@@ -285,6 +286,11 @@ renderCharts().catch((e) => console.log(e));
 document.getElementById('refresh').addEventListener('click', () => {
   chart1.refresh();
 })
+
+// document.getElementById('data-from').addEventListener('change', e => {
+//   const date = new Date(e.target.value);
+//   chart1.setFilter({ANSWER_DATE_TIME: {$gte : date}})
+// })
 
 </script>
 

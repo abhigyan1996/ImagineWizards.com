@@ -97,6 +97,11 @@ table {
   color:white
 }
 
+#date-from {
+  color:black
+}
+
+
 @media only screen and (max-width:768px){
 
   #totalQDiv, #totalAttDiv, #totalAccDiv, #totalRDiv {
