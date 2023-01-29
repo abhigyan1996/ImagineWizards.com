@@ -80,9 +80,6 @@ app.get('*', function (req, res) {
     return res.render('error');
 });
 
-
-
-  
 app.listen(process.env.PORT || 8001,()=>{
   console.log("server is listening");
 })

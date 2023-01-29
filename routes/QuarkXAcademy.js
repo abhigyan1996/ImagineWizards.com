@@ -7,16 +7,24 @@ const All_QUESTIONS_COLLECTION =require("../models/ALL_QUESTIONS_COLLECTION");
 const STUDENT_PERFORMANCE_COLLECTION = require("../models/STUDENT_PERFORMANCE_COLLECTION");
 const STUDENT_LEADERBOARD_COLLECTION = require("../models/STUDENT_LEADERBOARD_COLLECTION");
 const CHAPTER_IMG_COLLECTION = require("../models/CHAPTER_IMG_COLLECTION");
+const PRODUCTS_COLLECTION = require("../models/PRODUCTS_COLLECTION");
 const CONCEPT_IMG_COLLECTION = require("../models/CONCEPT_IMG_COLLECTION");
 const COURSE_IMG_COLLECTION = require ("../models/COURSE_IMG_COLLECTION");
 const USER_PROFILE_COLLECTION = require ("../models/USER_PROFILE_COLLECTION");
+const CART_COLLECTION = require ("../models/CART_COLLECTION");
+const WISHLIST_COLLECTION = require ("../models/WISHLIST_COLLECTION");
+const COUPONS_COLLECTION = require ("../models/COUPONS_COLLECTION");
 
 
 const moment=require("moment");
 var {IsLoggedIn}=require("../Authentication");
+var {checkLogIn}=require("../CheckLogIn");
+
 const ALL_QUESTIONS_COLLECTION = require("../models/ALL_QUESTIONS_COLLECTION");
 const { Console } = require("winston/lib/winston/transports");
 
+var ip = require('ip');
+const { response } = require("express");
 
 router.post("/TrialPurchase",IsLoggedIn, async function (req, res, next) {
      try
@@ -2382,6 +2390,975 @@ catch(err) {
          res.render('error');
      }
 });
+
+
+// API FOR IMAGINE WIZARDS
+router.get('/ProductInfo/:id/:userToken', async function(req, res) {
+    try{
+        if(!(req.params.id)) {
+            res.render('error');
+            return;
+        }
+
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.params.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+
+        let selectedProduct = await PRODUCTS_COLLECTION.findOne({PROD_ID:req.params.id});
+    
+        let wishlistedProd = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.params.id});
+
+        let response = null;
+        if(!wishlistedProd[0]){
+            // await WISHLIST_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP, PROD_ID:req.body.selectedProdId},{$set:{PROD_ID:req.body.selectedProdId}},{ upsert: true });
+            response = "♡ Add to wishlist";
+        }
+        else{
+            response = "💚 Added to wishlist";
+        }
+
+        //getting items in cart
+        let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+        let totalQty = 0;
+        for (let i = 0; i<cartProductsDisplay.length;i++){
+            totalQty = totalQty + parseInt(cartProductsDisplay[i].QUANTITY)
+        }
+
+         //getting all items in wishlist
+         let wishlistProducts = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+
+        let prodImagesList = selectedProduct.PROD_IMG1 + "," + selectedProduct.PROD_IMG2 + "," + selectedProduct.PROD_IMG3 + "," + selectedProduct.PROD_IMG4 + "," + selectedProduct.PROD_IMG5 + "," + selectedProduct.PROD_IMG6;
+        prodImagesListNew = prodImagesList.split(",");
+        prodImagesListNew = prodImagesListNew.filter(el => {
+            return el != null && el != '';
+          });
+
+        let similarProducts = selectedProduct.SIMILAR_PRODS.split(",")
+        similarProducts = similarProducts.filter(el => {
+            return el != null && el != '';
+          });
+
+
+        let similarProductsList = await PRODUCTS_COLLECTION.find({PROD_ID: { $in: similarProducts } });
+ 
+        let heartList = [];
+        let found = false; 
+        
+            for (let i = 0; i<similarProductsList.length; i++){
+                found = false;
+                for (let j = 0; j<wishlistProducts.length;j++){
+                    if(similarProductsList[i].PROD_ID == wishlistProducts[j].PROD_ID){
+                        found=true;
+                        break;
+                    }
+                    else
+                        found = false;
+                }
+                if(found==true){    
+                    heartList.push('💚');
+                }
+                else{
+                    heartList.push('♡');
+                }
+            }
+        
+
+        res.render('ProductInfo', {prodImagesListNew:prodImagesListNew, productId:req.params.id, productTitle:selectedProduct.PROD_TITLE, productDesc:selectedProduct.PROD_DESC, ThemeId:selectedProduct.PROD_THEME, productPrice:selectedProduct.PRICE, similarProductsList:similarProductsList, response:response, cartItemCount: totalQty, wishlistItemCount:wishlistProducts.length, heartList: heartList});
+        return;
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+
+router.post('/ProductInfo', async function(req, res) {
+    try{
+        if(!(req.body.productId)) {
+            res.render('error');
+            return;
+        }
+
+        let selectedProduct = await PRODUCTS_COLLECTION.findOne({PROD_ID:req.body.productId});
+        
+        EmailOrIP = ip.address()
+        let wishlistedProd = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.productId});
+
+        if(!wishlistedProd[0]){
+            // await WISHLIST_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP, PROD_ID:req.body.selectedProdId},{$set:{PROD_ID:req.body.selectedProdId}},{ upsert: true });
+            response = "♡ Add to wishlist";
+        }
+        else{
+            response = "💚 Added to wishlist";
+        }
+
+        let prodImagesList = selectedProduct.PROD_IMG1 + "," + selectedProduct.PROD_IMG2 + "," + selectedProduct.PROD_IMG3 + "," + selectedProduct.PROD_IMG4 + "," + selectedProduct.PROD_IMG5;
+        prodImagesListNew = prodImagesList.split(",");
+        prodImagesListNew = prodImagesListNew.filter(el => {
+            return el != null && el != '';
+          });
+
+        let similarProducts = selectedProduct.SIMILAR_PRODS.split(",")
+        similarProducts = similarProducts.filter(el => {
+            return el != null && el != '';
+          });
+
+
+        let similarProductsList = await PRODUCTS_COLLECTION.find({PROD_ID: { $in: similarProducts } });
+
+        res.render('ProductInfo', {prodImagesListNew:prodImagesListNew, productId:req.body.productId, productTitle:req.body.productTitle, productDesc:req.body.productDesc, ThemeId:req.body.productTheme, productPrice:req.body.productPrice, similarProductsList:similarProductsList, response:response});
+        return;
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+//unused
+router.get("/UpdateCartProdSize/:userToken", async function(req, res) {
+    try{
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.params.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+
+        let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');       
+        res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, itemCount:cartProductsDisplay.length});
+        return;
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+router.post('/RemoveCartProdNew', async function(req, res) {
+    try{
+        if(!(req.body.selectedProdId && req.body.selectedSize && req.body.selectedQuantity)) {
+            res.render('error');
+            return;
+        }
+
+            if(!(req.user && req.user.EMAIL)){
+                EmailOrIP = req.body.userToken
+            }
+            else 
+                EmailOrIP = req.user.EMAIL
+          //check if entry is in DB
+          let cartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.selectedSize});
+       
+          if (cartProducts[0]){
+              //Remove entry from DB
+              await CART_COLLECTION.deleteMany({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId, SIZE:req.body.selectedSize, QUANTITY:req.body.selectedQuantity});
+          }
+
+          if(req.body.wishlist == "yes") {
+            let res = await WISHLIST_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP, PROD_ID:req.body.selectedProdId},{$set:{PROD_ID:req.body.selectedProdId, ROW_INSERTION_DATE_TIME: moment(Date.now())}},{ upsert: true });
+          }
+          
+          let response = {status:"success"};
+          res.send(response);
+          return;
+
+          //Now find the cart items to display back
+        //   let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');
+        //   res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, itemCount:cartProductsDisplay.length});
+        //   return;
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+//unused
+router.post('/RemoveCartProd', IsLoggedIn, async function(req, res) {
+    try{
+        if(!(req.body.selectedProdId && req.body.selectedSize && req.body.selectedQuantity)) {
+            res.render('error');
+            return;
+        }
+
+          //check if entry is in DB
+          let cartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.selectedSize});
+       
+          if (cartProducts[0]){
+              //Remove entry from DB
+              await CART_COLLECTION.deleteMany({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId, SIZE:req.body.selectedSize, QUANTITY:req.body.selectedQuantity});
+          }
+          
+          //Now find the cart items to display back
+          let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');
+          res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, itemCount:cartProductsDisplay.length});
+          return;
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+//unused
+router.get("/UpdateCartProdQty/:userToken", async function(req, res) {
+    try{
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.params.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+
+        let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');       
+        res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, itemCount:cartProductsDisplay.length});
+        return;
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+router.post('/UpdateCartProdQty', async function(req, res) {
+    try{
+        if(!(req.body.selectedProdId && req.body.selectedSize && req.body.selectedQuantity)) {
+            res.render('error');
+            return;
+        }
+
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.body.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+       
+        let cartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.selectedSize});
+        if (cartProducts[0]){
+            //update entry in DB
+            await CART_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP,PROD_ID:req.body.selectedProdId,SIZE: req.body.selectedSize},{$set:{QUANTITY:req.body.selectedQuantity}},{ upsert: true });
+           
+        }
+        else{//no update if item not in DB
+              //Now find the cart items to display back
+            // let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');
+            // res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, itemCount:cartProductsDisplay.length});
+            // return;
+            let response = {status:"success"};
+            res.send(response);
+            return;
+        }
+
+        //Now find the cart items to display back
+        // let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');
+        // res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, itemCount:cartProductsDisplay.length});
+        // return;
+            let response = {status:"success"};
+            res.send(response);
+            return;
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+
+router.post('/UpdateCartProdSize', async function(req, res) {
+    try{
+        if(!(req.body.selectedProdId && req.body.selectedSize && req.body.oldSize && req.body.selectedQuantity)) {
+            res.render('error');
+            return;
+        }
+
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.body.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+
+        let cartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.oldSize});
+        if (cartProducts[0]){
+            //Remove entry from DB
+            await CART_COLLECTION.deleteMany({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId, SIZE:req.body.oldSize, QUANTITY:req.body.selectedQuantity});
+        }
+        else{//no update needed as it is reload
+              //Now find the cart items to display back
+            // let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');
+            // res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, itemCount:cartProductsDisplay.length});
+            
+            let response = {status:"success"};
+            res.send(response);
+            return;
+        }
+        // //to stop when reloads
+        // let checkCartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId});
+        // for (let k = 0;k<checkCartProducts.length;k++){
+        //     if(checkCartProducts[k].SIZE==req.body.oldSize){
+        //         break;
+        //     }
+            
+        //     else if(checkCartProducts[k].SIZE!=req.body.oldSize) {
+        //         if(k==checkCartProducts.length-1){
+        //             let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');
+        //             res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, FromAddCart:'no'});
+        //             return;
+        //         }
+        //     }
+        // }
+
+        //Old Size Update - Remove
+        // await CART_COLLECTION.deleteMany({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.oldSize});
+
+        cartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.selectedSize});
+
+        cartProdQty = req.body.selectedQuantity;
+        if(cartProducts.length!=0){//update the quantity and then DB
+            cartProdQty = parseInt(cartProducts[0].QUANTITY) + parseInt(req.body.selectedQuantity);
+        }
+        //Add new entry to DB
+        await CART_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP,PROD_ID:req.body.selectedProdId,SIZE: req.body.selectedSize},{$set:{QUANTITY:cartProdQty}},{ upsert: true });
+
+        //Now find the cart items to display back
+        // let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');
+        
+        // res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, itemCount:cartProductsDisplay.length});
+        let response = {status:"success"};
+        res.send(response);
+        return;
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+router.post('/CheckLoginStatus', checkLogIn, async function(req, res) {
+    let response = {status:"LoggedIn"}
+    res.send(response)
+    return;
+});
+
+//unused API
+router.post('/AddToWishlistFromCart', async function(req, res) {
+    try{
+        if(!(req.body.selectedProdId && req.body.selectedSize && req.body.selectedQuantity)) {
+            res.render('error');
+            return;
+        }
+
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.body.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+     
+        //let ViewWishlist = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId});
+        let res = await WISHLIST_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP, PROD_ID:req.body.selectedProdId},{$set:{PROD_ID:req.body.selectedProdId, ROW_INSERTION_DATE_TIME: moment(Date.now())}},{ upsert: true});
+        
+        let cartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.selectedSize});     
+        
+        if (cartProducts[0]){
+            //Remove entry from DB
+            await CART_COLLECTION.deleteMany({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId, SIZE:req.body.selectedSize, QUANTITY:req.body.selectedQuantity});
+        }
+        
+        let response = {status:"success"};
+        res.send(response);
+        return;
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+//COUPON CODE API
+router.post('/AddCoupon/:userToken', async function(req, res) {
+    try{
+
+        if(!(req.body.couponCode)) {
+            res.render('error');
+        }
+
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.body.userToken
+        }  
+        else 
+            EmailOrIP = req.user.EMAIL
+
+        let coupon =  await COUPONS_COLLECTION.findOne({COUPON_ID:req.body.couponCode});
+        if(!coupon){
+            let response = {status:"failure1", couponDiscount: 0};
+            res.send(response);
+        }
+        
+        else{
+            if(coupon.VALIDITY == "0"){
+                let response = {status:"EXPIRED", couponDiscount: 0};
+                res.send(response);
+            }
+
+            else {
+
+                let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');       
+    
+                let cartAmount = 0;
+                for (let i = 0; i<cartProductsDisplay.length;i++){
+                    cartAmount = cartAmount + parseInt(cartProductsDisplay[i].CartToProductJoin.PRICE) * parseInt(cartProductsDisplay[i].QUANTITY)
+                }
+        
+                let couponDiscount = 0
+        
+                if (parseFloat(coupon.MIN_CART_VALUE) > cartAmount){
+                    couponDiscount = 0
+                    let response = {status:"failure2", message:"Coupon is applicable when minimum cart value is AED "+parseFloat(coupon.MIN_CART_VALUE)};
+                    res.send(response);
+                }
+                
+                else if ((parseFloat(coupon.MIN_CART_VALUE) <= cartAmount) && (cartAmount < parseFloat(coupon.CART_VAL_RANGE_2))){
+                    couponDiscount = parseFloat(coupon.DISCOUNT_RANGE_1)
+                }
+        
+                else if ((parseFloat(coupon.CART_VAL_RANGE_2) <= cartAmount) && (cartAmount < parseFloat(coupon.CART_VAL_RANGE_3))){
+                    couponDiscount = parseFloat(coupon.DISCOUNT_RANGE_2)
+                }
+                else if (cartAmount >= parseFloat(coupon.CART_VAL_RANGE_3)){
+                    couponDiscount = parseFloat(coupon.DISCOUNT_RANGE_3)
+                }
+                
+                let discountedCpnAmt = cartAmount*couponDiscount
+
+                
+                if (parseFloat(coupon.MAX_DISCOUNT) < discountedCpnAmt) {
+                    discountedCpnAmt = parseFloat(coupon.MAX_DISCOUNT)
+                }
+
+                let PayableFinalAmount = cartAmount - discountedCpnAmt
+                
+                if(discountedCpnAmt!=0){
+                    let response = {status:"success", couponDiscount:discountedCpnAmt, PayableFinalAmount:PayableFinalAmount};
+                    res.send(response);
+                }
+            }   
+        }
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+
+router.post('/AddToCartNew', async function(req, res) {
+    try{
+        if(!(req.body.selectedProdId && req.body.selectedSize && req.body.selectedQuantity)) {
+            res.render('error');
+        }
+        
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.body.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+        
+        let cartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.selectedSize});
+
+        cartProdQty = req.body.selectedQuantity;
+        if(cartProducts.length!=0){//update the quantity and then DB
+            cartProdQty = parseInt(cartProducts[0].QUANTITY) + parseInt(req.body.selectedQuantity);
+        }
+        //Add new entry to DB
+        await CART_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP,PROD_ID:req.body.selectedProdId,SIZE: req.body.selectedSize},{$set:{QUANTITY:cartProdQty}},{ upsert: true });
+      
+        
+        let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+        let totalQty = 0;
+        for (let i = 0; i<cartProductsDisplay.length;i++){
+            totalQty = totalQty + parseInt(cartProductsDisplay[i].QUANTITY)
+        }
+
+        let response = {status:"success", message:"Product added to your cart successfully", itemCount: totalQty};
+        res.send(response);
+        
+        return;
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+// ALL WISHLIST CODES HERE
+// router.get("/UpdateWishlistProdSize", async function(req, res) {
+//     try{
+//         EmailOrIP = ip.address()
+//         let cartProductsDisplay = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('WishlistToProductJoin');       
+//         res.render('Wishlist', {cartProductsDisplay:cartProductsDisplay, FromAddWishlist:'no'});
+//         return;
+//     }
+//     catch(err) {
+//         res.render('error');
+//     }
+// });
+
+router.post('/getWishlistHearts', async function(req, res) {
+    try{
+
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.body.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+          
+            let productList=await PRODUCTS_COLLECTION.find({});
+            let allCartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+
+
+            let totalQty = 0;
+            for (let i = 0; i<allCartProducts.length;i++){
+                totalQty = totalQty + parseInt(allCartProducts[i].QUANTITY)
+            }
+
+
+            let wishlistProdList = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+        
+            let heartList = [];
+            let found = false; 
+            let response = null;
+        
+            for (let i = 0; i<productList.length; i++){
+                found = false;
+                for (let j = 0; j<wishlistProdList.length;j++){
+                    if(productList[i].PROD_ID == wishlistProdList[j].PROD_ID){
+                        found=true;
+                        break;
+                    }
+                    else
+                        found = false;
+                }
+                if(found==true){    
+                    heartList.push('💚');
+                }
+                else{
+                    heartList.push('♡');
+                }
+            }
+
+
+            response = {status:"success", heartList:heartList, wishlistItemCount:wishlistProdList.length, cartItemCount:totalQty};
+            res.send(response)
+            return;
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+router.post('/RemoveWishlistProd', async function(req, res) {
+    try{
+        if(!(req.body.selectedProdId)) {
+            res.render('error');
+            return;
+        }
+
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.body.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+          //check if entry is in DB
+          let wishlistProduct = await WISHLIST_COLLECTION.findOne({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId});
+       
+          let totalWishlisted = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+
+          if (wishlistProduct){
+              //Remove entry from DB
+              await WISHLIST_COLLECTION.deleteOne({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId});
+              let response = {status:"success", itemCount:totalWishlisted.length-1};
+              res.send(response)
+              return;
+          }
+          
+          //Now find the cart items to display back
+        //   let cartProductsDisplay = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('WishlistToProductJoin');
+        //   res.render('Wishlist', {cartProductsDisplay:cartProductsDisplay, FromAddWishlist:'no'});
+        //   return;
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+// router.post('/UpdateWishlistProdQty', async function(req, res) {
+//     try{
+//         if(!(req.body.selectedProdId && req.body.selectedSize && req.body.selectedQuantity)) {
+//             res.render('error');
+//             return;
+//         }
+
+//         EmailOrIP = ip.address()
+       
+//         let cartProducts = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.selectedSize});
+//         if (cartProducts[0]){
+//             //update entry in DB
+//             await WISHLIST_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP,PROD_ID:req.body.selectedProdId,SIZE: req.body.selectedSize},{$set:{QUANTITY:req.body.selectedQuantity}},{ upsert: true });
+           
+//         }
+//         else{//no update if item not in DB
+//               //Now find the cart items to display back
+//             let cartProductsDisplay = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('WishlistToProductJoin');
+//             res.render('Wishlist', {cartProductsDisplay:cartProductsDisplay, FromAddWishlist:'no'});
+//             return;
+//         }
+
+//         //Now find the cart items to display back
+//         let cartProductsDisplay = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('WishlistToProductJoin');
+//         res.render('Wishlist', {cartProductsDisplay:cartProductsDisplay, FromAddWishlist:'no'});
+//         return;
+
+//     }
+//     catch(err) {
+//         res.render('error');
+//     }
+// });
+
+
+
+// router.post('/UpdateWishlistProdSize', async function(req, res) {
+//     try{
+//         if(!(req.body.selectedProdId && req.body.selectedSize && req.body.oldSize && req.body.selectedQuantity)) {
+//             res.render('error');
+//             return;
+//         }
+
+//         EmailOrIP = ip.address()
+//         let cartProducts = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.oldSize});
+//         if (cartProducts[0]){
+//             //Remove entry from DB
+//             await WISHLIST_COLLECTION.deleteMany({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId, SIZE:req.body.oldSize, QUANTITY:req.body.selectedQuantity});
+//         }
+//         else{//no update needed as it is reload
+//               //Now find the cart items to display back
+//             let cartProductsDisplay = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('WishlistToProductJoin');
+//             res.render('Wishlist', {cartProductsDisplay:cartProductsDisplay, FromAddWishlist:'no'});
+//             return;
+//         }
+//         // //to stop when reloads
+//         // let checkCartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId});
+//         // for (let k = 0;k<checkCartProducts.length;k++){
+//         //     if(checkCartProducts[k].SIZE==req.body.oldSize){
+//         //         break;
+//         //     }
+            
+//         //     else if(checkCartProducts[k].SIZE!=req.body.oldSize) {
+//         //         if(k==checkCartProducts.length-1){
+//         //             let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');
+//         //             res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, FromAddCart:'no'});
+//         //             return;
+//         //         }
+//         //     }
+//         // }
+
+//         //Old Size Update - Remove
+//         // await CART_COLLECTION.deleteMany({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.oldSize});
+
+//         cartProducts = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId,SIZE:req.body.selectedSize});
+
+//         cartProdQty = req.body.selectedQuantity;
+//         if(cartProducts.length!=0){//update the quantity and then DB
+//             cartProdQty = parseInt(cartProducts[0].QUANTITY) + parseInt(req.body.selectedQuantity);
+//         }
+//         //Add new entry to DB
+//         await WISHLIST_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP,PROD_ID:req.body.selectedProdId,SIZE: req.body.selectedSize},{$set:{QUANTITY:cartProdQty}},{ upsert: true });
+
+//         //Now find the cart items to display back
+//         let cartProductsDisplay = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('WishlistToProductJoin');
+        
+//         res.render('Wishlist', {cartProductsDisplay:cartProductsDisplay, FromAddWishlist:'no'});
+//         return;
+
+//     }
+//     catch(err) {
+//         res.render('error');
+//     }
+// });
+
+router.post('/AddToWishlistNew', async function(req, res) {
+    try{
+        if(!(req.body.selectedProdId)) {
+            res.render('error');
+            return;
+        }
+
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.body.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+        // let ViewWishlist = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+
+        let cartProducts = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId});
+        
+        let allWishlistProducts = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+
+        let response = null;
+
+        if(!cartProducts[0]){
+            await WISHLIST_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP, PROD_ID:req.body.selectedProdId},{$set:{PROD_ID:req.body.selectedProdId, ROW_INSERTION_DATE_TIME: moment(Date.now())}},{ upsert: true });
+            response = {status:"💚", message:"Product added to your wishlist", index:req.body.index, itemCount: allWishlistProducts.length + 1};
+        }
+        else{
+            await WISHLIST_COLLECTION.deleteMany({USER_IP_OR_EMAIL:EmailOrIP, PROD_ID:req.body.selectedProdId});
+            response = {status:"♡", message:"Product removed from your wishlist", index:req.body.index, itemCount: allWishlistProducts.length - 1};
+        }
+
+        // //Add new entry to DB
+        // await WISHLIST_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP,PROD_ID:req.body.selectedProdId,SIZE: req.body.selectedSize},{$set:{QUANTITY:cartProdQty}},{ upsert: true });
+
+        // //Now find the cart items to display back
+        // let cartProductsDisplay = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('WishlistToProductJoin');
+        // res.render('Wishlist', {cartProductsDisplay:cartProductsDisplay, FromAddWishlist:'yes'});
+        // return;
+
+        res.send(response);
+        return;
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+router.get("/Wishlist/:userToken", async function(req, res) {
+    try{
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.params.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+
+        let ViewWishlist = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).sort({ROW_INSERTION_DATE_TIME: -1}).select().populate('WishlistToProductJoin');
+
+        let itemPos = []
+        let discount = []
+        let discountAmt = 0
+        let discountPercent = 0
+
+        for (let i = 0; i<ViewWishlist.length;i++){
+            itemPos.push(i)
+            discountAmt = parseFloat(ViewWishlist[i].WishlistToProductJoin.ORIGINAL_PRICE) - parseFloat(ViewWishlist[i].WishlistToProductJoin.PRICE)
+            discountPercent = Math.round((discountAmt * 100 / parseFloat(ViewWishlist[i].WishlistToProductJoin.ORIGINAL_PRICE)))
+
+            discount.push(discountPercent)
+        }
+
+        //getting items in cart
+        let allCartProducts = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+        let totalQty = 0;
+        for (let i = 0; i<allCartProducts.length;i++){
+            totalQty = totalQty + parseInt(allCartProducts[i].QUANTITY)
+        }
+
+        res.render('Wishlist', {cartProductsDisplay:ViewWishlist, wishlistItemCount: ViewWishlist.length, itemPos:itemPos, cartItemCount: totalQty, discount:discount});
+        return;
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+
+router.get("/ViewCart/:userToken", async function(req, res) {
+    try{
+        if(!(req.user && req.user.EMAIL)){
+            EmailOrIP = req.params.userToken
+        }
+        else 
+            EmailOrIP = req.user.EMAIL
+
+        let cartProductsDisplay = await CART_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).select().populate('CartToProductJoin');       
+        res.render('MyCart', {cartProductsDisplay:cartProductsDisplay, itemCount:cartProductsDisplay.length});
+        return;
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+//Unused API 
+router.post('/AddToCart', async function(req, res) {
+    try{
+        if(!(req.body.selectedProdId && req.body.selectedSize && req.body.selectedQuantity)) {
+            res.render('error');
+            return;
+        }
+
+        //this must be used if email is not there, need to add a middleware as cart link will be same
+        EmailOrIP = ip.address()
+
+        let cartProducts = await CART_COLLECTION.findOne({USER_IP_OR_EMAIL:EmailOrIP});
+
+        //To get these values outside of if else
+        if (cartProducts) {
+            let cartProdIDList = cartProducts.PROD_ID_LIST.split(",");
+            cartProdIDList = cartProdIDList.filter(el => {
+                return el != null && el != '';
+            });
+
+            let cartSizeList = cartProducts.SIZE_LIST.split(",");
+            cartSizeList = cartSizeList.filter(el => {
+                    return el != null && el != '';
+            });
+
+            let cartQtyList = cartProducts.QUANTITY_LIST.split(",");
+            cartQtyList = cartQtyList.filter(el => {
+                    return el != null && el != '';
+            });
+        }
+
+        let toAddFlag = false;
+        let firstProductAdded = false;
+
+        if (!cartProducts) {//first product added to cart
+             await CART_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP},{$set:{PROD_ID_LIST:req.body.selectedProdId,QUANTITY_LIST: req.body.selectedQuantity, SIZE_LIST: req.body.selectedSize}},{ upsert: true });
+             firstProductAdded = true;
+        }
+
+        else {      //products are already there
+             cartProdIDList = cartProducts.PROD_ID_LIST.split(",");
+            cartProdIDList = cartProdIDList.filter(el => {
+                return el != null && el != '';
+            });
+
+             cartSizeList = cartProducts.SIZE_LIST.split(",");
+            cartSizeList = cartSizeList.filter(el => {
+                    return el != null && el != '';
+            });
+
+             cartQtyList = cartProducts.QUANTITY_LIST.split(",");
+            cartQtyList = cartQtyList.filter(el => {
+                    return el != null && el != '';
+            });
+            //Now iterate the array with separated items in a list
+            for (let i = 0; i<cartProdIDList.length;i++) {
+                if (cartProdIDList[i] == req.body.selectedProdId) {
+                
+                    if(cartSizeList[i]!=req.body.selectedSize) {
+                
+                        toAddFlag = true;
+                    }
+                    else {  //size is also same
+                        toAddFlag = false;
+                        cartProdQty = parseInt(cartQtyList[i]) + parseInt(req.body.selectedQuantity);
+                        cartQtyList[i] = cartProdQty;
+                        break;
+                    }
+                }
+                else {
+                    toAddFlag = true;
+                }
+            }               
+        }   
+
+        if (toAddFlag) { //assuming first product is there
+             cartProdIdsListOld = cartProducts.PROD_ID_LIST;
+             cartProdIdsListNew = cartProdIdsListOld + "," + req.body.selectedProdId;
+     
+             cartProdQtyListOld = cartProducts.QUANTITY_LIST;
+             cartProdQtyListNew = cartProdQtyListOld + "," + req.body.selectedQuantity;
+             
+             cartProdSizeListOld = cartProducts.SIZE_LIST;
+             cartProdSizeListNew = cartProdSizeListOld + "," + req.body.selectedSize;
+
+             await CART_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP},{$set:{PROD_ID_LIST:cartProdIdsListNew,QUANTITY_LIST: cartProdQtyListNew, SIZE_LIST: cartProdSizeListNew}},{ upsert: true });
+
+        }
+        
+        else {
+            if (!firstProductAdded) { //update same record only when there is product. NO update for 1st product added THIS TIME
+
+                let cartProdIdStr = "";
+                let cartProdQtyStr = "";
+                let cartProdSizeStr = "";
+
+                 cartProdIDList = cartProducts.PROD_ID_LIST.split(",");
+                cartProdIDList = cartProdIDList.filter(el => {
+                    return el != null && el != '';
+                });
+    
+                 cartSizeList = cartProducts.SIZE_LIST.split(",");
+                cartSizeList = cartSizeList.filter(el => {
+                        return el != null && el != '';
+                });
+    
+                
+                // let cartQtyList = cartProducts.QUANTITY_LIST.split(",");
+                // cartQtyList = cartQtyList.filter(el => {
+                //         return el != null && el != '';
+                // });
+
+                for (let k = 0; k<cartProdIDList.length;k++) {
+                    cartProdIdStr = cartProdIdStr + "," + cartProdIDList[k];
+                    cartProdQtyStr = cartProdQtyStr + "," + cartQtyList[k] ;
+                    cartProdSizeStr = cartProdSizeStr + "," + cartSizeList[k];
+                }
+
+                cartProdIdStr = cartProdIdStr.substring(1, cartProdIdStr.length);
+                cartProdQtyStr = cartProdQtyStr.substring(1, cartProdQtyStr.length);
+                cartProdSizeStr = cartProdSizeStr.substring(1, cartProdSizeStr.length);
+
+                await CART_COLLECTION.updateOne({USER_IP_OR_EMAIL: EmailOrIP},{$set:{PROD_ID_LIST:cartProdIdStr,QUANTITY_LIST: cartProdQtyStr, SIZE_LIST: cartProdSizeStr}},{ upsert: true });                    
+            }
+        }
+
+        // Code to display the cart details containing product ID, Qty and Size
+        cartDetails = await CART_COLLECTION.findOne({USER_IP_OR_EMAIL:EmailOrIP});
+        
+        //Fetch Product ID as List
+        let cartProdIdNewList = cartDetails.PROD_ID_LIST.split(",");
+        cartProdIdNewList = cartProdIdNewList.filter(el => {
+              return el != null && el != '';
+          });
+
+        //Here I have product IDs. Fetch Product info
+        let cartDisplayProductsList = await PRODUCTS_COLLECTION.find({PROD_ID: { $in: cartDetails.PROD_ID_LIST }});
+
+        //Getting Quantity and Size Lists
+        let cartProdQtyNewList = cartDetails.PROD_ID_LIST.split(",");
+        cartProdQtyNewList = cartProdQtyNewList.filter(el => {
+              return el != null && el != '';
+          });
+  
+          let cartProdSizeNewList= cartDetails.SIZE_LIST.split(",");
+          cartProdSizeNewList = cartProdSizeNewList.filter(el => {
+                return el != null && el != '';
+        });
+
+        //Appending Product Info for every product with their quantity and size// USE JOINS?
+        // cartDisplayProductsList.Quantity = cartProdQtyListNew;
+        // cartDisplayProductsList.Size = cartProdSizeListNew;
+
+        res.render('MyCart', {cartDisplayProductsList:cartDisplayProductsList,cartProdIdNewListLen:cartProdIdNewList.length, cartProdIdNewList:cartProdIdNewList, cartProdQtyNewList:cartProdQtyNewList, cartProdSizeNewList:cartProdSizeNewList});
+        return;
+
+    }
+    catch(err) {
+        res.render('error');
+    }
+});
+
+
+
 
 
 //Unused API 

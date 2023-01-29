@@ -3,26 +3,150 @@ var routes = express.Router();
 var Quarks = require('../models/Quarks');
 var Advertisement = require('../models/Advertisement');
 var {IsLoggedIn}=require("../Authentication");
+var {checkLogIn}=require("../CheckLogIn");
+
 const COURSE_IMG_COLLECTION = require ("../models/COURSE_IMG_COLLECTION");
 const USER_PROFILE_COLLECTION = require ("../models/USER_PROFILE_COLLECTION");
 const USER_PREMIUM_COLLECTION = require ("../models/USER_PREMIUM_COLLECTION");
+
+// For Imagine Wizards
+const PRODUCTS_COLLECTION = require ("../models/PRODUCTS_COLLECTION");
+const WISHLIST_COLLECTION = require ("../models/WISHLIST_COLLECTION");
+const CART_COLLECTION = require ("../models/CART_COLLECTION");
+
+
 const moment=require("moment");
 
+var ip = require('ip');
+
 //Load initial form to take input
+
+//unused api
+routes.get('/:userToken', async function (req, res) {
+    let allCourses =await COURSE_IMG_COLLECTION.find({});  
+    
+    if(req.user && req.user.EMAIL) {
+        //Fetch User Name
+        EmailOrIP = req.user.EMAIL
+
+    let productList=await PRODUCTS_COLLECTION.find({}).limit(4);
+    let wishlistProdList = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+
+    let heartList = [];
+    let found = false; 
+
+    for (let i = 0; i<productList.length; i++){
+        found = false;
+        for (let j = 0; j<productList.length;j++){
+            if(productList[i].PROD_ID == wishlistProdList[j].PROD_ID){
+                found=true;
+                break;
+            }
+            else
+                found = false;
+        }
+        if(found==true){    
+            heartList.push('💚');
+        }
+        else{
+            heartList.push('♡');
+        }
+    }
+
+    res.render('TempPay', {Courses: allCourses, loginFlag: 0, username: "", Products: productList, heartList:heartList});  
+    return;
+    }
+
+    if(!(req.user && req.user.EMAIL)){
+        EmailOrIP = req.body.userToken
+    }
+    else 
+        EmailOrIP = req.user.EMAIL
+
+    let productList=await PRODUCTS_COLLECTION.find({}).limit(4);
+    let wishlistProdList = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+
+    let heartList = [];
+    let found = false; 
+
+    for (let i = 0; i<productList.length; i++){
+        found = false;
+        for (let j = 0; j<productList.length;j++){
+            if(productList[i].PROD_ID == wishlistProdList[j].PROD_ID){
+                found=true;
+                break;
+            }
+            else
+                found = false;
+        }
+        if(found==true){    
+            heartList.push('💚');
+        }
+        else{
+            heartList.push('♡');
+        }
+    }
+
+    res.render('TempPay', {Courses: allCourses, loginFlag: 0, username: "", Products: productList, heartList:heartList});  
+    return;
+})
+
+
 routes.get('/', async function (req, res) {
     let allCourses =await COURSE_IMG_COLLECTION.find({});  
     
     if(req.user && req.user.EMAIL) {
         //Fetch User Name
-        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-        let username = userStr.USERNAME;
-        username = username.substr(0, username.indexOf(' '));
-        res.render('TempPay', {Courses: allCourses, loginFlag: 1, username: username});  
+        EmailOrIP = req.user.EMAIL
+
+        let productList=await PRODUCTS_COLLECTION.find({}).limit(4);
+        
+        res.render('TempPay', {Courses: allCourses, loginFlag: 1, username: "", Products: productList});  
         return;
     }
-    res.render('TempPay', {Courses: allCourses, loginFlag: 0, username: ""});  
+
+    let productList=await PRODUCTS_COLLECTION.find({}).limit(4);
+    // let wishlistProdList = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP});
+
+    // let heartList = [];
+    // let found = false; 
+
+    // for (let i = 0; i<productList.length; i++){
+    //     found = false;
+    //     for (let j = 0; j<wishlistProdList.length;j++){
+    //         if(productList[i].PROD_ID == wishlistProdList[j].PROD_ID){
+    //             found=true;
+    //             break;
+    //         }
+    //         else
+    //             found = false;
+    //     }
+    //     if(found==true){    
+    //         heartList.push('💚');
+    //     }
+    //     else{
+    //         heartList.push('♡');
+    //     }
+    // }
+
+    let discount = []
+    let discountAmt = 0
+    let discountPercent = 0
+
+    for (let i = 0; i<productList.length;i++){
+        discountAmt = parseFloat(productList[i].ORIGINAL_PRICE) - parseFloat(productList[i].PRICE)
+        discountPercent = Math.round((discountAmt * 100 / parseFloat(productList[i].ORIGINAL_PRICE)))
+
+        discount.push(discountPercent)
+    }
+
+    res.render('TempPay', {Courses: allCourses, loginFlag: 0, username: "", Products: productList, discount:discount});  
     return;
 })
+
+
+
+
 
 routes.get('/QuarkX', async function(req, res) {
     if(req.user && req.user.EMAIL) {

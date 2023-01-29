@@ -11,7 +11,7 @@
 #Sec2{
 	height: fit-content;
 	width: 100vw;
-	margin-top: -7vw;
+	margin-top: -25vw;
 	background-color: white;
 	margin-bottom:25vw;
 }
@@ -25,12 +25,6 @@
 	height: fit-content;
 	width: 100vw;
 	margin-bottom: 10vw;
-}
-
-#Sec5{
-	height: fit-content;
-	width: 100vw;
-	margin-top: 8vw;
 }
 
 #contactUs, #developers, #address {
@@ -551,7 +545,7 @@
 	background-color: #1E1C1C;
 	height: fit-content;
 	width: 100vw;
-	margin-top: -5vw;
+	margin-top: -25vw;
 	display: flex;
 }
 
@@ -610,6 +604,558 @@
 	width: 30vw;
 	display: inline-block;
 }
+
+/* Newly Added For Imagine Wizards */
+.FiltersText{
+	font-size: 1.25vw;
+	color: black;
+	display: inline-block;
+	margin-left: 8vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	text-transform: uppercase;
+	margin-top: 2vw;
+  }
+
+  #Filters1, #Filters2, #Filters3{
+	  margin-left: 3vw;
+	  cursor: pointer;
+  }
+
+  .swiper {
+	width: 100%;
+	height: 100%;
+	margin-top: 3.5vw;
+  }
+
+  .swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+  }
+
+  .swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+  }
+
+  .firstBanners{
+	margin-top: 5vw;
+	height:29.25vw;
+	width: 100vw;
+}
+
+.arrowsBanner{
+	opacity: 0.4;
+	color:white;
+}
+
+.arrowsBanner:hover{
+	opacity: 1;
+}
+
+#firstLine{
+  font-size: 1vw;
+  font-family:Arial, Helvetica, sans-serif;
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+}
+
+.ProductHeadingsTxt{
+	font-size: 2vw;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	text-transform: capitalize;
+	margin-top: 0vw;
+	font-weight: 900;
+	color:black
+}
+
+ul > li {
+	display: inline-block;
+}
+
+.productCards1{
+	height: 36vw;
+	width: 27vw;
+	margin-left: 2.5vw;
+	margin-bottom: 2.5vw;
+	cursor:pointer
+}
+
+.productCardsHome{
+	height: 31vw;
+	width: 23.25vw;
+	margin-left: 0vw;
+	margin-bottom: 2.5vw;
+	cursor:pointer
+}
+
+.SimilarProductCards{
+	height: 30vw;
+	width: 22.5vw;
+	margin-left: 0vw;
+	margin-bottom: 2.5vw;
+	cursor:pointer
+}
+
+#ErrMsg{
+	color: #575480;
+	background-color: pink;
+	padding-right: 5vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1vw;
+}
+
+#ThisProductPrice{
+	font-size: 1.5vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	margin-top: 1vw;
+  }
+
+  #AddCartBtnNew{
+	margin-top: 2vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+	padding-left: 4.5vw;
+	padding-right: 4.5vw;
+	margin-left: 0vw;
+	background-color: blueviolet;
+	color:white
+}
+
+#AddCartBtnNew:hover{
+	background-color: blueviolet;
+}
+
+#qtyContainer{
+	margin-top: 2vw;
+}
+
+#QuantityTxt{
+	font-size: 1.1vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  #quantityBtn{
+	margin-top: -2vw;
+	font-size: 1.1vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	margin-left: 1vw;
+	background-color: white;
+  }
+
+  #quantityBtn:focus {
+	 outline: none;
+	 box-shadow: none;
+  }
+
+#brandText{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+	margin-top:0.5vw
+  }
+
+ #productName{
+	font-size: 1.5vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	margin-top: 1vw;
+}
+
+#selectSizeText{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+	margin-bottom: 1vw;
+	margin-top: 1vw;
+}
+
+#sizeChartTxt{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1vw;
+	margin-top: 1vw;
+	cursor: pointer;
+	margin-bottom: -2.5vw;
+	text-transform: uppercase;
+	color: cadetblue;
+}
+
+#sizeChartTxt:hover{
+	color: red;
+}
+
+#AddWishListBtn{
+	margin-top: 2vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.04vw;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	color: green;
+	border: 1px solid green;
+	margin-left: 1vw;
+	background-color: white;
+	text-transform: uppercase;
+}
+
+#WishlistHeart{
+	content: "\2661";
+	margin-left: -2.5vw;
+	margin-top: 0.25vw;
+	cursor: pointer;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+#eachListItem{
+	border: 1px solid silver;
+	margin-right: 0.5vw;
+	margin-left: -0.25vw
+}
+
+#discountPercent{
+	color: green;
+	margin-left: 0.5vw;
+}
+
+#ProductCardsDiv{
+	margin-left: -2.35vw;
+}
+
+#eachSimilarProd{
+	border: 1px solid silver;
+	margin-right: 0.5vw;
+	margin-bottom: 1vw;
+}
+
+#addToCartModal{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 0.9vw;
+}
+
+#addToCartContainer{
+	width: 28vw;
+	margin-top: 10vw;
+	height:fit-content;
+	border-top-left-radius: 0.25vw;
+	border-top-right-radius: 0.25vw;
+}
+
+#cartProdImg{
+	height:6vw;
+	width: 4.5vw;
+	position: absolute;
+	margin-top: 0.75vw;
+	cursor: pointer;
+}
+
+#addCartProdTitle{
+	cursor: pointer;
+}
+
+#AddCartPricesDiv{
+	margin-top: 0.5vw;
+	margin-left: 5.5vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 0.9vw;
+}
+
+#AddCartSellingPrice{
+	font-weight: 900;
+}
+
+#AddCartOriginalPrice{
+	color: silver;
+	text-decoration: line-through;
+	text-decoration-thickness: 1.5px;
+	margin-left: 0.5vw;
+}
+
+#AddCartDiscountPercent{
+	color: green;
+	margin-left: 0.5vw;
+}
+
+
+#modalCrossBtn{
+	font-size: 2vw;
+	position: absolute;
+	margin-left: 25vw;
+	cursor: pointer;
+}
+
+#addCartProdTitle{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 0.9vw;
+	margin-top: 1.25vw;
+	margin-left: 5.5vw;
+	font-weight: 900;
+	cursor: pointer;
+}
+
+#addCartLine{
+	margin-left: 0vw;
+	width: 25.75vw;
+	margin-top: 3.5vw;
+	height:1px;
+	border-width:0;
+	color:silver;
+	background-color:silver;
+}
+
+#addCartBtn{
+	margin-top: 0.75vw;
+	margin-left: 0vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 0.9vw;
+	background-color: blueviolet;
+	border: none;
+	border-radius: 0.5vw;
+	color: white;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	width: 25.75vw;
+	text-align: center;
+	margin-bottom: 1vw;
+	text-transform: uppercase;
+	font-weight: 900;
+	cursor:not-allowed;
+	background-color: grey;
+}
+
+#selectSizeTxt{
+	margin-top: -0.75vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 0.9vw;
+	font-weight: 900;
+}
+
+#prodAddedMsg{
+	position: fixed;
+	margin-top: 4vw;
+	margin-left: 74vw;
+	border: 1px solid green;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	color: white;
+	border-radius: 0.5vw;
+	background-color: green;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.05vw;
+	display: none;
+}
+
+#pricesDiv{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+	font-size: 0.9vw; 	
+	font-weight: 900; 	
+	text-align: left;
+	margin-top: 0vw;
+	margin-left: 0.5vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1vw;
+	padding-bottom: 1vw
+}
+
+#sellingPrice{
+	font-weight: 900;
+}
+
+#originalPrice{
+	color: silver;
+	text-decoration: line-through;
+	text-decoration-thickness: 1.5px;
+	margin-left: 0.5vw;
+}
+
+.heartImage{
+	position: absolute;
+	margin-left: 20.25vw;
+	margin-top: -33vw;
+	cursor: pointer;
+	font-family: 'Impact,Charcoal,sans-serif';
+	font-size: 2vw;
+}
+
+.heartImageNew{
+	position: absolute;
+	margin-left: -2.3vw;
+	margin-top: 0.6vw;
+	cursor: pointer;
+	font-family: 'Impact,Charcoal,sans-serif';
+	height: 1.75vw;
+	width:1.75vw
+}
+
+#WishlistMsgAdd{
+	position: fixed;
+	margin-top: 4vw;
+	margin-left: 75vw;
+	border: 1px solid green;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	color: white;
+	border-radius: 0.5vw;
+	background-color: green;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.05vw;
+	display: none;
+}
+
+#WishlistMsgRem{
+	position: fixed;
+	margin-top: 4vw;
+	margin-left: 72vw;
+	border: 1px solid red;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	color: white;
+	border-radius: 0.5vw;
+	background-color: red;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.05vw;
+	display: none;
+}
+
+#WishlistMsgAddProdInfo{
+	position: fixed;
+	margin-top: 4vw;
+	margin-left: 74vw;
+	border: 1px solid green;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	color: white;
+	border-radius: 0.5vw;
+	background-color: green;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.05vw;
+	display: none;
+}
+
+#WishlistMsgRemProdInfo{
+	position: fixed;
+	margin-top: 4vw;
+	margin-left: 71.5vw;
+	border: 1px solid red;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	color: white;
+	border-radius: 0.5vw;
+	background-color: red;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.05vw;
+	display: none;
+}
+
+#prodAddedMsg{
+	position: fixed;
+	margin-top: 4vw;
+	margin-left: 74vw;
+	border: 1px solid green;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	color: white;
+	border-radius: 0.5vw;
+	background-color: green;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.05vw;
+	display: none;
+}
+
+#prodHomeAddedMsg{
+	position: fixed;
+	margin-top: 4vw;
+	margin-left: 74vw;
+	border: 1px solid green;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	color: white;
+	border-radius: 0.5vw;
+	background-color: green;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.05vw;
+	display: none;
+}
+
+#MoveToCartBtn{
+	background-color: white;
+	border-top: 1px solid silver;
+	border-radius: 0px;
+	text-align: center;
+	width: 23.25vw;
+	margin-top: 0vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-weight: 900;
+	color: #088F8F
+}
+
+#SimilarProdDiv{
+	margin-left: 3vw;
+	margin-right: 3vw;
+	width: 94vw;
+	margin-top: 3vw;
+}
+
+#SimilarProdText{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+}
+
+#sectionStart{
+	margin-top: 8.5vw;
+}
+
+#prodTitle, #prodPriceDisplay{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1vw;
+	font-weight: 900;
+	text-align: left;
+	margin-top: -1.5vw;
+	margin-left: 0.5vw;
+	cursor: pointer; 
+}
+
+#prodTitleSimilarProd, #prodPriceDisplaySimilarProd{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 0.9vw;
+	font-weight: 900;
+	text-align: left;
+	margin-top: -1.5vw;
+	margin-left: 0.25vw;
+	cursor: pointer; 
+}
+
+#prodPriceDisplaySimilarProd{
+	margin-top: 0vw;
+}
+
+#prodPriceDisplay{
+	margin-top: 0vw;
+}
+
+#cartProdsDiv {
+	margin-top:8vw
+}
+
+#CartProdTitle{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+	font-weight: 900;
+	margin-top: -1.5vw;
+	cursor: pointer;
+}
+
 
    @media only screen and (max-width:768px){
 
@@ -757,21 +1303,6 @@
 
 	#TestimonialName{
 		margin-top: 5vw;
-	}
-
-	#Sec2 {
-		margin-top: 0vw;
-		height: fit-content;
-	}
-
-	#Sec3{
-		height: fit-content;
-		margin-top: 0vw;
-	}
-
-	#Sec4{
-		height: fit-content;
-		margin-bottom: 30vw;
 	}
 
 	#greyStrip {

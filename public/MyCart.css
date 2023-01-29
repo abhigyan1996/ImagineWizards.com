@@ -1,0 +1,811 @@
+.CartProductImg{
+	height: 16vw;
+	width: 12.8vw;
+	margin-left: 1vw;
+	margin-bottom: 3.5vw;
+	border-radius: 1vw;
+	cursor:pointer
+}
+
+#prodPriceDisplay{
+	margin-top: 0vw;
+}
+
+#cartProdsDiv {
+	margin-top:2vw;
+	margin-left: 10vw;
+	width: 52.5vw;
+	margin-bottom: 20vw;
+}
+
+#OrderPlacementDiv{
+	margin-top: 2vw;
+	width: 25vw;
+	margin-left: 70vw;
+	position: absolute;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	background-color: #fceee5;
+	padding: 1vw;
+}
+
+#totalOrgAmount{
+	float: right;
+	font-weight: 900;
+}
+
+#billingLine1, #billingLine2, #billingLine3, #billingLine4, #billingLineCoupon{
+	margin-bottom: 1vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+}
+
+#taxMsg{
+	margin-top: -0.75vw;
+	float: right;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1vw;
+}
+
+#FinalAmt{
+	float: right;
+	font-weight: 900;
+}
+
+#shippingAmt{
+	float: right;
+}
+
+#discountAmt{
+	float: right;
+}
+
+#couponDiscountAmt{
+	float: right;
+	color: green;
+}
+#couponCode{
+	color: green;
+}
+
+.deliveryFee{
+	color: green;
+}
+
+.discountTxt{
+	color: green;
+}
+
+#billingLineCoupon{
+	display: none;
+}
+
+#removeCartModal{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 0.9vw;
+}
+
+#cartProdImg{
+	height:6vw;
+	width: 4.5vw;
+	border-radius: 0.4vw;
+	position: absolute;
+	margin-top: 0.75vw;
+}
+
+#removeContainer{
+	width: 28vw;
+	margin-top: 10vw;
+	height:9.8vw;
+	border-top-left-radius: 0.25vw;
+	border-top-right-radius: 0.25vw;
+}
+
+#removeMsg{
+	font-weight: 900;
+	margin-left: 5.5vw;
+	position: absolute;
+	margin-top: 0.85vw;
+}
+
+#modalCrossBtn{
+	font-size: 2vw;
+	position: absolute;
+	margin-left: 25vw;
+	cursor: pointer;
+}
+
+#removeQsn{
+	margin-left: 5.5vw;
+	position: absolute;
+	margin-top: 2.75vw;
+	width: 18vw;
+}
+
+#horizontalLineModal{
+	height: 0.03vw;
+	width: 27.9vw;
+	margin-left: -1.1vw;
+	margin-top: 7.5vw;
+	position: absolute;
+}
+
+#noBtn{
+	position: absolute;
+	margin-top: 7.5vw;
+	width: 13.9vw;
+	margin-left: 13vw;
+	border: none;
+	background-color: purple;
+	color:white;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	text-align: center;
+	cursor: pointer;
+}
+
+#removedProdImg{
+	height:6vw;
+	width: 4.5vw;
+	position: absolute;
+	margin-top: 0.75vw;
+	border-radius: 0.25vw;
+}
+
+#yesRemoveBtn{
+	position: absolute;
+	margin-top: 7.6vw;
+	width: 13.75vw;
+	margin-left: -1.1vw;
+	border: none;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	text-align: center;
+	cursor: pointer;
+}
+
+#placeOrderBtn{
+	background-color: #088F8F;
+	color:white;
+	margin-left: 0vw;
+	width: 23vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.2vw;
+	margin-top: 1vw;
+	padding-top: 0.75vw;
+	padding-bottom: 0.75vw;
+}
+
+#billingDetailsText{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+	margin-top: 0.5vw;
+	font-weight: 900;
+}
+
+#billingLine0{
+	margin-top: 1vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1vw;
+}
+
+#billingLine1{
+	margin-top: 2vw;
+}
+
+#couponLine{
+	height: 0.15vw;
+	width: 22vw;
+	background-color: black;
+	margin-left: 0.5vw;
+	margin-top: 3.75vw;
+	position: absolute;
+}
+
+#coponCode{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+	width: 23vw;	
+	padding: 0.75vw;
+	margin-top: 1vw;
+	border-radius: 0.5vw;
+	background-color: white;
+	border: none;
+}
+
+#AddCouponBtn{
+	color: green;
+	margin-top: -2.3vw;
+	margin-left: 20vw;
+	cursor: pointer;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+	text-decoration: underline;
+	position: absolute;
+}
+
+#remCouponBtn{
+	color: #959595;
+	position: absolute;
+	margin-top: -2.3vw;
+	margin-left: 18.25vw;
+	cursor: pointer;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.1vw;
+	text-decoration: underline;
+	display: none;
+}
+
+#cartProdNewTitle{
+	color:#0000A3
+}
+
+#prodCartIdNew{
+	margin-left: 20vw;
+}
+
+#continueShoppingBtn{
+	margin-top: 2vw;
+	background-color: blueviolet;
+	color: white;
+}
+
+#emptyCartDiv{
+	text-align: center;
+	margin-top: -18vw;
+	width: 70vw;
+	margin-left: 15vw;
+	height: fit-content;
+	padding-bottom: 5vw;
+	border-left: 0.5px solid silver;
+	border-right: 0.5px solid silver;
+	border-bottom: 0.5px solid silver;
+}
+
+#firstCartDiv{
+	height: fit-content;
+	padding-top: 0.5vw;
+	padding-bottom: 0.5vw;
+	margin-top: 7vw;
+	text-align: center;
+}
+
+#processFlowTxt{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.2vw;
+	color: black;
+	padding-top: 0.5vw;
+}
+
+#emptyCartTex{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.3vw;
+	font-weight: 900;
+	margin-top: 1vw;
+}
+
+#emptyCTxt1{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1vw;
+	margin-top: 1vw;
+}
+
+#emptyCartImg{
+	height: 12vw;
+	width: 16vw;
+}
+
+#EachCartProd{
+	border: 0.01px solid #D3D3D3;
+	margin-bottom: 2vw;
+	padding-top: 1vw;
+	border-radius: 0vw;
+}
+
+.hl {
+	border-top: 0.5px solid #D3D3D3;
+	width: 30vw;
+	position: absolute;
+	margin-top: -3.5vw;
+	margin-left: 17vw;
+}
+
+#CartProdTitle, #CartProdPriceDisplay, #CartProdPriceOrg{
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1.07vw;
+	font-weight: 900;
+	position: absolute;
+	margin-top: -18vw;
+	margin-left: 17vw;
+}
+
+#CartProdTitle{
+	cursor:pointer
+}
+
+#CartProdTitle:hover{
+	color:#0000A3
+}
+
+#sizeBtn, #sizeOptions{
+	margin-left: 3vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1vw;
+	margin-top: -5vw;
+	position: absolute;
+	width: 8vw;
+}
+
+#sizeOptions {
+	margin-top: -2.65vw;
+
+}
+
+#QtyOptions, #QtyBtn{
+	margin-left: 12vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 1vw;
+	margin-top: -5vw;
+	width: 8vw;
+	position: absolute;
+}
+
+#QtyOptions{
+	margin-top: -2.65vw;
+}
+
+#CartProdPriceDisplay{
+	margin-left: 38vw;
+}
+
+#CartProdPriceOrg{
+	margin-left: 43vw;
+	color: grey;
+	text-decoration: line-through;
+	text-decoration-thickness: 2px;
+}
+
+#RemoveBtn{
+	margin-left: 25.5vw;
+	margin-top: 16.55vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-size: 0.9vw;
+	position: absolute;
+	text-transform: uppercase;
+}
+
+.FiltersText{
+	font-size: 1.25vw;
+	color: black;
+	display: inline-block;
+	margin-left: 8vw;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	text-transform: uppercase;
+	margin-top: 2vw;
+  }
+
+  #Filters1, #Filters2, #Filters3{
+	  margin-left: 3vw;
+	  cursor: pointer;
+  }
+
+   @media only screen and (max-width:768px){
+
+	/* #QuarksLogo{
+		margin-left: -4vw;
+		height: 12.5vw;
+		width: 12.5vw;
+		margin-top:1.25vh;
+	}
+	
+	#nameQuarks{
+		font-family: 'Quicksand';
+		font-size: 10vw;
+		text-decoration: none;
+		margin-left: -4vw;
+		color:black;
+		position:absolute;
+	} */
+	
+	#headTitle {
+		font-size: 6vw;
+		margin-top: 5vw;
+	}
+	
+	#contactUs, #developers, #address {
+		font-size: 4vw;
+	}
+
+	#address {
+		padding-bottom: 20vw
+	}
+
+	#Sec1 {
+		height: fit-content;
+		width: 100vw;
+		margin-top: 6.85vw;
+		text-align: justify;
+		text-justify: inter-word;
+		background-color: white;
+	}
+
+	#aiBg{
+		margin-top: 94vw;
+		width: 80vw;
+		height: 100vw;
+		margin-left: 10vw;
+		animation: linear infinite;
+		animation-name: run;
+		animation-duration: 1.5s;
+		-webkit-animation: linear infinite;
+		-webkit-animation-name: run;
+		-webkit-animation-duration: 1.5s;
+	}
+
+	@keyframes run{
+		0% {
+			top: -0.5vw;
+		}
+		50% {
+		  top: 0.5vw;
+		}
+		100% {
+			top: -0.5vw;
+		}
+	}
+	@-webkit-keyframes run {
+		0% {
+			top: -0.5vw;
+		}
+		50% {
+		  top: 0.5vw;
+		}
+		100% {
+			top: -0.5vw;
+		}
+	}
+
+	#allHeadTxt {
+		margin-top: -170vw;
+		position: absolute;
+		margin-left: -5vw;
+	}
+
+	#statsStrip, #testimonialsList {
+		height: fit-content;
+		width: 100vw;
+		display: inline-block;
+		padding: 0;
+		margin: 0;
+	}
+
+	#statsStrip{
+		margin-top: -4vw;
+	}
+
+	#statsStrip li {
+		display: inline-block;
+		padding: 0;
+		width: 40vw;
+		height: 20vw;
+		margin-top: 4vw;
+	}
+	
+	#liHead, #TestliHead{
+		font-size: 5vw;
+		font-weight: 900;
+		font-family: 'Alegreya', serif;
+		font-family: 'Concert One';
+		font-family: 'Lora', serif;
+	}
+
+	#LiText {
+		margin-top: 1vw;
+		font-size: 5vw;
+		font-family: 'Alegreya', serif;
+	}
+
+	#TestliHead {
+		margin-top: 15vw;
+	}
+
+	#testimonialsList li {
+		width: 90vw;
+		margin-top: 22vw;
+		margin-left: 5vw;
+	}
+	
+	#abhiPic{
+		height: 28vw;
+		width: 28vw;
+		margin-top: -16vw;
+		margin-left: -13vw;
+	}
+
+	#TestPic {
+		height: 28vw;
+		width: 28vw;
+		margin-left: -13vw;
+		margin-top: -15vw;
+	}
+
+	#TestimonialLiText, #TestimonialName, #collegeTxt {
+		font-size: 5vw;
+	}
+
+	#TestimonialName{
+		margin-top: 5vw;
+	}
+
+	#Sec2 {
+		margin-top: -2vw;
+		height: fit-content;
+	}
+
+
+	#greyStrip {
+		margin-top: 170vw;
+		margin-left: 10vw;
+		width:90vw;
+		transform: rotate(0deg);
+	}
+
+	#TxtHead1 {
+		font-size: 3.5vw;
+		width:90vw;
+	}
+	
+	#TxtHead {
+		margin-top: 5vw;
+		font-size: 6vw;
+	}
+
+	#TxtSubHead2 {
+		font-size: 4.5vw;
+		width:90vw;
+		margin-top: 5vw;
+	}
+
+	#StartBtn, #tryBtn {
+		font-size: 5vw;
+		padding: 3vw;
+		margin-top: 2vw;
+	}
+
+	#tryBtn{
+		margin-left: 4vw;
+	}
+
+	#quote1, #quote2 {
+		color: orange;
+		position: absolute;
+		font-size: 10vw;
+	}
+	
+	#quote1{
+		margin-left: -3vw;
+		margin-top: -4vw;
+	}
+	
+	#quote2{
+		margin-left: 0.25vw;
+		margin-top: -3vw;
+	}
+
+	#courseVideo {
+		margin-top: 5vw;
+		height: 60vw;
+		width: 90vw;
+		border-radius: 2vw;
+		margin-left: 5vw;
+	}	
+	
+	#courseImage {
+		height:110vw;
+		width: 81vw;
+		margin-top: 0vw;
+		margin-left: 0vw;
+	}
+		
+	#feedbackList li{
+		width: 90vw;
+		height: fit-content;
+		margin-top: 20vw;
+	}
+
+
+	#TestTxt2, #TestTxt, #TestTxt3, #TestTxt2Last {
+		font-family: 'Alegreya', serif;
+		font-size: 5vw;
+	}
+	
+	#TestTxt {
+		margin-top: 15vw;
+	}
+
+	#TestTxt2 {
+		margin-top: 10vw;
+	}
+
+	#CousesList li{
+		display: inline-block;
+		left: 10.5vw;
+		right: 10.5vw;
+		margin-bottom: 25vw;
+		height:fit-content;
+		width: fit-content;
+	}
+
+	#CousesList {
+		list-style-type: none;
+		margin-left: 0vw;
+		margin-top: 20vw;
+		width: 100vw;
+		margin: 0;
+		padding: 0;
+	}
+
+	#StartBtnLast, #tryBtnLast {
+		font-size: 10vw;
+		border-radius: 2vw;
+	}
+
+	#tryBtnLast {
+		margin-top: -10vw;
+	}
+
+	#perksDiv {
+		height: fit-content;
+		width: 100vw;
+		/* background-image: url(https://abhigyan1996.github.io/QA/QA/1/stars.gif); */
+		background-color: black;
+		margin-bottom: -10vw;
+	}
+
+#perksList {
+	list-style-type: none;
+	margin-top: 0vw;
+	padding: 0;
+	padding-top: 3vw;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#perksList li{
+	display: inline-block; 
+	white-space: normal;
+	width: 90vw;
+	height: fit-content;
+	margin: auto;
+	margin-bottom: 5vw;
+	border-radius: 1vw;
+}
+
+#HeadingTxt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 5.25vw;
+	background-color: purple;
+	color:white;
+	border-top-left-radius: 1vw;
+	border-top-right-radius: 1vw;
+	text-transform: uppercase;
+}
+
+#contentTxt{
+	font-size: 5vw;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: white;
+	border-bottom-left-radius: 1vw;
+	border-bottom-right-radius: 1vw;
+	padding-left: 0.5vw;
+	padding-right: 0.5vw;
+}
+
+#pickCourseTxt {
+	text-align: center;
+	font-size: 7vw;
+	text-transform: uppercase;
+	color:black;
+	padding-top: 2vw;
+	margin-top: 2vw;
+	max-width:100vw;
+	margin-left: 0vw;
+	margin-bottom: 10vw;
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+#getBtn {
+	margin-top: 5vw;
+	margin-left: -16vw;
+	position: absolute;
+	border-radius: 1vw;
+	font-family:Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-size: 5vw;
+	background-color: #f68331;
+	color: white;
+}
+
+#whiteStrip {
+	background-color: white;
+	margin-top: 0vw;
+	color:white;
+	height: 15vw;
+}
+
+#myCoursesBtn{
+	font-family: 'Alegreya', serif;
+	font-size: 6.5vw;
+	margin-left: 10vw;
+	margin-top: 5vw;
+	padding: 8vw;
+	width: 80vw;
+	background-size: 300% 300%;
+	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+	background-image: linear-gradient(to right, hsla(313, 88%, 54%, 0.452) 0%, #3F76FF 50%, hsla(313, 88%, 54%, 0.452) 100%);
+	transition: 0.5s;
+	border-radius: 5px;
+	margin-bottom: 5vw;
+}
+
+	#SecQuickLinks {
+		background-color: #1E1C1C;
+		height: fit-content;
+		width: fit-content;
+		margin-top: -5vw;
+		overflow-x: scroll;
+		padding-bottom: 5vw;
+	}
+
+	#quickLinksTxt {
+		color: #f68331;
+		font-size: 5vw;
+		font-weight: 900;
+		font-family: 'Alegreya', serif;
+		font-family: 'Concert One';
+		font-family: 'Lora', serif;
+		margin-bottom: 0vw;
+	}
+
+	#link1 {
+		font-size: 4.5vw;
+		font-family: 'Alegreya', serif;
+		color: white;
+	}
+
+	#linksTxt{
+		margin-top: 2.5vw;
+		font-size: 4.5vw;
+		font-family: 'Alegreya', serif;
+		color: white;
+		width: 50vw
+	}
+
+	#phnIcon {
+		margin-left: 1vw;
+	}
+
+	#allLinksTxt {
+		padding-top: 10vw;
+		padding-bottom: 10vw;
+		width:80vw
+	}
+
+	#allLinksTxt2 {
+		margin-top: 45vw;
+		margin-left: -80vw;
+		width: 80vw
+	}
+
+	#allLinksTxt3 {
+		margin-top: 5vw;
+	}
+
+
+	#quickLinksTxt2 {
+		font-size: 5vw;
+		margin-top: 5vw;
+		width: 90vw;
+		padding-right: 30vw;
+	}
+
+}

@@ -14,7 +14,10 @@ var {SendOtp,VerifyOtp,generateHash,validPassword}=require("../utils");
 const jwt = require('jsonwebtoken');
 const Config=require("../config/config");
 
-
+// For Imagine Wizards
+const CART_COLLECTION = require ("../models/CART_COLLECTION");
+const PRODUCTS_COLLECTION = require ("../models/PRODUCTS_COLLECTION");
+const WISHLIST_COLLECTION = require ("../models/WISHLIST_COLLECTION");
 
 
 // router.get('/insertJwtforALLUsers', async function(req,res){
@@ -286,47 +289,38 @@ const Config=require("../config/config");
         
      try{
          //Fetch User Name
-        let userStr = await USER_PROFILE_COLLECTION.findOne({EMAIL:req.user.EMAIL});
-        let username = userStr.USERNAME;
-        let userToken=userStr.TOKEN;
-
-        username = username.substr(0, username.indexOf(' '));
-        
-
-        let isCourseFlag = 0;
-
-        let MyCoursesArr = await USER_PREMIUM_COLLECTION.find({EMAIL:req.user.EMAIL});
-
-        let availableCourses=[];
-        let availableClasses = [];
-
-        let currentDateTime = moment(Date.now());
-        var timediffinsec;
-        var y = 0;
+         req.body.userToken = '1672768801125'
+         await CART_COLLECTION.updateMany({USER_IP_OR_EMAIL: req.body.userToken}, {$set: {USER_IP_OR_EMAIL: req.user.EMAIL}})
+ 
+         let productList=await PRODUCTS_COLLECTION.find({});
+         let wishlistProdList = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:req.user.EMAIL});
      
-        for(let i=0;i<MyCoursesArr.length;i++)
-        {
-            timediffinsec = parseInt(moment.duration(currentDateTime.diff(MyCoursesArr[i] && MyCoursesArr[i].EXPIRY_DATE_TIME)).asSeconds(),10);
-            if(timediffinsec < 0) {
-                availableCourses[y++] = MyCoursesArr[i].COURSE_ID;
-                availableClasses[y++] = MyCoursesArr[i].CLASS_ID;
-            }
-        }
+         let heartList = [];
+         let found = false; 
+     
+         for (let i = 0; i<productList.length; i++){
+             found = false;
+             for (let j = 0; j<wishlistProdList.length;j++){
+                 if(productList[i].PROD_ID == wishlistProdList[j].PROD_ID){
+                     found=true;
+                     break;
+                 }
+                 else
+                     found = false;
+             }
+             if(found==true){    
+                 heartList.push('💚');
+             }
+             else{
+                 heartList.push('♡');
+             }
+         }
 
-        if(availableCourses.length > 0 || availableClasses.length > 0) {
-          isCourseFlag = 1;
-          let allCourses =await COURSE_IMG_COLLECTION.find({CLASS_ID: { $in: availableClasses }, COURSE_ID: { $in: availableCourses }});
-          res.render('MyCourses',{allCourses:allCourses, username:username,bearerToken: userToken });
-          return;
-        }
-
-        if(isCourseFlag == 0) { 
-          let allCourses =await COURSE_IMG_COLLECTION.find({});
-          res.render('TempPay', {Courses: allCourses, loginFlag: 1, username:username,bearerToken: userToken });
-          return;
-        }
+         res.render('TempPay', {Courses: "",loginFlag:"",username:"",Products: productList, heartList:heartList});  
+      
       }
       
+
       catch(err){
         res.render('error');
       }
@@ -340,8 +334,11 @@ const Config=require("../config/config");
    // res.status(200).json({Errcode:0,ResMsg:"you have successfully Logged out"});
    //res.render('signupErr', {ErrCode: 2, ResMsg: "You have successfully Logged Out"});  
    //logger.info(`${req.baseUrl+req.url} api response-${req.user && req.user.username} have successfully logged out`);
-      let allCourses =await COURSE_IMG_COLLECTION.find({});   
-      res.render('TempPay', {Courses: allCourses, loginFlag: 0, username: ""});  
+      
+      // commented for imagine wizards
+    // let allCourses =await COURSE_IMG_COLLECTION.find({});   
+    //   res.render('TempPay', {Courses: allCourses, loginFlag: 0, username: ""}); 
+    res.send("you are logged out") 
       return;
     }
     catch(err)

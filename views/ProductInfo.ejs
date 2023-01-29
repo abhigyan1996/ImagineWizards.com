@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html>
+<title>Imagine Wizards</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source Serif Pro">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/QuarkStylesDesktop.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="/QuarksLargePh.css">
+<link rel="stylesheet" href="/TempPayStyles.css">
+
+<meta property="og:url" content="angshumankashyap.in/QuarkX" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Get customized Nike shoes in Imagine Wizards" />
+<meta property="og:description" content="Craft magic with art" />
+<meta property="og:image" content="ImagineWizardPhotos/logo2.png" />
+<link rel="stylesheet" href="/w3styles.css">
+<link rel="stylesheet" href="/AngzPhStyles.css">
+
+<!-- <link rel="icon" href="/ImagineWizardPhotos/logo2.png"> -->
+
+<script src="slickJS/slick.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/slickCss/slick.css">
+<link rel="stylesheet" href="/slickCss/slick-theme.css">
+
+<link rel="stylesheet" href="/AngzDesktopStyles.css">
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- NAV BAR  -->
+<link rel="stylesheet" href="/nav.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.5.0/slick.min.js"> </script>
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap" rel="stylesheet">
+
+
+<!-- NEWLY ADDED Google FONT -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+  href="https://fonts.googleapis.com/css2?family=Alegreya&family=Concert+One&family=Lora:ital,wght@1,400;1,600;1,700&display=swap"
+  rel="stylesheet">
+
+<style>
+  .productImages {
+    width: 65vw;
+  }
+
+  .productCards {
+    width: 27vw;
+    height: 36vw;
+    margin-top: 0.5vw;
+    margin-right: 0.5vw;
+  }
+
+  #prodDetailsDiv {
+    width: 32.5vw;
+  }
+
+  .shoeSize {
+    border-radius: 0.5vw;
+    text-align: center;
+    margin-left: 1vw;
+    margin-bottom: 1vw;
+    background-color: white;
+    border: 2px solid #bbb;
+    font-size: 0.75vw;
+    width: 4vw;
+  }
+
+  #sizesDiv {
+    margin-left: -3.9vw;
+  }
+</style>
+
+
+<!-- Navbar (sit on top) -->
+
+<body style="width:100vw; min-width: 100vw; max-width: 100vw; overflow-x: hidden; background-color: white;">
+
+  <div class="w3-top">
+    <div class="w3-bar w3-white" id="myNavbar"
+      style="box-shadow: 3px 3px 3px #A8A8A8 ; width:100vw; max-width:100vw; min-width:100vw; height: 7vw">
+
+      <div style="cursor: pointer;" class="w3-bar-item"> <img id="QuarksLogo" src="/ImagineWizardPhotos/logo2.png">
+      </div>
+      <div class="w3-bar-item FiltersText"><span id="Filters1">Men</span><span id="Filters2">Women</span><span
+          id="Filters3">Kids</span></div>
+
+      <div id="wishlistContainer" style="cursor: pointer;" onclick="ViewWishlist()"><div id="wishlistBarIcon">♡</div>
+        <div id="wishlistCount">
+            <div id="wishlistItemCount"><%=wishlistItemCount%></div>
+         </div>
+        <div id="wishlistBarText">Wishlist</div></div>     
+     
+     
+     <div id="CartContainer" style="cursor: pointer;" onclick="ViewCart()"><svg id="cartBarIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M41.3 14.58a5 5 0 0 0-5-4.58H34a10 10 0 0 0-20 0h-2.32a5 5 0 0 0-5 4.58l-2.36 28a5 5 0 0 0 5 5.39h29.35a5 5 0 0 0 5-5.4ZM24 2a8 8 0 0 1 8 8H16a8 8 0 0 1 8-8Zm14.67 44H9.33a3 3 0 0 1-3-3.23l2.35-28a3 3 0 0 1 3-2.75H14v6h-1a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2h-1V12h16v6h-1a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2h-1v-6h2.32a3 3 0 0 1 3 2.75l2.35 28a3 3 0 0 1-3 3.25Z" data-name="Shopping Bag"/></svg>
+      <div id="cartCount">
+        <div id="cartItemCount"><%=cartItemCount%></div>
+      </div>
+      <div id="cartBarText">Cart</div></div>
+      
+      <div class="btn" id="WishlistMsgAddProdInfo">Product added to your wishlist</div>
+      <div class="btn" id="WishlistMsgRemProdInfo">Product removed from your wishlist</div>
+
+      <div class="btn" id="prodAddedMsg">Product added to your cart successfully</div>
+
+
+      <!-- Navbar on small screens -->
+    </div>
+  </div>
+
+  <section id="sectionStart">
+    <div class="w3-row">
+      <div class="productImages w3-col">
+        <ul class="ProductCardsList" style="list-style-type:none; display: flex; flex-wrap: wrap;">
+          <% var i=0; %>
+            <% for(prodImage of prodImagesListNew){%>
+
+              <li>
+                <img class="productCards" src=<%=prodImage%>>
+              </li>
+
+              <% i++; %>
+                <%}%>
+        </ul>
+      </div>
+
+      <div id="prodDetailsDiv" class="w3-col">
+        <div id="productName">
+          <%=productTitle%>
+        </div>
+        <div id="brandText"> By Imagine Wizards</div>
+        <hr>
+
+        <div id="ThisProductPrice"> AED <%=productPrice%>
+        </div>
+
+        <div id="selectSizeText"> Please select a size. <u><span id="sizeChartTxt">Size Chart</span></u></div>
+
+        <ul id="sizesDiv" style="list-style-type:none; display: flex; flex-wrap: wrap;">
+          <li id="size1" class="w3-button w3-hover-white shoeSize">XXS</li>
+          <li id="size2" class="w3-button w3-hover-white shoeSize">XS</li>
+          <li id="size3" class="w3-button w3-hover-white shoeSize">S</li>
+          <li id="size4" class="w3-button w3-hover-white shoeSize">M</li>
+          <li id="size5" class="w3-button w3-hover-white shoeSize">L</li>
+          <li id="size6" class="w3-button w3-hover-white shoeSize">XL</li>
+          <li id="size7" class="w3-button w3-hover-white shoeSize">XXL</li>
+        </ul>
+      </div>
+
+      <!-- <div id="ErrMsg" class="w3-button btn" style="display: none;">Please select a size.</div> -->
+      <div id="ErrMsg" style="display: none;" class="w3-button btn">Please select a size.</div>
+
+      <!-- <form id="QuantityTxt">
+                Quantity
+           <select id="quantityBtn">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </form> -->
+
+      <!-- Form to add to cart -->
+      <form id="AddToCartForm">
+        <input type="text" class="w3-hide" required="true" id="selectedProdId" name="selectedProdId"
+          placeholder="productId" value=<%=productId%>>
+        <input type="text" class="w3-hide" required="true" id="selectedSize" name="selectedSize"
+          placeholder="selectedSize">
+        <!-- <input type="text" required="true" id="selectedQuantity" placeholder="selectedQuantity"> -->
+      
+        <!-- <input type="text" required="true" id="EmailOrIP" name="EmailOrIP" placeholder="EmailOrIP"> -->
+        <!-- <input type="text"id="selectedProductTitle" name="productTitle" placeholder="productTitle" value = <%=productTitle%>>
+        <input type="text"id="selectedProductDesc" name="productDesc" placeholder="productDesc" value = <%=productDesc%>>
+        <input type="text"id="selectedProductTheme" name="productTheme" placeholder="productTheme" value = <%=ThemeId%>>
+        <input type="text"id="selectedProductPrice" name="productPrice" placeholder="productPrice" value=<%=productPrice%>> -->
+        <div id="qtyContainer">
+          <span id="QuantityTxt">Quantity</span><select name="selectedQuantity" id="quantityBtn">
+          <option onclick="QtyChanged('<%=productId%>','1')" value="1">1</option>
+          <option onclick="QtyChanged('<%=productId%>','2')" value="2">2</option>
+          <option onclick="QtyChanged('<%=productId%>','3')" value="3">3</option>
+          <option onclick="QtyChanged('<%=productId%>','4')" value="4">4</option>
+          <option onclick="QtyChanged('<%=productId%>','5')" value="5">5</option>
+          <option onclick="QtyChanged('<%=productId%>','6')" value="6">6</option>
+          <option onclick="QtyChanged('<%=productId%>','7')" value="7">7</option>
+          <option onclick="QtyChanged('<%=productId%>','8')" value="8">8</option>
+          <option onclick="QtyChanged('<%=productId%>','9')" value="9">9</option>
+          <option onclick="QtyChanged('<%=productId%>','10')" value="10">10</option>
+        </select></div>
+        <!-- <div><button type="submit" id="AddCartBtn" class="w3-button w3-red w3-hover-red">ADD TO CART</button></div> -->
+        <div onclick="AddToCartNew('<%=productId%>')" id="AddCartBtnNew" class="btn">ADD TO CART </div>
+        <div onclick="Wishlist('<%=productId%>')" id="AddWishListBtn" class="btn"><span id="wishlistResponse"><%=response%></span></div>
+      </form>
+
+    </div>
+
+  </section>
+
+  <div id="SimilarProdDiv">
+    <div id="SimilarProdText">SIMILAR PRODUCTS</div>
+    <hr>
+
+    <ul id="ProductCardsDiv" style="list-style-type:none;">
+      <% var i=0; %>
+        <% for(products of similarProductsList){%>
+          <li id="eachSimilarProd">
+            <img onclick="ViewProdBtn('<%=products.PROD_ID%>')" class="SimilarProductCards" src=<%=products.PROD_IMG1%>>
+            <div class="w3-hide" id="prodId">
+              <%=products.PROD_ID%><span class="w3-hide">,</span>
+            </div>
+            <div onclick="ViewProdBtn('<%=products.PROD_ID%>')" id="prodTitleSimilarProd">
+              <%=products.PROD_TITLE%><span class="w3-hide">,</span>
+            </div>
+            <div class="w3-hide" id="prodDesc">
+              <%=products.PROD_DESC%><span class="w3-hide">,</span>
+            </div>
+            <div class="w3-hide" id="prodTheme">
+              <%=products.PROD_THEME%><span class="w3-hide">,</span>
+            </div>
+            <div class="w3-hide" id="prodPrice">
+              <%=products.PRICE%><span class="w3-hide">,</span>
+            </div>
+            <div id="prodPriceDisplaySimilarProd">AED <%=products.PRICE%><span class="w3-hide">,</span></div>
+          </li>
+          <% i++; %>
+            <%}%>
+    </ul>
+
+  </div>
+
+  <!-- Wishlist Form -->
+  <form class="w3-hide" id="AddToWishlistForm" action="/QuarkXAcademy/AddToWishlistNew" method="POST">
+    <input type="text" id="prodIdWishlist" name="selectedProdId" placeholder="prodIdWishlist">
+    <input type="text" id="prodSizeWishlist" name="selectedSize" placeholder="prodSizeWishlist">
+    <input type="text" id="prodQtyWishlist" name="selectedQuantity" placeholder="prodQtyWishlist">
+
+    <button type="submit" class="w3-blue btn btn-default">Submit</button>
+  </form>
+
+  <form class="w3-hide" id="ViewProductForm" action="/QuarkXAcademy/ProductInfo" method="POST">
+    <input type="text" id="thisProdId" name="productId" placeholder="thisProdId">
+    <button type="submit" class="w3-blue btn btn-default">Submit</button>
+  </form>
+
+
+  <input class="w3-hide" id="prodIdForMainProd" value=<%=productId%>>
+  <!-- used for reloading to handle if link is sent to another user who open in new browser-->
+
+
+<script>
+    if (document.getElementById('cartItemCount').innerHTML=="0")
+       $("#cartCount").hide();
+    else 
+      $("#cartCount").show();
+
+
+    if (document.getElementById('wishlistItemCount').innerHTML=="0")
+       $("#wishlistCount").hide();
+    else 
+      $("#wishlistCount").show();
+      
+
+</script>
+
+
+
+  <script>
+    function ViewCart(){
+      var userToken = localStorage.getItem("Token");
+      if(userToken){
+        userToken1=userToken;
+      }
+      else{
+        userToken1=Date.now();
+        localStorage.setItem("Token",userToken1);
+      }
+      hrefStr = "http://localhost:8001/QuarkXAcademy/ViewCart" + "/" + userToken1;
+      location.href = hrefStr;
+    }
+  </script>
+
+<script>
+  function ViewWishlist(){
+    var userToken = localStorage.getItem("Token");
+    if(userToken){
+      userToken1=userToken;
+    }
+    else{
+      userToken1=Date.now();
+      localStorage.setItem("Token",userToken1);
+    }
+    hrefStr = "http://localhost:8001/QuarkXAcademy/Wishlist" + "/" + userToken1;
+    location.href = hrefStr;
+  }
+</script>
+
+
+<script>
+    var userToken = localStorage.getItem("Token");
+    if(userToken){
+      userToken1=userToken;
+    }
+    else{
+      userToken1=Date.now();
+      document.getElementById('cartItemCount') = "0";
+      $("#cartCount").hide();
+      document.getElementById('wishlistItemCount') = "0";
+      $("#wishlistCount").hide();
+      localStorage.setItem("Token",userToken1);
+    }
+
+    var currentUrl = document.URL
+    var urlToken = currentUrl.substring(currentUrl.length-13, currentUrl.length);
+
+    if(urlToken!=userToken1){
+      var productIdView = document.getElementById('prodIdForMainProd').value;
+      hrefStr = "http://localhost:8001/QuarkXAcademy/ProductInfo" + "/" + productIdView + "/" + userToken1;
+      location.href = hrefStr;
+    }
+
+</script>
+
+
+<script>
+  function ViewProdBtn(productIdView) {
+
+          console.log("view prod entered",productIdView )
+
+          var userToken = localStorage.getItem("Token");
+          if(userToken){
+            userToken1=userToken;
+          }
+          else{
+            userToken1=Date.now();
+            localStorage.setItem("Token",userToken1);
+          }
+
+          hrefStr = "http://localhost:8001/QuarkXAcademy/ProductInfo" + "/" + productIdView + "/" + userToken1;
+          location.href = hrefStr;
+          }
+</script>
+
+
+  <script>
+
+    $(document).ready(function () {
+      var username = document.getElementById('username1').value;
+      var loginFlag = document.getElementById('loginFlag').value;
+
+      if (loginFlag == '0' && screen.width > 768) {
+        $("#usernameDisplay").hide();
+        $("#loginBtn").show();
+        $("#signUpBtn").show();
+        $('#RegiTxt').show();
+        $('#logOutTxt').hide();
+        $('#userImage').hide();
+        $('#myCoursesTxt').hide();
+      }
+      else if (loginFlag == '1' && screen.width > 768) {   //if logged in
+        $("#loginBtn").hide();
+        $("#signUpBtn").hide();
+        $("#usernameDisplay").show();
+        $('#RegiTxt').hide();
+        $('#logOutTxt').show();
+        $('#userImage').show();
+        $('#username').show();
+      }
+
+      if (loginFlag == '1' && screen.width <= 768) {
+        $('#RegiTxt').hide();
+        $('#logOutTxt').show();
+      }
+      else if (loginFlag == '0' && screen.width <= 768) {
+        $('#RegiTxt').show();
+        $('#logOutTxt').hide();
+      }
+    });
+
+  </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157972185-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-157972185-1');
+  </script>
+
+  <script>
+    AOS.init();
+  </script>
+
+
+  <!-- <script>
+    function QtyChanged(ProdId, ProdQty) {
+      document.getElementById('prodIdWishlist').value = ProdId;
+      document.getElementById('prodQtyWishlist').value = 1;
+      document.getElementById('selectedQuantity').value = ProdQty;  //For Add to Cart New XML request
+      console.log("Function is called",ProdQty);
+      //always have 1 qty for wishlist
+    }
+  </script> -->
+
+  <script>
+
+    var clickedFlag = 0;
+    $("#sizesDiv li").click(function () {
+      clickedFlag = 1;
+
+      // $("#ErrMsg").css("display", "none");
+      var index = $(this).index();
+      if (index == 0) {
+        $("#size1").css("border-color", "green")
+        $("#size2").css("border-color", "#bbb")
+        $("#size3").css("border-color", "#bbb")
+        $("#size4").css("border-color", "#bbb")
+        $("#size5").css("border-color", "#bbb")
+        $("#size6").css("border-color", "#bbb")
+        $("#size7").css("border-color", "#bbb")
+        document.getElementById('selectedSize').value = 'XXS';
+        $("#ErrMsg").hide()
+      }
+      else if (index == 1) {
+        $("#size1").css("border-color", "#bbb")
+        $("#size2").css("border-color", "green")
+        $("#size3").css("border-color", "#bbb")
+        $("#size4").css("border-color", "#bbb")
+        $("#size5").css("border-color", "#bbb")
+        $("#size6").css("border-color", "#bbb")
+        $("#size7").css("border-color", "#bbb")
+        document.getElementById('selectedSize').value = 'XS';
+        $("#ErrMsg").hide()
+      }
+
+      else if (index == 2) {
+        $("#size1").css("border-color", "#bbb")
+        $("#size2").css("border-color", "#bbb")
+        $("#size3").css("border-color", "green")
+        $("#size4").css("border-color", "#bbb")
+        $("#size5").css("border-color", "#bbb")
+        $("#size6").css("border-color", "#bbb")
+        $("#size7").css("border-color", "#bbb")
+        document.getElementById('selectedSize').value = 'S';
+        $("#ErrMsg").hide()
+      }
+
+      else if (index == 3) {
+        $("#size1").css("border-color", "#bbb")
+        $("#size2").css("border-color", "#bbb")
+        $("#size3").css("border-color", "#bbb")
+        $("#size4").css("border-color", "green")
+        $("#size5").css("border-color", "#bbb")
+        $("#size6").css("border-color", "#bbb")
+        $("#size7").css("border-color", "#bbb")
+        document.getElementById('selectedSize').value = 'M';
+        $("#ErrMsg").hide()
+      }
+
+      else if (index == 4) {
+        $("#size1").css("border-color", "#bbb")
+        $("#size2").css("border-color", "#bbb")
+        $("#size3").css("border-color", "#bbb")
+        $("#size4").css("border-color", "#bbb")
+        $("#size5").css("border-color", "green")
+        $("#size6").css("border-color", "#bbb")
+        $("#size7").css("border-color", "#bbb")
+        document.getElementById('selectedSize').value = 'L';
+        $("#ErrMsg").hide()
+      }
+
+      else if (index == 5) {
+        $("#size1").css("border-color", "#bbb")
+        $("#size2").css("border-color", "#bbb")
+        $("#size3").css("border-color", "#bbb")
+        $("#size4").css("border-color", "#bbb")
+        $("#size5").css("border-color", "#bbb")
+        $("#size6").css("border-color", "green")
+        $("#size7").css("border-color", "#bbb")
+        document.getElementById('selectedSize').value = 'XL';
+        $("#ErrMsg").hide()
+      }
+
+      else if (index == 6) {
+        $("#size1").css("border-color", "#bbb")
+        $("#size2").css("border-color", "#bbb")
+        $("#size3").css("border-color", "#bbb")
+        $("#size4").css("border-color", "#bbb")
+        $("#size5").css("border-color", "#bbb")
+        $("#size6").css("border-color", "#bbb")
+        $("#size7").css("border-color", "green")
+        document.getElementById('selectedSize').value = 'XXL';
+        $("#ErrMsg").hide()
+      }
+    });
+
+    // $("#AddCartBtn").click(function () {
+    //   if (clickedFlag == 0) {
+    //     $("#ErrMsg").show()
+    //   }
+    // });
+  </script>
+
+
+<script>
+  function AddToCartNew(ProdId) {
+
+    var userToken = localStorage.getItem("Token");
+    if(userToken){
+      userToken1=userToken;
+    }
+    else{
+      userToken1=Date.now();
+      localStorage.setItem("Token",userToken1);
+    }
+    
+    var url = 'http://localhost:8001/QuarkxAcademy/AddToCartNew';
+        var params = {
+        selectedProdId: ProdId,
+        selectedSize: document.getElementById('selectedSize').value,
+        selectedQuantity: document.getElementById('quantityBtn').value,
+        userToken: userToken1
+        };
+    
+        if (document.getElementById('selectedSize').value==""){
+          $("#ErrMsg").show()
+        }
+
+        else{ //if logged in and to add to cart
+          var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function (res) {
+                // console.log("checking response",xmlHttp.responseText);
+                if (xmlHttp.readyState === 4) {
+                    res=JSON.parse(xmlHttp.responseText);
+
+                    // if (res.status == "NotLoggedIn"){ //comes from middleware
+                    //     localAddToCartCall(ProdId);
+                    // }
+
+                    if(res.status=="success"){
+                      document.getElementById('prodAddedMsg').innerHTML = "Product added to your cart successfully"; 
+                      $("#prodAddedMsg").hide();
+                      $("#prodAddedMsg").hide();
+                      $("#prodAddedMsg").show();
+                      $("#prodAddedMsg").delay(4000).fadeOut();
+                      document.getElementById('cartItemCount').innerHTML = res.itemCount;
+                      $("#cartCount").show();       
+                    }
+      
+                }
+            }
+            xmlHttp.open("POST", url, true); // false for synchronous request
+            // xmlHttp.withCredentials = true;
+            xmlHttp.setRequestHeader("Content-type", "application/json");
+            xmlHttp.send(JSON.stringify(params));
+        }
+   }
+
+   //unused function
+   function localAddToCartCall(ProdId){
+        var userToken = localStorage.getItem("Token");
+        if(userToken){
+          userToken1=userToken;
+        }
+        else{
+          userToken1=Date.now();
+          localStorage.setItem("Token",userToken1);
+        }
+
+        var url = 'http://localhost:8001/QuarkxAcademy/AddToCartLocal';
+        var params = {
+        selectedProdId: ProdId,
+        selectedSize: document.getElementById('selectedSize').value,
+        selectedQuantity: document.getElementById('quantityBtn').value,
+        userToken: userToken
+        };
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function (res) {
+            if (xmlHttp.readyState === 4) {
+                res=JSON.parse(xmlHttp.responseText);
+                console.log("checking wishlist response",xmlHttp.responseText);             
+                
+                if(res.status=="success"){
+                      document.getElementById('prodAddedMsg').innerHTML = "Product added to your cart successfully"; 
+                      $("#prodAddedMsg").hide();
+                      $("#prodAddedMsg").hide();
+                      $("#prodAddedMsg").show();
+                      $("#prodAddedMsg").delay(4000).fadeOut();
+                      document.getElementById('cartItemCount').innerHTML = res.itemCount;
+                      $("#cartCount").show();       
+                    }
+            }
+        }
+        xmlHttp.open("POST", url, true); // false for synchronous request
+        // xmlHttp.withCredentials = true;
+        xmlHttp.setRequestHeader("Content-type", "application/json");
+        xmlHttp.send(JSON.stringify(params));
+
+
+
+
+        let cartArray = window.localStorage.getItem("cart");
+        if(cartArray){
+          cartArray=JSON.parse(cartArray);
+        }
+        else{
+          cartArray=[];
+        }
+
+        let alreadyPresent = false;
+        cartArray.map((cartItem)=>{
+            if((cartItem.prodId === ProdId) && cartItem.size === selectedSize){
+                cartItem.quantity = parseInt(cartItem.quantity) + parseInt(selectedQuantity)
+                alreadyPresent = true
+            }
+            return cartItem;
+        });
+
+        if(!alreadyPresent){
+            cartArray.push({
+                userId: userToken,
+                prodId: ProdId,
+                quantity: selectedQuantity,
+                size: selectedSize
+            })
+        }
+
+        window.localStorage.setItem("cart", JSON.stringify(cartArray));
+        document.getElementById('prodAddedMsg').innerHTML = "Product added to your cart successfully"; 
+        $("#prodAddedMsg").hide();
+        $("#prodAddedMsg").hide();
+        $("#prodAddedMsg").show();
+        $("#prodAddedMsg").delay(4000).fadeOut();
+        // document.getElementById('cartItemCount').innerHTML = res.itemCount;
+        $("#cartCount").show();   
+   }
+
+
+
+    </script>
+
+
+
+
+<!-- Updated -->
+
+<script>
+  function Wishlist(ProdId) {
+
+    var userToken = localStorage.getItem("Token");
+    if(userToken){
+      userToken1=userToken;
+    }
+    else{
+      userToken1=Date.now();
+      localStorage.setItem("Token",userToken1);
+    }
+
+   var url = 'http://localhost:8001/QuarkxAcademy/AddToWishlistNew';
+        var params = {
+        selectedProdId: ProdId,
+        userToken: userToken1
+        };
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function (res) {
+            if (xmlHttp.readyState === 4) {
+                res=JSON.parse(xmlHttp.responseText);
+                // console.log("checking wishlist response",xmlHttp.responseText);             
+                
+                // if (res.status == "NotLoggedIn"){ //comes from middleware
+                //   localWishlist(ProdId);
+                // }
+
+                if(res.status=="💚"){
+                  document.getElementById('wishlistResponse').innerHTML = "💚 Added to Wishlist"; 
+                  $("#WishlistMsgRemProdInfo").hide();
+                  $("#WishlistMsgAddProdInfo").hide();
+                  $("#WishlistMsgAddProdInfo").show();
+                  $("#WishlistMsgAddProdInfo").delay(4000).fadeOut();   
+                  // console.log("itemCount",res.itemCount)
+                  document.getElementById('wishlistItemCount').innerHTML = res.itemCount;
+                  $('#wishlistCount').show()
+                }
+                else if(res.status=="♡"){  
+                  document.getElementById('wishlistResponse').innerHTML = "♡ Add to Wishlist";    
+                  $("#WishlistMsgAddProdInfo").hide();
+                  $("#WishlistMsgRemProdInfo").hide();
+                  $("#WishlistMsgRemProdInfo").show();
+                  $("#WishlistMsgRemProdInfo").delay(4000).fadeOut();
+
+                  if (res.itemCount==0)
+                    $("#wishlistCount").hide();
+                  else 
+                    $("#wishlistCount").show();
+                  document.getElementById('wishlistItemCount').innerHTML = res.itemCount;
+                }
+            }
+        }
+        xmlHttp.open("POST", url, true); // false for synchronous request
+        // xmlHttp.withCredentials = true;
+        xmlHttp.setRequestHeader("Content-type", "application/json");
+        xmlHttp.send(JSON.stringify(params));
+}
+
+//unused function
+function localWishlist(ProdId) {
+    var alreadyWishListProducts = localStorage.getItem("WishList");
+    if(alreadyWishListProducts){
+      alreadyWishListProducts=JSON.parse(alreadyWishListProducts);
+    }
+    else{
+      alreadyWishListProducts=[];
+    }
+
+    if(alreadyWishListProducts.includes(ProdId)){
+      alreadyWishListProducts=alreadyWishListProducts.filter((id)=>id!==ProdId );
+      window.localStorage.setItem("WishList",JSON.stringify(alreadyWishListProducts)); 
+      document.getElementById('wishlistResponse').innerHTML = "♡ Add to Wishlist";    
+      $("#WishlistMsgAddProdInfo").hide();
+      $("#WishlistMsgRemProdInfo").hide();
+      $("#WishlistMsgRemProdInfo").show();
+      $("#WishlistMsgRemProdInfo").delay(4000).fadeOut();
+    }
+    else{
+      alreadyWishListProducts.push(ProdId);
+      window.localStorage.setItem("WishList",JSON.stringify(alreadyWishListProducts)); 
+      document.getElementById('wishlistResponse').innerHTML = "💚 Added to Wishlist"; 
+      $("#WishlistMsgRemProdInfo").hide();
+      $("#WishlistMsgAddProdInfo").hide();
+      $("#WishlistMsgAddProdInfo").show();
+      $("#WishlistMsgAddProdInfo").delay(4000).fadeOut(); 
+    }
+  } 
+    
+    // console.log("Prod Id", ProdId);
+    // var url = 'http://localhost:8001/QuarkxAcademy/AddToWishlistNew';
+    //     var params = {
+    //     selectedProdId: ProdId,
+    //       index: ProdId-1
+    //     };
+    //     var xmlHttp = new XMLHttpRequest();
+    //     xmlHttp.onreadystatechange = function (res) {
+    //         if (xmlHttp.readyState === 4) {
+    //             res=JSON.parse(xmlHttp.responseText);
+    //             console.log("checking wishlist response",xmlHttp.responseText);
+                
+    //             var n = res.index;               
+    //             if(res.status=="💚"){
+    //               document.getElementById('wishlistResponse').innerHTML = "💚 Added to Wishlist"; 
+    //               $("#WishlistMsgRemProdInfo").hide();
+    //               $("#WishlistMsgAddProdInfo").hide();
+    //               $("#WishlistMsgAddProdInfo").show();
+    //               $("#WishlistMsgAddProdInfo").delay(4000).fadeOut();   
+    //             }
+    //             else if(res.status=="♡"){  
+    //               document.getElementById('wishlistResponse').innerHTML = "♡ Add to Wishlist";    
+    //               $("#WishlistMsgAddProdInfo").hide();
+    //               $("#WishlistMsgRemProdInfo").hide();
+    //               $("#WishlistMsgRemProdInfo").show();
+    //               $("#WishlistMsgRemProdInfo").delay(4000).fadeOut();
+    //             }
+    //         }
+    //     }
+    //     xmlHttp.open("POST", url, true); // false for synchronous request
+    //     // xmlHttp.withCredentials = true;
+    //     xmlHttp.setRequestHeader("Content-type", "application/json");
+    //     xmlHttp.send(JSON.stringify(params));
+
+   
+    </script>
+
+<script>
+  function productInfo(ProdId) {
+      document.getElementById('thisProdId').value=ProdId;
+      // $("#ViewProductForm").submit();
+      // e.preventDefault();
+
+      hrefStr = "http://localhost:8001/QuarkXAcademy/ProductInfo" + "/" + ProdId;
+
+      location.href = hrefStr;
+  }
+</script>
+
+
+<script>    //Refresh page on back/forward button
+  window.addEventListener( "pageshow", function ( event ) {
+   var historyTraversal = event.persisted || 
+                          ( typeof window.performance != "undefined" && 
+                               window.performance.navigation.type === 2 );
+   if ( historyTraversal ) {
+     // Handle page restore.
+    //  document.location.reload(true);
+     if(userToken){
+      userToken1=userToken;
+    }
+    else{
+      userToken1=Date.now();
+      localStorage.setItem("Token",userToken1);
+    }
+    var productIdView = document.getElementById('prodIdForMainProd').value;
+    hrefStr = "http://localhost:8001/QuarkXAcademy/ProductInfo" + "/" + productIdView + "/" + userToken1;
+    location.href = hrefStr;
+   }
+ });
+ </script>
+
+  <!-- <script>
+    $(document).ready(function () {
+
+      var prodsId = $("#ProductCardsDiv li #prodId").text();
+
+      var prodsTitle = $("#ProductCardsDiv li #prodTitle").text();
+      var prodsDesc = $("#ProductCardsDiv li #prodDesc").text();
+      var prodsTheme = $("#ProductCardsDiv li #prodTheme").text();
+      var prodsPrice = $("#ProductCardsDiv li #prodPrice").text();
+
+      var res1 = prodsId.split(",");
+
+      var res6 = prodsTitle.split(",");
+      var res7 = prodsDesc.split(",");
+      var res8 = prodsTheme.split(",");
+      var res9 = prodsPrice.split(",");
+
+      console.log(res1, res6, res7, res8, res9);
+
+      $("#ProductCardsDiv li").click(function () {
+
+        var index = $(this).index();
+        console.log("Index", index);
+
+        for (var i = 0; i < res1.length; i++) {
+          var prodIdNew = res1[index];
+        }
+
+        document.getElementById('productId').value = prodIdNew;
+
+
+        $("#ViewProductForm").submit();
+      });
+    });
+
+  </script> -->
+
+</body>
+
+</html>
