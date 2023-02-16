@@ -3144,7 +3144,7 @@ router.get("/Wishlist/:userToken", async function(req, res) {
         }
         else 
             EmailOrIP = req.user.EMAIL
-
+            
         let ViewWishlist = await WISHLIST_COLLECTION.find({USER_IP_OR_EMAIL:EmailOrIP}).sort({ROW_INSERTION_DATE_TIME: -1}).select().populate('WishlistToProductJoin');
 
         let itemPos = []
@@ -3165,6 +3165,11 @@ router.get("/Wishlist/:userToken", async function(req, res) {
         let totalQty = 0;
         for (let i = 0; i<allCartProducts.length;i++){
             totalQty = totalQty + parseInt(allCartProducts[i].QUANTITY)
+        }
+
+        if(ViewWishlist.length == 0){
+            res.render('WishlistEmpty', {cartProductsDisplay:ViewWishlist, wishlistItemCount: ViewWishlist.length, itemPos:itemPos, cartItemCount: totalQty, discount:discount});
+            return;
         }
 
         res.render('Wishlist', {cartProductsDisplay:ViewWishlist, wishlistItemCount: ViewWishlist.length, itemPos:itemPos, cartItemCount: totalQty, discount:discount});
